@@ -1,4 +1,4 @@
-# Moriscos · Memoria & Territorio
+# Moriscos · Historia, Lugares y Curiosidades
 
 Plataforma web documental sobre la historia, geografía, etnografía y memoria viva de **Moriscos** (Salamanca, La Armuña) y el entorno de **La Flecha**.
 

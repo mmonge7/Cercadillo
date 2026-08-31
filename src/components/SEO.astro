@@ -7,7 +7,7 @@ export interface Props {
 }
 
 const { title, description, image, type = 'website' } = Astro.props;
-const siteTitle = 'Moriscos · Memoria & Territorio';
+const siteTitle = 'Moriscos · Historia, Lugares y Curiosidades';
 const fullTitle = title === siteTitle ? title : `${title} · Moriscos`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';

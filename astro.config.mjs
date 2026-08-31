@@ -38,7 +38,7 @@ export default defineConfig({
         ],
         manifest: {
           id: base,
-          name: 'Moriscos · Memoria & Territorio',
+          name: 'Moriscos · Historia, Lugares y Curiosidades',
           short_name: 'Moriscos',
           description:
             'Historia, geografía, etnografía y memoria viva de Moriscos (Salamanca, La Armuña) y el entorno de La Flecha.',

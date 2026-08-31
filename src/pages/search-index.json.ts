@@ -83,7 +83,7 @@ export const GET: APIRoute = async () => {
     {
       id: 'page-inicio',
       title: 'Inicio',
-      excerpt: 'Portada de Moriscos: Memoria & Territorio, con los cuatro momentos del pueblo y los capítulos del libro.',
+      excerpt: 'Portada de Moriscos: Historia, Lugares y Curiosidades, con los cuatro momentos del pueblo y los capítulos del libro.',
       href: '/',
       badge: 'Página',
     },
