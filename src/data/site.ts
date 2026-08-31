@@ -8,7 +8,7 @@ export type Counter = {
 export const counters: Counter[] = [
   { label: 'Primera mención documental', value: '1164', detail: '4 de octubre, collationam Sancti Christofori de Morisco' },
   { label: 'Vértice geodésico "Andorra"', value: '871,4', suffix: 'm', detail: 'IGN nº 47879 · punto más alto del término' },
-  { label: 'Distancia a Salamanca', value: '9', suffix: 'km', detail: 'Capital provincial, hacia el sur' },
+  { label: 'Distancia a Salamanca', value: '9', suffix: 'km', detail: 'A 9 km al este-noreste de la capital' },
   { label: 'Superficie del término', value: '12,08', suffix: 'km²', detail: 'Población 2025 (INE): 577 habitantes' },
 ];
 

@@ -10,7 +10,7 @@ const base = '/moriscos-wiki/';
 export default defineConfig({
   site: `${site}${base}`,
   base,
-  trailingSlash: 'ignore',
+  trailingSlash: 'always',
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'load',

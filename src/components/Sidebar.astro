@@ -35,7 +35,7 @@ const icons: Record<string, typeof Home> = {
         const active = isActiveHref(path, base, link.href);
         return (
           <a
-            href={base + link.href.replace(/^\//, '')}
+            href={link.href === '/' ? base : `${base}${link.href.replace(/^\//, '')}/`}
             data-href={link.href}
             class="nav-item text-sm font-semibold"
             data-active={String(active)}

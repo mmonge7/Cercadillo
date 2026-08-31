@@ -82,36 +82,36 @@ const { title, description, image } = Astro.props;
         var base = baseUrl.replace(/\/$/, '') + '/';
         var pages = [
           '',
-          'escudo',
-          'fiestas',
-          'genealogia',
-          'glosario',
-          'historia',
-          'iglesia',
-          'libro',
-          'libro/01-marco-geografico',
-          'libro/02-toponimia-repoblacion',
-          'libro/03-geografia-rural',
-          'libro/04-economia-tradicional',
-          'libro/05-despoblado-ribas-flecha',
-          'libro/06-conflictos-belicos',
-          'libro/07-sucesos-cronica-negra',
-          'libro/08-evolucion-infraestructural',
-          'libro/09-glosario-anexos',
-          'libro/10-epilogo-fuentes',
-          'libro/11-portal-morisquenos',
-          'lugares',
-          'referencias',
-          'ruta-nocturna',
-          'sobre-la-web'
+          'escudo/',
+          'fiestas/',
+          'genealogia/',
+          'glosario/',
+          'historia/',
+          'iglesia/',
+          'libro/',
+          'libro/01-marco-geografico/',
+          'libro/02-toponimia-repoblacion/',
+          'libro/03-geografia-rural/',
+          'libro/04-economia-tradicional/',
+          'libro/05-despoblado-ribas-flecha/',
+          'libro/06-conflictos-belicos/',
+          'libro/07-sucesos-cronica-negra/',
+          'libro/08-evolucion-infraestructural/',
+          'libro/09-glosario-anexos/',
+          'libro/10-epilogo-fuentes/',
+          'libro/11-portal-morisquenos/',
+          'lugares/',
+          'referencias/',
+          'ruta-nocturna/',
+          'sobre-la-web/'
         ];
 
         function normalizeKey(urlStr) {
           try {
             var u = new URL(urlStr, window.location.origin);
-            return u.pathname.replace(/\/$/, '') || '/';
+            return (u.pathname.replace(/\/$/, '') || '/') + '/';
           } catch (_) {
-            return String(urlStr).replace(/\/$/, '') || '/';
+            return (String(urlStr).replace(/\/$/, '') || '/') + '/';
           }
         }
 
