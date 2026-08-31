@@ -146,10 +146,17 @@
 }
 
 @layer components {
+  /* Textura de fondo (mampostería/sillería rural), fija y muy tenue: da
+     el "tono" de piedra al sitio sin competir con el contenido. La propia
+     ilustración ya lleva la opacidad baja incorporada (ver stone-texture.svg). */
   .paper-texture {
     background-image:
       radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--color-piedra-200) 25%, transparent) 0%, transparent 45%),
-      radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--color-armuna-light) 18%, transparent) 0%, transparent 50%);
+      radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--color-armuna-light) 18%, transparent) 0%, transparent 50%),
+      url("../assets/images/stone-texture.svg");
+    background-repeat: no-repeat, no-repeat, repeat;
+    background-attachment: scroll, scroll, fixed;
+    background-size: auto, auto, 360px 240px;
   }
 
   .container-editorial {

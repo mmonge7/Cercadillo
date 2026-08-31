@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" width="360" height="240">
+  <!-- Mosaico de sillería irregular (tono rural), pensado para usarse como
+       textura de fondo a muy baja opacidad, tileable sin costuras. -->
+  <g opacity="0.16">
+    <rect x="0" y="0" width="360" height="240" fill="#7a7468" />
+
+    <!-- fila 1 -->
+    <rect x="0" y="0" width="68" height="78" fill="#e6c88f" />
+    <rect x="72" y="0" width="51" height="78" fill="#c17e5d" />
+    <rect x="127" y="0" width="91" height="78" fill="#cdc6b8" />
+    <rect x="222" y="0" width="56" height="78" fill="#c6923f" />
+    <rect x="282" y="0" width="78" height="78" fill="#9a958c" />
+
+    <!-- fila 2 (juntas alternadas) -->
+    <rect x="0" y="82" width="48" height="76" fill="#9a958c" />
+    <rect x="52" y="82" width="86" height="76" fill="#d4a359" />
+    <rect x="142" y="82" width="61" height="76" fill="#a65d41" />
+    <rect x="207" y="82" width="71" height="76" fill="#cdc6b8" />
+    <rect x="282" y="82" width="78" height="76" fill="#8c4a32" />
+
+    <!-- fila 3 -->
+    <rect x="0" y="162" width="83" height="78" fill="#d4a359" />
+    <rect x="87" y="162" width="56" height="78" fill="#c17e5d" />
+    <rect x="147" y="162" width="66" height="78" fill="#e6c88f" />
+    <rect x="217" y="162" width="91" height="78" fill="#9a958c" />
+    <rect x="312" y="162" width="48" height="78" fill="#c6923f" />
+  </g>
+</svg>
