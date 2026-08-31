@@ -129,6 +129,15 @@ export const GET: APIRoute = async () => {
       badge: 'Página',
     },
     {
+      id: 'page-referencias',
+      title: 'Referencias y fuentes documentales',
+      excerpt: 'Fuentes históricas, archivos documentales, investigaciones etnográficas, hemeroteca y portales de los que proceden los datos.',
+      content:
+        'referencias bibliografía fuentes archivos catedral salamanca simancas pares morisqueños catastro ensenada madoz unamuno fray luis de león uffizzi hispania nostra el adelanto ign rtve alvia',
+      href: '/referencias',
+      badge: 'Página',
+    },
+    {
       id: 'page-sobre-la-web',
       title: 'Sobre la web',
       excerpt: 'Por qué existe esta web, de dónde procede la información y cómo está construida.',

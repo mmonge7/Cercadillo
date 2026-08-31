@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CounterGrid from '../components/CounterGrid.astro';
-import { BookOpen, Map, Users, BookMarked, Info, PartyPopper, Church, Shield, MapPin, History } from 'lucide-react';
+import { BookOpen, Map, Users, BookMarked, Info, PartyPopper, Church, Shield, MapPin, History, Library } from 'lucide-react';
 
 const base = import.meta.env.BASE_URL;
 
@@ -59,6 +59,12 @@ const sections = [
     icon: BookMarked,
     title: 'Glosario',
     description: 'El vocabulario tradicional del campo salmantino, clasificado por categorías.',
+  },
+  {
+    href: 'referencias',
+    icon: Library,
+    title: 'Referencias',
+    description: 'Fuentes documentales, archivos históricos, hemeroteca y estudios de los que proceden los datos.',
   },
   {
     href: 'sobre-la-web',

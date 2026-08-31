@@ -54,5 +54,6 @@ export const navLinks = [
   { label: 'Ruta Nocturna', href: '/ruta-nocturna' },
   { label: 'Genealogía', href: '/genealogia' },
   { label: 'Glosario', href: '/glosario' },
+  { label: 'Referencias', href: '/referencias' },
   { label: 'Sobre la web', href: '/sobre-la-web' },
 ];
