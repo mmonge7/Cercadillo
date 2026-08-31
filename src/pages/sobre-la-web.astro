@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Mail, Github, Linkedin, MessageSquareQuote } from 'lucide-react';
 ---
 
 <BaseLayout
   title="Sobre la web"
-  description="Por qué existe Moriscos: Memoria & Territorio, de dónde procede su información y cómo está construida esta wiki independiente y de código abierto."
+  description="Por qué existe Moriscos: Memoria & Territorio, de dónde procede su información, cómo contactar y cómo está construida esta wiki independiente y de código abierto."
 >
   <section class="container-editorial py-14 sm:py-20">
     <p class="kicker">El proyecto</p>
@@ -31,14 +32,50 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <article>
         <h2 class="font-serif text-2xl font-semibold text-armuna-dark dark:text-piedra-200">¿De dónde procede la información?</h2>
         <p class="mt-3 max-w-3xl text-tinta/75 dark:text-pergamino-muted/75">
-          Los contenidos se basan en el legado documental del portal <span class="font-medium text-armuna dark:text-piedra-300">Morisqueños</span>
-          (moriscos.info), en una monografía histórica local con once capítulos sobre geografía, toponimia, economía
-          tradicional y sucesos del pueblo, y en fuentes oficiales como el Instituto Geográfico Nacional (IGN) y el
-          Instituto Nacional de Estadística (INE) para datos de altitud, superficie y población. Se completa con la
-          memoria oral recogida entre vecinos. Es un trabajo vivo: si detectas un error o tienes documentos, fotografías
-          o correcciones que aportar, escribe a
-          <a class="font-semibold text-soto hover:underline dark:text-piedra-300" href="mailto:moriscos.info@gmail.com"> moriscos.info@gmail.com</a>.
+          Los contenidos se basan en el legado documental del portal <span class="font-medium text-armuna dark:text-piedra-300">Morisqueños</span>,
+          en monografías históricas locales sobre geografía, toponimia, economía tradicional y sucesos del pueblo, en legajos de archivos
+          históricos diocesanos y estatales, y en fuentes oficiales como el Instituto Geográfico Nacional (IGN) y el
+          Instituto Nacional de Estadística (INE) para datos de altitud, superficie y población. Puedes consultar el listado completo en el apartado de <a class="font-semibold text-soto hover:underline dark:text-piedra-300" href={`${import.meta.env.BASE_URL}referencias`}>Referencias</a>.
         </p>
+      </article>
+
+      <!-- Bloque de Contacto y Colaboración -->
+      <article class="rounded-3xl border border-piedra-400/40 bg-noche-surface/95 p-7 sm:p-9 shadow-xl">
+        <div class="flex items-center gap-3 text-piedra-300">
+          <MessageSquareQuote size={28} className="text-piedra-400" />
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-pergamino">Contacto y colaboración</h2>
+        </div>
+        <p class="mt-3.5 max-w-3xl text-sm sm:text-base leading-relaxed text-pergamino-muted/90">
+          Este es un trabajo vivo y en constante enriquecimiento. Si tienes documentos antiguos, fotografías familiares, datos genealógicos, recuerdos sobre las tradiciones del pueblo o deseas señalar cualquier corrección o errata, puedes ponerte en contacto directo:
+        </p>
+
+        <div class="mt-6 flex flex-wrap items-center gap-4">
+          <a
+            href="mailto:pcbcrespo@gmail.com"
+            class="inline-flex items-center gap-2.5 rounded-2xl border border-piedra-400/50 bg-piedra-400/20 px-5 py-3 font-body text-sm sm:text-base font-bold text-pergamino shadow-md transition-all hover:-translate-y-0.5 hover:border-piedra-300 hover:bg-piedra-400/30"
+          >
+            <Mail size={18} className="text-piedra-300" />
+            <span>pcbcrespo@gmail.com</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/pablocrespobellido/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-2xl border border-noche-border bg-noche px-4 py-3 text-sm font-semibold text-pergamino-muted transition-all hover:border-[#4db5e8]/50 hover:text-[#4db5e8]"
+          >
+            <Linkedin size={17} />
+            <span>LinkedIn</span>
+          </a>
+          <a
+            href="https://github.com/pCresp0/moriscos-wiki"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-2xl border border-noche-border bg-noche px-4 py-3 text-sm font-semibold text-pergamino-muted transition-all hover:border-pergamino hover:text-pergamino"
+          >
+            <Github size={17} />
+            <span>GitHub</span>
+          </a>
+        </div>
       </article>
 
       <article>

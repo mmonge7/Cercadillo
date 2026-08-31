@@ -3,14 +3,27 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="footer-panel mt-16">
-  <div class="py-6 pb-[calc(env(safe-area-inset-bottom,0px)+1.5rem)]">
-    <div class="container-editorial flex flex-col items-center gap-3 text-center">
+  <div class="py-7 pb-[calc(env(safe-area-inset-bottom,0px)+1.5rem)]">
+    <div class="container-editorial flex flex-col items-center gap-3.5 text-center">
+      {/* Enlaces de contacto y perfiles */}
       <div class="flex items-center gap-3">
+        <a
+          href="mailto:pcbcrespo@gmail.com"
+          aria-label="Enviar correo de contacto a pcbcrespo@gmail.com"
+          title="Contacto por email: pcbcrespo@gmail.com"
+          class="group flex h-10 w-10 items-center justify-center rounded-full border border-pergamino/25 text-pergamino/80 transition-colors hover:border-[#ea4335] hover:text-[#ea4335]"
+        >
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </a>
         <a
           href="https://www.linkedin.com/in/pablocrespobellido/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Perfil de LinkedIn de Pablo Crespo Bellido"
+          title="LinkedIn: Pablo Crespo Bellido"
           class="group flex h-10 w-10 items-center justify-center rounded-full border border-pergamino/25 text-pergamino/80 transition-colors hover:border-[#4db5e8] hover:text-[#4db5e8]"
         >
           <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
@@ -22,6 +35,7 @@ const year = new Date().getFullYear();
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Repositorio en GitHub de Moriscos Wiki"
+          title="Repositorio en GitHub: pCresp0/moriscos-wiki"
           class="group flex h-10 w-10 items-center justify-center rounded-full border border-pergamino/25 text-pergamino/80 transition-colors hover:border-pergamino hover:text-pergamino"
         >
           <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
@@ -29,11 +43,23 @@ const year = new Date().getFullYear();
           </svg>
         </a>
       </div>
+
+      {/* Contacto directo por email */}
+      <a
+        href="mailto:pcbcrespo@gmail.com"
+        class="inline-flex items-center gap-1.5 rounded-full border border-pergamino/20 bg-pergamino/10 px-3.5 py-1 text-xs font-semibold text-pergamino/90 transition-all hover:border-pergamino/40 hover:bg-pergamino/20 hover:text-pergamino"
+      >
+        <svg class="h-3.5 w-3.5 text-piedra-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="16" x="2" y="4" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        <span>Contacto: pcbcrespo@gmail.com</span>
+      </a>
+
       <p class="text-sm text-pergamino/80">
         Web diseñada y desarrollada por <span class="font-semibold text-pergamino">Pablo Crespo Bellido</span>
       </p>
-      <p class="text-xs text-pergamino/45">&copy; {year} · Moriscos Wiki</p>
+      <p class="text-xs text-pergamino/50">&copy; {year} · Moriscos Wiki</p>
     </div>
   </div>
 </footer>
-
