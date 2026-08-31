@@ -88,9 +88,6 @@ export default function SearchModal() {
       >
         <Search className="h-4 w-4" />
         <span>Buscar</span>
-        <kbd className="hidden rounded border border-pergamino/30 bg-pergamino/10 px-1.5 py-0.5 text-[0.65rem] font-body text-pergamino/80 lg:inline">
-          ⌘K
-        </kbd>
       </button>
 
       <Dialog.Portal>
