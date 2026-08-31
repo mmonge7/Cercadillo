@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
@@ -13,20 +15,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </h1>
 
     <div class="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start">
-      <img
-        src={`${import.meta.env.BASE_URL}images/escudo-moriscos-480.jpg`}
-        alt="Escudo heráldico oficial del Ayuntamiento de Moriscos"
-        class="mx-auto h-48 w-48 shrink-0 rounded-2xl object-cover shadow-lg ring-1 ring-piedra-border/60 dark:ring-noche-border sm:mx-0"
-        width="192"
-        height="192"
-        loading="lazy"
-      />
+      <button
+        id="escudo-open"
+        type="button"
+        aria-label="Ver el escudo en grande"
+        class="group relative mx-auto h-48 w-48 shrink-0 cursor-zoom-in overflow-hidden rounded-2xl shadow-lg ring-1 ring-piedra-border/60 dark:ring-noche-border sm:mx-0"
+      >
+        <img
+          src={`${base}images/escudo-moriscos-480.jpg`}
+          alt="Escudo heráldico oficial del Ayuntamiento de Moriscos"
+          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          width="192"
+          height="192"
+          loading="lazy"
+        />
+        <span class="absolute inset-0 flex items-center justify-center bg-noche/0 text-pergamino opacity-0 transition-all group-hover:bg-noche/30 group-hover:opacity-100">
+          <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg>
+        </span>
+      </button>
       <p class="max-w-3xl text-tinta/75 dark:text-pergamino-muted/75">
         Es el <strong>escudo heráldico oficial del Ayuntamiento de Moriscos</strong>: un partido y entado en punta,
         timbrado con la Corona Real, cuyo diseño sintetiza mil años de historia del pueblo, desde su fundación hasta su
         economía tradicional en La Armuña.
       </p>
     </div>
+
 
     <div class="prose-armuna mt-8 max-w-3xl">
       <h2>1. Primer cuartel (izquierda): la repoblación y El Hoyo</h2>
@@ -63,4 +76,50 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </p>
     </div>
   </section>
+
+  <div
+    id="escudo-lightbox"
+    class="fixed inset-0 z-[90] flex items-center justify-center p-4 pointer-events-none opacity-0 transition-opacity duration-200"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Escudo de Moriscos ampliado"
+  >
+    <div id="escudo-lightbox-backdrop" class="absolute inset-0 bg-noche/80 backdrop-blur-sm"></div>
+    <button
+      id="escudo-close"
+      type="button"
+      aria-label="Cerrar"
+      class="absolute right-5 top-5 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-pergamino/10 text-pergamino hover:bg-pergamino/20"
+    >
+      <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <img
+      src={`${base}images/escudo-moriscos-1024.jpg`}
+      alt="Escudo heráldico oficial del Ayuntamiento de Moriscos, en detalle"
+      class="relative z-[1] max-h-[85vh] max-w-[92vw] rounded-2xl object-contain shadow-2xl"
+      width="1024"
+      height="1024"
+    />
+  </div>
+
+  <script>
+    const openBtn = document.getElementById('escudo-open');
+    const closeBtn = document.getElementById('escudo-close');
+    const backdrop = document.getElementById('escudo-lightbox-backdrop');
+    const lightbox = document.getElementById('escudo-lightbox');
+
+    const setOpen = (open: boolean) => {
+      if (!lightbox) return;
+      lightbox.classList.toggle('opacity-0', !open);
+      lightbox.classList.toggle('pointer-events-none', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+
+    openBtn?.addEventListener('click', () => setOpen(true));
+    closeBtn?.addEventListener('click', () => setOpen(false));
+    backdrop?.addEventListener('click', () => setOpen(false));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  </script>
 </BaseLayout>
