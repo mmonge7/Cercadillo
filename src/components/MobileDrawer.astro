@@ -77,6 +77,9 @@ const icons: Record<string, typeof Home> = {
     const drawer = document.getElementById('mobile-drawer');
     const panel = document.getElementById('drawer-panel');
 
+    if (!drawer || drawer.hasAttribute('data-initialized')) return;
+    drawer.setAttribute('data-initialized', 'true');
+
     const setOpen = (open: boolean) => {
       if (!drawer || !panel || !backdrop) return;
       drawer.classList.toggle('pointer-events-none', !open);
