@@ -111,7 +111,13 @@
   --line: #e8e0ce;
   --font-display: "Cinzel", serif;
   --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
-  --mobile-topbar: calc(64px + env(safe-area-inset-top, 0px));
+  --mobile-topbar: calc(58px + env(safe-area-inset-top, 0px));
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --mobile-topbar: 0px;
+  }
 }
 
 .dark {
@@ -123,24 +129,42 @@
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    scrollbar-gutter: stable;
-    touch-action: manipulation;
+  * {
     -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
   }
 
-  body, a, button, nav, [role="button"], input, select {
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
+  html, body, #app-shell {
+    height: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   body {
     @apply bg-pergamino text-tinta font-body antialiased;
+    overscroll-behavior-y: none;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
   }
 
   .dark body {
     @apply bg-noche text-pergamino-muted;
+  }
+
+  /* Micro-animación GPU ultra-ligera idéntica al proyecto de Japón */
+  main > * {
+    animation: fadeIn 0.18s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   ::selection {

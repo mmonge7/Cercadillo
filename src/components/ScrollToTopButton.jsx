@@ -14,8 +14,16 @@ export default function ScrollToTopButton({ containerRef, resetKey }) {
   useEffect(() => {
     const THRESHOLD = 400; // px de scroll antes de mostrar el botón
 
+    const getTarget = () => {
+      if (containerRef?.current) return containerRef.current;
+      const el = document.getElementById('main-scroll-container');
+      if (el) return el;
+      return window;
+    };
+
     const getScrollTop = () => {
-      if (containerRef?.current) return containerRef.current.scrollTop;
+      const target = getTarget();
+      if (target && target !== window) return target.scrollTop;
       return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
     };
 
@@ -23,21 +31,17 @@ export default function ScrollToTopButton({ containerRef, resetKey }) {
       setVisible(getScrollTop() > THRESHOLD);
     };
 
-    onScroll(); // estado inicial correcto
+    onScroll();
 
-    if (containerRef?.current) {
-      const el = containerRef.current;
-      el.addEventListener('scroll', onScroll, { passive: true });
-      return () => el.removeEventListener('scroll', onScroll);
-    } else {
-      window.addEventListener('scroll', onScroll, { passive: true });
-      return () => window.removeEventListener('scroll', onScroll);
-    }
+    const target = getTarget();
+    target.addEventListener('scroll', onScroll, { passive: true });
+    return () => target.removeEventListener('scroll', onScroll);
   }, [containerRef, resetKey]);
 
   const scrollToTop = () => {
-    if (containerRef?.current) {
-      containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    const target = containerRef?.current || document.getElementById('main-scroll-container') || window;
+    if (target && target !== window) {
+      target.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }

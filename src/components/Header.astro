@@ -8,7 +8,7 @@ const base = import.meta.env.BASE_URL;
 <header
   id="main-header"
   transition:persist="main-header"
-  class="header-panel fixed inset-x-0 top-0 z-40 flex h-[var(--mobile-topbar)] lg:h-[72px] items-center shadow-lg"
+  class="header-panel fixed lg:relative inset-x-0 top-0 lg:top-auto z-40 flex h-[var(--mobile-topbar)] lg:h-[70px] lg:shrink-0 items-center shadow-md pt-[env(safe-area-inset-top,0px)] lg:pt-0"
 >
   <div class="relative flex w-full items-center justify-between px-3 sm:px-6 lg:px-8">
     {/* Botón de apertura del menú móvil a la izquierda */}
