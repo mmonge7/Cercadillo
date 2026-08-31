@@ -93,33 +93,11 @@ const icons: Record<string, typeof Home> = {
     closeBtn?.addEventListener('click', () => setOpen(false));
     backdrop?.addEventListener('click', () => setOpen(false));
 
-    // Al pulsar un enlace en el drawer persistente, cerramos el drawer y actualizamos en frame 0
+    // Al pulsar un enlace en el drawer, cerramos el menú
     drawer?.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
         setOpen(false);
       });
-      link.addEventListener(
-        'pointerdown',
-        () => {
-          const href = link.getAttribute('href');
-          if (href && (window as any).__MORISCOS_CACHE__) {
-            const targetKey = href.replace(/\/$/, '') || '/';
-            const cache = (window as any).__MORISCOS_CACHE__;
-            if (!cache.has(targetKey)) {
-              fetch(href, { priority: 'high', cache: 'force-cache' })
-                .then((r) => (r.ok ? r.text() : ''))
-                .then((html) => {
-                  if (html) {
-                    const doc = new DOMParser().parseFromString(html, 'text/html');
-                    cache.set(targetKey, doc);
-                  }
-                })
-                .catch(() => {});
-            }
-          }
-        },
-        { passive: true },
-      );
     });
 
     document.addEventListener('keydown', (e) => {

@@ -40,20 +40,8 @@ const { title, description, image } = Astro.props;
     <meta name="theme-color" content="#724828" />
     <SEO title={title} description={description} image={image} />
     <ClientRouter />
-    <script is:inline define:vars={{ baseUrl: import.meta.env.BASE_URL }}>
-      // 1. Al recargar o actualizar la web (F5, reload), vuelve a la portada de inicio por defecto
-      try {
-        var navEntry = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
-        var isReload = (navEntry && navEntry.type === 'reload') ||
-                       (performance.navigation && performance.navigation.type === 1);
-        var normPath = location.pathname.endsWith('/') ? location.pathname : location.pathname + '/';
-        var normBase = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/';
-        if (isReload && normPath !== normBase) {
-          window.location.replace(baseUrl);
-        }
-      } catch (_) {}
-
-      // 2. Reseteo Inmediato de Scroll en el contenedor interno (#main-scroll-container)
+    <script is:inline>
+      // 1. Reseteo Inmediato de Scroll en el contenedor interno (#main-scroll-container)
       function resetScrollTop() {
         if (!location.hash) {
           var container = document.getElementById('main-scroll-container');
@@ -71,98 +59,11 @@ const { title, description, image } = Astro.props;
       document.addEventListener('astro:after-swap', resetScrollTop);
       document.addEventListener('astro:page-load', resetScrollTop);
 
-      // 3. Precarga total en memoria RAM (0ms): descarga todas las páginas en segundo plano
-      // nada más abrir la web. Al pulsar cualquier apartado del menú, se monta al instante desde memoria.
-      (function () {
-        if (typeof window === 'undefined') return;
-        if (!window.__MORISCOS_CACHE__) {
-          window.__MORISCOS_CACHE__ = new Map();
-        }
-
-        var base = baseUrl.replace(/\/$/, '') + '/';
-        var pages = [
-          '',
-          'escudo/',
-          'fiestas/',
-          'genealogia/',
-          'glosario/',
-          'historia/',
-          'iglesia/',
-          'libro/',
-          'libro/01-marco-geografico/',
-          'libro/02-toponimia-repoblacion/',
-          'libro/03-geografia-rural/',
-          'libro/04-economia-tradicional/',
-          'libro/05-despoblado-ribas-flecha/',
-          'libro/06-conflictos-belicos/',
-          'libro/07-sucesos-cronica-negra/',
-          'libro/08-evolucion-infraestructural/',
-          'libro/09-glosario-anexos/',
-          'libro/10-epilogo-fuentes/',
-          'libro/11-portal-morisquenos/',
-          'lugares/',
-          'referencias/',
-          'ruta-nocturna/',
-          'sobre-la-web/'
-        ];
-
-        function normalizeKey(urlStr) {
-          try {
-            var u = new URL(urlStr, window.location.origin);
-            return (u.pathname.replace(/\/$/, '') || '/') + '/';
-          } catch (_) {
-            return (String(urlStr).replace(/\/$/, '') || '/') + '/';
-          }
-        }
-
-        function preloadAll() {
-          var parser = new DOMParser();
-          pages.forEach(function (route) {
-            var fullUrl = base + route;
-            var key = normalizeKey(fullUrl);
-            if (window.__MORISCOS_CACHE__.has(key)) return;
-
-            fetch(fullUrl, { priority: 'high', cache: 'force-cache' })
-              .then(function (res) {
-                if (res.ok) return res.text();
-              })
-              .then(function (html) {
-                if (html) {
-                  var doc = parser.parseFromString(html, 'text/html');
-                  window.__MORISCOS_CACHE__.set(key, doc);
-                  window.__MORISCOS_CACHE__.set(fullUrl, doc);
-                }
-              })
-              .catch(function () {});
-          });
-        }
-
-        preloadAll();
-        if (typeof requestIdleCallback !== 'undefined') {
-          requestIdleCallback(preloadAll);
-        }
-
-        // Al pulsar un enlace, Astro toma directamente el DOM desde la RAM sin esperar peticiones
-        document.addEventListener('astro:before-preparation', function (event) {
-          if (!event.to) return;
-          var targetKey = normalizeKey(event.to.href || event.to.pathname);
-          var cachedDoc = window.__MORISCOS_CACHE__.get(targetKey);
-          if (cachedDoc) {
-            event.newDocument = cachedDoc.cloneNode(true);
-            event.loader = function () {
-              return Promise.resolve();
-            };
-          }
-        });
-      })();
-    </script>
-    <script is:inline>
-      (function () {
-        document.documentElement.classList.add('dark');
-        try {
-          localStorage.setItem('moriscos-theme', 'dark');
-        } catch (_) {}
-      })();
+      // 2. Tema oscuro permanente
+      document.documentElement.classList.add('dark');
+      try {
+        localStorage.setItem('moriscos-theme', 'dark');
+      } catch (_) {}
       document.addEventListener('astro:after-swap', function () {
         document.documentElement.classList.add('dark');
       });
