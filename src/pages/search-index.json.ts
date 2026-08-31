@@ -9,9 +9,22 @@ export type SearchItem = {
   id: string;
   title: string;
   excerpt: string;
+  /** Texto adicional no mostrado en la tarjeta, solo para que la búsqueda encuentre coincidencias dentro del cuerpo del capítulo. */
+  content?: string;
   href: string;
   badge: string;
 };
+
+// Quita la sintaxis Markdown más habitual para dejar texto plano buscable.
+function stripMarkdown(md: string): string {
+  return md
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/!\[[^\]]*]\([^)]*\)/g, ' ')
+    .replace(/\[([^\]]*)]\([^)]*\)/g, '$1')
+    .replace(/[#>*_`~]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
 export const GET: APIRoute = async () => {
   const chapters = await getCollection('chapters');
@@ -23,6 +36,7 @@ export const GET: APIRoute = async () => {
       id: `chapter-${c.id}`,
       title: `Cap. ${c.data.number} · ${c.data.title}`,
       excerpt: c.data.dek,
+      content: stripMarkdown(c.body ?? '').slice(0, 6000),
       href: `/libro/${c.id}`,
       badge: `Capítulo ${c.data.number}`,
     })),
@@ -47,6 +61,37 @@ export const GET: APIRoute = async () => {
       href: `/ruta-nocturna#${r.id}`,
       badge: `Ruta Nocturna · km ${r.distanceKm}`,
     })),
+    // Páginas estáticas del sitio, para que la búsqueda también las encuentre.
+    {
+      id: 'page-inicio',
+      title: 'Inicio',
+      excerpt: 'Portada de Moriscos: Memoria & Territorio, con los cuatro momentos del pueblo y los capítulos del libro.',
+      href: '/',
+      badge: 'Página',
+    },
+    {
+      id: 'page-genealogia',
+      title: 'Genealogía y paisanos ilustres',
+      excerpt: 'Bosque genealógico, personajes históricos y cómo acreditarte como morisqueño.',
+      href: '/genealogia',
+      badge: 'Página',
+    },
+    {
+      id: 'page-ruta-nocturna',
+      title: 'Ruta Nocturna',
+      excerpt: 'Mapa interactivo con los puntos de interés de la ruta nocturna por Moriscos.',
+      href: '/ruta-nocturna',
+      badge: 'Página',
+    },
+    {
+      id: 'page-sobre-la-web',
+      title: 'Sobre la web',
+      excerpt: 'Por qué existe esta web, de dónde procede la información, el escudo de Moriscos y cómo está construida.',
+      content:
+        'escudo heráldico oficial ayuntamiento cruz recruzada luna creciente zumaque trigo corona real código abierto github proyecto independiente contacto',
+      href: '/sobre-la-web',
+      badge: 'Página',
+    },
   ];
 
   return new Response(JSON.stringify(items), {

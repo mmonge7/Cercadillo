@@ -36,20 +36,32 @@ export default function SearchModal() {
     }
   }, [open, loaded]);
 
+  const MIN_QUERY_LENGTH = 3;
+
   const fuse = useMemo(
     () =>
       new Fuse(items, {
-        keys: ['title', 'excerpt', 'badge'],
-        threshold: 0.35,
+        keys: [
+          { name: 'title', weight: 0.5 },
+          { name: 'excerpt', weight: 0.3 },
+          { name: 'badge', weight: 0.1 },
+          { name: 'content', weight: 0.1 },
+        ],
+        threshold: 0.3,
         ignoreLocation: true,
+        minMatchCharLength: 2,
       }),
     [items],
   );
 
+  const trimmedQuery = query.trim();
+  const isTooShort = trimmedQuery.length > 0 && trimmedQuery.length < MIN_QUERY_LENGTH;
+
   const results = useMemo(() => {
-    if (!query.trim()) return items.slice(0, 8);
-    return fuse.search(query).slice(0, 12).map((r) => r.item);
-  }, [query, fuse, items]);
+    if (!trimmedQuery) return items.slice(0, 8);
+    if (trimmedQuery.length < MIN_QUERY_LENGTH) return [];
+    return fuse.search(trimmedQuery).slice(0, 15).map((r) => r.item);
+  }, [trimmedQuery, fuse, items]);
 
   const highlight = (text: string) => {
     if (!query.trim()) return text;
@@ -71,12 +83,12 @@ export default function SearchModal() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="flex h-10 items-center gap-2 rounded-full border border-piedra-border/70 bg-pergamino px-3 text-sm text-tinta/70 hover:border-piedra-300 dark:border-noche-border dark:bg-noche-surface dark:text-pergamino-muted/70 sm:px-4"
+        className="flex h-10 items-center gap-2 rounded-full bg-armuna-dark px-3.5 text-sm font-semibold text-pergamino shadow-sm transition-colors hover:bg-armuna dark:bg-armuna dark:hover:bg-armuna-light"
         aria-label="Buscar en el sitio"
       >
         <Search className="h-4 w-4" />
-        <span className="hidden sm:inline">Buscar…</span>
-        <kbd className="hidden rounded border border-piedra-border/70 bg-pergamino-muted px-1.5 py-0.5 text-[0.65rem] font-body text-tinta/60 dark:border-noche-border dark:bg-noche dark:text-pergamino-muted/60 sm:inline">
+        <span>Buscar</span>
+        <kbd className="hidden rounded border border-pergamino/30 bg-pergamino/10 px-1.5 py-0.5 text-[0.65rem] font-body text-pergamino/80 lg:inline">
           ⌘K
         </kbd>
       </button>
@@ -98,7 +110,7 @@ export default function SearchModal() {
               ref={inputRef}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Busca capítulos, personajes, glosario, hitos de la ruta…"
+              placeholder="Escribe al menos 3 letras para buscar en toda la web…"
               className="h-14 w-full bg-transparent font-body text-base outline-none placeholder:text-tinta/40 dark:placeholder:text-pergamino-muted/40"
             />
             <Dialog.Close asChild>
@@ -109,10 +121,13 @@ export default function SearchModal() {
           </div>
           <ul className="max-h-[60vh] overflow-y-auto p-2" role="listbox">
             {!loaded && <li className="px-4 py-6 text-sm text-tinta/50 dark:text-pergamino-muted/50">Cargando índice…</li>}
-            {loaded && results.length === 0 && (
+            {loaded && isTooShort && (
+              <li className="px-4 py-6 text-sm text-tinta/50 dark:text-pergamino-muted/50">Escribe al menos 3 letras para buscar…</li>
+            )}
+            {loaded && !isTooShort && trimmedQuery.length >= MIN_QUERY_LENGTH && results.length === 0 && (
               <li className="px-4 py-6 text-sm text-tinta/50 dark:text-pergamino-muted/50">Sin resultados para “{query}”.</li>
             )}
-            {results.map((item) => (
+            {(!isTooShort ? results : []).map((item) => (
               <li key={item.id}>
                 <a
                   href={BASE + item.href.replace(/^\//, '')}
