@@ -25,12 +25,12 @@ const icons: Record<string, typeof Home> = {
 <div id="mobile-drawer" class="fixed inset-0 z-[9999] pointer-events-none lg:hidden" role="dialog" aria-modal="true" aria-label="Menú de navegación">
   <div
     id="drawer-backdrop"
-    class="absolute inset-0 bg-noche/60 opacity-0 backdrop-blur-sm transition-opacity duration-200"
+    class="absolute inset-0 bg-noche/60 opacity-0 backdrop-blur-sm transition-opacity duration-300 ease-out"
   >
   </div>
   <div
     id="drawer-panel"
-    class="brand-panel absolute inset-y-0 left-0 flex w-72 max-w-[80vw] -translate-x-full flex-col shadow-2xl transition-transform duration-200 ease-out"
+    class="brand-panel absolute inset-y-0 left-0 flex w-72 max-w-[80vw] -translate-x-full flex-col shadow-2xl transition-transform duration-300 ease-out"
   >
     <div class="flex items-center justify-between px-5 pb-4 pt-[calc(env(safe-area-inset-top,0px)+1.25rem)]">
       <div class="flex items-center gap-2.5 font-display text-xl font-bold tracking-wider text-pergamino">
@@ -62,6 +62,8 @@ const icons: Record<string, typeof Home> = {
 </div>
 
 <script>
+  let isNavigatingFromDrawer = false;
+
   function initMobileDrawer() {
     const openBtn = document.getElementById('drawer-open');
     const closeBtn = document.getElementById('drawer-close');
@@ -81,19 +83,56 @@ const icons: Record<string, typeof Home> = {
     openBtn?.addEventListener('click', () => setOpen(true));
     closeBtn?.addEventListener('click', () => setOpen(false));
     backdrop?.addEventListener('click', () => setOpen(false));
+
+    // Al pulsar un enlace del menú móvil, indicamos que la navegación
+    // se produce desde el drawer para mantenerlo montado hasta el cambio de vista
     drawer?.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
-        // En SPA / client router, cierra inmediatamente el drawer sin retraso
-        drawer.classList.add('pointer-events-none');
-        panel.classList.add('-translate-x-full');
-        backdrop.classList.add('opacity-0');
-        document.body.style.overflow = '';
+        isNavigatingFromDrawer = true;
       });
     });
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') setOpen(false);
     });
   }
+
+  // 1. Antes del swap del DOM: mantenemos el drawer visible en el nuevo documento
+  // y reseteamos el scroll arriba del todo
+  document.addEventListener('astro:before-swap', (e: any) => {
+    if (isNavigatingFromDrawer && e.newDocument) {
+      const newDrawer = e.newDocument.getElementById('mobile-drawer');
+      const newPanel = e.newDocument.getElementById('drawer-panel');
+      const newBackdrop = e.newDocument.getElementById('drawer-backdrop');
+      if (newDrawer && newPanel && newBackdrop) {
+        newDrawer.classList.remove('pointer-events-none');
+        newPanel.classList.remove('-translate-x-full');
+        newBackdrop.classList.remove('opacity-0');
+      }
+    }
+  });
+
+  // 2. Justo tras insertar el nuevo DOM: el nuevo apartado ya está listo en el fondo.
+  // Ahora el drawer se desliza suavemente hacia fuera, revelando la nueva sección.
+  document.addEventListener('astro:after-swap', () => {
+    if (isNavigatingFromDrawer) {
+      isNavigatingFromDrawer = false;
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      requestAnimationFrame(() => {
+        const drawer = document.getElementById('mobile-drawer');
+        const panel = document.getElementById('drawer-panel');
+        const backdrop = document.getElementById('drawer-backdrop');
+        const openBtn = document.getElementById('drawer-open');
+        if (drawer && panel && backdrop) {
+          drawer.classList.add('pointer-events-none');
+          panel.classList.add('-translate-x-full');
+          backdrop.classList.add('opacity-0');
+          openBtn?.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  });
 
   document.addEventListener('DOMContentLoaded', initMobileDrawer);
   document.addEventListener('astro:page-load', initMobileDrawer);
