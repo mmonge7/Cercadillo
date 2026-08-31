@@ -63,6 +63,35 @@ const eventos = [
       de La Armuña y una intensa vida comunitaria.
     </p>
 
+    <div
+      id="fiestas-countdown"
+      class="mt-8 max-w-2xl rounded-2xl border border-piedra-border/60 bg-pergamino-muted p-6 dark:border-noche-border dark:bg-noche-surface"
+    >
+      <p class="kicker">Cuenta atrás</p>
+      <p id="fiestas-countdown-label" class="mt-2 font-serif text-lg font-semibold text-tinta dark:text-pergamino-muted">
+        Calculando la próxima Fiesta Mayor…
+      </p>
+      <div class="mt-4 grid grid-cols-4 gap-3 text-center" aria-hidden="true">
+        <div>
+          <span id="cd-days" class="block font-display text-3xl font-bold text-armuna dark:text-piedra-300">–</span>
+          <span class="text-xs text-tinta/60 dark:text-pergamino-muted/60">días</span>
+        </div>
+        <div>
+          <span id="cd-hours" class="block font-display text-3xl font-bold text-armuna dark:text-piedra-300">–</span>
+          <span class="text-xs text-tinta/60 dark:text-pergamino-muted/60">horas</span>
+        </div>
+        <div>
+          <span id="cd-mins" class="block font-display text-3xl font-bold text-armuna dark:text-piedra-300">–</span>
+          <span class="text-xs text-tinta/60 dark:text-pergamino-muted/60">min</span>
+        </div>
+        <div>
+          <span id="cd-secs" class="block font-display text-3xl font-bold text-armuna dark:text-piedra-300">–</span>
+          <span class="text-xs text-tinta/60 dark:text-pergamino-muted/60">seg</span>
+        </div>
+      </div>
+      <p id="fiestas-countdown-dates" class="mt-4 text-sm text-tinta/70 dark:text-pergamino-muted/70"></p>
+    </div>
+
     <div class="mt-12">
       <p class="kicker">Fiesta mayor</p>
       <h2 class="mt-2 font-serif text-2xl font-semibold text-armuna-dark dark:text-piedra-200">
@@ -147,4 +176,78 @@ const eventos = [
       </div>
     </div>
   </section>
+
+  <script>
+    // Las Fiestas Patronales empiezan el jueves anterior al primer domingo de
+    // agosto (el "domingo grande") y terminan ese mismo domingo. Se recalcula
+    // en el navegador para que valga automáticamente para cualquier año.
+    function firstSundayOfAugust(year: number): Date {
+      const d = new Date(year, 7, 1); // 1 de agosto
+      const offset = d.getDay() === 0 ? 0 : 7 - d.getDay();
+      d.setDate(d.getDate() + offset);
+      return d;
+    }
+
+    function festivalRange(year: number) {
+      const sunday = firstSundayOfAugust(year);
+      const start = new Date(sunday);
+      start.setDate(sunday.getDate() - 3); // jueves
+      start.setHours(21, 30, 0, 0); // hora del chupinazo
+      const end = new Date(sunday);
+      end.setHours(23, 59, 59, 999);
+      return { start, end };
+    }
+
+    function nextFestival(now: Date) {
+      let year = now.getFullYear();
+      let { start, end } = festivalRange(year);
+      if (now > end) {
+        year += 1;
+        ({ start, end } = festivalRange(year));
+      }
+      return { start, end, year };
+    }
+
+    const label = document.getElementById('fiestas-countdown-label');
+    const datesEl = document.getElementById('fiestas-countdown-dates');
+    const daysEl = document.getElementById('cd-days');
+    const hoursEl = document.getElementById('cd-hours');
+    const minsEl = document.getElementById('cd-mins');
+    const secsEl = document.getElementById('cd-secs');
+
+    const dateFmt = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long' });
+    const dateFmtWithYear = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    function render() {
+      const now = new Date();
+      const { start, end, year } = nextFestival(now);
+      const rangeText = `${dateFmt.format(start)} – ${dateFmtWithYear.format(end)}`;
+
+      if (now >= start && now <= end) {
+        if (label) label.textContent = `¡Las fiestas de ${year} están en marcha!`;
+        if (datesEl) datesEl.textContent = `Hasta el ${dateFmtWithYear.format(end)}.`;
+        if (daysEl) daysEl.textContent = '🎉';
+        if (hoursEl) hoursEl.textContent = '';
+        if (minsEl) minsEl.textContent = '';
+        if (secsEl) secsEl.textContent = '';
+        return;
+      }
+
+      const diff = start.getTime() - now.getTime();
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+
+      if (label) label.textContent = `Faltan para la Fiesta Mayor de ${year}`;
+      if (datesEl) datesEl.textContent = `Del ${rangeText}.`;
+      if (daysEl) daysEl.textContent = String(days);
+      if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+      if (minsEl) minsEl.textContent = String(mins).padStart(2, '0');
+      if (secsEl) secsEl.textContent = String(secs).padStart(2, '0');
+    }
+
+    render();
+    setInterval(render, 1000);
+  </script>
 </BaseLayout>
