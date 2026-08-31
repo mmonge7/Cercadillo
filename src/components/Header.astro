@@ -1,48 +1,20 @@
 ---
+import { Menu } from 'lucide-react';
 import { navLinks } from '../data/site';
+import { isActiveHref } from '../utils/nav';
 import SearchModal from './SearchModal';
 import ThemeToggle from './ThemeToggle.astro';
 
 const path = Astro.url.pathname;
 const base = import.meta.env.BASE_URL;
-const isActive = (href: string) => {
-  const full = (base + href.replace(/^\//, '')).replace(/\/+$/, '') || base;
-  const current = path.replace(/\/+$/, '') || base;
-  return href === '/' ? current === full || current === base.replace(/\/$/, '') : current.startsWith(full);
-};
+const activeLink = navLinks.find((link) => isActiveHref(path, base, link.href));
 ---
 
-<header class="sticky top-0 z-40 border-b border-piedra-border/60 bg-pergamino/85 backdrop-blur-md dark:border-noche-border dark:bg-noche/85">
-  <div class="container-editorial flex h-16 items-center justify-between gap-4">
-    <a href={base} class="group flex items-center gap-2 font-display text-lg tracking-wide text-armuna-dark dark:text-piedra-200">
-      <span class="flex h-9 w-9 items-center justify-center rounded-full border-2 border-piedra-300 text-piedra-500 transition-transform group-hover:rotate-6 dark:border-piedra-400">
-        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 3 8v3c0 6 4 8.5 9 10 5-1.5 9-4 9-10V8z"/></svg>
-      </span>
-      <span class="flex flex-col leading-none">
-        <span class="text-xl font-bold">MORISCOS</span>
-        <span class="text-[0.6rem] font-body font-medium tracking-[0.2em] text-armuna dark:text-piedra-300">MEMORIA &amp; TERRITORIO</span>
-      </span>
-    </a>
-
-    <nav class="hidden items-center gap-1 lg:flex" aria-label="Navegación principal">
-      {navLinks.map((link) => (
-        <a
-          href={base + link.href.replace(/^\//, '')}
-          class:list={[
-            'rounded-full px-4 py-2 font-body text-sm font-medium transition-colors',
-            isActive(link.href)
-              ? 'bg-soto/10 text-soto dark:bg-piedra-300/10 dark:text-piedra-200'
-              : 'text-tinta/70 hover:bg-piedra-50 hover:text-armuna-dark dark:text-pergamino-muted/70 dark:hover:bg-noche-surface',
-          ]}
-        >
-          {link.label}
-        </a>
-      ))}
-    </nav>
-
-    <div class="flex items-center gap-1.5">
-      <SearchModal client:idle />
-      <ThemeToggle />
+<header
+  class="fixed inset-x-0 top-0 z-40 flex h-[var(--mobile-topbar)] items-center border-b border-piedra-border/60 bg-pergamino/85 backdrop-blur-md dark:border-noche-border dark:bg-noche/85 lg:sticky lg:left-[230px] lg:h-[68px] lg:w-[calc(100%-230px)]"
+>
+  <div class="flex w-full items-center justify-between gap-4 px-4 pt-[env(safe-area-inset-top,0px)] sm:px-6">
+    <div class="flex items-center gap-3">
       <button
         id="drawer-open"
         type="button"
@@ -51,55 +23,20 @@ const isActive = (href: string) => {
         aria-expanded="false"
         aria-controls="mobile-drawer"
       >
-        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <Menu size={21} strokeWidth={1.8} />
       </button>
+      <a href={base} class="font-display text-base font-bold tracking-wide text-armuna-dark dark:text-piedra-200 lg:hidden">
+        MORISCOS
+      </a>
+      <span class="hidden font-body text-sm font-semibold text-tinta/80 dark:text-pergamino-muted/80 lg:inline">
+        {activeLink?.label ?? 'Inicio'}
+      </span>
+    </div>
+
+    <div class="flex items-center gap-1.5">
+      <SearchModal client:idle />
+      <ThemeToggle />
     </div>
   </div>
 </header>
 
-<div
-  id="mobile-drawer"
-  class="fixed inset-0 z-50 hidden lg:hidden"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Menú de navegación"
->
-  <div id="drawer-backdrop" class="absolute inset-0 bg-noche/60 backdrop-blur-sm"></div>
-  <div class="absolute right-0 top-0 flex h-full w-72 max-w-[80vw] flex-col gap-1 bg-pergamino p-6 shadow-2xl dark:bg-noche-surface">
-    <div class="mb-4 flex items-center justify-between">
-      <span class="font-display text-sm tracking-widest text-armuna-dark dark:text-piedra-200">MENÚ</span>
-      <button id="drawer-close" type="button" aria-label="Cerrar menú" class="inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-piedra-50 dark:hover:bg-noche">
-        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-    </div>
-    {navLinks.map((link) => (
-      <a
-        href={base + link.href.replace(/^\//, '')}
-        class="rounded-xl px-4 py-3 font-body text-base font-medium text-tinta hover:bg-piedra-50 dark:text-pergamino-muted dark:hover:bg-noche"
-      >
-        {link.label}
-      </a>
-    ))}
-  </div>
-</div>
-
-<script>
-  const openBtn = document.getElementById('drawer-open');
-  const closeBtn = document.getElementById('drawer-close');
-  const backdrop = document.getElementById('drawer-backdrop');
-  const drawer = document.getElementById('mobile-drawer');
-
-  const setOpen = (open: boolean) => {
-    if (!drawer) return;
-    drawer.classList.toggle('hidden', !open);
-    openBtn?.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
-  };
-
-  openBtn?.addEventListener('click', () => setOpen(true));
-  closeBtn?.addEventListener('click', () => setOpen(false));
-  backdrop?.addEventListener('click', () => setOpen(false));
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') setOpen(false);
-  });
-</script>

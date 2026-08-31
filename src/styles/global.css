@@ -62,6 +62,38 @@
   }
 }
 
+/*
+ * Alias de variables CSS "planas" (fuera de @theme) para mantener el mismo
+ * patrón de nomenclatura que otros proyectos del autor (ink/paper/primary/
+ * accent...), reutilizando los valores ya definidos arriba. Úsalas para
+ * estilos que necesiten un valor CSS directo (inline style, SVG, meta
+ * theme-color) en vez de una clase de Tailwind.
+ */
+:root {
+  --ink: #24282c;
+  --ink-soft: #5b6570;
+  --paper: #fdfbf7;
+  --paper-raised: #ffffff;
+  --primary: #8c4a32;
+  --primary-deep: #5b2e1d;
+  --accent: #b88432;
+  --accent-deep: #734f1e;
+  --forest: #2d5a43;
+  --gold: #d4a359;
+  --line: #e8e0ce;
+  --font-display: "Cinzel", serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --mobile-topbar: calc(64px + env(safe-area-inset-top, 0px));
+}
+
+.dark {
+  --ink: #fdfbf7;
+  --ink-soft: #9aa5b1;
+  --paper: #14171a;
+  --paper-raised: #1c2024;
+  --line: #2a2f34;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -111,10 +143,51 @@
   .prose-armuna {
     @apply prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-armuna-dark dark:prose-invert dark:prose-headings:text-piedra-200 prose-a:text-soto dark:prose-a:text-piedra-300 prose-blockquote:border-piedra prose-blockquote:font-serif prose-blockquote:italic;
   }
+
+  /* Panel de marca: fondo degradado tierra→verde con textura sutil de líneas,
+     reutilizado por el sidebar, el drawer móvil y el footer para dar continuidad visual. */
+  .brand-panel {
+    @apply relative isolate overflow-hidden text-pergamino;
+    background-image: linear-gradient(160deg, var(--primary) 0%, var(--primary-deep) 55%, var(--forest) 100%);
+  }
+
+  .brand-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(45deg, rgba(253, 251, 247, 0.06) 0 2px, transparent 2px 16px);
+    pointer-events: none;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 font-body text-sm font-medium text-pergamino/75 transition-colors hover:bg-pergamino/10 hover:text-pergamino;
+  }
+
+  .nav-item[data-active="true"] {
+    @apply border-l-2 border-piedra-300 bg-pergamino/15 pl-[10px] font-semibold text-pergamino;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  @keyframes search-pulse {
+    0% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold) 70%, transparent);
+    }
+    100% {
+      box-shadow: 0 0 0 16px color-mix(in srgb, var(--gold) 0%, transparent);
+    }
+  }
+
+  /* Resalta de forma nativa el elemento enlazado por #hash (p. ej. desde un
+     resultado del buscador), sin depender de temporizadores en JS: el
+     navegador aplica :target automáticamente en cuanto el elemento existe en
+     el DOM, incluso si se monta más tarde (islas React como el mapa). */
+  :target {
+    animation: search-pulse 1s ease-out 2;
+    border-radius: 1rem;
   }
 }

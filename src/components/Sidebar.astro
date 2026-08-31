@@ -1,0 +1,47 @@
+---
+import { Home, BookOpen, Map, Users, BookMarked } from 'lucide-react';
+import { navLinks } from '../data/site';
+import { isActiveHref } from '../utils/nav';
+
+const path = Astro.url.pathname;
+const base = import.meta.env.BASE_URL;
+
+const icons: Record<string, typeof Home> = {
+  '/': Home,
+  '/libro': BookOpen,
+  '/ruta-nocturna': Map,
+  '/genealogia': Users,
+  '/glosario': BookMarked,
+};
+---
+
+<aside class="fixed inset-y-0 left-0 z-30 hidden w-[230px] lg:block" aria-label="Navegación lateral">
+  <div class="brand-panel flex h-full flex-col">
+    <a href={base} class="flex items-center gap-2 px-5 pb-4 pt-6 font-display text-base tracking-wide">
+      <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-piedra-300/80">
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 3 8v3c0 6 4 8.5 9 10 5-1.5 9-4 9-10V8z"/></svg>
+      </span>
+      <span class="flex flex-col leading-none">
+        <span class="text-lg font-bold">MORISCOS</span>
+        <span class="text-[0.55rem] font-body font-medium tracking-[0.2em] text-piedra-200">MEMORIA &amp; TERRITORIO</span>
+      </span>
+    </a>
+
+    <nav class="flex-1 space-y-1 overflow-y-auto px-3 py-3" aria-label="Navegación principal">
+      {navLinks.map((link) => {
+        const Icon = icons[link.href] ?? Home;
+        const active = isActiveHref(path, base, link.href);
+        return (
+          <a href={base + link.href.replace(/^\//, '')} class="nav-item" data-active={String(active)}>
+            <Icon size={17} strokeWidth={active ? 2.4 : 2} />
+            <span>{link.label}</span>
+          </a>
+        );
+      })}
+    </nav>
+
+    <p class="px-5 pb-6 text-[0.65rem] leading-relaxed text-pergamino/50">
+      La Armuña · Salamanca
+    </p>
+  </div>
+</aside>

@@ -31,8 +31,11 @@ El contenido histórico (capítulos, glosario, genealogía) procede de un docume
 | Buscador | **Fuse.js** (búsqueda difusa en cliente) sobre un índice generado en build time | Se descartó Pagefind (requiere un paso extra de post-build y no funciona en `astro dev`) a favor de un endpoint JSON (`search-index.json.ts`) generado por Astro con los datos de las content collections, consumido por Fuse.js en el navegador. Más simple de mantener y depurar. |
 | Modal accesible | **Radix UI** (`@radix-ui/react-dialog`) | Primitivas de diálogo con foco atrapado, `aria-*` y cierre por teclado ya resueltos, en vez de reinventar accesibilidad a mano. |
 | Mapa | **Leaflet + react-leaflet** | Mapa interactivo ligero y sin coste de licencia (tiles de OpenStreetMap) para la Ruta Nocturna. |
-| Iconografía | **lucide-react** | Set de iconos SVG consistente, tree-shakeable. |
+| Iconografía | **lucide-react** | Set de iconos SVG consistente, tree-shakeable. Se renderizan también dentro de componentes `.astro` **sin** directiva `client:*` (Astro los sirve como HTML/SVG estático en build time, cero JS extra) en la barra lateral, el drawer móvil y la cabecera. |
 | Tipografía | **@fontsource** (Cinzel, Playfair Display, Plus Jakarta Sans) autoalojada | Evita depender de Google Fonts en tiempo de ejecución (mejor privacidad y rendimiento, sin salto de layout por fuentes tardías). |
+| PWA | **vite-plugin-pwa** (manifest) + **workbox-build** (service worker, generado aparte en `scripts/generate-sw.mjs`) | Instalable en móvil/escritorio y funciona offline tras la primera visita. Se explica el porqué del script separado en la sección 9. |
+| Lint | **oxlint** | Linter en Rust, arranca en milisegundos incluso en un proyecto pequeño; cubre JS/TS/JSX sin necesitar configurar ESLint + plugins. |
+| Tests | **Vitest** | Mismo motor (Vite) que ya usa Astro por debajo, cero configuración adicional de bundler; tests unitarios rápidos para la lógica de navegación y búsqueda (ver `tests/`). |
 | Despliegue | **GitHub Actions → GitHub Pages** (`actions/deploy-pages`) | Gratuito, integrado en el propio repositorio, sin infraestructura que mantener. |
 
 ### Por qué "arquitectura de islas" y no un SPA
@@ -86,13 +89,22 @@ Puntos clave del modelo de renderizado:
 │   │   │                   ligadas a la UI: contadores de la home, hitos históricos destacados, enlaces de nav.
 │   │   └── route.ts        Los 8 puntos de la Ruta Nocturna (coordenadas lat/lng, distancia, descripción, cita).
 │   ├── layouts/
-│   │   └── BaseLayout.astro  <html> raíz: head, meta tags, script anti-flash de tema oscuro, Header + Footer.
+│   │   └── BaseLayout.astro  <html> raíz: head, meta tags, manifest/SW, script anti-flash de tema oscuro,
+│   │                          monta Sidebar + MobileDrawer + Header + Footer alrededor del <slot/>.
 │   ├── components/         Ver detalle en la sección 6.
 │   ├── pages/               Ver detalle en la sección 5 (cada .astro = una ruta del sitio).
+│   ├── utils/
+│   │   └── nav.ts          `isActiveHref()`: única fuente de verdad para saber qué enlace de navegación
+│   │                       está activo, compartida por Header, Sidebar y MobileDrawer (con test en tests/).
 │   └── styles/
 │       └── global.css      Tailwind v4 "CSS-first": @theme con la paleta de color, tipografías, keyframes,
-│                           y clases de utilidad reutilizables (@layer components: .btn-primary, .kicker...).
-├── public/                 Estáticos servidos tal cual: favicon, og-image, robots.txt.
+│                           alias de variables CSS planas (--ink, --primary, --accent...) y clases de
+│                           utilidad reutilizables (@layer components: .btn-primary, .brand-panel...).
+├── public/                 Estáticos servidos tal cual: favicon, robots.txt, public/icons/ (iconos PWA
+│                           192/512/maskable generados con sharp a partir de icon-master.svg).
+├── scripts/
+│   └── generate-sw.mjs    Genera dist/sw.js con workbox-build tras `astro build` (ver sección 9).
+├── tests/                 Tests unitarios con Vitest (navegación activa, buscador con Fuse.js).
 ├── .github/workflows/
 │   └── deploy.yml          Pipeline de CI/CD (build + deploy a GitHub Pages) en cada push a main.
 └── dist/                   Salida del build (generada, no versionada).
@@ -138,13 +150,16 @@ Estos dos ficheros están en TypeScript (no en Markdown/content collections) por
 
 ### Astro (renderizados a HTML, sin JS de framework)
 
-- **`Header.astro`** — Cabecera **`sticky top-0`** (no `fixed`): al ser el primer elemento del flujo normal, `sticky` la fija arriba en cuanto el scroll la alcanza, en móvil y escritorio, sin necesidad de recalcular alturas como exigiría `fixed`. Incluye el logo, la navegación de escritorio (oculta bajo `lg:`), el botón de búsqueda (isla React), el interruptor de tema y el botón de menú móvil. El menú móvil (`#mobile-drawer`) es un panel controlado por un `<script>` inline (abrir/cerrar, cerrar con Escape o clic fuera).
+- **`Sidebar.astro`** — Barra lateral fija de escritorio (`lg:block`, ~230px, oculta por debajo de `lg`). Fondo `.brand-panel` (degradado tierra→verde con textura de líneas repetida, ver sección 7), logo, y la navegación principal con un icono `lucide-react` por sección (renderizado sin `client:*`, o sea, HTML/SVG estático). El enlace activo se calcula con `isActiveHref()` (`src/utils/nav.ts`).
+- **`Header.astro`** — Barra superior. En **móvil** es `fixed` a todo el ancho, altura `var(--mobile-topbar)` (con `env(safe-area-inset-top)`), con botón de menú (abre `MobileDrawer`), logo y buscador/tema. En **escritorio** es `sticky` dentro de la columna de contenido (a la derecha del Sidebar), más baja (68px), y en vez del logo muestra el nombre de la sección activa.
+- **`MobileDrawer.astro`** — Panel que se desliza **desde la izquierda** (mismo `.brand-panel` que el Sidebar) por debajo de `lg`, con la misma navegación e iconos. Controlado por un `<script>` inline (abrir/cerrar, cerrar con Escape o clic fuera).
 - **`ThemeToggle.astro`** — Alterna la clase `dark` en `<html>` y persiste la preferencia en `localStorage`. El script anti-parpadeo que lee esa preferencia **antes** del primer render vive en `BaseLayout.astro` (evita el "flash" de tema claro al cargar en modo oscuro).
 - **`MobileToc.astro`** — Botón flotante "Índice" + hoja inferior, visible solo en móvil (`lg:hidden`), para suplir la tabla de contenidos que en escritorio va fija en la barra lateral. Reutiliza los mismos atributos `data-toc-link`/`data-target` que `TableOfContents.astro`, de modo que un único `IntersectionObserver` mantiene resaltado el enlace activo en ambas versiones (móvil y escritorio) a la vez.
 - **`TableOfContents.astro`** — Genera la lista de enlaces a partir de los encabezados `##` (`depth === 2`) que Astro extrae automáticamente del Markdown del capítulo, y usa un `IntersectionObserver` para resaltar la sección visible mientras se hace scroll (*scroll-spy*).
 - **`ReadingProgress.astro`** — Barra fija superior cuyo ancho se actualiza en cada evento de `scroll` según el porcentaje de la página leída.
 - **`GlossaryTooltips.astro`** — Se incluye solo en `libro/[slug].astro`. En el cliente recorre el DOM del artículo con un `TreeWalker`, localiza la primera aparición de cada término del glosario dentro del texto y la envuelve en un `<button>` con un tooltip flotante (posicionado con `getBoundingClientRect`) que muestra la definición corta y un enlace al glosario completo. Distingue estado "previsualización al pasar el ratón" de "fijado al hacer clic" para que un tap en móvil no cierre el tooltip que acaba de abrir.
-- **`Hero.astro`**, **`CounterGrid.astro`**, **`HitoCard.astro`**, **`PersonCard.astro`**, **`GlossaryCard.astro`**, **`Footer.astro`**, **`SEO.astro`** — Componentes de presentación puros (reciben props, pintan HTML/Tailwind). `SEO.astro` centraliza las etiquetas `<title>`, `og:*` y `twitter:*` para que cada página solo tenga que pasar `title`/`description`/`image`.
+- **`Footer.astro`** — También con fondo `.brand-panel`. Incluye los enlaces de navegación, contacto, dos iconos circulares de redes (LinkedIn/GitHub, SVG inline, `target="_blank" rel="noopener noreferrer"`), el crédito de autoría y el copyright, con `padding-bottom` sumando `env(safe-area-inset-bottom)`.
+- **`Hero.astro`**, **`CounterGrid.astro`**, **`HitoCard.astro`**, **`PersonCard.astro`**, **`GlossaryCard.astro`**, **`SEO.astro`** — Componentes de presentación puros (reciben props, pintan HTML/Tailwind). `SEO.astro` centraliza las etiquetas `<title>`, `og:*` y `twitter:*` para que cada página solo tenga que pasar `title`/`description`/`image`.
 
 ### React (islas hidratadas en el cliente)
 
@@ -157,10 +172,12 @@ Estos dos ficheros están en TypeScript (no en Markdown/content collections) por
 
 Definido íntegramente en `src/styles/global.css` mediante el bloque `@theme` de Tailwind v4 (sin fichero de configuración JS):
 
-- **Paleta**: tonos inspirados en el paisaje y el patrimonio local — `piedra` (arenisca de Villamayor), `armuña` (tierra), `soto` (verde ribera del Tormes), `pergamino` (modo claro) y `noche` (modo oscuro).
+- **Paleta**: tonos inspirados en el paisaje y el patrimonio local — `piedra` (arenisca de Villamayor), `armuña` (tierra), `soto` (verde ribera del Tormes), `pergamino` (modo claro) y `noche` (modo oscuro). Además, `:root` expone un **alias plano** de las mismas variables con nomenclatura genérica (`--ink`, `--paper`, `--primary`, `--primary-deep`, `--accent`, `--forest`, `--gold`, `--line`, `--font-display`, `--font-body`, `--mobile-topbar`) para mantener coherencia de patrón con otros proyectos del autor y para poder usarlas como valores CSS directos (no solo como clases de Tailwind).
 - **Tipografía**: `Cinzel` para elementos de marca/kicker, `Playfair Display` para titulares editoriales, `Plus Jakarta Sans` para el cuerpo de texto.
 - **Modo oscuro**: basado en clase (`darkMode: 'class'` vía `@custom-variant dark`), alternado por `ThemeToggle.astro`.
-- **Utilidades reutilizables** en `@layer components`: `.btn-primary`, `.btn-secondary`, `.kicker`, `.container-editorial`, `.prose-armuna` (tipografía larga de los capítulos, basada en `@tailwindcss/typography`).
+- **`.brand-panel`**: degradado tierra→verde (`--primary` → `--primary-deep` → `--forest`) con una textura sutil de líneas diagonales repetidas al 6% de opacidad; lo comparten `Sidebar.astro`, `MobileDrawer.astro` y `Footer.astro` para dar continuidad visual entre cabecera, menú y pie.
+- **Utilidades reutilizables** en `@layer components`: `.btn-primary`, `.btn-secondary`, `.kicker`, `.container-editorial`, `.nav-item` (enlaces de navegación con estado activo), `.prose-armuna` (tipografía larga de los capítulos, basada en `@tailwindcss/typography`).
+- **Resaltado al navegar desde el buscador**: se usa el pseudo-selector **CSS nativo `:target`** (no JavaScript) para animar con un pulso dorado el elemento cuyo `id` coincide con el `#hash` de la URL. Es más robusto que temporizar la animación en JS porque el navegador lo reevalúa automáticamente contra el DOM en tiempo real, incluso si el elemento se monta más tarde (p. ej. un marcador dentro de la isla React del mapa).
 
 ---
 
@@ -172,6 +189,7 @@ Definido íntegramente en `src/styles/global.css` mediante el bloque `@theme` de
 - Fuentes autoalojadas (`@fontsource/*`) para evitar peticiones externas y parpadeo de texto sin estilo (FOUT/FOIT).
 - Accesibilidad: enlace "Saltar al contenido principal", `aria-*` en botones y diálogos, foco gestionado por Radix UI en el buscador, contraste comprobado en ambos temas.
 - Al ser un sitio 100% estático, no hay tiempo de respuesta de servidor/base de datos: el HTML ya viene generado y GitHub Pages lo sirve por CDN.
+- **PWA instalable y offline**: `manifest.webmanifest` (nombre, iconos 192/512/maskable, `theme_color`/`background_color` acordes a la paleta) + `sw.js` (workbox) precachean HTML/CSS/JS/fuentes/iconos; las imágenes de contenido futuras se sirven con estrategia `CacheFirst` en vez de ir al precache inicial, para no disparar el peso de la primera visita si algún día hay una galería de fotos pesada.
 
 ---
 
@@ -181,8 +199,12 @@ El pipeline vive en `.github/workflows/deploy.yml` y se dispara en cada `push` a
 
 1. `actions/checkout` + `actions/setup-node` (**Node 22**, requisito mínimo de Astro 7; Node 20 falla el build).
 2. `npm ci` (instalación reproducible a partir de `package-lock.json`).
-3. `npm run build` → genera `dist/`.
+3. `npm run build` → ejecuta `astro build` **y luego** `node scripts/generate-sw.mjs`.
 4. `actions/configure-pages` + `actions/upload-pages-artifact` + `actions/deploy-pages` → publica `dist/` como GitHub Pages.
+
+### Por qué el service worker se genera en un script aparte
+
+`vite-plugin-pwa` (estrategia `generateSW`) engancha su generación del SW al ciclo de vida de un build de Vite normal de una sola pasada. Astro, en cambio, ejecuta **varias pasadas de Vite** internamente al construir un sitio estático (una para los endpoints/páginas, otra para los assets del cliente...), y ese desfase hace que el hook del plugin nunca llegue a disparar el `generateSW` sobre el `dist/` final (se comprobó en este proyecto: el plugin sí generaba `manifest.webmanifest`, pero **no** `sw.js`). La solución robusta, en vez de pelear con el orden de hooks, es dejar que el plugin de Vite solo emita el manifest, y generar el service worker **después**, con una llamada directa a `generateSW()` de `workbox-build` (`scripts/generate-sw.mjs`) apuntando al `dist/` ya completo. Es el mismo enfoque que usaba la comunidad antes de que existiera `@vite-pwa/astro` (que a día de hoy tampoco soporta todavía Astro 7).
 
 Detalles de configuración importantes en `astro.config.mjs`:
 
@@ -196,11 +218,15 @@ Detalles de configuración importantes en `astro.config.mjs`:
 ```bash
 npm install       # instala dependencias
 npm run dev       # servidor de desarrollo con recarga en caliente (astro dev)
-npm run build     # genera el sitio estático en dist/
+npm run build     # genera el sitio estático en dist/ + el service worker (sw.js)
 npm run preview   # sirve dist/ localmente para verificar el build de producción
+npm run lint      # oxlint sobre todo el proyecto
+npm test          # tests unitarios con Vitest (navegación + buscador)
 ```
 
 Requisitos: **Node.js ≥ 22.12** (Astro 7 no arranca con versiones anteriores).
+
+> En `astro dev` no existe `sw.js` (solo se genera en `npm run build`); el registro del service worker en `BaseLayout.astro` falla en silencio en desarrollo, lo cual es intencional y no requiere ninguna acción.
 
 ### Cómo añadir contenido
 
