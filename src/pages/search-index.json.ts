@@ -63,6 +63,15 @@ export const GET: APIRoute = async () => {
     })),
     // Páginas estáticas del sitio, para que la búsqueda también las encuentre.
     {
+      id: 'page-historia',
+      title: 'Historia del pueblo',
+      excerpt: 'Eje cronológico de la historia de Moriscos, desde la repoblación medieval del siglo XI hasta la actualidad.',
+      content:
+        'repoblación 1164 1265 granja agustina 1609 catastro ensenada 1835 desamortización 1812 batalla arapiles madoz 1877 ferrocarril unamuno 1941 horca de marino mecanización 1988 fiestas 1995 archivo 2011 hispania nostra 2016 restauración lienzo virgen peregrina línea del tiempo cronología',
+      href: '/historia',
+      badge: 'Página',
+    },
+    {
       id: 'page-lugares',
       title: 'Lugares de Moriscos',
       excerpt: 'Localizaciones emblemáticas, parajes naturales y lugares desaparecidos o transformados del término municipal.',

@@ -1,22 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CounterGrid from '../components/CounterGrid.astro';
-import { BookOpen, Map, Users, BookMarked, Info, PartyPopper, Church, Shield, MapPin } from 'lucide-react';
+import { BookOpen, Map, Users, BookMarked, Info, PartyPopper, Church, Shield, MapPin, History } from 'lucide-react';
 
 const base = import.meta.env.BASE_URL;
 
 const sections = [
   {
+    href: 'historia',
+    icon: History,
+    title: 'Historia',
+    description: 'Eje cronológico del pueblo, de la repoblación medieval del siglo XI a la actualidad.',
+  },
+  {
     href: 'libro',
     icon: BookOpen,
     title: 'El Libro',
     description: 'Once capítulos que recorren la geografía, la toponimia, la economía y los sucesos de Moriscos.',
-  },
-  {
-    href: 'ruta-nocturna',
-    icon: Map,
-    title: 'Ruta Nocturna',
-    description: 'Mapa interactivo con los ocho hitos del camino de 7,7 km hasta el soto de La Flecha.',
   },
   {
     href: 'lugares',
@@ -25,10 +25,10 @@ const sections = [
     description: 'Localizaciones emblemáticas, parajes naturales y lugares desaparecidos del término municipal.',
   },
   {
-    href: 'genealogia',
-    icon: Users,
-    title: 'Genealogía',
-    description: 'El Bosque Genealógico y los paisanos ilustres del pueblo, con registros desde 1645.',
+    href: 'escudo',
+    icon: Shield,
+    title: 'El Escudo',
+    description: 'El significado de cada elemento del escudo heráldico oficial de Moriscos.',
   },
   {
     href: 'fiestas',
@@ -43,10 +43,16 @@ const sections = [
     description: 'Historia, arquitectura y tesoros artísticos de la Iglesia de San Pedro Apóstol.',
   },
   {
-    href: 'escudo',
-    icon: Shield,
-    title: 'El Escudo',
-    description: 'El significado de cada elemento del escudo heráldico oficial de Moriscos.',
+    href: 'genealogia',
+    icon: Users,
+    title: 'Genealogía',
+    description: 'El Bosque Genealógico y los paisanos ilustres del pueblo, con registros desde 1645.',
+  },
+  {
+    href: 'ruta-nocturna',
+    icon: Map,
+    title: 'Ruta Nocturna',
+    description: 'Mapa interactivo con los ocho hitos del camino de 7,7 km hasta el soto de La Flecha.',
   },
   {
     href: 'glosario',
