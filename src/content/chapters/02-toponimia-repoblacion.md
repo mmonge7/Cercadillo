@@ -1,31 +1,33 @@
 ---
 number: 2
 title: "Toponimia, Repoblación Medieval y Diversidad Etnocultural (Siglos XI-XIV)"
-dek: "El origen del nombre de Moriscos y el mosaico humano que repobló La Armuña tras la Reconquista."
+dek: "El origen etimológico de 'Moriscos', la repoblación de 1100 y la fundación de Castellanos de Moriscos."
 order: 2
-readingMinutes: 8
+readingMinutes: 10
 ---
 
-Pocos topónimos salmantinos suscitan tanta curiosidad como **Moriscos**. Lejos de aludir a los moriscos del siglo XVI —los musulmanes convertidos al cristianismo tras la conquista de Granada—, el nombre del municipio tiene un origen mucho más antiguo, ligado a los procesos repobladores de los siglos XI al XIV.
+## La paradoja cronológica del topónimo
 
-## El origen del nombre
+En la cultura popular, "morisco" remite de inmediato a las pragmáticas de conversión forzosa dictadas por los Reyes Católicos en 1502 y por Carlos I entre 1525 y 1526, proceso que culminó en el decreto de expulsión general firmado el **9 de abril de 1609** por Felipe III y el Duque de Lerma. Sin embargo, la documentación medieval salmantina revela una paradoja: la denominación del asentamiento salmantino es más de tres siglos anterior a la formalización del vocablo *morisco*. Las primeras referencias paleográficas datan del **siglo XIV**, cuando la aldea aparece registrada en singular como «Morisco». Esta constatación demuestra que el topónimo se hallaba consolidado en la toponimia de La Armuña mucho antes de que la burocracia acuñase la palabra hacia 1517 para designar a los mudéjares bautizados.
 
-La hipótesis más solvente entre los estudiosos de la toponimia salmantina vincula "Moriscos" con la presencia, entre los repobladores medievales, de contingentes de **mozárabes** —cristianos procedentes de al-Ándalus— o de musulmanes convertidos que se asentaron en la comarca tras la línea repobladora del Duero. En la onomástica medieval castellana, términos como "moro" o "morisco" se aplicaban con frecuencia a estos grupos, independientemente de su credo final, como marca de su procedencia cultural o geográfica.
+## De *Maurus* a *Morisco*: evolución lingüística
 
-Esta interpretación conecta a Moriscos con un fenómeno mucho más amplio: la repoblación de la Extremadura histórica —el territorio "extremo" del Duero— no fue obra de un único grupo homogéneo, sino de un mosaico de pobladores: castellanos viejos, leoneses, mozárabes, francos llegados por el Camino de Santiago y, en determinadas zonas, población de origen mudéjar.
+El vocablo deriva de la raíz latina *Maurus*, que calificaba a los habitantes de la Mauritania romana. La evolución fónica dio *moro*, complementado con el sufijo diminutivo *-isco*, dando *Mauriscos* y después *Morisco*. Como documentan Sebastián de Covarrubias (*Tesoro de la lengua castellana*, 1611) y Baltasar Salazar de Mendoza, el sufijo tenía valor diminutivo: «pequeño moro» o «medio-moro». En la Edad Media, «Morisco» aplicado a un lugar designaba la heredad de un individuo de filiación hispanomusulmana o de un pequeño grupo de origen islámico con estatuto diferenciado de los cristianos viejos. La forma plural «Moriscos» se consolidó a medida que la administración fue agregando alquerías y dehesas colindantes.
 
-## La repoblación concejil
+La génesis del poblamiento se vincula a contingentes **mudéjares, mozárabes y grupos norteafricanos** que permanecieron en la penillanura tras el repliegue de las fronteras andalusíes, calificados historiográficamente como «proto-moriscos». Topónimos afines como Morille o Moriñigo testimonian este mismo fenómeno en la provincia. Estos pobladores mantuvieron sus técnicas agrícolas y el manejo de la molienda hidráulica, acogidos al Fuero de Salamanca a cambio de tributos.
 
-Como el resto de las aldeas de La Armuña, Moriscos se organizó bajo el sistema de **behetría** y, posteriormente, quedó integrado en el amplio **alfoz o Comunidad de Villa y Tierra de Salamanca**, una fórmula de repoblación concejil característica de la Meseta que otorgaba a la ciudad de Salamanca jurisdicción sobre un vasto territorio rural organizado en sexmos.
+## La repoblación de 1100: Alfonso VI y Ramón de Borgoña
 
-La primera mención documental del topónimo, en **1164**, se produce precisamente en este contexto: los diplomas reales y eclesiásticos de la época recogen donaciones, deslindes y pleitos entre aldeas que permiten reconstruir, aunque de forma fragmentaria, la génesis de núcleos como Moriscos, Castellanos o Aldeaseca.
+Tras la conquista de la taifa de Toledo (1086) por Alfonso VI, la frontera leonesa se desplazó hacia el Tajo, dejando la franja entre el Duero y el Sistema Central en posición estratégica. Hacia el año **1100**, el conde **Ramón de Borgoña**, yerno de Alfonso VI y esposo de la infanta doña Urraca, dirigió una vasta campaña de repoblación bajo el modelo de las **Comunidades de Villa y Tierra**, otorgando al Concejo de Salamanca jurisdicción sobre un amplio alfoz rural.
 
-## Diversidad etnocultural en La Armuña
+El proceso atrajo a colonos francos, asturleoneses, gallegos, vasconavarros, riojanos y castellanos. La figura eclesiástica más relevante fue el obispo **Jerónimo de Perigord**, antiguo compañero de armas del Cid, nombrado obispo de la restaurada diócesis salmantina en 1102. Impulsó la Catedral Vieja y vinculó su figura a la devoción del **Cristo de las Batallas**, imagen románica venerada hoy en Castellanos de Moriscos.
 
-La documentación medieval salmantina —fueros, padrones y libros de repartimiento— revela que la comarca de La Armuña fue, durante los siglos XII y XIII, un espacio de convivencia relativamente diversa. Junto a los repobladores cristianos del norte, existieron aljamas judías en la propia ciudad de Salamanca con intereses económicos en las aldeas de su alfoz, y una presencia mudéjar dedicada a oficios especializados (herrería, alarifía, tejeduría) que dejó su huella en topónimos, apellidos y técnicas agrícolas —entre ellas, según la tradición local, el propio sistema de acequias y norias de tracción animal empleado en las huertas del entorno del Tormes.
+## El conde Vela de Aragón y Castellanos de Moriscos
 
-## De la aldea a la parroquia
+Los repobladores castellanos fueron organizados bajo el mando de **Vela de Aragón**, conde de Álava, quien erigió una «puebla de castellanos» junto a los terrenos ya ocupados por la comunidad de origen mudéjar. Esta fundación dio origen al vecino municipio de **Castellanos de Moriscos**, documentado en el siglo XIII como «Castellanos de Morisco» —un testimonio lingüístico que confirma la preexistencia del núcleo de Moriscos—. Ambos cascos urbanos, distantes apenas **1,39 kilómetros**, mantuvieron durante siglos una segregación espacial de cultivos: los cristianos viejos castellanos con propiedad hidalga o pechado ordinario, y los habitantes de Moriscos vinculados a huertas, regadío estacional y molienda en la vega del Tormes.
 
-Hacia el siglo XIV, el proceso repoblador había cristalizado ya en la estructura que reconocemos hoy: una aldea articulada en torno a su iglesia parroquial, con un término delimitado, unos derechos de pasto y leña compartidos con los concejos vecinos, y una economía basada en el cultivo del cereal de secano. Es en este siglo cuando previsiblemente se erige el primer templo dedicado a San Pedro, antecedente de la actual iglesia parroquial, que estudiaremos en el capítulo 7.
+## Fiscalidad y administración (siglos XII-XIV)
 
-Comprender esta capa fundacional —la de un pueblo nacido del encuentro y la mezcla, no de la homogeneidad— es esencial para leer con perspectiva el resto de la historia de Moriscos.
+Bajo Fernando II de León (1157-1188), Moriscos se consolidó como núcleo estable, reflejado en las primeras estructuras de cantería de su iglesia parroquial de **San Pedro Apóstol**, con elementos de tradición mudéjar. El Concejo de Salamanca organizó su alfoz en **Cuartos**: el de la Armuña, el de **Villoria** (o Valdevilloria), el de Peña del Rey y el de Baños. Moriscos quedó adscrito al **Cuarto de Villoria** —de ahí su denominación histórica «Moriscos de Valdevilloria»—, mientras Castellanos de Moriscos quedó en el Cuarto de la Armuña.
+
+La representación vecinal ante el concejo se articulaba mediante el **sexmero**, encargado de supervisar una compleja fiscalidad: **alcabalas** (impuesto sobre el tráfico mercantil), **pontazgos** (derecho de paso sobre puentes y pontones), **sisas** (gravamen sobre víveres básicos) y **pechos** (tributos directos del estado llano). El documento clave para reconstruir esta etapa es el **«Libro de todos los préstamos»** de la Catedral de Salamanca (1265), bajo Alfonso X el Sabio, donde la parroquia de Moriscos figura registrada con sus cuantías en grano, maravedís y gallinas —confirmación documental de la consolidación comunitaria en pleno siglo XIII.

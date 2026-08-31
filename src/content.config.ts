@@ -16,7 +16,7 @@ const glosario = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/glosario' }),
   schema: z.object({
     term: z.string(),
-    category: z.enum(['Aperos', 'Naturaleza', 'Medidas', 'Topónimos', 'Oficios']),
+    category: z.enum(['Aperos', 'Naturaleza', 'Medidas', 'Topónimos', 'Oficios', 'Cultivos']),
     short: z.string(),
   }),
 });

@@ -1,33 +1,31 @@
 ---
 number: 4
 title: "La Economía Tradicional, Etnografía y Vida Cotidiana en La Armuña"
-dek: "El cereal, el molino, la matanza y los oficios que sostuvieron durante siglos la vida armuñesa."
+dek: "La molienda por maquila, la vitivinicultura de Valdepega y el agua blanda de La Flecha."
 order: 4
-readingMinutes: 9
+readingMinutes: 11
 ---
 
-La economía tradicional de Moriscos, como la de toda La Armuña, giró durante siglos en torno a un ciclo cerealista de secano marcado por la escasez de agua y la fertilidad de las tierras profundas del páramo. Este capítulo repasa las estructuras económicas y la vida cotidiana de un pueblo agrícola castellano en los siglos previos a la mecanización.
+## Del grano a la aceña: mulas, alforjas y las Eras
 
-## El ciclo del cereal
+Hasta hace entre 60 y 100 años, sin tractores, luz eléctrica ni vehículos a motor, el ciclo agrícola de Moriscos comenzaba en las **Eras**, a las afueras del pueblo. Allí, tras la trilla y el aventado estival, el grano se medía con la **media fanega** —recipiente de madera de forma colmenar— y se vertía en **costales** de lona o arpillera. Cargados a lomos de mulas con **alforjas** y aparejos de albarda, los labradores partían por el pontón de piedras de la Calzada de Medina y tomaban el Camino de la Aceña hacia el molino de **La Flecha**.
 
-El calendario agrícola armuñés se articulaba en torno a la siembra otoñal, la escarda de primavera y la siega y trilla estival. La trilla se realizaba en las eras del pueblo con trillos de pedernal tirados por mulas, y el grano se limpiaba después al aire mediante el aventado, aprovechando los vientos dominantes del páramo. El **costal**, saco de lienzo grueso usado para transportar y almacenar el grano, y la **media fanega**, medida tradicional de capacidad para áridos, eran herramientas cotidianas de una economía que se medía todavía en unidades locales antes de la generalización del sistema métrico decimal.
+## El sistema de la maquila
 
-## El molino y la maquila
+En la **Aceña de La Flecha**, molino hidráulico movido por el Tormes, el pago por la molienda no era en dinero, sino en especie: la **maquila** equivalía exactamente a una doceava parte (1/12) de la fanega, es decir, un **celemín**, extraído con el cazo llamado *maquilandero*. Esta retribución en harina convirtió a los molineros en grandes poseedores de materia prima sin ser propietarios agrícolas, y explica la estrecha relación gremial entre los molineros de La Flecha y los panaderos de Castellanos de Moriscos.
 
-Buena parte del grano producido en Moriscos se destinaba a la molienda en los molinos harineros del entorno, muchos de ellos situados junto al Tormes, en las inmediaciones del soto de La Flecha. El pago por la molienda no se realizaba en dinero, sino mediante la **maquila**: una porción de la propia harina o grano que el molinero retenía como retribución por su trabajo, un sistema documentado en toda la Meseta desde la Edad Media hasta bien entrado el siglo XX.
+## Cereales, legumbres y la tradición viñedera
 
-## Aperos y oficios del campo
+La penillanura armuñesa fue uno de los graneros de la provincia: trigo candeal, cebada, centeno y, sobre todo, la **Lenteja de La Armuña** (hoy con Indicación Geográfica Protegida) y el **Garbanzo de Pedrosillo**. Menos conocida es la tradición vitivinícola de **Valdepega**, con parcelas de conducción baja para autoconsumo. La vendimia era ocasión de una célebre broma comunitaria: enviar a los niños a «pedir prestadas las escaleras de vendimiar al vecino», paralela a la novatada del «abrebocas» en la matanza del cerdo. Hoy solo sobrevive una viña familiar, cuyo vino artesanal se cata con humor bajo la denominación **«D.O. Valdepega»** en el histórico Bar de Chinarrilla (regentado por Narci).
 
-La vida agrícola armuñesa generó un vocabulario técnico rico y preciso, hoy en buena parte desaparecido del habla cotidiana pero conservado en la memoria de los mayores: la **vertedera**, pieza del arado que volcaba la tierra al abrir el surco; la **horca de Marino**, herramienta de mango largo y púas de madera empleada para amontonar la parva durante la trilla; o el **pontón**, pequeño paso de madera o piedra sobre arroyos y regueros que facilitaba el tránsito de personas y ganado entre pagos.
+## Yuntas de bueyes y pasto invernal en el Tormes
 
-Junto a la agricultura, existieron oficios auxiliares imprescindibles: el herrero, que atendía el herraje de las caballerías y la reparación de aperos; el sastre y las costureras, entre las que destacó la tradición de las **sillas de costura** de fabricación artesanal, popularizada en la comarca por artesanos como Eugenio Blanco Carbayo (capítulo 9); y el guarda de campo, responsable de vigilar cosechas y linderos.
+Los bueyes de raza negra o avileña roturaban las duras tierras arcillosas de La Armuña. En invierno, cuando el secano quedaba desnudo, los labradores conducían las yuntas hacia la vega del Tormes en La Flecha, donde el pasto era tierno y abundante. La memoria oral recuerda la casa de **Natalia y Damián**, últimos en mantener una pareja de bueyes hasta los años setenta, y la casa de **Paco "El Rico"** (hijo de Bernardo Escudero Daniel), que llegó a tener cinco parejas trabajando simultáneamente.
 
-## La matanza y la economía doméstica
+## La dualidad del agua: dureza local y agua blanda de La Flecha
 
-El cerdo cebado con los excedentes de cereal y las sobras de la huerta constituía la principal reserva proteica de las familias armuñesas. La matanza, celebrada en los meses fríos del año, era a la vez faena económica y acontecimiento social: reunía a la familia extensa y a los vecinos en una jornada de trabajo colectivo que terminaba con embutidos, chicharrones y las primeras pruebas de la nueva matanza compartidas en la cocina de la casa.
+Las aguas subterráneas de Moriscos, con más de 40º de dureza francesa, impedían cocer bien garbanzos y lentejas. Por ello, aprovechando los viajes a la aceña, las familias cargaban las mulas con cántaros para llenarlos de **agua blanda** en los manantiales de La Flecha, reservada para el cocido y las infusiones.
 
-## Vida cotidiana y sociabilidad
+## El lavado estival y las Ferias de Salamanca
 
-La plaza, el atrio de la iglesia de San Pedro y las propias eras del pueblo funcionaban como espacios de sociabilidad donde se cruzaban noticias, se concertaban bodas y se dirimían pequeños conflictos vecinales. La escasez de agua corriente obligaba a un uso comunitario de pozos y fuentes, y el reparto de las tareas domésticas —lavado en el arroyo, acarreo de agua, cuidado del ganado menor— seguía patrones de género muy marcados, típicos de la sociedad rural castellana hasta mediados del siglo XX.
-
-Este capítulo, más que una crónica de fechas, pretende ser un homenaje a la inteligencia práctica de generaciones de armuñeses que supieron sacar partido a un territorio exigente con herramientas sencillas y una organización social solidaria.
+Al finalizar las labores de recolecta, a finales de agosto, mujeres y mozas organizaban la expedición anual del **lavado de ropa en el río**, descendiendo a los prados de La Flecha y Cabrerizos con coladas, artesas y jabón artesanal. Tras el aclarado, la ropa se extendía al sol en el «blanqueo», lista para las **Ferias y Fiestas de Salamanca** de septiembre, que marcaban el punto de inflexión antes de reiniciar el ciclo agrícola.

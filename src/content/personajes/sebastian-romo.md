@@ -1,8 +1,8 @@
 ---
 name: "Sebastián Romo"
 years: "Siglo XVII"
-role: "Clérigo defensor del clero rural de La Armuña"
+role: "Clérigo, capellán beneficiado y defensor de los derechos del clero rural de La Armuña"
 tag: "Clérigo"
 ---
 
-Sebastián Romo fue un clérigo del siglo XVII vinculado a Moriscos, recordado por su defensa de los derechos y condiciones del clero rural de La Armuña frente a las cargas y exigencias del clero catedralicio de Salamanca. Su figura representa las tensiones internas de la Iglesia castellana en la Edad Moderna entre el centro urbano y sus parroquias rurales.
+Sebastián Romo, clérigo nacido en Moriscos a comienzos del siglo XVII, desarrolló su carrera eclesiástica en la diócesis de Salamanca como capellán beneficiado de la histórica Iglesia de Santa María del Castillo, en Cantalapiedra. Su labor destacó por una enérgica defensa de los derechos económicos y pastorales del clero rural de La Armuña frente a las presiones fiscales del concejo salmantino, administrando con celo las rentas y diezmos destinados al sostenimiento de las parroquias locales.

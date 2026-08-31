@@ -6,10 +6,10 @@ export type Counter = {
 };
 
 export const counters: Counter[] = [
-  { label: 'Primera mención documental', value: '1164', detail: 'Año del primer registro escrito del topónimo' },
-  { label: 'Vértice geodésico "Andorra"', value: '871,4', suffix: 'm', detail: 'Punto más alto del entorno inmediato' },
+  { label: 'Primera mención documental', value: '1164', detail: '4 de octubre, collationam Sancti Christofori de Morisco' },
+  { label: 'Vértice geodésico "Andorra"', value: '871,4', suffix: 'm', detail: 'IGN nº 47879 · punto más alto del término' },
   { label: 'Distancia a Salamanca', value: '9', suffix: 'km', detail: 'Capital provincial, hacia el sur' },
-  { label: 'Distancia a La Flecha', value: '7,7', suffix: 'km', detail: 'Siguiendo la Ruta Nocturna' },
+  { label: 'Superficie del término', value: '12,08', suffix: 'km²', detail: 'Población 2025 (INE): 577 habitantes' },
 ];
 
 export const hitos = [
@@ -17,28 +17,28 @@ export const hitos = [
     title: 'Repoblación de 1100',
     year: 'Siglos XI-XII',
     summary:
-      'Moriscos nace como aldea de repoblación dentro del alfoz de Salamanca, en un mosaico de pobladores cristianos, mozárabes y mudéjares.',
+      'El conde Ramón de Borgoña y el obispo Jerónimo de Perigord repueblan el alfoz salmantino; Vela de Aragón funda la vecina Castellanos de Morisco.',
     href: '/libro/02-toponimia-repoblacion',
   },
   {
     title: 'Batalla de 1812',
     year: 'Guerra de la Independencia',
     summary:
-      'Los movimientos previos a la Batalla de los Arapiles dejan su huella en el paraje conocido como "El Parapeto".',
+      'Wellington y Marmont combaten en El Parapeto y La Cabaña los días 20 y 22 de junio, antesala de la Batalla de Los Arapiles.',
     href: '/libro/06-conflictos-belicos',
   },
   {
     title: 'El suceso de 1941',
-    year: 'Posguerra',
+    year: '15 de agosto, posguerra',
     summary:
-      'Un episodio de crónica negra local, transmitido por la memoria oral, que este proyecto documenta con prudencia y rigor.',
+      'La emboscada de "la horca de Marino" a las hermanas Salvador Domínguez, documentada por la prensa y la memoria civil local.',
     href: '/libro/07-sucesos-cronica-negra',
   },
   {
     title: 'Fray Luis de León',
     year: 'Siglo XVI',
     summary:
-      'El soto de La Flecha, a 7,7 km de Moriscos, fue refugio contemplativo del poeta y humanista salmantino.',
+      'El soto de La Flecha, a 7,7 km de Moriscos, fue refugio contemplativo del poeta agustino tras su encierro inquisitorial.',
     href: '/libro/05-despoblado-ribas-flecha',
   },
 ];

@@ -1,27 +1,30 @@
 ---
 number: 9
 title: "Glosario Etnográfico, Anexos y Memoria Documental"
-dek: "El vocabulario tradicional armuñés y los paisanos que han dedicado su vida a preservarlo."
+dek: "El habla de la tierra, la guía de campo de la Ruta Nocturna y las fuentes que sostienen esta obra."
 order: 9
-readingMinutes: 6
+readingMinutes: 8
 ---
 
-La lengua es uno de los patrimonios más frágiles de cualquier cultura rural: se transmite de viva voz y desaparece en apenas una generación si nadie se ocupa de fijarla por escrito. Este capítulo presenta el enfoque metodológico del **glosario etnográfico armuñés** desarrollado en este sitio, y rinde homenaje a algunos de los paisanos que han contribuido a preservar la memoria de Moriscos.
+## El habla de la tierra
 
-## Metodología del glosario
+El léxico tradicional de Moriscos es un tesauro mestizo, heredero de la repoblación leonesa, el sustrato mudéjar y la vida agrícola del secano armuñés. Palabras como **alforjas**, **costal**, **fanega y media fanega**, **celemín**, **maquila**, **horcón**, **pontón**, **vertedera**, **negrillo**, **zumacales** o **cavenes** —desarrolladas con detalle en la sección de Glosario de este sitio— no son curiosidades filológicas, sino la memoria viva de una economía que midió la tierra y el grano con precisión artesanal durante siglos. A ellas se suma la **Lenteja de La Armuña**, cultivo insignia hoy protegido por la Indicación Geográfica Protegida, y el concepto lírico del **«asiento de paz»**, el rincón junto al Tormes donde Unamuno se sentaba a meditar en comunión con Fray Luis de León.
 
-Los términos recogidos en la sección de **Glosario** de este sitio —*maquila*, *zumacales*, *cavenes*, *costal*, *media fanega*, *horca de Marino*, *pontón*, *vertedera*, *negrillo*, entre otros— han sido clasificados en cuatro grandes categorías para facilitar su consulta: **Aperos** (herramientas y utensilios agrícolas), **Naturaleza** (elementos del paisaje y la fauna), **Medidas** (unidades tradicionales de peso, capacidad y superficie) y **Topónimos** (nombres de parajes y accidentes del término).
+## Guía de campo de la Ruta Nocturna a La Flecha
 
-Cada ficha del glosario incluye una definición breve, contextualizada en el uso cotidiano armuñés, con el objetivo de que el vocabulario tradicional no quede reducido a una curiosidad filológica, sino que se entienda en relación con las prácticas descritas en el capítulo 4.
+El itinerario de **7,7 kilómetros**, de dificultad baja y perfil descendente, articula ocho hitos que resumen la historia de Moriscos:
 
-## Paisanos dedicados a la memoria
+1. **Salida del casco urbano y el antiguo Frontón**, junto al recuerdo de la charca municipal.
+2. **Las Eras y el pago de Valdepega**, evocando la trilla con la media fanega y la tradición vinícola.
+3. **La Charca de la Serrá y los arroyos**, con la confluencia de Los Moriscos, el Vallejón, Gandil y Serranilla.
+4. **El Vértice Geodésico "Andorra"** (871,4 m), con vistas nocturnas a las torres iluminadas de la Catedral de Salamanca.
+5. **Los escenarios bélicos de 1812**: El Teso de La Cabaña y El Parapeto.
+6. **Las Cavenes y la fortaleza de Ripas**, con las huellas del lavado de arenas auríferas romanas.
+7. **La Pesquera y la Aceña agustina**, donde se cobraba la maquila y se lavaba la ropa en verano.
+8. **El Oratorio del siglo XVI y el Sillón de Unamuno**, donde se recita bajo las estrellas la *Oda a la vida retirada*.
 
-La conservación de esta memoria no habría sido posible sin el trabajo, muchas veces silencioso, de vecinos e investigadores locales. Entre ellos destaca la figura de **Álex Herrera Pedraz** (1949-), investigador y memoria viva de Moriscos, cuya labor de recopilación de fotografías, documentos y testimonios orales durante décadas constituye la columna vertebral documental sobre la que se apoya buena parte de esta obra y del propio portal Morisqueños.
+## Fuentes documentales y agradecimientos
 
-## Anexos documentales
+Esta obra se sostiene sobre el cruce de fuentes primarias y secundarias: los registros del **Archivo Histórico de la Catedral de Salamanca** (con el *Libro de todos los préstamos* de 1265), el **Catastro del Marqués de la Ensenada** (1752, Archivo General de Simancas), el *Diccionario geográfico-estadístico-histórico* de **Pascual Madoz** (1845-1850), las obras de **Fray Luis de León** y **Miguel de Unamuno**, los estudios de hispanistas como Antonio Domínguez Ortiz, Bernard Vincent, Ángel Barrios, Nicolás Cabrillana o Pérez Bustamante, y la hemeroteca de *El Adelanto* y RTVE.
 
-Esta sección funciona también como punto de enlace hacia los anexos documentales del proyecto: el **Bosque Genealógico de Moriscos**, que permite rastrear líneas familiares con registros que se remontan a **1645** (capítulo 9 ampliado en la sección de Genealogía), el archivo fotográfico "Ventanas del Ayer y Hoy" con más de 250 morisqueños identificados desde 1930, y los fondos documentales parroquiales y municipales que quedan pendientes de una catalogación exhaustiva.
-
-## Una invitación a colaborar
-
-Como toda obra etnográfica viva, este glosario está necesariamente incompleto. Se invita a los vecinos y descendientes de Moriscos a aportar nuevos términos, variantes locales de pronunciación o usos que no hayan quedado recogidos, contribuyendo así a que la lengua de nuestros abuelos no se pierda con el paso de las generaciones.
+Un reconocimiento entrañable a la **memoria oral de las familias de Moriscos**, a los abuelos y abuelas que conservaron el nombre de las yuntas, el secreto del zumaque y los relatos de 1941; y de manera muy especial a la **Asociación Cultural de Mujeres de Moriscos**, promotora de la Ruta Nocturna, al **Ayuntamiento de Moriscos** y a divulgadores locales como **Josito**, cuya voz e investigación mantienen viva la memoria de este pueblo de La Armuña.

@@ -1,8 +1,8 @@
 ---
 name: "Eugenio Blanco Carbayo"
 years: "1858 - 1935"
-role: "Escultor naïf de imaginería y sillas de costura"
+role: "Maestro del arte naïf armuñés: escultor, imaginero y ebanista autodidacta"
 tag: "Artesano"
 ---
 
-Eugenio Blanco Carbayo fue un artesano y escultor naïf natural de Moriscos, conocido por su producción de imaginería religiosa de carácter popular y por la fabricación artesanal de sillas de costura, un mueble tradicional de las casas armuñesas. Su obra, transmitida de generación en generación, es un ejemplo del talento artístico surgido al margen de las academias en la Castilla rural del siglo XIX.
+Registrado en los libros parroquiales como Eugenio Rufino Blanco Carbayo, nació en Moriscos en 1858 y representa el arquetipo del creador popular autodidacta: compaginó toda su vida el trabajo de labrador con una prolija vocación de escultor en madera, encuadrada por la crítica en el estilo del **arte naïf**. Su obra abarca tres vertientes: imaginería de la Pasión en madera policromada, mobiliario doméstico adaptado (armarios, cunas, lavabos y sus célebres sillitas de costura, con proporciones diferenciadas para hombres y mujeres), y la ornamentación con filigranas de aperos de labranza como las manceras de los arados de vertedera.

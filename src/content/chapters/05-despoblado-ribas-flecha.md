@@ -1,35 +1,29 @@
 ---
 number: 5
 title: "El Despoblado de Ribas y el Entorno de La Flecha: Historia, Mística y Patrimonio"
-dek: "El pago perdido de Ribas, el soto agustino de La Flecha y su huella en Fray Luis de León y Unamuno."
+dek: "Del castillo de Ramiro II a la Granja Agustina, Fray Luis de León y el redescubrimiento de Unamuno."
 order: 5
-readingMinutes: 9
+readingMinutes: 12
 ---
 
-A unos 7,7 kilómetros al sur de Moriscos, siguiendo el camino que desciende hacia el Tormes, se extiende uno de los rincones más cargados de significado simbólico de toda la provincia de Salamanca: el soto de **La Flecha**, antesala del despoblado medieval de **Ribas** y lugar de retiro de algunas de las figuras intelectuales más importantes de las letras españolas.
+## La fortaleza de Ripas de Ramiro II
 
-## El despoblado de Ribas
+En la vertiente meridional del término, donde la penillanura se quiebra hacia el Tormes, se localiza el **Despoblado de Ribas** (o Rivas). Tras la victoria cristiana sobre Abderramán III en la Batalla de Simancas (939), el rey **Ramiro II de León** fortificó la línea del Tormes, erigiendo entre otras plazas el **Castillo de Ribas**, sobre un cerro a 880 metros. Pese a las acometidas de Almanzor (977-986), Ribas mantuvo comunidad propia hasta que, con la estabilización de la frontera, su término se fragmentó en dos sectores: **Ribas Alto**, en torno al castillo —catalogado en 1752 como el «Mayorazgo del Caballero de Rivas», propiedad del catedrático José Galiano Enríquez de Navarra—, y **Ribas Bajo o La Flecha**, junto al río, ligada a las órdenes monásticas. Excavaciones informales del siglo XX, impulsadas por párrocos como Don Francisco de Dios, sacaron a la luz cimentaciones de piedra de Villamayor en la cima del **Terrubio**.
 
-Ribas fue, durante la Baja Edad Media, una aldea propia dentro del entramado de behetrías y alfoces que poblaban las márgenes del Tormes. Como tantos otros núcleos pequeños de la comarca, sufrió un proceso de despoblamiento progresivo entre los siglos XV y XVII, motivado por la concentración de la propiedad agraria, las crisis demográficas y el desplazamiento de su población hacia núcleos mayores como Moriscos o la propia Salamanca. Hoy, del antiguo caserío de Ribas solo quedan referencias documentales, restos dispersos de cimentación y la memoria toponímica que aún perdura en el paraje.
+## La Granja Agustina de La Flecha (1451)
 
-Entre esos restos destacan **las Cavenes**, oquedades y estructuras excavadas en el terreno que la tradición local vincula a antiguos silos, bodegas o incluso a un supuesto **castillo de Ripas**, del que no se conserva alzado alguno pero cuya existencia late en la toponimia y en las narraciones orales transmitidas de generación en generación.
+En 1451, el religioso agustino **Fray Pedro Monroy** donó tierras al Convento de San Agustín de Salamanca, dando origen a la **Granja agustina de La Flecha**: un complejo agropecuario y centro de descanso estival para frailes y catedráticos. En el siglo XVI se dotó de una **Aceña** de cantería con el escudo de la Orden, un **Oratorio** en piedra de Villamayor (nave, capilla, sacristía y cripta) y huertas nutridas por el manantial de La Teja.
 
-## La Pesquera y la aceña agustina
+## Fray Luis de León: cárcel, retiro y poesía
 
-El tramo del Tormes que bordea el soto de La Flecha conserva los restos de una **pesquera** —estructura de piedra que facilitaba la captura de peces aprovechando la corriente— y de una **aceña**, molino harinero de rueda vertical movido por el propio río, gestionado históricamente por la comunidad de frailes agustinos del convento de San Agustín de Salamanca, propietaria de la finca de La Flecha desde el siglo XVI.
+**Fray Luis de León** (Belmonte, 1527 - Madrigal de las Altas Torres, 1591), catedrático de Teología en Salamanca, fue arrestado por la Inquisición en marzo de 1572 y encarcelado casi cinco años, acusado de traducir el Cantar de los Cantares sin licencia. Liberado en 1576, escribió en la celda las célebres décimas: *«Aquí la envidia y mentira / me tuvieron encerrado...»*. A su regreso a las aulas —con el mítico «Decíamos ayer...»— buscó refugio recurrente en la Granja de La Flecha, escenario de su **Oda a la vida retirada** («¡Qué descansada vida / la del que huye del mundanal rüido...!») y del arranque de su tratado *De los nombres de Cristo*, ambientado «por el mes de junio, a las vueltas de la fiesta de San Juan» en la ribera del Tormes.
 
-Esta vinculación agustina es clave para entender la trascendencia cultural del lugar: la Orden de San Agustín convirtió la finca en un espacio de retiro y estudio para sus miembros más destacados, entre ellos el fraile, poeta y humanista **Fray Luis de León**.
+## De la Desamortización al redescubrimiento de Unamuno
 
-## Fray Luis de León y el "Oratorio"
+Con la Desamortización de Mendizábal (1835-1836), la finca pasó a manos privadas y, a finales del XIX, a los **Duques de Aveyro**, que restauraron el oratorio y lo convirtieron en panteón de los Carvajal. A comienzos del siglo XX, **Miguel de Unamuno**, rector de la Universidad de Salamanca, redescubrió el paraje como su «asiento de paz» y «refugio de verdura», glosándolo en *Paisajes* (1902) y en la *Oda a Salamanca* (1904): *«De la Flecha gozándose en la orilla... que el soto de Fray Luis cantando besa»*. Le acompañaron el fotógrafo José Suárez y su amigo **Casto Prieto Carrasco**, alcalde republicano de Salamanca (vínculo recreado en la película *Mientras dure la guerra* de Amenábar).
 
-Fray Luis de León (1527-1591), catedrático en la Universidad de Salamanca y una de las cumbres de la poesía española del Siglo de Oro, encontró en el soto de La Flecha un refugio de sosiego frente a las tensiones académicas y los procesos inquisitoriales que marcaron buena parte de su vida. La tradición literaria atribuye a este entorno la inspiración de composiciones como la *Oda a la vida retirada*, cuyo célebre verso "¡Qué descansada vida / la del que huye del mundanal ruïdo!" resume el ideal de retiro contemplativo que el propio paraje parece invitar a vivir.
+En 1953, la finca acogió el **Encuentro Nacional de Poetas**, consagrando La Flecha como el «Parnaso Ibérico». Por sus piedras pasaron los Nobel Jacinto Benavente, Camilo José Cela y Severo Ochoa, la poetisa Dulce María Loynaz, Carmen Martín Gaite y el cronista Gaziel.
 
-En memoria de esta huella se conserva en la finca un pequeño **oratorio**, hoy integrado en un entorno ajardinado gestionado por la Diputación de Salamanca, que constituye uno de los principales atractivos patrimoniales de la comarca.
+## Degradación y lucha por la conservación
 
-## El "sillón de Unamuno"
-
-Siglos más tarde, otro gran humanista vinculado a la Universidad de Salamanca, **Miguel de Unamuno**, adoptó también el soto de La Flecha como lugar predilecto de paseo y reflexión. La tradición local señala un asiento de piedra natural junto al río —conocido popularmente como el **"sillón de Unamuno"**— como uno de sus rincones favoritos, en una suerte de continuidad simbólica entre dos generaciones de pensadores unidos por el mismo paisaje de ribera.
-
-## La Flecha en la memoria de Moriscos
-
-Para los vecinos de Moriscos, el camino a La Flecha ha sido tradicionalmente mucho más que un itinerario turístico: es una ruta de romerías, meriendas y paseos nocturnos de verano que atraviesa el vértice de Andorra y el antiguo término de Ribas, uniendo el presente agrícola del pueblo con capas de historia medieval, mística religiosa y memoria literaria. Esta ruta se documenta en detalle, con sus ocho hitos principales, en la sección interactiva **Ruta Nocturna** de este sitio.
+El ferrocarril Salamanca-Madrid y la carretera SA-804 fracturaron la finca en **La Flecha Alta** (urbanizada con chalets) y **La Flecha Baja** (el oratorio y la aceña, abandonados). En los años setenta, una piscifactoría destruyó el cauce natural y el soto, y un chalet inacabado se levantó sobre la propia aceña. El expolio arrancó rejas, altares y losas. El **24 de octubre de 2011**, Hispania Nostra incluyó la Granja de La Flecha en su **Lista Roja del Patrimonio**, alertando del peligro de desplome del oratorio. Asociaciones vecinales de Cabrerizos y Moriscos, junto a iniciativas como *Literatura Abstracta*, reclaman su declaración como **Bien de Interés Cultural (BIC)**.

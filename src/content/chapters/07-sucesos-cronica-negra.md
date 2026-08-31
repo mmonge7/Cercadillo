@@ -1,27 +1,27 @@
 ---
 number: 7
 title: "Sucesos, Crónica Negra y Memoria Civil Local"
-dek: "El caso de 1941 y la trinchera del tren: dos episodios que marcaron la memoria colectiva del siglo XX."
+dek: "La emboscada de 1941, la 'horca de Marino' y la tragedia del Alvia de 2025."
 order: 7
-readingMinutes: 7
+readingMinutes: 10
 ---
 
-Toda comunidad rural guarda, junto a su historia oficial, una crónica menor hecha de sucesos, rumores y episodios que marcan generaciones enteras. Moriscos no es una excepción, y este capítulo recoge, con la prudencia que exige la memoria sensible, dos episodios del siglo XX especialmente presentes en el recuerdo colectivo del municipio.
+## La emboscada de la noche de agosto de 1941
 
-## El caso de 1941
+En la calurosa noche del **15 de agosto de 1941**, mientras Aldealengua celebraba la Asunción de la Virgen con verbenas y bailes, tres jóvenes de Moriscos —las hermanas **Luisa** (20 años) y **Josefa Salvador Domínguez** (17 años) y su criada **Benita**— emprendieron a pie el camino de regreso. Hacia las diez de la noche, en mitad de la oscuridad del camino rural, una figura embozada en gruesa **capa oscura** y **careta blanca** de cartón emergió de la maleza y se abalanzó sin mediar palabra sobre las jóvenes, empuñando un pesado **horcón de hierro de cuatro pinchos** robado esa misma tarde de una finca cercana.
 
-En el difícil contexto de la posguerra española, marcado por el hambre, el racionamiento y la represión, la memoria oral de Moriscos conserva el recuerdo de un suceso ocurrido en **1941** que conmocionó a la pequeña comunidad rural. Los detalles concretos del episodio —tal y como se transmiten de generación en generación— varían según el informante, lo que es habitual en sucesos de esta naturaleza y época, cuando la escasa alfabetización, el control informativo del régimen y el miedo a las autoridades limitaban el registro escrito de este tipo de acontecimientos.
+## El ataque y la huida de Benita
 
-Lejos de tratarse aquí como una noticia cerrada, este apartado quiere servir de llamada a la investigación: un proyecto de historia local riguroso debería contrastar la memoria oral recogida entre los vecinos de mayor edad con la documentación disponible en los juzgados de la época, los registros civiles y la prensa provincial salmantina de 1941, con el fin de fijar con precisión los hechos, las personas implicadas y sus consecuencias, siempre con el máximo respeto a la privacidad de las familias afectadas.
+El agresor golpeó repetidamente a Luisa y Josefa, infligiéndoles entre **25 y 26 heridas de punzón** en brazos, tórax y rostro; uno de los dientes del horcón quedó doblado por la violencia de los golpes, dando origen al nombre con el que se recuerda el arma: **«la horca de Marino»**. Aprovechando la confusión, Benita logró escapar y corrió por los campos hasta el pueblo, alertando al padre de las víctimas, **Francisco Salvador**. Una comitiva de vecinos con faroles trasladó a las hermanas, malheridas, en un carro mullido con paja hasta el hospital provincial de Salamanca, donde lograron sobrevivir tras varias semanas de cuidados.
 
-## La trinchera del tren
+## Investigación, condena y mito oral
 
-Vinculado en la memoria popular al periodo de posguerra, otro elemento singular del paisaje es la conocida como **"trinchera del tren"**: un desmonte o corte en el terreno, hoy parcialmente cubierto por la vegetación, que la tradición asocia a obras de infraestructura ferroviaria proyectadas o iniciadas en la comarca y nunca culminadas —un fenómeno no infrecuente en la España de mediados del siglo XX, donde varios trazados de vía estrecha y de vía ancha quedaron interrumpidos por la falta de recursos técnicos y económicos de la posguerra.
+La Guardia Civil halló el horcón abandonado junto al camino y comprobó que había sido sustraído esa tarde de una finca próxima, junto con una caballería. Las pesquisas condujeron a **Marino Poveda Pedraz**, antiguo mozo de cuadra en casa de Francisco Salvador, quien confesó actuar por despecho hacia Luisa, a quien acusaba de haberle humillado durante su servicio. El diario *El Adelanto* recogió el caso el **17 de agosto de 1941**. La Audiencia Provincial de Salamanca le condenó a **8 años y un día de prisión mayor por cada uno de los dos delitos** (más de 16 años en total) y una indemnización de 500 pesetas, apreciando alevosía y nocturnidad, uso de disfraz y desprecio del sexo —agravante precursora de la actual tipificación de la violencia de género—. Tras cumplir condena, Marino regresó y trabajó como peón en el ferrocarril, de donde nació el dicho socarrón con el que los ancianos cerraban el relato: tras salir de la cárcel, «se puso al tren».
 
-La trinchera funciona hoy como un hito topográfico reconocible por los vecinos, y en algunas versiones del relato oral se asocia también, de forma indirecta, al episodio de 1941, como escenario o telón de fondo de aquellos hechos.
+## La trinchera del ferrocarril: un siglo y medio de riesgo
 
-## El valor de la memoria civil
+Desde la inauguración de la línea **Salamanca-Medina del Campo** el 26 de agosto de 1877 y la puesta en servicio del apeadero de Moriscos (punto kilométrico 69,380), la vía ha sido un motor de desarrollo pero también una fuente constante de riesgo: pasos a nivel sin barrera, atropellos de ganado y accidentes que llevaron a solicitar reiteradamente a RENFE y al Ministerio de Fomento la supresión de estos puntos negros.
 
-Recoger estos episodios no busca sensacionalismo, sino reconocer que la historia de los pueblos pequeños está hecha tanto de sus fiestas y sus cosechas como de sus tragedias y silencios. La **memoria civil local** —entendida como el conjunto de recuerdos, objetos y relatos que las familias conservan sobre los momentos más duros del siglo XX— constituye un patrimonio inmaterial tan valioso como el arquitectónico, y merece ser recopilado con el mismo rigor con el que se cataloga una talla o un documento medieval.
+## La tragedia del Alvia (julio de 2025)
 
-Este proyecto invita a los vecinos y descendientes de Moriscos que conserven testimonios, fotografías o documentos relacionados con estos episodios a compartirlos a través del canal de colaboración del sitio (véase el capítulo 10), contribuyendo así a completar, con el máximo respeto, un capítulo todavía abierto de la historia local.
+En la madrugada del **21 de julio de 2025**, un tren Alvia Madrid-Salamanca arrolló mortalmente a dos personas —un hombre de 41 años y una mujer de 43, pareja sentimental— en el tramo entre Gomecello y Moriscos. El maquinista los divisó forcejeando sobre la vía segundos antes del impacto. El convoy, con 257 pasajeros a bordo, quedó detenido más de tres horas junto al apeadero. La investigación reveló que la mujer había denunciado a su pareja en mayo de 2025 por malos tratos, con expediente activo de riesgo bajo en el **Sistema VioGén**. El suceso, asumido por el Juzgado de Instrucción nº1 de Salamanca, unió de forma dolorosa la memoria civil del municipio con la lacra de la violencia de género y el histórico peligro de la trinchera ferroviaria.

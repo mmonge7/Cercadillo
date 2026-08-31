@@ -1,29 +1,31 @@
 ---
 number: 1
 title: "Marco Geográfico, Territorial y Contexto Histórico General"
-dek: "Dónde está Moriscos, cómo se articula su término y qué lugar ocupa en la comarca de La Armuña."
+dek: "Localización, orografía, hidrología y despoblados del término municipal de Moriscos."
 order: 1
-readingMinutes: 7
+readingMinutes: 9
 ---
 
-Moriscos es un municipio de la provincia de Salamanca, situado en el corazón de **La Armuña**, la comarca cerealista que se extiende al norte de la capital charra entre los ríos Tormes y Valderaduey menor. El casco urbano se asienta sobre un suave páramo a apenas **9 kilómetros de Salamanca**, en un territorio de horizontes despejados donde el trigo, la cebada y los girasoles dibujan, según la estación, un mosaico dorado o verde intenso.
+## Localización en el alfoz salmantino
 
-El término municipal linda con Aldeaseca de la Armuña, Castellanos de Moriscos, Calzada de Valdunciel y Villamayor, esta última célebre por la piedra arenisca que dio nombre y textura a buena parte de la arquitectura salmantina —incluida, como se verá en capítulos posteriores, la propia fábrica de la iglesia parroquial de Moriscos.
+Moriscos se halla enclavado en el cuadrante nororiental de la provincia de Salamanca, integrado en la comarca histórica y agrocultural de **La Armuña** (concretamente en la subcomarca de La Armuña Alta). La villa dista entre 8 y 10 kilómetros de la capital provincial —fijándose la distancia de referencia en unos **9 km**—, lo que la sitúa en la corona metropolitana inmediata del alfoz salmantino. Administrativamente es un municipio independiente adscrito al partido judicial de Salamanca y agrupado en la **Mancomunidad La Armuña** para la gestión de servicios comunes.
 
-## Un paisaje de páramo y vega
+El término municipal abarca una superficie de **12,08 km²**. Limita al norte con Gomecello, San Cristóbal de la Cuesta y La Vellés; al sur con Cabrerizos; al este con Aldealengua; y al oeste con Villares de la Reina y Castellanos de Moriscos. Esta posición convierte a Moriscos en un espacio de transición entre la meseta cerealista armuñesa y las terrazas fluviales que descienden hacia la vega del Tormes.
 
-La Armuña no es una comarca de accidentes espectaculares, sino de matices: pequeñas vaguadas, arroyos estacionales y una altiplanicie que rara vez supera la cota de los 900 metros. El punto más elevado del entorno inmediato de Moriscos es el **vértice geodésico conocido popularmente como "Andorra"**, a **871,4 metros** sobre el nivel del mar, un otero desde el que en días claros se divisa buena parte del piedemonte salmantino y, hacia el sur, el vapor lejano del valle del Tormes.
+## Orografía de la penillanura
 
-Esa proximidad al Tormes es determinante: aunque el río no atraviesa el término, su influencia climática y su red de sotos —entre ellos el de **La Flecha**, a unos **7,7 kilómetros** de Moriscos— marcan la vida agrícola, la vegetación de ribera y buena parte de la memoria simbólica del municipio, como desarrollaremos en el capítulo 5.
+El término responde a las características de la **penillanura salmantina**: una fisonomía llana y suavemente ondulada, con horizontes abiertos, moldeada por erosión sobre materiales sedimentarios. El municipio se sitúa a una altitud media de entre **844 y 848 metros**, destacando como punto más alto el **Vértice Geodésico "Andorra"**, a **871,464 metros**. Desde esta cima, el terreno cae hacia la vega del Tormes (cota aproximada de 778 m), generando un desnivel de unos **93 metros** entre la meseta y los escarpes fluviales.
 
-## Contexto histórico general
+La microtopografía local conserva promontorios de valor estratégico histórico, como el **Teso de La Cabaña** y el alto de **El Parapeto**, que dominan los accesos a la capital. El callejero rural preserva topónimos de gran valor etnográfico: **Carrelavieja** (traza de un antiguo camino), **La Pardaleja** (por los tonos pardos del suelo o la abundancia de aves pardales) y **La Andorra** (topónimo de raíz arábiga que designa terrenos boscosos o escarpados).
 
-La primera mención documental conocida del topónimo se remonta a **1164**, en el marco de los procesos de repoblación y organización territorial que siguieron a la reconquista de la línea del Duero y del Tormes durante los siglos XI y XII. Como la mayoría de los núcleos de la comarca, Moriscos nace como una aldea de repoblación vinculada al alfoz de Salamanca, con una economía cerealista de secano que se ha mantenido, con matices, hasta el presente.
+## Hidrología: arroyos, pontones y la charca municipal
 
-A lo largo de los siglos, el municipio ha sido testigo silencioso de los grandes procesos que atravesaron la Meseta: la consolidación del Concejo de Salamanca en la Baja Edad Media, las tensiones de la Guerra de la Independencia —con un episodio bélico propio en 1812, que se narra en el capítulo 6—, las transformaciones agrarias del siglo XIX y XX, y el intenso éxodo rural de la segunda mitad del siglo pasado, que redujo su población pero no borró su identidad.
+La red hidrológica es modesta y estacional, articulada por pequeños cauces de régimen pluvial. Destaca el **Arroyo de Los Moriscos**, que atraviesa el casco urbano vecino de Aldealengua con un cauce estrecho y encajonado. Se enriquece con la confluencia de tres arroyos locales: **Vallejón** (valle escorrencial), **Gandil** (topónimo árabe conservado solo en esta zona, derivado de *candil* o lámpara) y **Serranilla** (prolongación de la elevación de La Serrada).
 
-## Moriscos hoy
+Sobre la antigua **Calzada de Medina**, el tránsito de caballerías exigía salvar el regato local mediante un característico **pontón de piedras**. El elemento hidrológico más emblemático de la vida comunitaria fue la **charca municipal o abrevadero**, situada históricamente en el centro del pueblo (frente al actual parque público), donde abrevaban las yuntas de bueyes. La confluencia de arroyos era, además, destino habitual de meriendas populares durante el **Lunes de Agua**. En el ámbito doméstico existía un marcado contraste entre la elevada dureza de las aguas subterráneas locales (superiores a los 40º) y el agua blanda que los vecinos buscaban en las fuentes de la vega de **La Flecha** para cocer bien las legumbres.
 
-En la actualidad, Moriscos conserva la estructura de pueblo agrícola de La Armuña: calles trazadas en torno a la iglesia de San Pedro, un caserío compacto de piedra y adobe reconvertido progresivamente en vivienda de ladrillo, y un término municipal dedicado casi por completo al cultivo cerealista y, en menor medida, a la remolacha y el girasol. Su cercanía a Salamanca capital —menos de diez minutos en coche— lo ha convertido también en un lugar de residencia para quienes trabajan en la ciudad y buscan la tranquilidad del páramo armuñés.
+## Términos redondos y despoblados históricos
 
-Este primer capítulo sienta las bases geográficas y contextuales que iremos desplegando en el resto de la obra: un pueblo pequeño, pero con una densidad histórica y simbólica que merece ser contada con detalle.
+El Catastro del Marqués de la Ensenada (1749-1752) registra un modelo de organización del suelo caracterizado por la atomización y la presencia de **términos redondos** (fincas cerradas de propiedad privada o eclesiástica) y alquerías asociadas. La presión fiscal, los conflictos bélicos y la expansión de los latifundios nobiliarios y eclesiásticos —destacando el Cabildo de la Catedral de Salamanca y los agustinos calzados— condujeron al despoblamiento de numerosas aldeas medievales, absorbidas por municipios matrices como Moriscos.
+
+El término integra hoy varios despoblados: **Granja Capea**, antigua alquería hoy con cero habitantes censados; **La Estación**, surgida con el ferrocarril de 1877 y hoy fosilizada como apeadero; y los antiguos despoblados de **El Hoyo** y **La Cruz**. El Hoyo posee un significado identitario especial: su perfil orográfico quedó integrado en la **heráldica oficial del escudo municipal**, junto a la representación botánica de los zumacales.

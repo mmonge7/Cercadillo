@@ -31,7 +31,7 @@ export const routePoints: RoutePoint[] = [
     lng: -5.6058,
     distanceKm: 1.4,
     description:
-      'El camino atraviesa las antiguas eras de trilla y el pago de Valdepega, tierras profundas de alto rendimiento cerealista.',
+      'La ruta atraviesa las antiguas Eras de trilla, donde se medía el grano con la media fanega, y el pago de Valdepega, de tradición vinícola ("D.O. Valdepega").',
   },
   {
     id: 'charca-serra',
@@ -41,7 +41,7 @@ export const routePoints: RoutePoint[] = [
     lng: -5.6074,
     distanceKm: 2.6,
     description:
-      'Depresión endorreica estacional que actúa como abrevadero natural y refugio de avifauna esteparia: alcaravanes, avutardas y sisones.',
+      'Depresión endorreica estacional (Laguna de la Serrada) reforestada por los cazadores locales como refugio de la perdiz roja, junto a la confluencia de los arroyos de Los Moriscos, el Vallejón, Gandil y Serranilla.',
   },
   {
     id: 'vertice-andorra',
@@ -51,17 +51,17 @@ export const routePoints: RoutePoint[] = [
     lng: -5.6091,
     distanceKm: 3.9,
     description:
-      'El punto más alto del itinerario, a 871,4 metros de altitud, con vistas abiertas sobre el piedemonte salmantino y el valle del Tormes.',
+      'Vértice del IGN nº 47879 (871,464 m), construido en 1991: el punto más alto del término, con un desnivel de 93 m hacia el Tormes y vistas nocturnas de las torres de la Catedral de Salamanca.',
   },
   {
     id: 'el-parapeto',
     order: 5,
-    name: 'Escenario de la Batalla de 1812 ("El Parapeto")',
+    name: 'El Parapeto y el Teso de La Cabaña (1812)',
     lat: 40.9884,
     lng: -5.6103,
     distanceKm: 5.0,
     description:
-      'Paraje vinculado por la tradición local a un episodio menor de la Guerra de la Independencia durante la campaña de los Arapiles.',
+      'En estas dos lomas se fortificaron las tropas del mariscal Marmont; aquí combatieron el 20 y el 22 de junio de 1812 las divisiones de Wellington, antesala de la Batalla de Los Arapiles.',
   },
   {
     id: 'cavenes-ripas',
@@ -71,7 +71,7 @@ export const routePoints: RoutePoint[] = [
     lng: -5.6119,
     distanceKm: 6.0,
     description:
-      'Restos y oquedades del antiguo despoblado medieval de Ribas, con la memoria toponímica de un castillo hoy desaparecido.',
+      'Fosos y cárcavas vinculados a un antiguo lavado de oro romano; en la cima del Terrubio se señala el emplazamiento del desaparecido Castillo de Ripas, erigido en el siglo X por Ramiro II de León.',
   },
   {
     id: 'pesquera-acena',
@@ -81,7 +81,7 @@ export const routePoints: RoutePoint[] = [
     lng: -5.6098,
     distanceKm: 6.9,
     description:
-      'Estructura de pesca fluvial y molino de agua históricamente gestionados por la comunidad agustina propietaria de La Flecha.',
+      'Junto al azud o pesquera del Tormes se alzan los tajamares de la Aceña agustina del siglo XVI, donde se cobraba la maquila y las familias de Moriscos lavaban la ropa cada verano.',
   },
   {
     id: 'oratorio-flecha',

@@ -1,31 +1,34 @@
 ---
 number: 8
 title: "Evolución Infraestructural, Demográfica y Patrimonial (Siglos XIX-XXI)"
-dek: "De la aldea decimonónica al pueblo del siglo XXI: carreteras, censos y transformación urbana."
+dek: "El ferrocarril de 1877, el tren de rescate de 1890 y el renacer de Moriscos como cinturón metropolitano."
 order: 8
-readingMinutes: 8
+readingMinutes: 10
 ---
 
-Los últimos dos siglos han transformado Moriscos más que cualquier otro periodo anterior de su historia. Este capítulo traza la evolución de sus infraestructuras, su demografía y su fisonomía urbana desde las reformas liberales del siglo XIX hasta la actualidad.
+## La revolución del vapor: la línea de 1877
 
-## El siglo XIX: de la aldea del Antiguo Régimen al municipio liberal
+El **26 de agosto de 1877** se inauguró el tramo ferroviario entre El Pedroso de la Armuña y Salamanca, dentro de la línea **Medina del Campo-Salamanca**. La **Estación de Moriscos**, en el punto kilométrico **69,380**, dio salida masiva al trigo, la cebada y la lenteja armuñesa hacia los mercados nacionales, insertando a Moriscos en los circuitos comerciales. En torno al apeadero surgió el núcleo secundario de **La Estación**, con almacenes, tinglados y viviendas de ferroviarios, integrado en 1928 en la Compañía Nacional de los Ferrocarriles del Oeste y nacionalizado en 1941 bajo RENFE (hoy Adif/Renfe Viajeros). La mecanización y automatización acabaron convirtiéndolo en un despoblado.
 
-Las reformas administrativas de la primera mitad del siglo XIX —en especial la división provincial de 1833 y la legislación municipal isabelina— consolidaron a Moriscos como municipio con ayuntamiento propio dentro del partido judicial de Salamanca. La desamortización de Mendizábal y Madoz (1836-1855) afectó a las propiedades eclesiásticas de la comarca, incluidas posiblemente algunas tierras vinculadas a la orden agustina en el entorno de La Flecha, redistribuyendo la propiedad agraria hacia manos particulares.
+## El tren de rescate de 1890
 
-El **Diccionario geográfico-estadístico-histórico de Madoz**, publicado a mediados del XIX, recoge ya a Moriscos como una pequeña población cerealista de La Armuña, con los datos de población, producción agrícola y estructura administrativa característicos de la época.
+El **1 de octubre de 1890**, una tormenta de pedrisco de proporciones apocalípticas destruyó cosechas, tapias y caminos, aislando por completo al pueblo. El Gobernador Civil de Salamanca organizó un **tren especial de rescate** cargado de mantas, medicinas y víveres que se detuvo en la Estación de Moriscos para socorrer a la población damnificada, un episodio que quedó grabado como la cara más humana del ferrocarril.
 
-## El siglo XX: caminos, electricidad y éxodo rural
+## El declive de la sociedad agropastoril
 
-La llegada de la carretera pavimentada que conecta Moriscos con Salamanca y con los pueblos vecinos, así como la electrificación rural de mediados del siglo XX, transformaron progresivamente las condiciones de vida del municipio. Sin embargo, este mismo periodo trajo consigo el fenómeno del **éxodo rural**: como la práctica totalidad de los pueblos de La Armuña, Moriscos vio reducirse su población de forma drástica entre 1950 y 1980, cuando generaciones enteras emigraron hacia Salamanca capital, Madrid, Cataluña o Europa en busca de empleo industrial.
+A lo largo del siglo XX se extinguió el ritmo ancestral del campo: las yuntas de bueyes cedieron ante los tractores, los viajes a la Aceña de La Flecha para la maquila terminaron con el agua corriente en las casas, y la mecanización redujo la mano de obra necesaria, desencadenando entre los años sesenta y ochenta un éxodo rural hacia Salamanca, Madrid y Cataluña.
 
-Las **Ventanas del Ayer y Hoy** —la colección fotográfica que documenta la evolución urbana del pueblo entre 1954 y la actualidad— constituyen una fuente visual privilegiada para observar este proceso: la sustitución progresiva de las viviendas tradicionales de adobe y piedra por construcciones de ladrillo, la pavimentación de calles antes de tierra, y la paulatina desaparición de corrales y cuadras a medida que la actividad ganadera doméstica se reducía.
+## Del secano cerealista al cinturón residencial
 
-## Evolución demográfica
+A las puertas del siglo XXI, la proximidad a Salamanca —9 km— revirtió la tendencia. Las cifras del INE lo certifican:
 
-La estructura socioeconómica de Moriscos ha seguido, en líneas generales, el patrón común a los municipios pequeños de la provincia de Salamanca: una población envejecida respecto a la media nacional, una base económica que combina la agricultura extensiva con el trabajo por cuenta ajena en Salamanca capital, y un saldo migratorio que en las últimas décadas muestra signos de estabilización e incluso de leve recuperación, favorecido por la proximidad a la ciudad y el atractivo de la vivienda unifamiliar en un entorno tranquilo.
+- Mediados del siglo XIX (Diccionario de Madoz): 37 vecinos pecheros, 173 almas.
+- Año 2018: 384 habitantes.
+- Año 2021: 487 habitantes (densidad de 37,99 hab/km²).
+- Año 2025 (estimación INE): **577 habitantes**, en crecimiento continuo.
 
-## El siglo XXI: patrimonio y proyección digital
+El despliegue de **fibra óptica ultrarrápida** (programa UNICO Banda Ancha) ha permitido el teletrabajo desde el pueblo, y la Mancomunidad La Armuña ha dotado al municipio de pabellones polideportivos, parques infantiles y zonas ajardinadas sobre la antigua charca comunal.
 
-En las últimas dos décadas, Moriscos ha impulsado la recuperación y puesta en valor de su patrimonio: la restauración de elementos de la iglesia de San Pedro, la señalización de itinerarios como la Ruta Nocturna hacia La Flecha, y el propio esfuerzo documental —iniciado por el portal pionero **Morisqueños (moriscos.info)** y continuado por esta plataforma— de digitalizar y difundir la memoria histórica, fotográfica y genealógica del municipio.
+## El renacer del patrimonio: Rutas Armuñesas y Ruta Nocturna
 
-Esta evolución demuestra que un pueblo pequeño puede, con el mismo entusiasmo con que antaño se organizaba la trilla comunitaria, organizar hoy la conservación digital de su memoria colectiva.
+Moriscos impulsa hoy una red de siete **Rutas Armuñesas** de BTT, senderismo y gravel, con salida en el recinto de la I.G.P. Lenteja de La Armuña, que recorren la Vega y los Escarpes, el Vértice Andorra y Las Cavenes. Pero la iniciativa cultural de mayor calado identitario es la **Ruta Nocturna a La Flecha**, promovida por la **Asociación Cultural de Mujeres de Moriscos** con el Ayuntamiento: una marcha bajo la luna llena estival de 7,7 km que, con paradas locutadas por cronistas como **Josito**, recorre las eras, el vértice Andorra, los escenarios de 1812 y la emboscada de 1941, culminando con el recitado de la *Oda a la vida retirada* junto al oratorio de La Flecha.

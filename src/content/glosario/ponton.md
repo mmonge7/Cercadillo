@@ -1,7 +1,7 @@
 ---
 term: "Pontón"
 category: "Topónimos"
-short: "Pequeño paso de madera o piedra sobre arroyos que facilitaba el tránsito entre pagos."
+short: "Pasarela de losas de piedra que salvaba el regato de la antigua Calzada de Medina."
 ---
 
-Un **pontón** es un pequeño paso, generalmente de madera o piedra, tendido sobre arroyos y regueros estacionales para facilitar el tránsito de personas y ganado entre los distintos pagos del término. Varios topónimos menores del entorno de Moriscos conservan aún esta referencia.
+Un **pontón** es una pasarela corta o puente primitivo formado por grandes losas lisas de cantería apoyadas sobre los márgenes de un regato. El **pontón de piedras de Moriscos** permitía a transeúntes y caballerías salvar el cauce del arroyo sobre la antigua **Calzada de Medina** sin quedar atrapados en los barrizales estacionales, y era paso obligado de la comitiva que cada día partía hacia la Aceña de La Flecha.

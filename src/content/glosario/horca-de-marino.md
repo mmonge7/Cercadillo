@@ -1,7 +1,7 @@
 ---
-term: "Horca de Marino"
+term: "Horcón (Horca de Marino)"
 category: "Aperos"
-short: "Herramienta de mango largo y púas de madera usada para amontonar la parva."
+short: "Apero de cuatro pinchos para bieldar la paja, tristemente célebre por el suceso de 1941."
 ---
 
-La **horca de Marino** era una herramienta agrícola de mango largo rematado en varias púas de madera, empleada durante la trilla para amontonar y voltear la parva —la mezcla de grano y paja resultante de trillar— antes del aventado. Su nombre alude, según la memoria local, a un artesano o vecino que popularizó este modelo concreto en la comarca.
+El **horcón** u horca de hierro es un apero compuesto por un astil de madera rematado en una cabeza metálica con cuatro pinchos o púas, empleado tradicionalmente para bieldar, levantar la paja y aventar el grano en las Eras. El ejemplar robado en agosto de 1941 por Marino Poveda Pedraz —que quedó con un diente doblado tras la brutal agresión a las hermanas Salvador Domínguez— pasó a la memoria oral de Moriscos como **«la horca de Marino»**, conservada durante décadas como macabro testimonio del crimen (véase el capítulo 7).
