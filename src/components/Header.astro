@@ -3,7 +3,6 @@ import { Menu } from 'lucide-react';
 import { navLinks } from '../data/site';
 import { isActiveHref } from '../utils/nav';
 import SearchModal from './SearchModal';
-import ThemeToggle from './ThemeToggle.astro';
 
 const path = Astro.url.pathname;
 const base = import.meta.env.BASE_URL;
@@ -11,33 +10,31 @@ const activeLink = navLinks.find((link) => isActiveHref(path, base, link.href));
 ---
 
 <header
-  class="fixed inset-x-0 top-0 z-40 flex h-[var(--mobile-topbar)] items-center border-b border-piedra-border/60 bg-pergamino/85 backdrop-blur-md dark:border-noche-border dark:bg-noche/85 lg:sticky lg:h-[68px] lg:w-full"
+  class="header-panel fixed inset-x-0 top-0 z-40 flex h-[var(--mobile-topbar)] items-center shadow-md lg:sticky lg:h-[72px] lg:w-full"
 >
   <div class="flex w-full items-center justify-between gap-4 px-4 pt-[env(safe-area-inset-top,0px)] sm:px-6">
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-3.5">
       <button
         id="drawer-open"
         type="button"
-        class="inline-flex h-10 w-10 items-center justify-center rounded-full text-tinta/80 hover:bg-piedra-50 dark:text-pergamino-muted/80 dark:hover:bg-noche-surface lg:hidden"
+        class="inline-flex h-11 w-11 items-center justify-center rounded-full text-pergamino/90 transition-colors hover:bg-pergamino/15 hover:text-pergamino lg:hidden"
         aria-label="Abrir menú"
         aria-expanded="false"
         aria-controls="mobile-drawer"
       >
-        <Menu size={21} strokeWidth={1.8} />
+        <Menu size={26} strokeWidth={2.2} />
       </button>
-      <a href={base} class="flex items-center gap-2 font-display text-base font-bold tracking-wide text-armuna-dark dark:text-piedra-200 lg:hidden">
-        <img src={`${base}images/escudo-moriscos-160.jpg`} alt="Escudo de Moriscos" class="h-8 w-8 rounded-full object-cover ring-1 ring-piedra-300/60" width="32" height="32" />
-        MORISCOS
+      <a href={base} class="flex items-center gap-3 font-display text-2xl sm:text-3xl font-extrabold tracking-wider text-pergamino transition-opacity hover:opacity-95 lg:hidden">
+        <img src={`${base}images/escudo-moriscos-160.jpg`} alt="Escudo de Moriscos" class="h-10 w-10 sm:h-11 sm:w-11 rounded-full object-cover ring-2 ring-piedra-300 shadow-md" width="44" height="44" />
+        <span>MORISCOS</span>
       </a>
-      <span class="hidden font-body text-sm font-semibold text-tinta/80 dark:text-pergamino-muted/80 lg:inline">
+      <span class="hidden font-serif text-2xl font-bold tracking-tight text-pergamino drop-shadow-md lg:inline">
         {activeLink?.label ?? 'Inicio'}
       </span>
     </div>
 
-    <div class="flex items-center gap-1.5">
+    <div class="flex items-center gap-2">
       <SearchModal client:idle />
-      <ThemeToggle />
     </div>
   </div>
 </header>
-

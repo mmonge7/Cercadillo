@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Timeline from '../components/Timeline.astro';
 
 const ficha = [
   { label: 'Época', value: 'Siglos XII–XVI' },
@@ -104,15 +105,10 @@ const linea = [
 
     <div class="mt-16">
       <p class="kicker">Cronología</p>
-      <h2 class="mt-2 font-serif text-2xl font-semibold text-armuna-dark dark:text-piedra-200">Línea del tiempo</h2>
-      <ol class="mt-6 max-w-3xl space-y-5 border-l-2 border-piedra-300 pl-6 dark:border-piedra-500">
-        {linea.map((h) => (
-          <li>
-            <span class="font-display text-sm font-bold text-armuna dark:text-piedra-300">{h.year}</span>
-            <p class="mt-1 text-sm leading-relaxed text-tinta/75 dark:text-pergamino-muted/75">{h.text}</p>
-          </li>
-        ))}
-      </ol>
+      <h2 class="mt-2 font-serif text-2xl font-semibold text-piedra-200">Línea del tiempo</h2>
+      <div class="mt-6 max-w-3xl">
+        <Timeline events={linea} />
+      </div>
     </div>
   </section>
 </BaseLayout>

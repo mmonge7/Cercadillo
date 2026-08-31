@@ -22,12 +22,12 @@ const icons: Record<string, typeof Home> = {
 ---
 
 <aside class="fixed inset-y-0 left-0 z-30 hidden w-[230px] lg:block" aria-label="Navegación lateral">
-  <div class="brand-panel flex h-full flex-col">
-    <a href={base} class="flex items-center gap-2 px-5 pb-4 pt-6 font-display text-base tracking-wide">
-      <img src={`${base}images/escudo-moriscos-160.jpg`} alt="Escudo de Moriscos" class="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-piedra-300/80" width="36" height="36" />
-      <span class="flex flex-col leading-none">
-        <span class="text-lg font-bold">MORISCOS</span>
-        <span class="text-[0.55rem] font-body font-medium tracking-[0.2em] text-piedra-200">MEMORIA &amp; TERRITORIO</span>
+  <div class="sidebar-panel flex h-full flex-col">
+    <a href={base} class="flex items-center gap-3 px-5 pb-4 pt-6 font-display tracking-wide transition-opacity hover:opacity-95">
+      <img src={`${base}images/escudo-moriscos-160.jpg`} alt="Escudo de Moriscos" class="h-11 w-11 shrink-0 rounded-full object-cover ring-2 ring-piedra-300/90 shadow-md" width="44" height="44" />
+      <span class="flex flex-col leading-tight">
+        <span class="text-2xl font-black tracking-wider text-pergamino">MORISCOS</span>
+        <span class="text-[0.65rem] font-body font-semibold tracking-[0.22em] text-piedra-200">MEMORIA &amp; TERRITORIO</span>
       </span>
     </a>
 
@@ -36,15 +36,15 @@ const icons: Record<string, typeof Home> = {
         const Icon = icons[link.href] ?? Home;
         const active = isActiveHref(path, base, link.href);
         return (
-          <a href={base + link.href.replace(/^\//, '')} class="nav-item" data-active={String(active)}>
-            <Icon size={17} strokeWidth={active ? 2.4 : 2} />
+          <a href={base + link.href.replace(/^\//, '')} class="nav-item text-sm font-semibold" data-active={String(active)}>
+            <Icon size={18} strokeWidth={active ? 2.4 : 2} />
             <span>{link.label}</span>
           </a>
         );
       })}
     </nav>
 
-    <p class="px-5 pb-6 text-[0.65rem] leading-relaxed text-pergamino/50">
+    <p class="px-5 pb-6 text-xs leading-relaxed text-pergamino/60">
       La Armuña · Salamanca
     </p>
   </div>

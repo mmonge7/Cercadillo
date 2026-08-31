@@ -84,7 +84,7 @@ function SearchModalInner() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="flex h-10 items-center gap-2 rounded-full bg-armuna-dark px-3.5 text-sm font-semibold text-pergamino shadow-sm transition-colors hover:bg-armuna dark:bg-armuna dark:hover:bg-armuna-light"
+        className="flex h-10 items-center gap-2 rounded-full border border-pergamino/20 bg-pergamino/15 px-3.5 text-sm font-semibold text-pergamino shadow-sm backdrop-blur-sm transition-colors hover:border-pergamino/35 hover:bg-pergamino/25"
         aria-label="Buscar en el sitio"
       >
         <Search className="h-4 w-4" />
