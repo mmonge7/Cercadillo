@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
 import CounterGrid from '../components/CounterGrid.astro';
 import { BookOpen, Map, Users, BookMarked, Info, PartyPopper, Church, Shield, MapPin } from 'lucide-react';
 
@@ -68,11 +67,9 @@ const sections = [
   title="Moriscos · Memoria & Territorio"
   description="Plataforma documental sobre la historia, geografía, etnografía y memoria viva de Moriscos (Salamanca) y el entorno de La Flecha."
 >
-  <Hero />
-
-  <section class="container-editorial py-16 sm:py-20">
+  <section class="container-editorial py-14 sm:py-20">
     <p class="kicker">El pueblo</p>
-    <h2 class="mt-2 font-serif text-3xl font-bold text-tinta dark:text-pergamino-muted sm:text-4xl">Moriscos, un pueblo de La Armuña</h2>
+    <h1 class="mt-2 max-w-2xl text-balance font-serif text-4xl font-bold text-tinta dark:text-pergamino-muted sm:text-5xl">Moriscos, un pueblo de La Armuña</h1>
     <div class="mt-5 max-w-3xl space-y-4 text-tinta/75 dark:text-pergamino-muted/75">
       <p>
         Moriscos es un pequeño municipio de la comarca de La Armuña, a 9 km al norte de Salamanca capital, con poco más
