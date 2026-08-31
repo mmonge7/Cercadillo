@@ -30,11 +30,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <article>
         <h2 class="font-serif text-2xl font-semibold text-armuna-dark dark:text-piedra-200">El escudo de Moriscos</h2>
-        <p class="mt-3 max-w-3xl text-tinta/75 dark:text-pergamino-muted/75">
-          Es el <strong>escudo heráldico oficial del Ayuntamiento de Moriscos</strong>: un partido y entado en punta,
-          timbrado con la Corona Real, cuyo diseño sintetiza mil años de historia del pueblo, desde su fundación hasta su
-          economía tradicional en La Armuña.
-        </p>
+        <div class="mt-4 flex flex-col gap-6 sm:flex-row sm:items-start">
+          <img
+            src={`${import.meta.env.BASE_URL}images/escudo-moriscos-480.jpg`}
+            alt="Escudo heráldico oficial del Ayuntamiento de Moriscos"
+            class="mx-auto h-48 w-48 shrink-0 rounded-2xl object-cover shadow-lg ring-1 ring-piedra-border/60 dark:ring-noche-border sm:mx-0"
+            width="192"
+            height="192"
+            loading="lazy"
+          />
+          <p class="max-w-3xl text-tinta/75 dark:text-pergamino-muted/75">
+            Es el <strong>escudo heráldico oficial del Ayuntamiento de Moriscos</strong>: un partido y entado en punta,
+            timbrado con la Corona Real, cuyo diseño sintetiza mil años de historia del pueblo, desde su fundación hasta su
+            economía tradicional en La Armuña.
+          </p>
+        </div>
         <div class="prose-armuna mt-6 max-w-3xl">
           <h3>1. Primer cuartel (izquierda): la repoblación y El Hoyo</h3>
           <p>

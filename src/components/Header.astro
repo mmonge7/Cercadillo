@@ -25,7 +25,8 @@ const activeLink = navLinks.find((link) => isActiveHref(path, base, link.href));
       >
         <Menu size={21} strokeWidth={1.8} />
       </button>
-      <a href={base} class="font-display text-base font-bold tracking-wide text-armuna-dark dark:text-piedra-200 lg:hidden">
+      <a href={base} class="flex items-center gap-2 font-display text-base font-bold tracking-wide text-armuna-dark dark:text-piedra-200 lg:hidden">
+        <img src={`${base}images/escudo-moriscos-160.jpg`} alt="Escudo de Moriscos" class="h-8 w-8 rounded-full object-cover ring-1 ring-piedra-300/60" width="32" height="32" />
         MORISCOS
       </a>
       <span class="hidden font-body text-sm font-semibold text-tinta/80 dark:text-pergamino-muted/80 lg:inline">
