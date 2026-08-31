@@ -1,0 +1,40 @@
+---
+import { navLinks } from '../data/site';
+const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-piedra-border/60 bg-pergamino-muted dark:border-noche-border dark:bg-noche-surface">
+  <div class="container-editorial grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <p class="font-display text-lg text-armuna-dark dark:text-piedra-200">MORISCOS</p>
+      <p class="mt-2 max-w-xs text-sm text-tinta/70 dark:text-pergamino-muted/70">
+        Memoria, historia y territorio de un pueblo de La Armuña (Salamanca), a 9 km de la capital.
+      </p>
+    </div>
+    <nav aria-label="Enlaces del sitio">
+      <p class="kicker mb-3">Explorar</p>
+      <ul class="space-y-2 text-sm">
+        {navLinks.map((l) => (
+          <li><a class="text-tinta/75 hover:text-soto dark:text-pergamino-muted/75 dark:hover:text-piedra-300" href={base + l.href.replace(/^\//, '')}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div>
+      <p class="kicker mb-3">Colabora</p>
+      <ul class="space-y-2 text-sm text-tinta/75 dark:text-pergamino-muted/75">
+        <li><a class="hover:text-soto dark:hover:text-piedra-300" href="mailto:moriscos.info@gmail.com">moriscos.info@gmail.com</a></li>
+        <li>Envíanos fotografías, documentos o correcciones</li>
+      </ul>
+    </div>
+    <div>
+      <p class="kicker mb-3">Fuentes</p>
+      <p class="text-sm text-tinta/75 dark:text-pergamino-muted/75">
+        Construido sobre el legado documental del portal <span class="font-medium">Morisqueños</span> (moriscos.info) y la memoria oral local.
+      </p>
+    </div>
+  </div>
+  <div class="border-t border-piedra-border/60 py-6 text-center text-xs text-tinta/60 dark:border-noche-border dark:text-pergamino-muted/60">
+    &copy; {year} Moriscos · Memoria &amp; Territorio. Contenido cultural sin ánimo de lucro.
+  </div>
+</footer>

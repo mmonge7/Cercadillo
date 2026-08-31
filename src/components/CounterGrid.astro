@@ -1,0 +1,17 @@
+---
+import { counters } from '../data/site';
+---
+
+<section class="border-b border-piedra-border/60 bg-pergamino-muted dark:border-noche-border dark:bg-noche-surface">
+  <div class="container-editorial grid grid-cols-2 gap-8 py-14 lg:grid-cols-4">
+    {counters.map((c) => (
+      <div class="text-center">
+        <p class="font-display text-3xl font-bold text-soto dark:text-piedra-300 sm:text-4xl">
+          {c.value}<span class="text-lg">{c.suffix}</span>
+        </p>
+        <p class="mt-2 font-body text-sm font-semibold text-armuna-dark dark:text-piedra-200">{c.label}</p>
+        <p class="mt-1 text-xs text-tinta/60 dark:text-pergamino-muted/60">{c.detail}</p>
+      </div>
+    ))}
+  </div>
+</section>

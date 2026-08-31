@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1C2024"/>
+      <stop offset="100%" stop-color="#2E1F0C"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="#D4A359" opacity="0.04"/>
+  <text x="80" y="300" font-family="Georgia, serif" font-size="96" fill="#FDFBF7" font-weight="700">MORISCOS</text>
+  <text x="80" y="360" font-family="Georgia, serif" font-size="34" fill="#D4A359" letter-spacing="4">MEMORIA &amp; TERRITORIO</text>
+  <text x="80" y="420" font-family="Georgia, serif" font-size="22" fill="#C17E5D">La Armuña · Salamanca</text>
+</svg>

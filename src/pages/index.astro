@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CounterGrid from '../components/CounterGrid.astro';
+import HitoCard from '../components/HitoCard.astro';
+import { hitos } from '../data/site';
+import { getCollection } from 'astro:content';
+
+const chapters = (await getCollection('chapters')).sort((a, b) => a.data.order - b.data.order);
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Moriscos · Memoria & Territorio"
+  description="Plataforma documental sobre la historia, geografía, etnografía y memoria viva de Moriscos (Salamanca) y el entorno de La Flecha."
+>
+  <Hero />
+  <CounterGrid />
+
+  <section class="container-editorial py-20 sm:py-28">
+    <div class="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p class="kicker">Hitos históricos</p>
+        <h2 class="mt-2 font-serif text-3xl font-bold text-tinta dark:text-pergamino-muted sm:text-4xl">Cuatro momentos, un mismo territorio</h2>
+      </div>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {hitos.map((h) => <HitoCard title={h.title} year={h.year} summary={h.summary} href={h.href} />)}
+    </div>
+  </section>
+
+  <section class="border-y border-piedra-border/60 bg-pergamino-muted dark:border-noche-border dark:bg-noche-surface">
+    <div class="container-editorial py-20 sm:py-28">
+      <div class="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p class="kicker">El libro monográfico</p>
+          <h2 class="mt-2 font-serif text-3xl font-bold text-tinta dark:text-pergamino-muted sm:text-4xl">10 capítulos de historia y memoria</h2>
+        </div>
+        <a href={`${base}libro`} class="btn-secondary self-start sm:self-auto">Ver todos los capítulos</a>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {chapters.slice(0, 6).map((c) => (
+          <a
+            href={`${base}libro/${c.id}`}
+            class="group flex flex-col gap-2 rounded-2xl border border-piedra-border/60 bg-pergamino p-5 transition-all hover:-translate-y-1 hover:border-piedra-300 hover:shadow-lg dark:border-noche-border dark:bg-noche"
+          >
+            <span class="font-display text-xs tracking-widest text-armuna dark:text-piedra-300">CAPÍTULO {c.data.number}</span>
+            <span class="font-serif text-lg font-semibold leading-snug text-tinta dark:text-pergamino-muted">{c.data.title}</span>
+            <span class="text-sm text-tinta/65 dark:text-pergamino-muted/65">{c.data.dek}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container-editorial py-20 text-center sm:py-28">
+    <p class="kicker">Ruta Nocturna</p>
+    <h2 class="mx-auto mt-2 max-w-2xl text-balance font-serif text-3xl font-bold text-tinta dark:text-pergamino-muted sm:text-4xl">
+      7,7 kilómetros de Moriscos al soto de La Flecha
+    </h2>
+    <p class="mx-auto mt-4 max-w-xl text-tinta/70 dark:text-pergamino-muted/70">
+      Un mapa interactivo con los ocho hitos clave del camino: desde el frontón del pueblo hasta el oratorio donde se retiró Fray Luis de León.
+    </p>
+    <a href={`${base}ruta-nocturna`} class="btn-primary mt-8">Explorar la ruta</a>
+  </section>
+</BaseLayout>

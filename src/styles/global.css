@@ -1,0 +1,120 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/600.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/cinzel/500.css";
+@import "@fontsource/cinzel/700.css";
+@import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/600.css";
+@import "@fontsource/plus-jakarta-sans/700.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-piedra-50: #faf3e7;
+  --color-piedra-100: #f3e4c7;
+  --color-piedra-200: #e6c88f;
+  --color-piedra-300: #d4a359;
+  --color-piedra-400: #c6923f;
+  --color-piedra-500: #b88432;
+  --color-piedra-600: #966a28;
+  --color-piedra-700: #734f1e;
+  --color-piedra-800: #503816;
+  --color-piedra-900: #2e1f0c;
+  --color-piedra: #b88432;
+
+  --color-armuna-light: #c17e5d;
+  --color-armuna: #a65d41;
+  --color-armuna-dark: #8c4a32;
+
+  --color-soto-light: #3e7859;
+  --color-soto: #2d5a43;
+  --color-soto-dark: #1e3f2e;
+
+  --color-pergamino: #fdfbf7;
+  --color-pergamino-muted: #f7f4ec;
+  --color-pergamino-border: #e8e0ce;
+
+  --color-noche: #14171a;
+  --color-noche-surface: #1c2024;
+  --color-noche-border: #2a2f34;
+
+  --color-tinta: #24282c;
+
+  --font-display: "Cinzel", serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  --animate-fade-up: fade-up 0.7s ease-out both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply bg-pergamino text-tinta font-body antialiased transition-colors duration-300;
+  }
+
+  .dark body {
+    @apply bg-noche text-pergamino-muted;
+  }
+
+  ::selection {
+    @apply bg-piedra-300/60 text-tinta;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .paper-texture {
+    background-image:
+      radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--color-piedra-200) 25%, transparent) 0%, transparent 45%),
+      radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--color-armuna-light) 18%, transparent) 0%, transparent 50%);
+  }
+
+  .container-editorial {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .kicker {
+    @apply font-display text-xs sm:text-sm tracking-[0.3em] uppercase text-armuna dark:text-piedra-300;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full bg-soto px-6 py-3 font-body text-sm font-semibold tracking-wide text-pergamino transition-all hover:bg-soto-dark hover:-translate-y-0.5 hover:shadow-lg hover:shadow-soto/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-piedra;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-full border border-piedra-300 bg-transparent px-6 py-3 font-body text-sm font-semibold tracking-wide text-armuna-dark transition-all hover:bg-piedra-50 hover:-translate-y-0.5 dark:text-piedra-200 dark:border-noche-border dark:hover:bg-noche-surface;
+  }
+
+  .prose-armuna {
+    @apply prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-armuna-dark dark:prose-invert dark:prose-headings:text-piedra-200 prose-a:text-soto dark:prose-a:text-piedra-300 prose-blockquote:border-piedra prose-blockquote:font-serif prose-blockquote:italic;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
