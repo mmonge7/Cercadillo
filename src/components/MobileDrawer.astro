@@ -25,12 +25,12 @@ const icons: Record<string, typeof Home> = {
 <div id="mobile-drawer" class="fixed inset-0 z-[9999] pointer-events-none lg:hidden" role="dialog" aria-modal="true" aria-label="Menú de navegación">
   <div
     id="drawer-backdrop"
-    class="absolute inset-0 bg-noche/60 opacity-0 backdrop-blur-sm transition-opacity duration-300"
+    class="absolute inset-0 bg-noche/60 opacity-0 backdrop-blur-sm transition-opacity duration-200"
   >
   </div>
   <div
     id="drawer-panel"
-    class="brand-panel absolute inset-y-0 left-0 flex w-72 max-w-[80vw] -translate-x-full flex-col shadow-2xl transition-transform duration-300 ease-out"
+    class="brand-panel absolute inset-y-0 left-0 flex w-72 max-w-[80vw] -translate-x-full flex-col shadow-2xl transition-transform duration-200 ease-out"
   >
     <div class="flex items-center justify-between px-5 pb-4 pt-[calc(env(safe-area-inset-top,0px)+1.25rem)]">
       <div class="flex items-center gap-2.5 font-display text-xl font-bold tracking-wider text-pergamino">
@@ -63,36 +63,43 @@ const icons: Record<string, typeof Home> = {
 </div>
 
 <script>
-  const openBtn = document.getElementById('drawer-open');
-  const closeBtn = document.getElementById('drawer-close');
-  const backdrop = document.getElementById('drawer-backdrop');
-  const drawer = document.getElementById('mobile-drawer');
-  const panel = document.getElementById('drawer-panel');
+  function initMobileDrawer() {
+    const openBtn = document.getElementById('drawer-open');
+    const closeBtn = document.getElementById('drawer-close');
+    const backdrop = document.getElementById('drawer-backdrop');
+    const drawer = document.getElementById('mobile-drawer');
+    const panel = document.getElementById('drawer-panel');
 
-  const setOpen = (open: boolean) => {
-    if (!drawer || !panel || !backdrop) return;
-    drawer.classList.toggle('pointer-events-none', !open);
-    panel.classList.toggle('-translate-x-full', !open);
-    backdrop.classList.toggle('opacity-0', !open);
-    openBtn?.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
-  };
+    const setOpen = (open: boolean) => {
+      if (!drawer || !panel || !backdrop) return;
+      drawer.classList.toggle('pointer-events-none', !open);
+      panel.classList.toggle('-translate-x-full', !open);
+      backdrop.classList.toggle('opacity-0', !open);
+      openBtn?.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
 
-  openBtn?.addEventListener('click', () => setOpen(true));
-  closeBtn?.addEventListener('click', () => setOpen(false));
-  backdrop?.addEventListener('click', () => setOpen(false));
-  drawer?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => setOpen(false));
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') setOpen(false);
-  });
+    openBtn?.addEventListener('click', () => setOpen(true));
+    closeBtn?.addEventListener('click', () => setOpen(false));
+    backdrop?.addEventListener('click', () => setOpen(false));
+    drawer?.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        // En SPA / client router, cierra inmediatamente el drawer sin retraso
+        drawer.classList.add('pointer-events-none');
+        panel.classList.add('-translate-x-full');
+        backdrop.classList.add('opacity-0');
+        document.body.style.overflow = '';
+      });
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  }
 
-  // Gestos táctiles: deslizar a la derecha abre el menú, a la izquierda lo
-  // cierra. Solo con listeners "passive" (nunca preventDefault) para no
-  // interferir con el scroll vertical normal, y solo en viewport móvil
-  // (el mismo breakpoint `lg` donde se usa este drawer en vez del sidebar).
-  const EDGE_EXCLUSION_PX = 30; // cerca del borde izq. iOS reserva el gesto nativo de "atrás"
+  document.addEventListener('DOMContentLoaded', initMobileDrawer);
+  document.addEventListener('astro:page-load', initMobileDrawer);
+
+  const EDGE_EXCLUSION_PX = 30;
   const SWIPE_THRESHOLD_PX = 40;
   const isMobileViewport = () => !window.matchMedia('(min-width: 1024px)').matches;
 
@@ -106,8 +113,6 @@ const icons: Record<string, typeof Home> = {
       const t = e.touches[0];
       touchStartX = t.clientX;
       touchStartY = t.clientY;
-      // El mapa de la Ruta Nocturna (Leaflet) también usa gestos horizontales
-      // para desplazarse; no interceptarlos como swipe del menú.
       touchStartOnMap = !!(e.target as HTMLElement)?.closest?.('.leaflet-container');
     },
     { passive: true },
@@ -121,10 +126,25 @@ const icons: Record<string, typeof Home> = {
       const deltaX = t.clientX - touchStartX;
       const deltaY = t.clientY - touchStartY;
       if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+      const drawer = document.getElementById('mobile-drawer');
+      const panel = document.getElementById('drawer-panel');
+      const backdrop = document.getElementById('drawer-backdrop');
+      const openBtn = document.getElementById('drawer-open');
+      if (!drawer || !panel || !backdrop) return;
       if (deltaX > 0) {
-        if (touchStartX > EDGE_EXCLUSION_PX) setOpen(true);
+        if (touchStartX > EDGE_EXCLUSION_PX) {
+          drawer.classList.remove('pointer-events-none');
+          panel.classList.remove('-translate-x-full');
+          backdrop.classList.remove('opacity-0');
+          openBtn?.setAttribute('aria-expanded', 'true');
+          document.body.style.overflow = 'hidden';
+        }
       } else {
-        setOpen(false);
+        drawer.classList.add('pointer-events-none');
+        panel.classList.add('-translate-x-full');
+        backdrop.classList.add('opacity-0');
+        openBtn?.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
       }
     },
     { passive: true },

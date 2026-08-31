@@ -117,29 +117,34 @@ const categories = Object.entries(referenceCategories);
 </BaseLayout>
 
 <script>
-  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.ref-filter-btn');
-  const cards = document.querySelectorAll<HTMLElement>('.reference-card');
+  function initRefFilters() {
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('.ref-filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('.reference-card');
 
-  filterBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter');
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
 
-      filterBtns.forEach((b) => {
-        const isActive = b === btn;
-        b.classList.toggle('active', isActive);
-        b.classList.toggle('border-piedra-400/50', isActive);
-        b.classList.toggle('bg-piedra-400/20', isActive);
-        b.classList.toggle('text-piedra-200', isActive);
-        b.classList.toggle('border-noche-border', !isActive);
-        b.classList.toggle('bg-noche-surface/60', !isActive);
-        b.classList.toggle('text-pergamino-muted/70', !isActive);
-      });
+        filterBtns.forEach((b) => {
+          const isActive = b === btn;
+          b.classList.toggle('active', isActive);
+          b.classList.toggle('border-piedra-400/50', isActive);
+          b.classList.toggle('bg-piedra-400/20', isActive);
+          b.classList.toggle('text-piedra-200', isActive);
+          b.classList.toggle('border-noche-border', !isActive);
+          b.classList.toggle('bg-noche-surface/60', !isActive);
+          b.classList.toggle('text-pergamino-muted/70', !isActive);
+        });
 
-      cards.forEach((card) => {
-        const category = card.getAttribute('data-category');
-        const show = filter === 'all' || category === filter;
-        card.style.display = show ? 'block' : 'none';
+        cards.forEach((card) => {
+          const category = card.getAttribute('data-category');
+          const show = filter === 'all' || category === filter;
+          card.style.display = show ? 'block' : 'none';
+        });
       });
     });
-  });
+  }
+
+  document.addEventListener('DOMContentLoaded', initRefFilters);
+  document.addEventListener('astro:page-load', initRefFilters);
 </script>

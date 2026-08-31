@@ -208,46 +208,52 @@ const eventos = [
       return { start, end, year };
     }
 
-    const label = document.getElementById('fiestas-countdown-label');
-    const datesEl = document.getElementById('fiestas-countdown-dates');
-    const daysEl = document.getElementById('cd-days');
-    const hoursEl = document.getElementById('cd-hours');
-    const minsEl = document.getElementById('cd-mins');
-    const secsEl = document.getElementById('cd-secs');
+    function initCountdown() {
+      const label = document.getElementById('fiestas-countdown-label');
+      const datesEl = document.getElementById('fiestas-countdown-dates');
+      const daysEl = document.getElementById('cd-days');
+      const hoursEl = document.getElementById('cd-hours');
+      const minsEl = document.getElementById('cd-mins');
+      const secsEl = document.getElementById('cd-secs');
+      if (!label) return;
 
-    const dateFmt = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long' });
-    const dateFmtWithYear = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+      const dateFmt = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long' });
+      const dateFmtWithYear = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 
-    function render() {
-      const now = new Date();
-      const { start, end, year } = nextFestival(now);
-      const rangeText = `${dateFmt.format(start)} – ${dateFmtWithYear.format(end)}`;
+      function render() {
+        const now = new Date();
+        const { start, end, year } = nextFestival(now);
+        const rangeText = `${dateFmt.format(start)} – ${dateFmtWithYear.format(end)}`;
 
-      if (now >= start && now <= end) {
-        if (label) label.textContent = `¡Las fiestas de ${year} están en marcha!`;
-        if (datesEl) datesEl.textContent = `Hasta el ${dateFmtWithYear.format(end)}.`;
-        if (daysEl) daysEl.textContent = '🎉';
-        if (hoursEl) hoursEl.textContent = '';
-        if (minsEl) minsEl.textContent = '';
-        if (secsEl) secsEl.textContent = '';
-        return;
+        if (now >= start && now <= end) {
+          if (label) label.textContent = `¡Las fiestas de ${year} están en marcha!`;
+          if (datesEl) datesEl.textContent = `Hasta el ${dateFmtWithYear.format(end)}.`;
+          if (daysEl) daysEl.textContent = '🎉';
+          if (hoursEl) hoursEl.textContent = '';
+          if (minsEl) minsEl.textContent = '';
+          if (secsEl) secsEl.textContent = '';
+          return;
+        }
+
+        const diff = start.getTime() - now.getTime();
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        if (label) label.textContent = `Faltan para la Fiesta Mayor de ${year}`;
+        if (datesEl) datesEl.textContent = `Del ${rangeText}.`;
+        if (daysEl) daysEl.textContent = String(days);
+        if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+        if (minsEl) minsEl.textContent = String(mins).padStart(2, '0');
+        if (secsEl) secsEl.textContent = String(secs).padStart(2, '0');
       }
 
-      const diff = start.getTime() - now.getTime();
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const mins = Math.floor((diff / (1000 * 60)) % 60);
-      const secs = Math.floor((diff / 1000) % 60);
-
-      if (label) label.textContent = `Faltan para la Fiesta Mayor de ${year}`;
-      if (datesEl) datesEl.textContent = `Del ${rangeText}.`;
-      if (daysEl) daysEl.textContent = String(days);
-      if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
-      if (minsEl) minsEl.textContent = String(mins).padStart(2, '0');
-      if (secsEl) secsEl.textContent = String(secs).padStart(2, '0');
+      render();
+      setInterval(render, 1000);
     }
 
-    render();
-    setInterval(render, 1000);
+    document.addEventListener('DOMContentLoaded', initCountdown);
+    document.addEventListener('astro:page-load', initCountdown);
   </script>
 </BaseLayout>

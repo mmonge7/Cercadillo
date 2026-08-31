@@ -43,24 +43,29 @@ const categories = ['Todos', ...Array.from(new Set(terms.map((t) => t.data.categ
   </section>
 
   <script>
-    const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter]'));
-    const cards = Array.from(document.querySelectorAll<HTMLElement>('#glossary-grid [data-category]'));
+    function initGlossaryFilters() {
+      const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter]'));
+      const cards = Array.from(document.querySelectorAll<HTMLElement>('#glossary-grid [data-category]'));
 
-    buttons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const filter = btn.dataset.filter;
-        buttons.forEach((b) => {
-          const active = b === btn;
-          b.classList.toggle('bg-soto', active);
-          b.classList.toggle('text-pergamino', active);
-          b.classList.toggle('border-soto', active);
-          b.classList.toggle('border-piedra-border/60', !active);
-        });
-        cards.forEach((card) => {
-          const show = filter === 'Todos' || card.dataset.category === filter;
-          card.style.display = show ? '' : 'none';
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+          buttons.forEach((b) => {
+            const active = b === btn;
+            b.classList.toggle('bg-soto', active);
+            b.classList.toggle('text-pergamino', active);
+            b.classList.toggle('border-soto', active);
+            b.classList.toggle('border-piedra-border/60', !active);
+          });
+          cards.forEach((card) => {
+            const show = filter === 'Todos' || card.dataset.category === filter;
+            card.style.display = show ? '' : 'none';
+          });
         });
       });
-    });
+    }
+
+    document.addEventListener('DOMContentLoaded', initGlossaryFilters);
+    document.addEventListener('astro:page-load', initGlossaryFilters);
   </script>
 </BaseLayout>

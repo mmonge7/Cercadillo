@@ -103,23 +103,28 @@ const base = import.meta.env.BASE_URL;
   </div>
 
   <script>
-    const openBtn = document.getElementById('escudo-open');
-    const closeBtn = document.getElementById('escudo-close');
-    const backdrop = document.getElementById('escudo-lightbox-backdrop');
-    const lightbox = document.getElementById('escudo-lightbox');
+    function initEscudoLightbox() {
+      const openBtn = document.getElementById('escudo-open');
+      const closeBtn = document.getElementById('escudo-close');
+      const backdrop = document.getElementById('escudo-lightbox-backdrop');
+      const lightbox = document.getElementById('escudo-lightbox');
 
-    const setOpen = (open: boolean) => {
-      if (!lightbox) return;
-      lightbox.classList.toggle('opacity-0', !open);
-      lightbox.classList.toggle('pointer-events-none', !open);
-      document.body.style.overflow = open ? 'hidden' : '';
-    };
+      const setOpen = (open: boolean) => {
+        if (!lightbox) return;
+        lightbox.classList.toggle('opacity-0', !open);
+        lightbox.classList.toggle('pointer-events-none', !open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
 
-    openBtn?.addEventListener('click', () => setOpen(true));
-    closeBtn?.addEventListener('click', () => setOpen(false));
-    backdrop?.addEventListener('click', () => setOpen(false));
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') setOpen(false);
-    });
+      openBtn?.addEventListener('click', () => setOpen(true));
+      closeBtn?.addEventListener('click', () => setOpen(false));
+      backdrop?.addEventListener('click', () => setOpen(false));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setOpen(false);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initEscudoLightbox);
+    document.addEventListener('astro:page-load', initEscudoLightbox);
   </script>
 </BaseLayout>
