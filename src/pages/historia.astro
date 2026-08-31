@@ -148,10 +148,10 @@ const eras = [
 >
   <section class="container-editorial py-14 sm:py-20">
     <p class="kicker">Eje cronológico</p>
-    <h1 class="mt-2 max-w-2xl text-balance font-serif text-4xl font-bold text-tinta dark:text-pergamino-muted sm:text-5xl">
+    <h1 class="mt-2 text-balance font-serif text-4xl font-bold text-tinta dark:text-pergamino-muted sm:text-5xl">
       Historia del pueblo
     </h1>
-    <p class="mt-4 max-w-2xl text-tinta/70 dark:text-pergamino-muted/70">
+    <p class="mt-4 text-balance text-lg text-tinta/70 dark:text-pergamino-muted/70">
       Casi mil años de historia de Moriscos resumidos en una línea de tiempo. Para el relato completo, con todo el
       detalle documental, consulta <a class="font-semibold text-soto hover:underline dark:text-piedra-300" href={`${base}libro`}>El Libro</a>.
     </p>
@@ -163,7 +163,7 @@ const eras = [
             <span class="h-2 w-2 rounded-full bg-piedra-400"></span>
             <h2 class="font-serif text-2xl font-bold text-piedra-200">{era.title}</h2>
           </div>
-          <div class="max-w-3xl">
+          <div>
             <Timeline events={era.events} />
           </div>
         </div>
