@@ -33,6 +33,7 @@ const icons: Record<string, typeof Home> = {
             href={base + link.href.replace(/^\//, '')}
             class="nav-item text-sm font-semibold"
             data-active={String(active)}
+            data-astro-prefetch="load"
           >
             <Icon size={18} strokeWidth={active ? 2.4 : 2} />
             <span>{link.label}</span>

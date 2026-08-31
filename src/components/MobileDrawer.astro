@@ -46,7 +46,12 @@ const icons: Record<string, typeof Home> = {
         const Icon = icons[link.href] ?? Home;
         const active = isActiveHref(path, base, link.href);
         return (
-          <a href={base + link.href.replace(/^\//, '')} class="nav-item text-base" data-active={String(active)}>
+          <a
+            href={base + link.href.replace(/^\//, '')}
+            class="nav-item text-base"
+            data-active={String(active)}
+            data-astro-prefetch="load"
+          >
             <Icon size={19} strokeWidth={active ? 2.4 : 2} />
             <span>{link.label}</span>
           </a>
@@ -76,6 +81,9 @@ const icons: Record<string, typeof Home> = {
   openBtn?.addEventListener('click', () => setOpen(true));
   closeBtn?.addEventListener('click', () => setOpen(false));
   backdrop?.addEventListener('click', () => setOpen(false));
+  drawer?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
+  });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') setOpen(false);
   });

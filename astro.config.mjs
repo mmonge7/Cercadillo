@@ -11,6 +11,10 @@ export default defineConfig({
   site: `${site}${base}`,
   base,
   trailingSlash: 'ignore',
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'load',
+  },
   integrations: [react(), sitemap()],
   vite: {
     plugins: [
