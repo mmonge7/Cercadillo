@@ -2,12 +2,42 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CounterGrid from '../components/CounterGrid.astro';
-import HitoCard from '../components/HitoCard.astro';
-import { hitos } from '../data/site';
-import { getCollection } from 'astro:content';
+import { BookOpen, Map, Users, BookMarked, Info } from 'lucide-react';
 
-const chapters = (await getCollection('chapters')).sort((a, b) => a.data.order - b.data.order);
 const base = import.meta.env.BASE_URL;
+
+const sections = [
+  {
+    href: 'libro',
+    icon: BookOpen,
+    title: 'El Libro',
+    description: 'Once capítulos que recorren la geografía, la toponimia, la economía y los sucesos de Moriscos.',
+  },
+  {
+    href: 'ruta-nocturna',
+    icon: Map,
+    title: 'Ruta Nocturna',
+    description: 'Mapa interactivo con los ocho hitos del camino de 7,7 km hasta el soto de La Flecha.',
+  },
+  {
+    href: 'genealogia',
+    icon: Users,
+    title: 'Genealogía',
+    description: 'El Bosque Genealógico y los paisanos ilustres del pueblo, con registros desde 1645.',
+  },
+  {
+    href: 'glosario',
+    icon: BookMarked,
+    title: 'Glosario',
+    description: 'El vocabulario tradicional del campo salmantino, clasificado por categorías.',
+  },
+  {
+    href: 'sobre-la-web',
+    icon: Info,
+    title: 'Sobre la web',
+    description: 'Por qué existe este proyecto, de dónde sale la información y el escudo del pueblo.',
+  },
+];
 ---
 
 <BaseLayout
@@ -15,52 +45,46 @@ const base = import.meta.env.BASE_URL;
   description="Plataforma documental sobre la historia, geografía, etnografía y memoria viva de Moriscos (Salamanca) y el entorno de La Flecha."
 >
   <Hero />
+
+  <section class="container-editorial py-16 sm:py-20">
+    <p class="kicker">El pueblo</p>
+    <h2 class="mt-2 font-serif text-3xl font-bold text-tinta dark:text-pergamino-muted sm:text-4xl">Moriscos, un pueblo de La Armuña</h2>
+    <div class="mt-5 max-w-3xl space-y-4 text-tinta/75 dark:text-pergamino-muted/75">
+      <p>
+        Moriscos es un pequeño municipio de la comarca de La Armuña, a 9 km al norte de Salamanca capital, con poco más
+        de 500 habitantes. Su término se extiende sobre la penillanura cerealista que da nombre a la comarca, entre los
+        cursos del Tormes y del Zurguén, lindando con el paraje de La Flecha, retiro contemplativo de Fray Luis de León.
+      </p>
+      <p>
+        Documentado desde 1164 como aldea del alfoz salmantino en plena repoblación medieval, Moriscos fue absorbiendo
+        con los siglos los despoblados vecinos de El Hoyo y Ribas, vivió de cerca la Guerra de la Independencia de 1812
+        y atravesó episodios de posguerra como el suceso de 1941. Su economía, tradicionalmente agraria &mdash;trigo,
+        lenteja de La Armuña y el singular cultivo del zumaque&mdash;, ha ido dando paso en las últimas décadas a su
+        integración en el área metropolitana de Salamanca.
+      </p>
+    </div>
+    <a href={`${base}libro`} class="btn-secondary mt-6">Descubre toda la historia en El Libro</a>
+  </section>
+
   <CounterGrid />
 
-  <section class="container-editorial py-20 sm:py-28">
-    <div class="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-      <div>
-        <p class="kicker">Hitos históricos</p>
-        <h2 class="mt-2 font-serif text-3xl font-bold text-tinta dark:text-pergamino-muted sm:text-4xl">Cuatro momentos, un mismo territorio</h2>
-      </div>
+  <section class="container-editorial py-16 sm:py-20">
+    <p class="kicker">En esta web</p>
+    <h2 class="mt-2 font-serif text-3xl font-bold text-tinta dark:text-pergamino-muted sm:text-4xl">Qué vas a encontrar</h2>
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {sections.map(({ href, icon: Icon, title, description }) => (
+        <a
+          href={`${base}${href}`}
+          class="group flex flex-col gap-3 rounded-2xl border border-piedra-border/60 bg-pergamino p-6 transition-all hover:-translate-y-1 hover:border-piedra-300 hover:shadow-lg dark:border-noche-border dark:bg-noche"
+        >
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-armuna/10 text-armuna dark:bg-piedra-300/10 dark:text-piedra-300">
+            <Icon size={19} strokeWidth={2} />
+          </span>
+          <span class="font-serif text-lg font-semibold text-tinta dark:text-pergamino-muted">{title}</span>
+          <span class="text-sm text-tinta/65 dark:text-pergamino-muted/65">{description}</span>
+        </a>
+      ))}
     </div>
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {hitos.map((h) => <HitoCard title={h.title} year={h.year} summary={h.summary} href={h.href} />)}
-    </div>
-  </section>
-
-  <section class="border-y border-piedra-border/60 bg-pergamino-muted dark:border-noche-border dark:bg-noche-surface">
-    <div class="container-editorial py-20 sm:py-28">
-      <div class="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p class="kicker">El libro monográfico</p>
-          <h2 class="mt-2 font-serif text-3xl font-bold text-tinta dark:text-pergamino-muted sm:text-4xl">11 capítulos de historia y memoria</h2>
-        </div>
-        <a href={`${base}libro`} class="btn-secondary self-start sm:self-auto">Ver todos los capítulos</a>
-      </div>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {chapters.slice(0, 6).map((c) => (
-          <a
-            href={`${base}libro/${c.id}`}
-            class="group flex flex-col gap-2 rounded-2xl border border-piedra-border/60 bg-pergamino p-5 transition-all hover:-translate-y-1 hover:border-piedra-300 hover:shadow-lg dark:border-noche-border dark:bg-noche"
-          >
-            <span class="font-display text-xs tracking-widest text-armuna dark:text-piedra-300">CAPÍTULO {c.data.number}</span>
-            <span class="font-serif text-lg font-semibold leading-snug text-tinta dark:text-pergamino-muted">{c.data.title}</span>
-            <span class="text-sm text-tinta/65 dark:text-pergamino-muted/65">{c.data.dek}</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="container-editorial py-20 text-center sm:py-28">
-    <p class="kicker">Ruta Nocturna</p>
-    <h2 class="mx-auto mt-2 max-w-2xl text-balance font-serif text-3xl font-bold text-tinta dark:text-pergamino-muted sm:text-4xl">
-      7,7 kilómetros de Moriscos al soto de La Flecha
-    </h2>
-    <p class="mx-auto mt-4 max-w-xl text-tinta/70 dark:text-pergamino-muted/70">
-      Un mapa interactivo con los ocho hitos clave del camino: desde el frontón del pueblo hasta el oratorio donde se retiró Fray Luis de León.
-    </p>
-    <a href={`${base}ruta-nocturna`} class="btn-primary mt-8">Explorar la ruta</a>
   </section>
 </BaseLayout>
+
