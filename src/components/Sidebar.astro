@@ -22,15 +22,21 @@ const icons: Record<string, typeof Home> = {
 };
 ---
 
-<aside class="fixed inset-y-0 left-0 top-[72px] z-30 hidden w-[230px] lg:block" aria-label="Navegación lateral">
+<aside
+  id="desktop-sidebar"
+  transition:persist="desktop-sidebar"
+  class="fixed inset-y-0 left-0 top-[72px] z-30 hidden w-[230px] lg:block"
+  aria-label="Navegación lateral"
+>
   <div class="sidebar-panel flex h-full flex-col justify-between py-6">
-    <nav class="space-y-1.5 overflow-y-auto px-3" aria-label="Navegación principal">
+    <nav id="desktop-nav-list" class="space-y-1.5 overflow-y-auto px-3" aria-label="Navegación principal">
       {navLinks.map((link) => {
         const Icon = icons[link.href] ?? Home;
         const active = isActiveHref(path, base, link.href);
         return (
           <a
             href={base + link.href.replace(/^\//, '')}
+            data-href={link.href}
             class="nav-item text-sm font-semibold"
             data-active={String(active)}
             data-astro-prefetch="load"
@@ -43,3 +49,24 @@ const icons: Record<string, typeof Home> = {
     </nav>
   </div>
 </aside>
+
+<script>
+  function updateSidebarActive() {
+    const currentPath = window.location.pathname;
+    const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+    const sidebarLinks = document.querySelectorAll('#desktop-nav-list a');
+    sidebarLinks.forEach((link) => {
+      const linkHref = link.getAttribute('data-href') || '';
+      const normalizedHref = (base + linkHref).replace(/\/$/, '');
+      const normalizedCurrent = currentPath.replace(/\/$/, '');
+      const isActive = linkHref === '/'
+        ? normalizedCurrent === base || normalizedCurrent === ''
+        : normalizedCurrent.startsWith(normalizedHref);
+      link.setAttribute('data-active', String(isActive));
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', updateSidebarActive);
+  document.addEventListener('astro:page-load', updateSidebarActive);
+  document.addEventListener('astro:after-swap', updateSidebarActive);
+</script>
