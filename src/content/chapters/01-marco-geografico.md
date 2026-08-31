@@ -8,7 +8,7 @@ readingMinutes: 9
 
 ## Localización en el alfoz salmantino
 
-Moriscos se halla enclavado en el cuadrante nororiental de la provincia de Salamanca, integrado en la comarca histórica y agrocultural de **La Armuña** (concretamente en la subcomarca de La Armuña Alta). La villa dista entre 8 y 10 kilómetros de la capital provincial —fijándose la distancia de referencia en unos **9 km**—, lo que la sitúa en la corona metropolitana inmediata del alfoz salmantino. Administrativamente es un municipio independiente adscrito al partido judicial de Salamanca y agrupado en la **Mancomunidad La Armuña** para la gestión de servicios comunes.
+Moriscos se halla enclavado en el cuadrante nororiental de la provincia de Salamanca, integrado en la comarca histórica y agrocultural de **La Armuña** (concretamente en la subcomarca de La Armuña Alta). La villa dista entre 8 y 10 kilómetros de la capital provincial —fijándose la distancia de referencia en unos **9 km al este-noreste**—, lo que la sitúa en la corona metropolitana inmediata del alfoz salmantino. Administrativamente es un municipio independiente adscrito al partido judicial de Salamanca y agrupado en la **Mancomunidad La Armuña** para la gestión de servicios comunes.
 
 El término municipal abarca una superficie de **12,08 km²**. Limita al norte con Gomecello, San Cristóbal de la Cuesta y La Vellés; al sur con Cabrerizos; al este con Aldealengua; y al oeste con Villares de la Reina y Castellanos de Moriscos. Esta posición convierte a Moriscos en un espacio de transición entre la meseta cerealista armuñesa y las terrazas fluviales que descienden hacia la vega del Tormes.
 
