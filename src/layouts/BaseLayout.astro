@@ -67,6 +67,92 @@ const { title, description, image } = Astro.props;
       window.addEventListener('DOMContentLoaded', resetScrollTop);
       document.addEventListener('astro:after-swap', resetScrollTop);
       document.addEventListener('astro:page-load', resetScrollTop);
+
+      // 3. Precarga total en memoria RAM (0ms): descarga todas las páginas en segundo plano
+      // nada más abrir la web. Al pulsar cualquier apartado del menú, se monta al instante desde memoria.
+      (function () {
+        if (typeof window === 'undefined') return;
+        if (!window.__MORISCOS_CACHE__) {
+          window.__MORISCOS_CACHE__ = new Map();
+        }
+
+        var base = baseUrl.replace(/\/$/, '') + '/';
+        var pages = [
+          '',
+          'escudo',
+          'fiestas',
+          'genealogia',
+          'glosario',
+          'historia',
+          'iglesia',
+          'libro',
+          'libro/01-marco-geografico',
+          'libro/02-toponimia-repoblacion',
+          'libro/03-geografia-rural',
+          'libro/04-economia-tradicional',
+          'libro/05-despoblado-ribas-flecha',
+          'libro/06-conflictos-belicos',
+          'libro/07-sucesos-cronica-negra',
+          'libro/08-evolucion-infraestructural',
+          'libro/09-glosario-anexos',
+          'libro/10-epilogo-fuentes',
+          'libro/11-portal-morisquenos',
+          'lugares',
+          'referencias',
+          'ruta-nocturna',
+          'sobre-la-web'
+        ];
+
+        function normalizeKey(urlStr) {
+          try {
+            var u = new URL(urlStr, window.location.origin);
+            return u.pathname.replace(/\/$/, '') || '/';
+          } catch (_) {
+            return String(urlStr).replace(/\/$/, '') || '/';
+          }
+        }
+
+        function preloadAll() {
+          var parser = new DOMParser();
+          pages.forEach(function (route) {
+            var fullUrl = base + route;
+            var key = normalizeKey(fullUrl);
+            if (window.__MORISCOS_CACHE__.has(key)) return;
+
+            fetch(fullUrl, { priority: 'high', cache: 'force-cache' })
+              .then(function (res) {
+                if (res.ok) return res.text();
+              })
+              .then(function (html) {
+                if (html) {
+                  var doc = parser.parseFromString(html, 'text/html');
+                  window.__MORISCOS_CACHE__.set(key, doc);
+                  window.__MORISCOS_CACHE__.set(fullUrl, doc);
+                }
+              })
+              .catch(function () {});
+          });
+        }
+
+        if (document.readyState === 'complete') {
+          preloadAll();
+        } else {
+          window.addEventListener('load', preloadAll, { once: true });
+        }
+
+        // Al pulsar un enlace, Astro toma directamente el DOM desde la RAM sin esperar peticiones
+        document.addEventListener('astro:before-preparation', function (event) {
+          if (!event.to) return;
+          var targetKey = normalizeKey(event.to.href || event.to.pathname);
+          var cachedDoc = window.__MORISCOS_CACHE__.get(targetKey);
+          if (cachedDoc) {
+            event.newDocument = cachedDoc.cloneNode(true);
+            event.loader = function () {
+              return Promise.resolve();
+            };
+          }
+        });
+      })();
     </script>
     <script is:inline>
       (function () {
