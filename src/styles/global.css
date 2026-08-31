@@ -179,10 +179,16 @@
   }
 
   /* Panel de marca: degradado sobrio en un solo tono (tierra → tierra oscura),
-     reutilizado por el sidebar, el drawer móvil y el footer para dar continuidad visual. */
+     reutilizado por el sidebar, el drawer móvil y el footer para dar continuidad visual.
+     La foto del trigal asoma tenue bajo el degradado (evoca los campos de La Armuña
+     sin restar legibilidad al texto encima). */
   .brand-panel {
     @apply relative isolate overflow-hidden text-pergamino;
-    background-image: linear-gradient(165deg, var(--primary) 0%, var(--primary-deep) 100%);
+    background-image:
+      linear-gradient(165deg, color-mix(in srgb, var(--primary) 92%, transparent) 0%, color-mix(in srgb, var(--primary-deep) 96%, transparent) 100%),
+      url("../assets/images/campo-trigo.jpg");
+    background-size: cover;
+    background-position: center;
   }
 
   .nav-item {
