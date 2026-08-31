@@ -84,11 +84,11 @@ function SearchModalInner() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="flex h-10 items-center gap-2 rounded-full border border-pergamino/20 bg-pergamino/15 px-3.5 text-sm font-semibold text-pergamino shadow-sm backdrop-blur-sm transition-colors hover:border-pergamino/35 hover:bg-pergamino/25"
+        className="flex h-10 w-10 sm:w-auto sm:px-3.5 items-center justify-center gap-2 rounded-full border border-pergamino/20 bg-pergamino/15 text-sm font-semibold text-pergamino shadow-sm backdrop-blur-sm transition-colors hover:border-pergamino/35 hover:bg-pergamino/25"
         aria-label="Buscar en el sitio"
       >
-        <Search className="h-4 w-4" />
-        <span>Buscar</span>
+        <Search className="h-4 w-4 shrink-0" />
+        <span className="hidden sm:inline">Buscar</span>
       </button>
 
       <Dialog.Portal>

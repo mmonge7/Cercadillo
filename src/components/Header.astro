@@ -6,43 +6,43 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <header
-  class="header-panel fixed inset-x-0 top-0 z-40 flex h-[var(--mobile-topbar)] lg:h-[76px] items-center shadow-lg"
+  class="header-panel fixed inset-x-0 top-0 z-40 flex h-[var(--mobile-topbar)] lg:h-[72px] items-center shadow-lg"
 >
-  <div class="relative flex w-full items-center justify-between px-4 sm:px-8">
+  <div class="relative flex w-full items-center justify-between px-3 sm:px-6 lg:px-8">
     {/* Botón de apertura del menú móvil a la izquierda */}
-    <div class="flex items-center lg:w-36">
+    <div class="flex items-center w-10 sm:w-28 lg:w-36">
       <button
         id="drawer-open"
         type="button"
-        class="inline-flex h-11 w-11 items-center justify-center rounded-full text-pergamino/90 transition-colors hover:bg-pergamino/15 hover:text-pergamino lg:hidden"
+        class="inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full text-pergamino/90 transition-colors hover:bg-pergamino/15 hover:text-pergamino lg:hidden"
         aria-label="Abrir menú"
         aria-expanded="false"
         aria-controls="mobile-drawer"
       >
-        <Menu size={26} strokeWidth={2.2} />
+        <Menu size={24} strokeWidth={2} />
       </button>
     </div>
 
-    {/* Logotipo con Escudo y MORISCOS centrado exactamente en toda la cabecera */}
+    {/* Logotipo con Escudo a la izquierda y letras de MORISCOS centradas (ajuste proporcionado para PC y móvil) */}
     <a
       href={base}
-      class="group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-3 sm:gap-4 transition-transform duration-200 hover:scale-[1.02]"
+      class="group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2.5 sm:gap-3.5 transition-transform duration-200 hover:scale-[1.02]"
       aria-label="Ir al inicio de Moriscos"
     >
       <img
         src={`${base}images/escudo-moriscos-160.jpg`}
         alt="Escudo de Moriscos"
-        class="h-10 w-10 sm:h-13 sm:w-13 shrink-0 rounded-full object-cover ring-2 ring-piedra-300/90 shadow-xl"
-        width="52"
-        height="52"
+        class="h-8 w-8 sm:h-10 sm:w-10 shrink-0 rounded-full object-cover ring-2 ring-piedra-300/85 shadow-md transition-transform duration-300 group-hover:scale-105"
+        width="40"
+        height="40"
       />
-      <span class="font-display text-2xl sm:text-4xl lg:text-[2.5rem] font-black tracking-[0.16em] text-pergamino drop-shadow-xl leading-none">
+      <span class="font-display text-xl sm:text-2xl lg:text-[1.85rem] font-black tracking-[0.14em] text-pergamino drop-shadow-md leading-none">
         MORISCOS
       </span>
     </a>
 
     {/* Buscador global a la derecha */}
-    <div class="flex items-center justify-end lg:w-36">
+    <div class="flex items-center justify-end w-10 sm:w-28 lg:w-36">
       <SearchModal client:idle />
     </div>
   </div>
