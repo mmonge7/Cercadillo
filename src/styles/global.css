@@ -146,17 +146,16 @@
 }
 
 @layer components {
-  /* Textura de fondo (mampostería/sillería rural), fija y muy tenue: da
-     el "tono" de piedra al sitio sin competir con el contenido. La propia
-     ilustración ya lleva la opacidad baja incorporada (ver stone-texture.svg). */
+  /* Textura de fondo (mampostería/sillería rural), fija y casi imperceptible:
+     da un levísimo "tono" de piedra al sitio sin competir con el contenido. */
   .paper-texture {
     background-image:
-      radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--color-piedra-200) 25%, transparent) 0%, transparent 45%),
-      radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--color-armuna-light) 18%, transparent) 0%, transparent 50%),
+      radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--color-piedra-200) 18%, transparent) 0%, transparent 45%),
+      radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--color-armuna-light) 12%, transparent) 0%, transparent 50%),
       url("../assets/images/stone-texture.svg");
     background-repeat: no-repeat, no-repeat, repeat;
     background-attachment: scroll, scroll, fixed;
-    background-size: auto, auto, 360px 240px;
+    background-size: auto, auto, 720px 480px;
   }
 
   .container-editorial {
@@ -168,30 +167,22 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-full bg-soto px-6 py-3 font-body text-sm font-semibold tracking-wide text-pergamino transition-all hover:bg-soto-dark hover:-translate-y-0.5 hover:shadow-lg hover:shadow-soto/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-piedra;
+    @apply inline-flex items-center gap-2 rounded-xl bg-soto px-6 py-3 font-body text-sm font-semibold tracking-wide text-pergamino transition-all hover:bg-soto-dark hover:-translate-y-0.5 hover:shadow-lg hover:shadow-soto/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-piedra;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 rounded-full border border-piedra-300 bg-transparent px-6 py-3 font-body text-sm font-semibold tracking-wide text-armuna-dark transition-all hover:bg-piedra-50 hover:-translate-y-0.5 dark:text-piedra-200 dark:border-noche-border dark:hover:bg-noche-surface;
+    @apply inline-flex items-center gap-2 rounded-xl border border-piedra-300 bg-transparent px-6 py-3 font-body text-sm font-semibold tracking-wide text-armuna-dark transition-all hover:bg-piedra-50 hover:-translate-y-0.5 dark:text-piedra-200 dark:border-noche-border dark:hover:bg-noche-surface;
   }
 
   .prose-armuna {
     @apply prose prose-base max-w-none prose-headings:font-serif prose-headings:text-armuna-dark dark:prose-invert dark:prose-headings:text-piedra-200 prose-a:text-soto dark:prose-a:text-piedra-300 prose-blockquote:border-piedra prose-blockquote:font-serif prose-blockquote:italic;
   }
 
-  /* Panel de marca: fondo degradado tierra→verde con textura sutil de líneas,
+  /* Panel de marca: degradado sobrio en un solo tono (tierra → tierra oscura),
      reutilizado por el sidebar, el drawer móvil y el footer para dar continuidad visual. */
   .brand-panel {
     @apply relative isolate overflow-hidden text-pergamino;
-    background-image: linear-gradient(160deg, var(--primary) 0%, var(--primary-deep) 55%, var(--forest) 100%);
-  }
-
-  .brand-panel::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: repeating-linear-gradient(45deg, rgba(253, 251, 247, 0.06) 0 2px, transparent 2px 16px);
-    pointer-events: none;
+    background-image: linear-gradient(165deg, var(--primary) 0%, var(--primary-deep) 100%);
   }
 
   .nav-item {

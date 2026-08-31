@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" width="360" height="240">
   <!-- Mosaico de sillería irregular (tono rural), pensado para usarse como
-       textura de fondo a muy baja opacidad, tileable sin costuras. -->
-  <g opacity="0.16">
+       textura de fondo a opacidad casi imperceptible, tileable sin costuras. -->
+  <g opacity="0.05">
     <rect x="0" y="0" width="360" height="240" fill="#7a7468" />
 
     <!-- fila 1 -->
