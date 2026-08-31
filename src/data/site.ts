@@ -47,6 +47,7 @@ export const navLinks = [
   { label: 'Inicio', href: '/' },
   { label: 'El Libro', href: '/libro' },
   { label: 'Ruta Nocturna', href: '/ruta-nocturna' },
+  { label: 'Lugares', href: '/lugares' },
   { label: 'Genealogía', href: '/genealogia' },
   { label: 'Fiestas', href: '/fiestas' },
   { label: 'La Iglesia', href: '/iglesia' },

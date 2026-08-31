@@ -63,6 +63,15 @@ export const GET: APIRoute = async () => {
     })),
     // Páginas estáticas del sitio, para que la búsqueda también las encuentre.
     {
+      id: 'page-lugares',
+      title: 'Lugares de Moriscos',
+      excerpt: 'Localizaciones emblemáticas, parajes naturales y lugares desaparecidos o transformados del término municipal.',
+      content:
+        'parque grande parque chico plaza chica bar de chinarrilla vértice andorra laguna de la serrada valdepega carrelavieja pardaleja cavenes teso de la cabaña parapeto charca abrevadero eras de trilla camino de la aceña pontón estación de ferrocarril el hoyo la cruz granja agustina tiro al plato motocross',
+      href: '/lugares',
+      badge: 'Página',
+    },
+    {
       id: 'page-inicio',
       title: 'Inicio',
       excerpt: 'Portada de Moriscos: Memoria & Territorio, con los cuatro momentos del pueblo y los capítulos del libro.',
