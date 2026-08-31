@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CounterGrid from '../components/CounterGrid.astro';
-import { BookOpen, Map, Users, BookMarked, Info } from 'lucide-react';
+import { BookOpen, Map, Users, BookMarked, Info, PartyPopper } from 'lucide-react';
 
 const base = import.meta.env.BASE_URL;
 
@@ -24,6 +24,12 @@ const sections = [
     icon: Users,
     title: 'Genealogía',
     description: 'El Bosque Genealógico y los paisanos ilustres del pueblo, con registros desde 1645.',
+  },
+  {
+    href: 'fiestas',
+    icon: PartyPopper,
+    title: 'Fiestas',
+    description: 'La fiesta patronal de la Virgen de la Peregrina y el resto del calendario festivo del pueblo.',
   },
   {
     href: 'glosario',

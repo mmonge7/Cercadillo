@@ -48,6 +48,7 @@ export const navLinks = [
   { label: 'El Libro', href: '/libro' },
   { label: 'Ruta Nocturna', href: '/ruta-nocturna' },
   { label: 'Genealogía', href: '/genealogia' },
+  { label: 'Fiestas', href: '/fiestas' },
   { label: 'Glosario', href: '/glosario' },
   { label: 'Sobre la web', href: '/sobre-la-web' },
 ];

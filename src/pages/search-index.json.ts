@@ -84,6 +84,15 @@ export const GET: APIRoute = async () => {
       badge: 'Página',
     },
     {
+      id: 'page-fiestas',
+      title: 'Fiestas y Tradiciones',
+      excerpt: 'Fiestas patronales de la Virgen de la Peregrina, San Pedro Apóstol, San Isidro Labrador y el Lunes de Agua.',
+      content:
+        'chupinazo procesión verbena orquesta paella popular acogótala pedida de la botella semana cultural asaltacalles fútbol sala solteros casados hornazo motocross tiradas al plato',
+      href: '/fiestas',
+      badge: 'Página',
+    },
+    {
       id: 'page-sobre-la-web',
       title: 'Sobre la web',
       excerpt: 'Por qué existe esta web, de dónde procede la información, el escudo de Moriscos y cómo está construida.',
