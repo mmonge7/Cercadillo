@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import { routePoints } from '../data/route';
 import ErrorBoundary from './ErrorBoundary';
 
-const markerIcon = (active: boolean) =>
+const markerIcon = (order: number, active: boolean) =>
   L.divIcon({
     className: '',
     html: `<div style="
@@ -16,7 +16,7 @@ const markerIcon = (active: boolean) =>
       box-shadow:0 2px 8px rgba(0,0,0,0.35);
       display:flex;align-items:center;justify-content:center;
       color:#FDFBF7;font-family:sans-serif;font-weight:700;font-size:${active ? '13px' : '11px'};
-    ">${active ? '' : ''}</div>`,
+    ">${order}</div>`,
     iconSize: [active ? 30 : 22, active ? 30 : 22],
     iconAnchor: [active ? 15 : 11, active ? 15 : 11],
   });
@@ -58,7 +58,7 @@ function RouteMapInner() {
             <Marker
               key={p.id}
               position={[p.lat, p.lng]}
-              icon={markerIcon(p.id === activeId)}
+              icon={markerIcon(p.order, p.id === activeId)}
               eventHandlers={{ click: () => setActiveId(p.id) }}
             >
               <Popup>
