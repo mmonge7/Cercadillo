@@ -126,6 +126,13 @@
   html {
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body, a, button, nav, [role="button"], input, select {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {

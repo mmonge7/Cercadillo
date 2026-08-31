@@ -134,10 +134,10 @@ const { title, description, image } = Astro.props;
           });
         }
 
-        if (document.readyState === 'complete') {
-          preloadAll();
-        } else {
-          window.addEventListener('load', preloadAll, { once: true });
+        // Iniciar precarga de forma inmediata en milisegundo 0
+        preloadAll();
+        if (typeof requestIdleCallback !== 'undefined') {
+          requestIdleCallback(preloadAll);
         }
 
         // Al pulsar un enlace, Astro toma directamente el DOM desde la RAM sin esperar peticiones
