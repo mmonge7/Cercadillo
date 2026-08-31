@@ -235,6 +235,33 @@
     }
   }
 
+  @keyframes match-pulse {
+    0% {
+      background-color: rgba(234, 179, 8, 0.7);
+      box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.8);
+    }
+    50% {
+      background-color: rgba(234, 179, 8, 0.95);
+      box-shadow: 0 0 0 8px rgba(234, 179, 8, 0);
+    }
+    100% {
+      background-color: rgba(217, 119, 6, 0.5);
+      box-shadow: 0 0 0 0 rgba(234, 179, 8, 0);
+    }
+  }
+
+  .search-match-highlight {
+    background-color: rgba(234, 179, 8, 0.6);
+    color: #ffffff;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 1px 4px;
+    animation: match-pulse 1.2s ease-in-out 3;
+    scroll-margin-top: 120px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
   /* Resalta de forma nativa el elemento enlazado por #hash (p. ej. desde un
      resultado del buscador), sin depender de temporizadores en JS: el
      navegador aplica :target automáticamente en cuanto el elemento existe en
@@ -242,6 +269,7 @@
   :target {
     animation: search-pulse 1s ease-out 2;
     border-radius: 1rem;
+    scroll-margin-top: 120px;
   }
 
   /* Asegura que los controles y capas internas de Leaflet nunca se superpongan a modales o al menú lateral */
@@ -249,4 +277,5 @@
     z-index: 0 !important;
   }
 }
+
 

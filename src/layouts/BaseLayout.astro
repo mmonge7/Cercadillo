@@ -124,6 +124,88 @@ const { title, description, image } = Astro.props;
     </script>
 
     <script>
+      // Localizador y resaltado visual de coincidencias del buscador
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const highlightQuery = params.get('highlight');
+        if (!highlightQuery) return;
+
+        const term = highlightQuery.trim();
+        if (term.length < 2) return;
+
+        function runHighlight() {
+          const main = document.getElementById('main') || document.querySelector('main');
+          if (!main) return;
+
+          const walker = document.createTreeWalker(
+            main,
+            NodeFilter.SHOW_TEXT,
+            {
+              acceptNode(node) {
+                const parent = node.parentElement;
+                if (!parent) return NodeFilter.FILTER_REJECT;
+                const tag = parent.tagName.toLowerCase();
+                if (['script', 'style', 'button', 'input', 'textarea', 'svg', 'noscript'].includes(tag)) {
+                  return NodeFilter.FILTER_REJECT;
+                }
+                if (parent.closest('#search-modal, .search-match-highlight')) {
+                  return NodeFilter.FILTER_REJECT;
+                }
+                return NodeFilter.FILTER_ACCEPT;
+              },
+            }
+          );
+
+          const matches: Text[] = [];
+          const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+
+          let node: Node | null;
+          while ((node = walker.nextNode())) {
+            if (node.nodeValue && regex.test(node.nodeValue)) {
+              matches.push(node as Text);
+            }
+          }
+
+          let firstMark: HTMLElement | null = null;
+
+          matches.forEach((textNode) => {
+            const text = textNode.nodeValue || '';
+            const frag = document.createDocumentFragment();
+            let lastIdx = 0;
+            text.replace(regex, (match, _p1, offset) => {
+              frag.appendChild(document.createTextNode(text.slice(lastIdx, offset)));
+              const mark = document.createElement('mark');
+              mark.className = 'search-match-highlight';
+              mark.textContent = match;
+              if (!firstMark) firstMark = mark;
+              frag.appendChild(mark);
+              lastIdx = offset + match.length;
+              return match;
+            });
+            frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+            if (textNode.parentNode) {
+              textNode.parentNode.replaceChild(frag, textNode);
+            }
+          });
+
+          // Si la URL no apunta a un #hash específico, hace scroll suave a la primera coincidencia
+          const hasHash = !!window.location.hash;
+          if (firstMark && !hasHash) {
+            setTimeout(() => {
+              (firstMark as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 180);
+          }
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => setTimeout(runHighlight, 80));
+        } else {
+          setTimeout(runHighlight, 80);
+        }
+      })();
+    </script>
+
+    <script>
       // Registra el service worker (generado por workbox en el build de producción)
       // para instalar la PWA y servir el sitio offline tras la primera visita.
       if ('serviceWorker' in navigator) {

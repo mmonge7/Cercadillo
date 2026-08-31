@@ -79,6 +79,15 @@ function SearchModalInner() {
     );
   };
 
+  const buildItemUrl = (itemHref: string) => {
+    const raw = BASE + itemHref.replace(/^\//, '');
+    if (!trimmedQuery) return raw;
+    const [pathPart, hashPart] = raw.split('#');
+    const separator = pathPart.includes('?') ? '&' : '?';
+    const withParam = `${pathPart}${separator}highlight=${encodeURIComponent(trimmedQuery)}`;
+    return hashPart ? `${withParam}#${hashPart}` : withParam;
+  };
+
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <button
@@ -159,7 +168,7 @@ function SearchModalInner() {
             {results.map((item) => (
               <a
                 key={item.id}
-                href={BASE + item.href.replace(/^\//, '')}
+                href={buildItemUrl(item.href)}
                 className="flex flex-col gap-1 rounded-xl px-4 py-3 transition-colors hover:bg-piedra-400/15"
                 onClick={() => setOpen(false)}
               >
