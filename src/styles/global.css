@@ -178,6 +178,17 @@
     @apply prose prose-base max-w-none prose-headings:font-serif prose-headings:text-armuna-dark dark:prose-invert dark:prose-headings:text-piedra-200 prose-a:text-soto dark:prose-a:text-piedra-300 prose-blockquote:border-piedra prose-blockquote:font-serif prose-blockquote:italic;
   }
 
+  /* Disable Astro View Transitions snapshot animations to achieve 100% instant SPA DOM swap
+     without any ghosting or fading of persistent elements like the mobile drawer */
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+    mix-blend-mode: normal !important;
+  }
+  ::view-transition-image-pair(*) {
+    isolation: auto !important;
+  }
+
   /*
    * Paneles temáticos de La Armuña (tonos trigo cálidos coordinados pero diferenciados):
    * 1. Sidebar/Drawer: tono trigo-tierra con textura de trigal.
