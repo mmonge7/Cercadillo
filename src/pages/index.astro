@@ -93,7 +93,26 @@ const sections = [
         integración en el área metropolitana de Salamanca.
       </p>
     </div>
-    <a href={`${base}libro`} class="btn-secondary mt-6">Descubre toda la historia en El Libro</a>
+    <div class="mt-8 flex flex-wrap items-center gap-4">
+      <a href={`${base}libro`} class="btn-secondary">Descubre toda la historia en El Libro</a>
+      <a
+        href="https://github.com/pCresp0/moriscos-wiki"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contador de visitas de la web"
+        class="inline-flex items-center gap-2 rounded-xl border border-noche-border bg-noche-surface/70 px-3.5 py-2.5 shadow-sm transition-all hover:border-piedra-400/40 hover:bg-noche-surface"
+      >
+        <span class="inline-block h-2 w-2 rounded-full bg-piedra-400 animate-pulse"></span>
+        <img
+          src="https://visitor-badge.laobi.icu/badge?page_id=pcresp0.moriscos-wiki&left_text=visitas&left_color=2A241D&right_color=7A4D2B&radius=6&format=true"
+          alt="Contador de visitas"
+          width="90"
+          height="20"
+          loading="lazy"
+          class="h-4 w-auto rounded opacity-85 transition-opacity hover:opacity-100"
+        />
+      </a>
+    </div>
   </section>
 
   <CounterGrid />
