@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import Fuse from 'fuse.js';
-import { Search, X } from 'lucide-react';
+import { Search, X, Compass } from 'lucide-react';
 import type { SearchItem } from '../pages/search-index.json';
 import ErrorBoundary from './ErrorBoundary';
 
@@ -37,7 +37,7 @@ function SearchModalInner() {
     }
   }, [open, loaded]);
 
-  const MIN_QUERY_LENGTH = 3;
+  const MIN_QUERY_LENGTH = 2;
 
   const fuse = useMemo(
     () =>
@@ -58,11 +58,11 @@ function SearchModalInner() {
   const trimmedQuery = query.trim();
   const isTooShort = trimmedQuery.length > 0 && trimmedQuery.length < MIN_QUERY_LENGTH;
 
+  // Si no se ha escrito nada, no se devuelven resultados por defecto
   const results = useMemo(() => {
-    if (!trimmedQuery) return items.slice(0, 8);
-    if (trimmedQuery.length < MIN_QUERY_LENGTH) return [];
+    if (!trimmedQuery || trimmedQuery.length < MIN_QUERY_LENGTH) return [];
     return fuse.search(trimmedQuery).slice(0, 15).map((r) => r.item);
-  }, [trimmedQuery, fuse, items]);
+  }, [trimmedQuery, fuse]);
 
   const highlight = (text: string) => {
     if (!query.trim()) return text;
@@ -71,7 +71,7 @@ function SearchModalInner() {
     return (
       <>
         {text.slice(0, idx)}
-        <mark className="rounded bg-piedra-300/50 text-inherit dark:bg-piedra-500/40">
+        <mark className="rounded bg-piedra-400/35 text-inherit dark:bg-piedra-400/40">
           {text.slice(idx, idx + query.length)}
         </mark>
         {text.slice(idx + query.length)}
@@ -92,61 +92,91 @@ function SearchModalInner() {
       </button>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-[70] bg-noche/60 backdrop-blur-sm data-[state=open]:animate-[fade-up_0.2s_ease-out] motion-reduce:transition-none" />
+        <Dialog.Overlay className="fixed inset-0 z-[70] bg-noche/60 backdrop-blur-sm data-[state=open]:animate-[fade-up_0.15s_ease-out] motion-reduce:transition-none" />
         <Dialog.Content
           aria-describedby={undefined}
           onOpenAutoFocus={(e) => {
             e.preventDefault();
             inputRef.current?.focus();
           }}
-          className="fixed left-1/2 top-24 z-[80] w-[92vw] max-w-xl -translate-x-1/2 overflow-hidden rounded-2xl border border-piedra-border/60 bg-pergamino shadow-2xl outline-none transition-all duration-200 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100 dark:border-noche-border dark:bg-noche-surface"
+          className="fixed z-[80] overflow-hidden rounded-2xl border border-noche-border bg-noche-surface shadow-2xl outline-none transition-all duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100 top-[calc(var(--mobile-topbar,68px)+8px)] left-1/2 -translate-x-1/2 w-[94vw] max-w-md sm:top-[76px] sm:left-auto sm:right-6 sm:translate-x-0 sm:w-[480px] lg:right-8"
         >
-          <Dialog.Title className="sr-only">Buscar en Moriscos: Memoria &amp; Territorio</Dialog.Title>
-          <div className="flex items-center gap-2 border-b border-piedra-border/60 px-4 dark:border-noche-border">
-            <Search className="h-4 w-4 shrink-0 text-tinta/50 dark:text-pergamino-muted/50" />
+          <Dialog.Title className="sr-only">Buscar en Moriscos Wiki</Dialog.Title>
+          <div className="flex items-center gap-2 border-b border-noche-border/80 px-4">
+            <Search className="h-4 w-4 shrink-0 text-piedra-300" />
             <input
               ref={inputRef}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Escribe al menos 3 letras para buscar en toda la web…"
-              className="h-14 w-full bg-transparent font-body text-base outline-none placeholder:text-tinta/40 dark:placeholder:text-pergamino-muted/40"
+              placeholder="Buscar lugares, historia, fiestas, fuentes..."
+              style={{ fontSize: '16px' }}
+              className="h-12 sm:h-13 w-full bg-transparent font-body text-[16px] text-pergamino outline-none placeholder:text-pergamino-muted/50"
             />
+            {query && (
+              <button
+                type="button"
+                onClick={() => setQuery('')}
+                aria-label="Borrar texto"
+                className="rounded-full p-1 text-pergamino-muted/70 hover:bg-noche hover:text-pergamino"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            )}
             <Dialog.Close asChild>
-              <button aria-label="Cerrar búsqueda" className="rounded-full p-1.5 hover:bg-piedra-50 dark:hover:bg-noche">
+              <button
+                aria-label="Cerrar búsqueda"
+                className="rounded-full p-1.5 text-pergamino-muted/70 hover:bg-noche hover:text-pergamino"
+              >
                 <X className="h-4 w-4" />
               </button>
             </Dialog.Close>
           </div>
-          <ul className="max-h-[60vh] overflow-y-auto p-2" role="listbox">
-            {!loaded && <li className="px-4 py-6 text-sm text-tinta/50 dark:text-pergamino-muted/50">Cargando índice…</li>}
+
+          <div className="max-h-[60vh] overflow-y-auto p-2" role="listbox">
+            {!loaded && (
+              <p className="px-4 py-8 text-center text-sm text-pergamino-muted/60">Cargando índice…</p>
+            )}
+
+            {loaded && !trimmedQuery && (
+              <div className="flex flex-col items-center justify-center gap-2 px-4 py-10 text-center text-pergamino-muted/60">
+                <Compass className="h-7 w-7 text-piedra-400/50" />
+                <p className="text-xs sm:text-sm">Escribe para buscar lugares, historia, personajes, fiestas o referencias documentales.</p>
+              </div>
+            )}
+
             {loaded && isTooShort && (
-              <li className="px-4 py-6 text-sm text-tinta/50 dark:text-pergamino-muted/50">Escribe al menos 3 letras para buscar…</li>
+              <p className="px-4 py-6 text-center text-xs sm:text-sm text-pergamino-muted/60">
+                Escribe al menos {MIN_QUERY_LENGTH} letras para buscar…
+              </p>
             )}
+
             {loaded && !isTooShort && trimmedQuery.length >= MIN_QUERY_LENGTH && results.length === 0 && (
-              <li className="px-4 py-6 text-sm text-tinta/50 dark:text-pergamino-muted/50">Sin resultados para “{query}”.</li>
+              <p className="px-4 py-8 text-center text-sm text-pergamino-muted/60">
+                Sin resultados para “<span className="font-semibold text-pergamino">{query}</span>”.
+              </p>
             )}
-            {(!isTooShort ? results : []).map((item) => (
-              <li key={item.id}>
-                <a
-                  href={BASE + item.href.replace(/^\//, '')}
-                  className="flex flex-col gap-1 rounded-xl px-4 py-3 hover:bg-piedra-50 dark:hover:bg-noche"
-                  onClick={() => setOpen(false)}
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="rounded-full bg-soto/10 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-soto dark:bg-piedra-300/10 dark:text-piedra-300">
-                      {item.badge}
-                    </span>
-                  </div>
-                  <span className="font-serif text-base font-semibold text-tinta dark:text-pergamino-muted">
-                    {highlight(item.title)}
+
+            {results.map((item) => (
+              <a
+                key={item.id}
+                href={BASE + item.href.replace(/^\//, '')}
+                className="flex flex-col gap-1 rounded-xl px-4 py-3 transition-colors hover:bg-piedra-400/15"
+                onClick={() => setOpen(false)}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="rounded-full border border-piedra-400/30 bg-piedra-400/15 px-2 py-0.5 font-display text-[0.65rem] font-bold uppercase tracking-wider text-piedra-200">
+                    {item.badge}
                   </span>
-                  <span className="line-clamp-1 text-sm text-tinta/60 dark:text-pergamino-muted/60">
-                    {highlight(item.excerpt)}
-                  </span>
-                </a>
-              </li>
+                </div>
+                <span className="font-serif text-base font-bold text-pergamino">
+                  {highlight(item.title)}
+                </span>
+                <span className="line-clamp-1 text-xs sm:text-sm text-pergamino-muted/75">
+                  {highlight(item.excerpt)}
+                </span>
+              </a>
             ))}
-          </ul>
+          </div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
@@ -160,4 +190,3 @@ export default function SearchModal() {
     </ErrorBoundary>
   );
 }
-
