@@ -27,6 +27,21 @@ const { title, description, image } = Astro.props;
     <meta name="theme-color" content="#8C4A32" />
     <SEO title={title} description={description} image={image} />
     <script is:inline>
+      // Evita que el navegador (sobre todo en móvil) restaure el scroll de la
+      // página anterior al navegar a una nueva sección: cada página empieza
+      // arriba del todo, salvo que la URL lleve un #ancla (p. ej. un enlace
+      // del buscador o del índice de un capítulo), que sí debe desplazarse.
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      if (!location.hash) {
+        window.scrollTo(0, 0);
+      }
+      window.addEventListener('pageshow', function () {
+        if (!location.hash) window.scrollTo(0, 0);
+      });
+    </script>
+    <script is:inline>
       (function () {
         var stored = localStorage.getItem('moriscos-theme');
         var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
