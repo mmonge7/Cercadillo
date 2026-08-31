@@ -70,40 +70,35 @@ const icons: Record<string, typeof Home> = {
 </div>
 
 <script>
-  function setupDrawer() {
-    const openBtn = document.getElementById('drawer-open');
-    const closeBtn = document.getElementById('drawer-close');
-    const backdrop = document.getElementById('drawer-backdrop');
-    const drawer = document.getElementById('mobile-drawer');
-    const panel = document.getElementById('drawer-panel');
-
-    if (!drawer || drawer.hasAttribute('data-initialized')) return;
-    drawer.setAttribute('data-initialized', 'true');
-
-    const setOpen = (open: boolean) => {
-      if (!drawer || !panel || !backdrop) return;
-      drawer.classList.toggle('pointer-events-none', !open);
-      panel.classList.toggle('-translate-x-full', !open);
-      backdrop.classList.toggle('opacity-0', !open);
-      openBtn?.setAttribute('aria-expanded', String(open));
-      document.body.style.overflow = open ? 'hidden' : '';
+  function getDrawerElements() {
+    return {
+      drawer: document.getElementById('mobile-drawer'),
+      panel: document.getElementById('drawer-panel'),
+      backdrop: document.getElementById('drawer-backdrop'),
+      openBtn: document.getElementById('drawer-open'),
     };
-
-    openBtn?.addEventListener('click', () => setOpen(true));
-    closeBtn?.addEventListener('click', () => setOpen(false));
-    backdrop?.addEventListener('click', () => setOpen(false));
-
-    // Al pulsar un enlace en el drawer, cerramos el menú
-    drawer?.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        setOpen(false);
-      });
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') setOpen(false);
-    });
   }
+
+  function setDrawerOpen(open: boolean) {
+    const { drawer, panel, backdrop, openBtn } = getDrawerElements();
+    if (!drawer || !panel || !backdrop) return;
+    if (open) {
+      drawer.classList.remove('pointer-events-none');
+      panel.classList.remove('-translate-x-full');
+      backdrop.classList.remove('opacity-0');
+      openBtn?.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    } else {
+      drawer.classList.add('pointer-events-none');
+      panel.classList.add('-translate-x-full');
+      backdrop.classList.add('opacity-0');
+      openBtn?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Exponer globalmente
+  (window as any).__setMoriscosDrawer = setDrawerOpen;
 
   function updateActiveNav() {
     const currentPath = window.location.pathname;
@@ -120,61 +115,82 @@ const icons: Record<string, typeof Home> = {
     });
   }
 
-  document.addEventListener('DOMContentLoaded', setupDrawer);
+  // Delegación global de eventos sobre document: NUNCA se desengancha ni pierde eventos
+  if (!(window as any).__moriscos_drawer_delegated) {
+    (window as any).__moriscos_drawer_delegated = true;
+
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+
+      if (target.closest('#drawer-open')) {
+        e.preventDefault();
+        setDrawerOpen(true);
+        return;
+      }
+
+      if (target.closest('#drawer-close') || target.id === 'drawer-backdrop') {
+        e.preventDefault();
+        setDrawerOpen(false);
+        return;
+      }
+
+      if (target.closest('#mobile-nav-list a')) {
+        setDrawerOpen(false);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setDrawerOpen(false);
+    });
+
+    const EDGE_EXCLUSION_PX = 30;
+    const SWIPE_THRESHOLD_PX = 40;
+    const isMobileViewport = () => !window.matchMedia('(min-width: 1024px)').matches;
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchStartOnMap = false;
+
+    document.addEventListener(
+      'touchstart',
+      (e) => {
+        const t = e.touches[0];
+        touchStartX = t.clientX;
+        touchStartY = t.clientY;
+        touchStartOnMap = !!(e.target as HTMLElement)?.closest?.('.leaflet-container');
+      },
+      { passive: true },
+    );
+
+    document.addEventListener(
+      'touchend',
+      (e) => {
+        if (!isMobileViewport() || touchStartOnMap) return;
+        const t = e.changedTouches[0];
+        const deltaX = t.clientX - touchStartX;
+        const deltaY = t.clientY - touchStartY;
+        if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+        if (deltaX > 0) {
+          if (touchStartX > EDGE_EXCLUSION_PX) {
+            setDrawerOpen(true);
+          }
+        } else {
+          setDrawerOpen(false);
+        }
+      },
+      { passive: true },
+    );
+  }
+
+  // Al completar la navegación, actualizar estado visual y asegurar que el drawer esté cerrado
+  document.addEventListener('DOMContentLoaded', updateActiveNav);
   document.addEventListener('astro:page-load', () => {
-    setupDrawer();
+    setDrawerOpen(false);
     updateActiveNav();
   });
-  document.addEventListener('astro:after-swap', updateActiveNav);
-
-  const EDGE_EXCLUSION_PX = 30;
-  const SWIPE_THRESHOLD_PX = 40;
-  const isMobileViewport = () => !window.matchMedia('(min-width: 1024px)').matches;
-
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchStartOnMap = false;
-
-  document.addEventListener(
-    'touchstart',
-    (e) => {
-      const t = e.touches[0];
-      touchStartX = t.clientX;
-      touchStartY = t.clientY;
-      touchStartOnMap = !!(e.target as HTMLElement)?.closest?.('.leaflet-container');
-    },
-    { passive: true },
-  );
-
-  document.addEventListener(
-    'touchend',
-    (e) => {
-      if (!isMobileViewport() || touchStartOnMap) return;
-      const t = e.changedTouches[0];
-      const deltaX = t.clientX - touchStartX;
-      const deltaY = t.clientY - touchStartY;
-      if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX || Math.abs(deltaX) <= Math.abs(deltaY)) return;
-      const drawer = document.getElementById('mobile-drawer');
-      const panel = document.getElementById('drawer-panel');
-      const backdrop = document.getElementById('drawer-backdrop');
-      const openBtn = document.getElementById('drawer-open');
-      if (!drawer || !panel || !backdrop) return;
-      if (deltaX > 0) {
-        if (touchStartX > EDGE_EXCLUSION_PX) {
-          drawer.classList.remove('pointer-events-none');
-          panel.classList.remove('-translate-x-full');
-          backdrop.classList.remove('opacity-0');
-          openBtn?.setAttribute('aria-expanded', 'true');
-          document.body.style.overflow = 'hidden';
-        }
-      } else {
-        drawer.classList.add('pointer-events-none');
-        panel.classList.add('-translate-x-full');
-        backdrop.classList.add('opacity-0');
-        openBtn?.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      }
-    },
-    { passive: true },
-  );
+  document.addEventListener('astro:after-swap', () => {
+    setDrawerOpen(false);
+    updateActiveNav();
+  });
 </script>
