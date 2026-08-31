@@ -10,10 +10,11 @@ const activeLink = navLinks.find((link) => isActiveHref(path, base, link.href));
 ---
 
 <header
-  class="header-panel fixed inset-x-0 top-0 z-40 flex h-[var(--mobile-topbar)] items-center shadow-md lg:sticky lg:h-[72px] lg:w-full"
+  class="header-panel fixed inset-x-0 top-0 z-40 flex h-[var(--mobile-topbar)] items-center shadow-md lg:sticky lg:h-[76px] lg:w-full"
 >
   <div class="flex w-full items-center justify-between gap-4 px-4 pt-[env(safe-area-inset-top,0px)] sm:px-6">
-    <div class="flex items-center gap-3.5">
+    <div class="flex items-center gap-3.5 sm:gap-4">
+      {/* Botón de apertura del menú móvil */}
       <button
         id="drawer-open"
         type="button"
@@ -24,15 +25,40 @@ const activeLink = navLinks.find((link) => isActiveHref(path, base, link.href));
       >
         <Menu size={26} strokeWidth={2.2} />
       </button>
-      <a href={base} class="flex items-center gap-3 font-display text-2xl sm:text-3xl font-extrabold tracking-wider text-pergamino transition-opacity hover:opacity-95 lg:hidden">
-        <img src={`${base}images/escudo-moriscos-160.jpg`} alt="Escudo de Moriscos" class="h-10 w-10 sm:h-11 sm:w-11 rounded-full object-cover ring-2 ring-piedra-300 shadow-md" width="44" height="44" />
-        <span>MORISCOS</span>
+
+      {/* Logotipo principal con Escudo y MORISCOS en letras monumentales (visible en PC y móvil) */}
+      <a
+        href={base}
+        class="group flex items-center gap-3 transition-opacity hover:opacity-95"
+        aria-label="Ir al inicio de Moriscos: Memoria & Territorio"
+      >
+        <img
+          src={`${base}images/escudo-moriscos-160.jpg`}
+          alt="Escudo de Moriscos"
+          class="h-10 w-10 sm:h-12 sm:w-12 shrink-0 rounded-full object-cover ring-2 ring-piedra-300/90 shadow-md transition-transform duration-300 group-hover:scale-105"
+          width="48"
+          height="48"
+        />
+        <div class="flex flex-col leading-none">
+          <span class="font-display text-2xl sm:text-3xl font-black tracking-widest text-pergamino drop-shadow-md">
+            MORISCOS
+          </span>
+          <span class="hidden sm:inline font-body text-[0.62rem] font-bold tracking-[0.26em] text-piedra-200 uppercase mt-0.5">
+            MEMORIA &amp; TERRITORIO
+          </span>
+        </div>
       </a>
-      <span class="hidden font-serif text-2xl font-bold tracking-tight text-pergamino drop-shadow-md lg:inline">
-        {activeLink?.label ?? 'Inicio'}
-      </span>
+
+      {/* Indicador de sección activa con separador vertical estilizado */}
+      <div class="hidden md:flex items-center gap-3 pl-3">
+        <span class="h-6 w-px bg-piedra-400/40" aria-hidden="true" />
+        <span class="font-serif text-lg sm:text-xl font-bold tracking-tight text-piedra-200 drop-shadow-sm">
+          {activeLink?.label ?? 'Inicio'}
+        </span>
+      </div>
     </div>
 
+    {/* Buscador global */}
     <div class="flex items-center gap-2">
       <SearchModal client:idle />
     </div>
