@@ -42,7 +42,7 @@ function RouteMapInner() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.4fr,1fr]">
-      <div className="h-[420px] overflow-hidden rounded-2xl border border-piedra-border/60 dark:border-noche-border sm:h-[520px]">
+      <div className="relative isolate z-0 h-[420px] overflow-hidden rounded-2xl border border-piedra-border/60 dark:border-noche-border sm:h-[520px]">
         <MapContainer
           center={[routePoints[0].lat, routePoints[0].lng]}
           zoom={13.5}

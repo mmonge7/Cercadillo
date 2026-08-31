@@ -243,4 +243,10 @@
     animation: search-pulse 1s ease-out 2;
     border-radius: 1rem;
   }
+
+  /* Asegura que los controles y capas internas de Leaflet nunca se superpongan a modales o al menú lateral */
+  .leaflet-container {
+    z-index: 0 !important;
+  }
 }
+
