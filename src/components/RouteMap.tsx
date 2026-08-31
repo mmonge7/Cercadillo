@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { routePoints } from '../data/route';
+import ErrorBoundary from './ErrorBoundary';
 
 const markerIcon = (active: boolean) =>
   L.divIcon({
@@ -27,6 +28,14 @@ function FlyToActive({ lat, lng }: { lat: number; lng: number }) {
 }
 
 export default function RouteMap() {
+  return (
+    <ErrorBoundary label="el mapa interactivo">
+      <RouteMapInner />
+    </ErrorBoundary>
+  );
+}
+
+function RouteMapInner() {
   const [activeId, setActiveId] = useState<string>(routePoints[0].id);
   const active = routePoints.find((p) => p.id === activeId) ?? routePoints[0];
   const positions = routePoints.map((p) => [p.lat, p.lng] as [number, number]);

@@ -3,10 +3,11 @@ import * as Dialog from '@radix-ui/react-dialog';
 import Fuse from 'fuse.js';
 import { Search, X } from 'lucide-react';
 import type { SearchItem } from '../pages/search-index.json';
+import ErrorBoundary from './ErrorBoundary';
 
 const BASE = import.meta.env.BASE_URL;
 
-export default function SearchModal() {
+function SearchModalInner() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [items, setItems] = useState<SearchItem[]>([]);
@@ -151,3 +152,12 @@ export default function SearchModal() {
     </Dialog.Root>
   );
 }
+
+export default function SearchModal() {
+  return (
+    <ErrorBoundary label="el buscador">
+      <SearchModalInner />
+    </ErrorBoundary>
+  );
+}
+

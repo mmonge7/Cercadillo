@@ -64,6 +64,51 @@ const { title, description, image } = Astro.props;
       </main>
       <Footer />
     </div>
+
+    <div
+      id="global-error-banner"
+      role="alert"
+      class="fixed inset-x-4 bottom-4 z-[100] hidden max-w-md rounded-2xl border border-piedra-border/60 bg-pergamino p-4 text-sm text-tinta shadow-2xl sm:inset-x-auto sm:right-4 dark:border-noche-border dark:bg-noche-surface dark:text-pergamino-muted"
+    >
+      <div class="flex items-start gap-3">
+        <span aria-hidden="true">⚠️</span>
+        <p class="flex-1">
+          Ha ocurrido un error inesperado en una parte de la página, pero puedes seguir usando el resto de la web con
+          normalidad.
+        </p>
+        <button
+          id="global-error-dismiss"
+          type="button"
+          aria-label="Cerrar aviso"
+          class="shrink-0 rounded-full p-1 hover:bg-piedra-50 dark:hover:bg-noche"
+        >
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Red de seguridad global: si algo revienta fuera de una isla React (p. ej.
+      // un script suelto), se avisa sin bloquear ni romper el resto de la página.
+      (function () {
+        const banner = document.getElementById('global-error-banner');
+        const dismiss = document.getElementById('global-error-dismiss');
+        if (!banner) return;
+
+        let shown = false;
+        const show = (error: unknown) => {
+          console.error('[global-error]', error);
+          if (shown) return;
+          shown = true;
+          banner.classList.remove('hidden');
+        };
+
+        window.addEventListener('error', (e) => show(e.error ?? e.message));
+        window.addEventListener('unhandledrejection', (e) => show(e.reason));
+        dismiss?.addEventListener('click', () => banner.classList.add('hidden'));
+      })();
+    </script>
+
     <script>
       // Registra el service worker (generado por workbox en el build de producción)
       // para instalar la PWA y servir el sitio offline tras la primera visita.
