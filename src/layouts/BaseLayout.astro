@@ -43,9 +43,10 @@ const { title, description, image } = Astro.props;
     </script>
     <script is:inline>
       (function () {
+        // Modo oscuro por defecto: solo se queda en claro si el propio
+        // visitante lo cambió antes (no depende de la preferencia del sistema).
         var stored = localStorage.getItem('moriscos-theme');
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = stored || (prefersDark ? 'dark' : 'light');
+        var theme = stored || 'dark';
         if (theme === 'dark') document.documentElement.classList.add('dark');
       })();
     </script>

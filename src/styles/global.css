@@ -38,9 +38,9 @@
   --color-pergamino-muted: #f7f4ec;
   --color-pergamino-border: #e8e0ce;
 
-  --color-noche: #14171a;
-  --color-noche-surface: #1c2024;
-  --color-noche-border: #2a2f34;
+  --color-noche: #2a241d;
+  --color-noche-surface: #342c22;
+  --color-noche-border: #45392c;
 
   --color-tinta: #24282c;
 
@@ -116,10 +116,10 @@
 
 .dark {
   --ink: #fdfbf7;
-  --ink-soft: #9aa5b1;
-  --paper: #14171a;
-  --paper-raised: #1c2024;
-  --line: #2a2f34;
+  --ink-soft: #b0a698;
+  --paper: #2a241d;
+  --paper-raised: #342c22;
+  --line: #45392c;
 }
 
 @layer base {
