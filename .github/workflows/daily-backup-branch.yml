@@ -1,0 +1,45 @@
+name: Backup diario de main
+
+# Se ejecuta todos los días a las 23:55 UTC (GitHub Actions programa los cron
+# siempre en UTC; ajusta la hora si necesitas que coincida con otra franja
+# horaria, p. ej. España está en UTC+1 en invierno y UTC+2 en verano).
+on:
+  schedule:
+    - cron: '55 23 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  backup-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout completo del repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Comprobar si ha habido commits hoy en main
+        id: check
+        run: |
+          TODAY=$(date -u +%Y-%m-%d)
+          COUNT=$(git log --since="${TODAY} 00:00:00" --until="${TODAY} 23:59:59" --oneline | wc -l | tr -d ' ')
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          echo "date=$(date -u +%Y%m%d)" >> "$GITHUB_OUTPUT"
+          echo "Commits en main hoy ($TODAY): $COUNT"
+
+      - name: Crear rama de backup
+        if: steps.check.outputs.count != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="Backup_${{ steps.check.outputs.date }}_${{ steps.check.outputs.count }}Commits"
+          if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
+            echo "La rama $BRANCH ya existe en el remoto, no se crea de nuevo."
+          else
+            echo "Creando rama $BRANCH desde main"
+            git checkout -b "$BRANCH"
+            git push origin "$BRANCH"
+          fi

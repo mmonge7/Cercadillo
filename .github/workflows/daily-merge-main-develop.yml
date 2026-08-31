@@ -1,0 +1,58 @@
+name: Merge diario main → develop
+
+# Se ejecuta todos los días a las 23:55 UTC (GitHub Actions programa los cron
+# siempre en UTC; ajusta la hora si necesitas que coincida con otra franja
+# horaria, p. ej. España está en UTC+1 en invierno y UTC+2 en verano).
+on:
+  schedule:
+    - cron: '55 23 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  merge-main-into-develop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout completo del repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Comprobar si ha habido commits hoy en main
+        id: check
+        run: |
+          TODAY=$(date -u +%Y-%m-%d)
+          COUNT=$(git log --since="${TODAY} 00:00:00" --until="${TODAY} 23:59:59" --oneline | wc -l | tr -d ' ')
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          echo "Commits en main hoy ($TODAY): $COUNT"
+
+      - name: Configurar usuario de git
+        if: steps.check.outputs.count != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Crear develop si todavía no existe
+        if: steps.check.outputs.count != '0'
+        run: |
+          if git ls-remote --exit-code --heads origin develop > /dev/null 2>&1; then
+            echo "La rama develop ya existe en el remoto."
+          else
+            echo "La rama develop no existe todavía: se crea a partir de main."
+            git checkout -b develop
+            git push origin develop
+          fi
+
+      # Si el merge tiene conflictos, este paso falla y el workflow se marca
+      # como fallido (no se resuelve nada automáticamente ni se fuerza el push).
+      - name: Mergear main en develop
+        if: steps.check.outputs.count != '0'
+        run: |
+          git fetch origin develop
+          git checkout develop
+          git pull origin develop
+          git merge origin/main --no-edit -m "Merge automático diario: main → develop"
+          git push origin develop
