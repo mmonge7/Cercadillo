@@ -26,20 +26,33 @@ const { title, description, image } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#724828" />
     <SEO title={title} description={description} image={image} />
-    <script is:inline>
-      // Evita que el navegador (sobre todo en móvil) restaure el scroll de la
-      // página anterior al navegar a una nueva sección: cada página empieza
-      // arriba del todo, salvo que la URL lleve un #ancla (p. ej. un enlace
-      // del buscador o del índice de un capítulo), que sí debe desplazarse.
+    <script is:inline define:vars={{ baseUrl: import.meta.env.BASE_URL }}>
+      // 1. Al recargar o actualizar la web (F5, reload), vuelve a la portada de inicio por defecto
+      try {
+        var navEntry = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+        var isReload = (navEntry && navEntry.type === 'reload') ||
+                       (performance.navigation && performance.navigation.type === 1);
+        var normPath = location.pathname.endsWith('/') ? location.pathname : location.pathname + '/';
+        var normBase = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/';
+        if (isReload && normPath !== normBase) {
+          window.location.replace(baseUrl);
+        }
+      } catch (_) {}
+
+      // 2. Al acceder o navegar a cualquier apartado, arranca siempre arriba del todo
       if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
       }
-      if (!location.hash) {
-        window.scrollTo(0, 0);
+      function resetScrollTop() {
+        if (!location.hash) {
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          if (document.documentElement) document.documentElement.scrollTop = 0;
+          if (document.body) document.body.scrollTop = 0;
+        }
       }
-      window.addEventListener('pageshow', function () {
-        if (!location.hash) window.scrollTo(0, 0);
-      });
+      resetScrollTop();
+      window.addEventListener('pageshow', resetScrollTop);
+      window.addEventListener('DOMContentLoaded', resetScrollTop);
     </script>
     <script is:inline>
       (function () {
