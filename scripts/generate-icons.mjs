@@ -168,7 +168,7 @@ async function main() {
   // "y si hay mas espacio, el escudo con el nombre. hazlo para que sea asi siempre"
   console.log('Generating 1200x630 OpenGraph and rich sharing banner with Escudo + Name...');
   
-  const ogEscudoSize = 440;
+  const ogEscudoSize = 390;
   const ogEscudoBuffer = await sharp(sourceEscudo)
     .resize(ogEscudoSize, ogEscudoSize, { fit: 'contain' })
     .toBuffer();
@@ -186,17 +186,17 @@ async function main() {
   </defs>
 
   <!-- Golden decorative line -->
-  <line x1="580" y1="315" x2="1100" y2="315" stroke="#D4A359" stroke-width="2" opacity="0.6" />
+  <line x1="500" y1="315" x2="1120" y2="315" stroke="#D4A359" stroke-width="2" opacity="0.6" />
 
   <!-- Main Title -->
-  <text x="580" y="240" font-family="Georgia, 'Cinzel', 'Playfair Display', serif" font-size="80" font-weight="bold" fill="url(#sub-text)" letter-spacing="4">MORISCOS</text>
+  <text x="500" y="230" font-family="Georgia, 'Cinzel', 'Playfair Display', serif" font-size="82" font-weight="bold" fill="url(#sub-text)" letter-spacing="3">MORISCOS</text>
   
   <!-- Subtitle -->
-  <text x="580" y="295" font-family="Georgia, 'Cinzel', serif" font-size="25" font-weight="600" fill="url(#gold-text)" letter-spacing="4">HISTORIA · LUGARES · CURIOSIDADES</text>
+  <text x="500" y="285" font-family="Georgia, 'Cinzel', serif" font-size="21" font-weight="600" fill="url(#gold-text)" letter-spacing="2">HISTORIA · LUGARES · CURIOSIDADES</text>
   
   <!-- Descriptive tags -->
-  <text x="580" y="375" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#E8E0CE" opacity="0.95" font-weight="500">Historia · Lugares · Tradición · Curiosidades</text>
-  <text x="580" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#D4A359" opacity="0.85">Portal y Enciclopedia Histórica de Moriscos</text>
+  <text x="500" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#E8E0CE" opacity="0.95" font-weight="500">Historia · Lugares · Tradición · Curiosidades</text>
+  <text x="500" y="415" font-family="system-ui, -apple-system, sans-serif" font-size="19" fill="#D4A359" opacity="0.85">Portal y Enciclopedia Histórica de Moriscos</text>
 </svg>`;
 
   // Create high-res 1200x630 background with deep warm Armuña slate palette and glow behind the crest
@@ -212,7 +212,7 @@ async function main() {
       {
         input: Buffer.from(`
           <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-            <radialGradient id="glow" cx="300" cy="315" r="400" gradientUnits="userSpaceOnUse">
+            <radialGradient id="glow" cx="260" cy="315" r="420" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#8C4A32" stop-opacity="0.35" />
               <stop offset="60%" stop-color="#B88432" stop-opacity="0.12" />
               <stop offset="100%" stop-color="#1C1814" stop-opacity="0" />
@@ -227,8 +227,8 @@ async function main() {
       },
       {
         input: ogEscudoBuffer,
-        top: 95,
-        left: 80,
+        top: 120,
+        left: 65,
       },
       {
         input: Buffer.from(ogSvgOverlay),
@@ -244,7 +244,7 @@ async function main() {
   // Also write SVG version of og-default
   const ogSvgFull = `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="bg-glow" cx="300" cy="315" r="450" gradientUnits="userSpaceOnUse">
+    <radialGradient id="bg-glow" cx="260" cy="315" r="420" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#8C4A32" stop-opacity="0.35" />
       <stop offset="60%" stop-color="#B88432" stop-opacity="0.12" />
       <stop offset="100%" stop-color="#1C1814" stop-opacity="0" />
@@ -264,20 +264,20 @@ async function main() {
   <rect x="20" y="20" width="1160" height="590" rx="16" fill="none" stroke="#D4A359" stroke-width="1.5" stroke-opacity="0.3" />
 
   <!-- Authentic Escudo -->
-  <image href="${base64Escudo}" x="80" y="95" width="440" height="440" preserveAspectRatio="xMidYMid meet"/>
+  <image href="${base64Escudo}" x="65" y="120" width="390" height="390" preserveAspectRatio="xMidYMid meet"/>
 
   <!-- Divider -->
-  <line x1="580" y1="315" x2="1100" y2="315" stroke="#D4A359" stroke-width="2" opacity="0.6" />
+  <line x1="500" y1="315" x2="1120" y2="315" stroke="#D4A359" stroke-width="2" opacity="0.6" />
 
   <!-- Main Title -->
-  <text x="580" y="240" font-family="Georgia, 'Cinzel', 'Playfair Display', serif" font-size="80" font-weight="bold" fill="url(#sub-text)" letter-spacing="4">MORISCOS</text>
+  <text x="500" y="230" font-family="Georgia, 'Cinzel', 'Playfair Display', serif" font-size="82" font-weight="bold" fill="url(#sub-text)" letter-spacing="3">MORISCOS</text>
   
   <!-- Subtitle -->
-  <text x="580" y="295" font-family="Georgia, 'Cinzel', serif" font-size="25" font-weight="600" fill="url(#gold-text)" letter-spacing="4">HISTORIA · LUGARES · CURIOSIDADES</text>
+  <text x="500" y="285" font-family="Georgia, 'Cinzel', serif" font-size="21" font-weight="600" fill="url(#gold-text)" letter-spacing="2">HISTORIA · LUGARES · CURIOSIDADES</text>
   
   <!-- Descriptive tags -->
-  <text x="580" y="375" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#E8E0CE" opacity="0.95" font-weight="500">Historia · Lugares · Tradición · Curiosidades</text>
-  <text x="580" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#D4A359" opacity="0.85">Portal y Enciclopedia Histórica de Moriscos</text>
+  <text x="500" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#E8E0CE" opacity="0.95" font-weight="500">Historia · Lugares · Tradición · Curiosidades</text>
+  <text x="500" y="415" font-family="system-ui, -apple-system, sans-serif" font-size="19" fill="#D4A359" opacity="0.85">Portal y Enciclopedia Histórica de Moriscos</text>
 </svg>`;
   await fs.writeFile(path.join(imagesDir, 'og-default.svg'), ogSvgFull);
 
