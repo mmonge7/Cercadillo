@@ -50,6 +50,7 @@ export const navLinks = [
   { label: 'Genealogía', href: '/genealogia' },
   { label: 'Fiestas', href: '/fiestas' },
   { label: 'La Iglesia', href: '/iglesia' },
+  { label: 'El Escudo', href: '/escudo' },
   { label: 'Glosario', href: '/glosario' },
   { label: 'Sobre la web', href: '/sobre-la-web' },
 ];

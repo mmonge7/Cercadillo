@@ -102,11 +102,20 @@ export const GET: APIRoute = async () => {
       badge: 'Página',
     },
     {
+      id: 'page-escudo',
+      title: 'El Escudo de Moriscos',
+      excerpt: 'Significado del escudo heráldico oficial: la cruz recruzada, El Hoyo, el trigo, el zumaque, la luna creciente y la Corona Real.',
+      content:
+        'escudo heráldico oficial ayuntamiento cruz recruzada luna creciente zumaque trigo corona real gules oro azur entado en punta partido',
+      href: '/escudo',
+      badge: 'Página',
+    },
+    {
       id: 'page-sobre-la-web',
       title: 'Sobre la web',
-      excerpt: 'Por qué existe esta web, de dónde procede la información, el escudo de Moriscos y cómo está construida.',
+      excerpt: 'Por qué existe esta web, de dónde procede la información y cómo está construida.',
       content:
-        'escudo heráldico oficial ayuntamiento cruz recruzada luna creciente zumaque trigo corona real código abierto github proyecto independiente contacto',
+        'código abierto github proyecto independiente contacto stack técnico astro tailwind pwa',
       href: '/sobre-la-web',
       badge: 'Página',
     },

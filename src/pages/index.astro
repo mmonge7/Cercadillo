@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CounterGrid from '../components/CounterGrid.astro';
-import { BookOpen, Map, Users, BookMarked, Info, PartyPopper, Church } from 'lucide-react';
+import { BookOpen, Map, Users, BookMarked, Info, PartyPopper, Church, Shield } from 'lucide-react';
 
 const base = import.meta.env.BASE_URL;
 
@@ -36,6 +36,12 @@ const sections = [
     icon: Church,
     title: 'La Iglesia',
     description: 'Historia, arquitectura y tesoros artísticos de la Iglesia de San Pedro Apóstol.',
+  },
+  {
+    href: 'escudo',
+    icon: Shield,
+    title: 'El Escudo',
+    description: 'El significado de cada elemento del escudo heráldico oficial de Moriscos.',
   },
   {
     href: 'glosario',
