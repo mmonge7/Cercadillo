@@ -27,7 +27,15 @@ export default defineConfig({
         // tras `astro build`: el hook de este plugin no llega a disparar el generateSW
         // dentro del pipeline de build multi-pasada de Astro. Este plugin solo se
         // encarga aquí de emitir el manifest.webmanifest con los datos correctos.
-        includeAssets: ['favicon.svg', 'icons/apple-touch-icon.png'],
+        includeAssets: [
+          'favicon.ico',
+          'favicon.svg',
+          'favicon.png',
+          'icons/apple-touch-icon.png',
+          'icons/icon-192.png',
+          'icons/icon-512.png',
+          'images/og-default.png',
+        ],
         manifest: {
           id: base,
           name: 'Moriscos · Memoria & Territorio',

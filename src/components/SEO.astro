@@ -10,7 +10,9 @@ const { title, description, image, type = 'website' } = Astro.props;
 const siteTitle = 'Moriscos · Memoria & Territorio';
 const fullTitle = title === siteTitle ? title : `${title} · Moriscos`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL(image ?? '/images/og-default.svg', Astro.site).toString();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
+const defaultImage = `${base}images/og-default.png`;
+const ogImage = new URL(image ? (image.startsWith('http') ? image : `${base}${image.replace(/^\//, '')}`) : defaultImage, Astro.site).toString();
 ---
 
 <title>{fullTitle}</title>

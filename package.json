@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node scripts/generate-sw.mjs",
+    "build": "node scripts/generate-icons.mjs && astro build && node scripts/generate-sw.mjs",
     "lint": "oxlint . --ignore-path=.gitignore",
     "test": "vitest run",
     "preview": "astro preview",
