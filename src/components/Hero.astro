@@ -28,12 +28,52 @@ const base = import.meta.env.BASE_URL;
     </div>
 
     <div class="relative animate-fade-up [animation-delay:150ms]">
-      <div class="aspect-[4/5] w-full max-w-sm justify-self-center overflow-hidden rounded-[2rem] border border-piedra-border/70 bg-gradient-to-br from-armuna-dark via-armuna to-piedra-400 shadow-2xl dark:border-noche-border sm:justify-self-end">
-        <div class="flex h-full flex-col items-center justify-center gap-6 p-8 text-center text-pergamino">
-          <svg viewBox="0 0 24 24" class="h-16 w-16 opacity-90" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3 3 8v3c0 6 4 8.5 9 10 5-1.5 9-4 9-10V8z"/><path d="M9 12.5l2 2 4-4.5"/></svg>
-          <p class="font-display text-sm tracking-[0.3em]">IGLESIA DE SAN PEDRO</p>
-          <p class="font-serif text-lg italic leading-snug opacity-90">"Piedra de Villamayor, memoria de siglos."</p>
-        </div>
+      <div class="aspect-[4/5] w-full max-w-sm justify-self-center overflow-hidden rounded-[2rem] border border-piedra-border/70 shadow-2xl dark:border-noche-border sm:justify-self-end">
+        <svg viewBox="0 0 400 500" class="h-full w-full" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Ilustración de la iglesia de San Pedro de Moriscos al atardecer">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#8C4A32"/>
+              <stop offset="55%" stop-color="#B88432"/>
+              <stop offset="100%" stop-color="#D4A359"/>
+            </linearGradient>
+            <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1E3F2E"/>
+              <stop offset="100%" stop-color="#14171A"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="500" fill="url(#sky)"/>
+          <circle cx="300" cy="120" r="46" fill="#FDFBF7" opacity="0.16"/>
+          <circle cx="300" cy="120" r="30" fill="#FDFBF7" opacity="0.25"/>
+
+          <path d="M0 300 Q100 270 200 300 T400 300 V500 H0 Z" fill="#734F1E" opacity="0.55"/>
+
+          <!-- church silhouette -->
+          <g fill="#14171A">
+            <rect x="150" y="150" width="55" height="190" />
+            <polygon points="150,150 177.5,110 205,150" />
+            <rect x="170" y="180" width="15" height="24" fill="#D4A359" opacity="0.7" />
+            <rect x="172" y="260" width="11" height="22" fill="#B88432" opacity="0.8" />
+            <rect x="115" y="270" width="170" height="70" />
+            <polygon points="110,270 200,225 290,270" />
+            <rect x="60" y="300" width="55" height="40" />
+            <rect x="285" y="300" width="55" height="40" />
+            <rect x="0" y="330" width="400" height="170" />
+          </g>
+          <rect x="172" y="118" width="11" height="20" fill="#14171A"/>
+          <path d="M177.5 108 v-14 M171 98 h13" stroke="#14171A" stroke-width="4" stroke-linecap="round"/>
+
+          <path d="M0 500 V420 Q60 400 120 420 T240 420 T400 415 V500Z" fill="url(#ground)"/>
+          <g stroke="#D4A359" stroke-width="2" opacity="0.6" stroke-linecap="round">
+            <path d="M40 470 v-30 M40 440 l-6 -10 M40 440 l6 -10"/>
+            <path d="M70 480 v-30 M70 450 l-6 -10 M70 450 l6 -10"/>
+            <path d="M340 475 v-30 M340 445 l-6 -10 M340 445 l6 -10"/>
+            <path d="M370 465 v-30 M370 435 l-6 -10 M370 435 l6 -10"/>
+          </g>
+        </svg>
+      </div>
+      <div class="mt-4 flex items-center justify-center gap-2 text-center sm:justify-end">
+        <span class="h-px w-8 bg-piedra-300"></span>
+        <p class="font-serif text-sm italic text-tinta/60 dark:text-pergamino-muted/60">"Piedra de Villamayor, memoria de siglos."</p>
       </div>
     </div>
   </div>

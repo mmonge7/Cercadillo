@@ -1,0 +1,84 @@
+---
+export interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+export interface Props {
+  headings: Heading[];
+}
+const { headings } = Astro.props;
+const items = headings.filter((h) => h.depth === 2);
+---
+
+{items.length > 0 && (
+  <div class="lg:hidden">
+    <button
+      id="mobile-toc-open"
+      type="button"
+      class="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full border border-piedra-300 bg-armuna-dark px-4 py-3 text-sm font-semibold text-pergamino shadow-lg shadow-armuna-dark/30 transition-transform active:scale-95 dark:border-piedra-500 dark:bg-piedra-500"
+      aria-haspopup="true"
+      aria-expanded="false"
+      aria-controls="mobile-toc-sheet"
+    >
+      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg>
+      Índice
+    </button>
+
+    <div
+      id="mobile-toc-sheet"
+      class="fixed inset-0 z-50 hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Índice del capítulo"
+    >
+      <div id="mobile-toc-backdrop" class="absolute inset-0 bg-noche/60 backdrop-blur-sm"></div>
+      <div class="absolute inset-x-0 bottom-0 max-h-[70vh] overflow-y-auto rounded-t-3xl border-t border-piedra-border/60 bg-pergamino p-6 pb-8 shadow-2xl dark:border-noche-border dark:bg-noche-surface">
+        <div class="mb-4 flex items-center justify-between">
+          <p class="kicker">En este capítulo</p>
+          <button id="mobile-toc-close" type="button" aria-label="Cerrar índice" class="rounded-full p-1.5 hover:bg-piedra-50 dark:hover:bg-noche">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <ul class="space-y-1">
+          {items.map((h) => (
+            <li>
+              <a
+                href={`#${h.slug}`}
+                data-toc-link
+                data-target={h.slug}
+                data-mobile-toc-link
+                class="block rounded-xl border-l-2 border-transparent px-3 py-2.5 text-base text-tinta/75 data-[active=true]:border-piedra-400 data-[active=true]:bg-piedra-50 data-[active=true]:text-armuna-dark dark:text-pergamino-muted/75 dark:data-[active=true]:bg-noche dark:data-[active=true]:text-piedra-200"
+              >
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+)}
+
+<script>
+  const openBtn = document.getElementById('mobile-toc-open');
+  const closeBtn = document.getElementById('mobile-toc-close');
+  const backdrop = document.getElementById('mobile-toc-backdrop');
+  const sheet = document.getElementById('mobile-toc-sheet');
+  const links = document.querySelectorAll('[data-mobile-toc-link]');
+
+  const setOpen = (open: boolean) => {
+    if (!sheet) return;
+    sheet.classList.toggle('hidden', !open);
+    openBtn?.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+
+  openBtn?.addEventListener('click', () => setOpen(true));
+  closeBtn?.addEventListener('click', () => setOpen(false));
+  backdrop?.addEventListener('click', () => setOpen(false));
+  links.forEach((l) => l.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+</script>
