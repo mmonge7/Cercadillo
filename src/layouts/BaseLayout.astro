@@ -5,6 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Sidebar from '../components/Sidebar.astro';
 import MobileDrawer from '../components/MobileDrawer.astro';
+import ScrollToTopButton from '../components/ScrollToTopButton';
 
 export interface Props {
   title: string;
@@ -78,6 +79,8 @@ const { title, description, image } = Astro.props;
       </main>
       <Footer />
     </div>
+
+    <ScrollToTopButton client:idle resetKey={Astro.url.pathname} />
 
     <div
       id="global-error-banner"
