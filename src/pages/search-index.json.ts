@@ -93,6 +93,15 @@ export const GET: APIRoute = async () => {
       badge: 'Página',
     },
     {
+      id: 'page-iglesia',
+      title: 'La Iglesia de San Pedro Apóstol',
+      excerpt: 'Historia, arquitectura y tesoros artísticos de la Iglesia Parroquial de San Pedro Apóstol, el monumento más importante de Moriscos.',
+      content:
+        'retablo rococó espadaña ábside mudéjar techumbres armaduras virgen peregrina lienzo barroco museo de bellas artes de salamanca cofradía catastro ensenada madoz catedral de la armuña',
+      href: '/iglesia',
+      badge: 'Página',
+    },
+    {
       id: 'page-sobre-la-web',
       title: 'Sobre la web',
       excerpt: 'Por qué existe esta web, de dónde procede la información, el escudo de Moriscos y cómo está construida.',

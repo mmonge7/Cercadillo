@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CounterGrid from '../components/CounterGrid.astro';
-import { BookOpen, Map, Users, BookMarked, Info, PartyPopper } from 'lucide-react';
+import { BookOpen, Map, Users, BookMarked, Info, PartyPopper, Church } from 'lucide-react';
 
 const base = import.meta.env.BASE_URL;
 
@@ -30,6 +30,12 @@ const sections = [
     icon: PartyPopper,
     title: 'Fiestas',
     description: 'La fiesta patronal de la Virgen de la Peregrina y el resto del calendario festivo del pueblo.',
+  },
+  {
+    href: 'iglesia',
+    icon: Church,
+    title: 'La Iglesia',
+    description: 'Historia, arquitectura y tesoros artísticos de la Iglesia de San Pedro Apóstol.',
   },
   {
     href: 'glosario',

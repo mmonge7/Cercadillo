@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const ficha = [
+  { label: 'Época', value: 'Siglos XII–XVI' },
+  { label: 'Estilo', value: 'Mampostería con detalles mudéjares y reforma renacentista' },
+  { label: 'Advocación', value: 'San Pedro Apóstol' },
+];
+
+const linea = [
+  { year: '1164', text: 'Primera mención documental del pueblo y de la parroquia («collationam Sancti Christofori de Morisco»), con 56 vecinos.' },
+  { year: '1265', text: 'La iglesia figura en el Libro de todos los préstamos de la Catedral de Salamanca, bajo «MORISCO de Valdevilloria».' },
+  { year: 'S. XVI', text: 'Gran reforma y ampliación estructural que le da la fisonomía que conserva hoy.' },
+  { year: 'S. XVIII', text: 'Se erige el retablo mayor en estilo rococó.' },
+  { year: '1752', text: 'El Catastro del Marqués de la Ensenada detalla sus propiedades, rentas y cargas eclesiásticas.' },
+  { year: '1845–1850', text: 'Pascual Madoz describe el casco urbano (unas 40 casas) articulado en torno al templo.' },
+  { year: '2016', text: 'Restauración científica del lienzo barroco de la Virgen Peregrina, el 6 de agosto.' },
+];
+---
+
+<BaseLayout
+  title="La Iglesia de San Pedro Apóstol"
+  description="Historia, arquitectura y tesoros artísticos de la Iglesia Parroquial de San Pedro Apóstol, el monumento más importante de Moriscos."
+>
+  <section class="container-editorial py-14 sm:py-20">
+    <p class="kicker">El monumento</p>
+    <h1 class="mt-2 max-w-2xl text-balance font-serif text-4xl font-bold text-tinta dark:text-pergamino-muted sm:text-5xl">
+      La Iglesia de San Pedro Apóstol
+    </h1>
+    <p class="mt-4 max-w-2xl text-tinta/70 dark:text-pergamino-muted/70">
+      Es el monumento más importante de Moriscos y el centro neurálgico de su vida comunitaria, religiosa e histórica,
+      con un registro documental que abarca más de 800 años.
+    </p>
+
+    <div class="mt-8 grid gap-4 sm:grid-cols-3">
+      {ficha.map((f) => (
+        <div class="rounded-2xl border border-piedra-border/60 bg-pergamino-muted p-5 dark:border-noche-border dark:bg-noche-surface">
+          <p class="font-display text-xs tracking-widest text-armuna dark:text-piedra-300">{f.label.toUpperCase()}</p>
+          <p class="mt-1 font-serif text-base font-semibold text-tinta dark:text-pergamino-muted">{f.value}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="prose-armuna mt-12 max-w-3xl">
+      <h2>Orígenes y cronología constructiva (siglos XII–XVI)</h2>
+      <p>
+        Aunque la estructura actual es fruto de reformas posteriores, la existencia del templo se remonta a los
+        primeros tiempos de la repoblación leonesa. El edificio está construido principalmente en mampostería y
+        sillarejo reforzado con cantería de <strong>Piedra de Villamayor</strong>, pero conserva en sus muros restos de
+        ladrillos y aparejos que corroboran su origen mudéjar o la intervención de maestros de obra mudéjares locales.
+        A finales de la Edad Media y a lo largo del siglo XVI, el templo sufrió una profunda reconstrucción y
+        ampliación estructural que le otorgó la fisonomía que conserva hoy.
+      </p>
+
+      <h2>Presencia en archivos y documentos históricos</h2>
+      <p>
+        La iglesia cuenta con un registro documental que abarca más de 800 años. La primera mención es el documento de
+        1164 (4 de octubre), una escritura de compraventa eclesiástica donde Pedro Juan vende Mozodiel al canónigo D.
+        Martín, y que cita la <em>«collationam Sancti Christofori de Morisco»</em>, con una comunidad de 56 vecinos y
+        la parroquia dedicada a San Pedro. En el <em>Libro de todos los préstamos</em> de la Catedral de Salamanca
+        (1265), la iglesia figura registrada con los derechos de cobro de diezmos y préstamos del cabildo catedralicio
+        bajo la denominación de <em>«MORISCO de Valdevilloria»</em>. El Catastro del Marqués de la Ensenada (1752)
+        detalla sus propiedades, rentas, diezmos y cargas eclesiásticas, y el Diccionario de Madoz (1845–1850)
+        describe el casco urbano articulado en torno al templo.
+      </p>
+
+      <h2>Arquitectura y estructura del templo</h2>
+      <p>
+        Templo de <strong>nave única</strong>, con muros sólidos y proporciones sobrias típicas de la arquitectura
+        rural de La Armuña. Posee un ábside fortalecido y una espadaña de cantería que remata el templo para albergar
+        las campanas. En su interior destacan las valiosas armaduras y techumbres de madera que cubren la capilla
+        mayor, la antecapilla y la nave central, muestra de la carpintería de lo blanco tradicional.
+      </p>
+
+      <h2>Tesoros artísticos en el interior</h2>
+      <p>
+        La cabecera del templo está presidida por un <strong>retablo mayor</strong> decorado en estilo rococó (siglo
+        XVIII). Durante siglos, las paredes y capillas albergaron un valioso conjunto de pinturas murales y tablas
+        renacentistas del siglo XVI que, por razones de seguridad, custodia y conservación museística, fueron
+        trasladadas a la capital provincial y hoy se exhiben en el <strong>Museo de Bellas Artes de Salamanca</strong>.
+        El templo custodia además la imagen de la patrona de Moriscos, la <strong>Virgen Peregrina</strong>, plasmada
+        en un relevante lienzo barroco.
+      </p>
+
+      <h2>Restauraciones y reformas recientes</h2>
+      <p>
+        El 6 de agosto de 2016, el lienzo barroco de la Virgen Peregrina fue objeto de una minuciosa restauración
+        científica realizada por el taller especializado Uffizzi Conservación y Restauración de Bienes Culturales. La
+        intervención fue posible gracias al mecenazgo de Antonio García Malmierca, las gestiones del párroco Hilario
+        Almeida y la investigación histórica de Miguel Blanco González.
+      </p>
+
+      <h2>Cofradías, curiosidades y vida comunitaria</h2>
+      <p>
+        La parroquia contó históricamente con la <strong>Cofradía del Santísimo Sacramento</strong> y la
+        <strong>Cofradía de la Virgen Peregrina</strong>, encargadas de la ayuda mutua, los entierros de vecinos y las
+        fiestas patronales. Al igual que ocurre con templos vecinos de la comarca, como la Iglesia de San Esteban en
+        Castellanos de Moriscos, su empaque le valió en la zona el apelativo popular de una de las
+        <em>«Catedrales de La Armuña»</em>. Durante las fiestas de la Virgen Peregrina, la iglesia es el punto de
+        partida del repique manual de campanas, las procesiones por el pueblo y la tradicional subasta de roscas de
+        pan bendito.
+      </p>
+    </div>
+
+    <div class="mt-16">
+      <p class="kicker">Cronología</p>
+      <h2 class="mt-2 font-serif text-2xl font-semibold text-armuna-dark dark:text-piedra-200">Línea del tiempo</h2>
+      <ol class="mt-6 max-w-3xl space-y-5 border-l-2 border-piedra-300 pl-6 dark:border-piedra-500">
+        {linea.map((h) => (
+          <li>
+            <span class="font-display text-sm font-bold text-armuna dark:text-piedra-300">{h.year}</span>
+            <p class="mt-1 text-sm leading-relaxed text-tinta/75 dark:text-pergamino-muted/75">{h.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+</BaseLayout>
