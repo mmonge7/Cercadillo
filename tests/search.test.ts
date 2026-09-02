@@ -1,82 +1,53 @@
 import { describe, expect, it } from 'vitest';
 import Fuse from 'fuse.js';
+import { searchIndex } from '../src/data/searchIndex';
+import { MIN_QUERY_LENGTH, SEARCH_OPTIONS } from '../src/utils/search';
+import { TABS } from '../src/utils/router';
 
-// Mismo shape que genera src/pages/search-index.json.ts y misma configuración
-// de Fuse que consume src/components/SearchModal.tsx.
-type SearchItem = { id: string; title: string; excerpt: string; content?: string; href: string; badge: string };
+const fuse = new Fuse(searchIndex, SEARCH_OPTIONS);
+const search = (q: string) => fuse.search(q).map((r) => r.item);
 
-const sampleIndex: SearchItem[] = [
-  {
-    id: 'glosario-maquila',
-    title: 'Maquila',
-    excerpt: 'Porción de grano o harina que el molinero cobraba por la molienda.',
-    href: '/glosario#maquila',
-    badge: 'Glosario · Medidas',
-  },
-  {
-    id: 'chapter-05-despoblado-ribas-flecha',
-    title: 'Cap. 5 · El Despoblado de Ribas y el Entorno de La Flecha',
-    excerpt: 'Fray Luis de León y el soto de La Flecha.',
-    content: 'El poeta agustino se refugió en el soto tras su encierro inquisitorial, a 7,7 km de Moriscos.',
-    href: '/libro/05-despoblado-ribas-flecha',
-    badge: 'Capítulo 5',
-  },
-  {
-    id: 'personaje-eugenio-blanco-carbayo',
-    title: 'Eugenio Blanco Carbayo',
-    excerpt: 'Escultor naïf de imaginería y sillas de costura',
-    href: '/genealogia#eugenio-blanco-carbayo',
-    badge: 'Personaje',
-  },
-];
-
-const MIN_QUERY_LENGTH = 3;
-
-function buildFuse(items: SearchItem[]) {
-  return new Fuse(items, {
-    keys: [
-      { name: 'title', weight: 0.5 },
-      { name: 'excerpt', weight: 0.3 },
-      { name: 'badge', weight: 0.1 },
-      { name: 'content', weight: 0.1 },
-    ],
-    threshold: 0.3,
-    ignoreLocation: true,
-    minMatchCharLength: 2,
-  });
-}
-
-describe('buscador global (Fuse.js)', () => {
-  it('encuentra un término del glosario por coincidencia exacta', () => {
-    const results = buildFuse(sampleIndex).search('maquila');
-    expect(results[0]?.item.id).toBe('glosario-maquila');
+describe('buscador global (Fuse.js sobre el índice real)', () => {
+  it('el índice apunta siempre a secciones que existen', () => {
+    expect(searchIndex.length).toBeGreaterThan(20);
+    for (const item of searchIndex) {
+      expect(TABS).toContain(item.tab);
+      expect(item.title.length).toBeGreaterThan(0);
+    }
   });
 
-  it('tolera una errata leve (búsqueda difusa)', () => {
-    const results = buildFuse(sampleIndex).search('maqila');
-    expect(results.some((r) => r.item.id === 'glosario-maquila')).toBe(true);
+  it('encuentra un término del glosario y sabe a qué ficha saltar', () => {
+    const [first] = search('maquila');
+    expect(first.tab).toBe('glosario');
+    expect(first.target).toBe('maquila');
   });
 
-  it('encuentra un capítulo por una palabra de su extracto, no solo del título', () => {
-    const results = buildFuse(sampleIndex).search('Fray Luis');
-    expect(results[0]?.item.id).toBe('chapter-05-despoblado-ribas-flecha');
+  it('tolera una errata leve', () => {
+    expect(search('maqila').some((r) => r.target === 'maquila')).toBe(true);
   });
 
-  it('encuentra un capítulo por una palabra solo presente en el cuerpo (content), no en título ni extracto', () => {
-    const results = buildFuse(sampleIndex).search('inquisitorial');
-    expect(results.some((r) => r.item.id === 'chapter-05-despoblado-ribas-flecha')).toBe(true);
+  it('encuentra un capítulo por su extracto y devuelve su slug', () => {
+    const results = search('Fray Luis');
+    expect(results.some((r) => r.tab === 'libro' && r.target === '05-despoblado-ribas-flecha')).toBe(true);
+  });
+
+  it('encuentra contenido que solo aparece en el cuerpo del capítulo', () => {
+    expect(search('penillanura').some((r) => r.tab === 'libro')).toBe(true);
+  });
+
+  it('encuentra un personaje de la genealogía', () => {
+    const results = search('Eugenio Blanco');
+    expect(results.some((r) => r.tab === 'genealogia' && r.target === 'eugenio-blanco-carbayo')).toBe(true);
   });
 
   it('no devuelve resultados para un término sin relación', () => {
-    const results = buildFuse(sampleIndex).search('xilófono intergaláctico');
-    expect(results).toHaveLength(0);
+    expect(search('xilófono intergaláctico')).toHaveLength(0);
   });
 
-  it('exige un mínimo de 3 letras antes de considerar que hay búsqueda', () => {
+  it('exige un mínimo de 2 letras antes de buscar', () => {
     const isTooShort = (q: string) => q.trim().length > 0 && q.trim().length < MIN_QUERY_LENGTH;
-    expect(isTooShort('ma')).toBe(true);
-    expect(isTooShort('maq')).toBe(false);
+    expect(isTooShort('m')).toBe(true);
+    expect(isTooShort('ma')).toBe(false);
     expect(isTooShort('')).toBe(false);
   });
 });
-

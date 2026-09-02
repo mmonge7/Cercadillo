@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -23,25 +23,38 @@ const markerIcon = (order: number, active: boolean) =>
 
 function FlyToActive({ lat, lng }: { lat: number; lng: number }) {
   const map = useMap();
-  map.flyTo([lat, lng], 14.5, { duration: 0.9 });
+  // En un efecto y no durante el render: mover el mapa es un efecto secundario.
+  useEffect(() => {
+    map.flyTo([lat, lng], 14.5, { duration: 0.9 });
+  }, [map, lat, lng]);
   return null;
 }
 
-export default function RouteMap() {
+export default function RouteMap({ target }: { target?: string | null }) {
   return (
     <ErrorBoundary label="el mapa interactivo">
-      <RouteMapInner />
+      <RouteMapInner target={target} />
     </ErrorBoundary>
   );
 }
 
-function RouteMapInner() {
-  const [activeId, setActiveId] = useState<string>(routePoints[0].id);
+function RouteMapInner({ target }: { target?: string | null }) {
+  const [activeId, setActiveId] = useState<string>(
+    () => routePoints.find((p) => p.id === target)?.id ?? routePoints[0].id,
+  );
+
+  useEffect(() => {
+    if (!target) return;
+    const point = routePoints.find((p) => p.id === target);
+    if (!point) return;
+    setActiveId(point.id);
+    document.getElementById(point.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [target]);
   const active = routePoints.find((p) => p.id === activeId) ?? routePoints[0];
   const positions = routePoints.map((p) => [p.lat, p.lng] as [number, number]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1.4fr,1fr]">
+    <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
       <div className="relative isolate z-0 h-[420px] overflow-hidden rounded-2xl border border-piedra-border/60 dark:border-noche-border sm:h-[520px]">
         <MapContainer
           center={[routePoints[0].lat, routePoints[0].lng]}

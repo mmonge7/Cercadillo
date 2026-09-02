@@ -10,11 +10,11 @@ Este documento es una guía **técnica** del proyecto: explica por qué se tomó
 
 ## 1. Qué es este proyecto y por qué existe
 
-Moriscos (Salamanca) contaba ya con un portal comunitario histórico, **"Morisqueños"** (moriscos.info, alojado en Google Sites), con noticias, genealogía y archivo fotográfico. Este proyecto nace como una **plataforma editorial moderna** que:
+Moriscos (Salamanca) contaba ya con un portal comunitario histórico, **«Morisqueños»** (moriscos.info, alojado en Google Sites), con noticias, genealogía y archivo fotográfico. Este proyecto nace como una **plataforma editorial moderna** que:
 
-- Reorganiza y presenta en formato de "libro digital" (11 capítulos) la historia, geografía y etnografía documentada del municipio.
-- Añade capas interactivas que el portal original no podía ofrecer: buscador instantáneo, mapa interactivo de una ruta senderista, tooltips de glosario dentro del texto, modo oscuro, tabla de contenidos con scroll-spy, etc.
-- Prioriza el rendimiento y la accesibilidad al ser un sitio **100% estático** (HTML pre-renderizado en build time), servido gratis desde GitHub Pages.
+- Reorganiza y presenta en formato de «libro digital» (11 capítulos) la historia, geografía y etnografía documentada del municipio.
+- Añade capas interactivas que el portal original no podía ofrecer: buscador instantáneo, mapa interactivo de una ruta senderista, glosario filtrable, cuenta atrás de las fiestas patronales.
+- Prioriza el rendimiento en móviles de gama media: la web se instala como aplicación, funciona sin conexión y cambiar de sección no descarga nada.
 
 El contenido histórico (capítulos, glosario, genealogía) procede de un documento de recopilación histórica proporcionado por el propietario del proyecto y se ha volcado a Markdown estructurado; no es contenido generado sin fuente.
 
@@ -24,23 +24,28 @@ El contenido histórico (capítulos, glosario, genealogía) procede de un docume
 
 | Pieza | Elección | Por qué |
 |---|---|---|
-| Framework | **Astro 7** | Genera HTML estático en build time ("islands architecture"): cero JavaScript por defecto, solo se hidratan los componentes interactivos que lo piden explícitamente (`client:*`). Ideal para un sitio mayoritariamente de contenido/lectura. |
-| Contenido | **Astro Content Layer API** (`content.config.ts` + `loader: glob(...)`) | Permite tratar los `.md` de capítulos, glosario y personajes como una base de datos tipada (Zod), con validación de frontmatter en build time y autogeneración de tipos TypeScript. |
-| Estilos | **Tailwind CSS v4** vía `@tailwindcss/vite` | Config "CSS-first" (`@theme` en `src/styles/global.css`), sin `tailwind.config.js`. Se eligió v4 en vez de v3 porque es la versión soportada activamente y compatible con Astro 7; v3 arrastraba vulnerabilidades de `@astrojs/tailwind` (paquete ya no compatible con Astro ≥6). |
-| Interactividad | **React 18**, solo en islas puntuales (`@astrojs/react`) | Astro permite mezclar frameworks; se usa React únicamente donde hace falta estado complejo (buscador, mapa), no en todo el sitio, para minimizar el JS que llega al navegador. |
-| Buscador | **Fuse.js** (búsqueda difusa en cliente) sobre un índice generado en build time | Se descartó Pagefind (requiere un paso extra de post-build y no funciona en `astro dev`) a favor de un endpoint JSON (`search-index.json.ts`) generado por Astro con los datos de las content collections, consumido por Fuse.js en el navegador. Más simple de mantener y depurar. |
+| Base | **Vite + React 19** (aplicación de una sola página) | Toda la web es un único documento HTML: navegar entre secciones es cambiar una variable de estado, sin peticiones de red ni reconstrucción del DOM. Es lo que hace que en el móvil no haya ni un salto al pulsar el menú. |
+| Contenido | **Markdown en `src/content/` compilado a módulos JS** (`scripts/build-content-data.mjs`) | Los `.md` siguen siendo la fuente de verdad editable a mano, pero en el build se convierten en `src/data/*.js`. Así el contenido viaja dentro del bundle y está disponible al instante y sin conexión, sin necesitar un CMS ni peticiones `fetch`. |
+| Estilos | **Tailwind CSS v4** vía `@tailwindcss/vite` | Configuración «CSS-first» (`@theme` en `src/index.css`), sin `tailwind.config.js`. |
+| Buscador | **Fuse.js** sobre un índice generado en el build | Búsqueda difusa (tolerante a erratas) en el navegador, sobre título, extracto y cuerpo del texto. Cada resultado sabe a qué sección y a qué elemento concreto tiene que saltar. |
 | Modal accesible | **Radix UI** (`@radix-ui/react-dialog`) | Primitivas de diálogo con foco atrapado, `aria-*` y cierre por teclado ya resueltos, en vez de reinventar accesibilidad a mano. |
-| Mapa | **Leaflet + react-leaflet** | Mapa interactivo ligero y sin coste de licencia (tiles de OpenStreetMap) para la Ruta Nocturna. |
-| Iconografía | **lucide-react** | Set de iconos SVG consistente, tree-shakeable. Se renderizan también dentro de componentes `.astro` **sin** directiva `client:*` (Astro los sirve como HTML/SVG estático en build time, cero JS extra) en la barra lateral, el drawer móvil y la cabecera. |
-| Tipografía | **@fontsource** (Cinzel, Playfair Display, Plus Jakarta Sans) autoalojada | Evita depender de Google Fonts en tiempo de ejecución (mejor privacidad y rendimiento, sin salto de layout por fuentes tardías). |
-| PWA | **vite-plugin-pwa** (manifest) + **workbox-build** (service worker, generado aparte en `scripts/generate-sw.mjs`) | Instalable en móvil/escritorio y funciona offline tras la primera visita. Se explica el porqué del script separado en la sección 9. |
-| Lint | **oxlint** | Linter en Rust, arranca en milisegundos incluso en un proyecto pequeño; cubre JS/TS/JSX sin necesitar configurar ESLint + plugins. |
-| Tests | **Vitest** | Mismo motor (Vite) que ya usa Astro por debajo, cero configuración adicional de bundler; tests unitarios rápidos para la lógica de navegación y búsqueda (ver `tests/`). |
-| Despliegue | **GitHub Actions → GitHub Pages** (`actions/deploy-pages`) | Gratuito, integrado en el propio repositorio, sin infraestructura que mantener. |
+| Mapa | **Leaflet + react-leaflet** | Mapa interactivo ligero y sin coste de licencia (tiles de OpenStreetMap) para la Ruta Nocturna. Se carga en un chunk aparte (`React.lazy`) porque solo hace falta en una sección. |
+| Iconografía | **lucide-react** | Set de iconos SVG consistente y *tree-shakeable*: solo entran en el bundle los iconos que se usan. |
+| Tipografía | **@fontsource** (Cinzel, Playfair Display, Plus Jakarta Sans) autoalojada | Evita depender de Google Fonts en tiempo de ejecución (mejor privacidad y rendimiento, y las fuentes también están disponibles sin conexión). |
+| PWA | **vite-plugin-pwa** (Workbox) | Instalable en móvil y escritorio, y funciona sin conexión tras la primera visita. |
+| Gestos | **react-swipeable** | Abrir y cerrar el menú lateral deslizando el dedo, con una zona muerta de 30 px en el borde para no pisar el gesto «atrás» de iOS. |
+| Lint | **oxlint** | Linter en Rust, arranca en milisegundos; cubre JS/TS/JSX sin configurar ESLint + plugins. |
+| Tests | **Vitest** | Mismo motor (Vite) que ya usa el proyecto, cero configuración de bundler; tests unitarios del enrutado, el buscador y la integridad del contenido (ver `tests/`). |
+| Despliegue | **GitHub Actions → GitHub Pages** | Gratuito, integrado en el propio repositorio, sin infraestructura que mantener. |
 
-### Por qué "arquitectura de islas" y no un SPA
+### Por qué una SPA y no un sitio multipágina
 
-El sitio es, en esencia, un libro con capítulos, un glosario y una galería: contenido que debe indexar bien en buscadores, cargar rápido y funcionar sin JavaScript si hace falta. Un SPA (Next.js/Vite en modo cliente, por ejemplo) enviaría un bundle de JS para renderizar texto que no cambia. Astro renderiza ese texto a HTML en build time y **solo** envía JavaScript para los cuatro puntos realmente interactivos: el buscador, el mapa, el menú móvil y los tooltips del glosario. El resto de la página (texto, imágenes, navegación) es HTML/CSS puro.
+Este proyecto **nació como sitio multipágina con Astro** y se migró a una SPA. El motivo es de uso real: en el móvil, cada cambio de sección implicaba pedir un documento nuevo, sincronizar el `<head>` y volver a montar el menú, lo que producía una micro-latencia perceptible al navegar. Con la SPA el documento no se destruye nunca y el cambio de sección es inmediato.
+
+Lo que se gana y lo que cuesta:
+
+- **Se gana**: navegación instantánea, un único bundle que se precachea entero (la web completa queda disponible sin conexión desde la primera visita) y un modelo mental más simple (un componente por sección, un estado de ruta).
+- **Se pierde**: el HTML pre-renderizado por página. El contenido lo pinta JavaScript, así que un rastreador que no ejecute JS solo ve la portada. Para un archivo local consultado por vecinos y descendientes se consideró un intercambio aceptable, pero es la limitación principal a tener en cuenta (ver sección 9).
 
 ---
 
@@ -48,203 +53,207 @@ El sitio es, en esencia, un libro con capítulos, un glosario y una galería: co
 
 ```
 Contenido en Markdown (src/content/*)
-        │  (Content Layer API, validado con Zod en content.config.ts)
+        │  scripts/build-content-data.mjs (se ejecuta en npm run dev y npm run build)
         ▼
-Páginas Astro (src/pages/*.astro)  ──renderizan en build time──▶  HTML estático (dist/)
+Módulos de datos (src/data/chaptersData.js, glosarioData.js, personajesData.js, searchIndex.js)
         │
-        ├─ Componentes Astro (.astro): se renderizan a HTML puro, sin runtime en el cliente
-        │   (Header, Footer, Hero, HitoCard, PersonCard, GlossaryCard, TableOfContents, MobileToc...)
+        ▼
+index.html + src/main.jsx ──▶ src/App.jsx
         │
-        └─ Islas React (.tsx) con directiva client:*: se hidratan en el navegador
-            (SearchModal → client:idle, RouteMap → client:only="react")
+        ├─ Estado de ruta: { tab, target }, sincronizado con el hash de la URL (src/utils/router.js)
+        ├─ Armazón fijo: cabecera, menú lateral, menú deslizante, pie y #main-scroll-container
+        └─ Una página React por sección (src/pages/*.jsx), importadas de forma estática
 
 GitHub Actions (push a main)
         │
-        ├─ npm ci && npm run build   → genera dist/ (sitio 100% estático)
+        ├─ npm ci && npm run build   → genera dist/ (HTML + bundle + service worker)
         └─ actions/deploy-pages      → publica dist/ en GitHub Pages
 ```
 
-Puntos clave del modelo de renderizado:
+Puntos clave del modelo:
 
-- **`output: "static"` (por defecto en Astro)**: todas las rutas —incluidas las dinámicas `libro/[slug]`— se resuelven en build time mediante `getStaticPaths()`, generando un `.html` por cada capítulo. No hay servidor Node en producción; GitHub Pages solo sirve ficheros estáticos.
-- **Islas React** (`client:idle`, `client:only="react"`): el JS de React solo se descarga y ejecuta para esos componentes puntuales, nunca para el resto de la página.
-- **`<script>` inline en componentes `.astro`**: para interactividad sencilla (abrir/cerrar el menú móvil, el ToC móvil, el tema claro/oscuro, la barra de progreso de lectura) se usa JavaScript vanilla sin frameworks, porque no necesita gestión de estado compleja y así se evita cargar React para algo trivial.
+- **Armazón fijo de altura `100dvh`**: `html`, `body` y `#root` tienen `overflow: hidden`, y todo el scroll ocurre dentro de `#main-scroll-container`. Así la cabecera y el menú nunca se mueven, y las áreas seguras del iPhone (`env(safe-area-inset-*)`) se respetan en cabecera, menú, pie y botón de «volver arriba».
+- **Sin *lazy loading* de páginas** (salvo el mapa): las 12 secciones se importan estáticamente, de modo que cambiar de sección no espera ninguna descarga. El mapa de Leaflet sí va en un chunk aparte porque pesa ~160 kB y solo se usa en una sección.
+- **Rutas por hash**: la navegación es estado de React, pero se refleja en la URL (`#/libro/05-despoblado-ribas-flecha`). Eso mantiene funcionando el botón «atrás» del móvil, los enlaces compartidos y los marcadores del navegador, sin coste de rendimiento.
+- **`public/404.html`** traduce las direcciones del antiguo sitio multipágina (`/moriscos-wiki/glosario/`) a su ruta equivalente (`#/glosario`), para que los enlaces ya compartidos o indexados sigan llevando al sitio correcto.
 
 ---
 
 ## 4. Estructura de carpetas
 
 ```
-├── astro.config.mjs        Configuración de Astro: integraciones (react, sitemap), Vite (plugin de Tailwind),
-│                            site/base para GitHub Pages (ver sección 7).
+├── index.html              Documento raíz: meta tags, Open Graph, iconos y el <div id="root">.
+├── vite.config.js          Configuración de Vite: React, Tailwind, base de GitHub Pages y PWA (Workbox).
 ├── src/
-│   ├── content.config.ts   Definición de las 3 "content collections" (chapters, glosario, personajes) y su
-│   │                       esquema Zod. Usa el Content Layer API (loader: glob) introducido en Astro 5.
+│   ├── main.jsx            Punto de entrada: monta App y registra el service worker.
+│   ├── App.jsx             Armazón + enrutado: estado { tab, target }, cabeceras, menús, scroll y pie.
+│   ├── index.css           Tailwind v4 «CSS-first»: @theme con la paleta y tipografías, variante dark,
+│   │                       y las clases reutilizables (.card-editorial, .kicker, .prose-chapter...).
 │   ├── content/
 │   │   ├── chapters/       11 ficheros .md, uno por capítulo del libro (ver sección 5).
 │   │   ├── glosario/       13 ficheros .md, uno por término etnográfico.
 │   │   └── personajes/     3 ficheros .md, uno por paisano ilustre.
 │   ├── data/
-│   │   ├── site.ts         Datos estructurados en TypeScript (no Markdown) porque son listas cortas y muy
-│   │   │                   ligadas a la UI: contadores de la home, hitos históricos destacados, enlaces de nav.
-│   │   └── route.ts        Los 8 puntos de la Ruta Nocturna (coordenadas lat/lng, distancia, descripción, cita).
-│   ├── layouts/
-│   │   └── BaseLayout.astro  <html> raíz: head, meta tags, manifest/SW, script anti-flash de tema oscuro,
-│   │                          monta Sidebar + MobileDrawer + Header + Footer alrededor del <slot/>.
+│   │   ├── chaptersData.js    GENERADOS a partir de src/content por scripts/build-content-data.mjs.
+│   │   ├── glosarioData.js    No editar a mano: se sobrescriben en cada build.
+│   │   ├── personajesData.js
+│   │   ├── searchIndex.js
+│   │   ├── references.ts   Fuentes documentales de la sección Referencias (escritas a mano).
+│   │   ├── route.ts        Los 8 hitos de la Ruta Nocturna (lat/lng, distancia, descripción, cita).
+│   │   └── site.ts         Contadores destacados de la portada.
+│   ├── pages/              Una sección de la web por fichero .jsx (ver sección 5.2).
 │   ├── components/         Ver detalle en la sección 6.
-│   ├── pages/               Ver detalle en la sección 5 (cada .astro = una ruta del sitio).
-│   ├── utils/
-│   │   └── nav.ts          `isActiveHref()`: única fuente de verdad para saber qué enlace de navegación
-│   │                       está activo, compartida por Header, Sidebar y MobileDrawer (con test en tests/).
-│   └── styles/
-│       └── global.css      Tailwind v4 "CSS-first": @theme con la paleta de color, tipografías, keyframes,
-│                           alias de variables CSS planas (--ink, --primary, --accent...) y clases de
-│                           utilidad reutilizables (@layer components: .btn-primary, .brand-panel...).
-├── public/                 Estáticos servidos tal cual: favicon, robots.txt, public/icons/ (iconos PWA
-│                           192/512/maskable generados con sharp a partir de icon-master.svg).
+│   └── utils/
+│       ├── router.js       parseHash/buildHash: única fuente de verdad de las rutas (con test).
+│       ├── search.js       Configuración de Fuse.js compartida por el buscador y sus tests.
+│       ├── markdownBlocks.js  Analizador del markdown, compartido por la app y el script de contenido.
+│       └── slugify.js      Genera las anclas de los apartados de cada capítulo.
+├── public/                 Estáticos servidos tal cual: favicon, robots.txt, 404.html de compatibilidad,
+│                           imágenes del escudo e iconos PWA (generados con sharp desde icon-master.svg).
 ├── scripts/
-│   └── generate-sw.mjs    Genera dist/sw.js con workbox-build tras `astro build` (ver sección 9).
-├── tests/                 Tests unitarios con Vitest (navegación activa, buscador con Fuse.js).
-├── .github/workflows/
-│   └── deploy.yml          Pipeline de CI/CD (build + deploy a GitHub Pages) en cada push a main.
+│   ├── build-content-data.mjs  Markdown → módulos JS + índice del buscador.
+│   └── generate-icons.mjs      Iconos PWA y banner de redes a partir del escudo oficial.
+├── tests/                  Tests unitarios con Vitest (enrutado, buscador, integridad del contenido).
+├── .github/workflows/      CI/CD: despliegue a GitHub Pages, backup diario y merge main → develop.
 └── dist/                   Salida del build (generada, no versionada).
 ```
 
 ---
 
-## 5. Contenido y páginas: qué hay en cada sección
+## 5. Contenido y secciones
 
 ### 5.1. Modelo de contenido (`src/content/`)
 
-Las tres colecciones se definen y validan en `src/content.config.ts`:
-
-- **`chapters`** — frontmatter: `number`, `title`, `dek` (subtítulo/resumen), `order`, `readingMinutes`. El cuerpo Markdown usa `##` para las secciones que alimentan la tabla de contenidos (ver `TableOfContents.astro`) y `###` para subsecciones que no aparecen en el índice.
-- **`glosario`** — frontmatter: `term`, `category` (enum: `Aperos | Naturaleza | Medidas | Topónimos | Oficios | Cultivos`), `short` (una frase). El cuerpo Markdown es la definición extendida.
+- **`chapters`** — frontmatter: `number`, `title`, `dek` (subtítulo/resumen), `order`, `readingMinutes`. El cuerpo Markdown usa `##` para los apartados que alimentan el índice del capítulo y `###` para subsecciones que no aparecen en ese índice.
+- **`glosario`** — frontmatter: `term`, `category` (`Aperos | Naturaleza | Medidas | Topónimos | Oficios | Cultivos`), `short` (una frase). El cuerpo Markdown es la definición extendida.
 - **`personajes`** — frontmatter: `name`, `years`, `role`, `tag`. El cuerpo Markdown es la biografía.
 
-Cada entrada tiene un `id` derivado del nombre de fichero (p. ej. `05-despoblado-ribas-flecha.md` → id `05-despoblado-ribas-flecha`), que se usa para construir las URLs (`/libro/05-despoblado-ribas-flecha`) y los anclajes de glosario/personajes (`/glosario#maquila`).
+El nombre del fichero es el identificador (`05-despoblado-ribas-flecha.md` → `05-despoblado-ribas-flecha`) y es lo que se usa en las rutas (`#/libro/05-despoblado-ribas-flecha`) y en los saltos del buscador (`#/glosario/maquila`).
 
-### 5.2. Páginas (`src/pages/`) — una ruta por fichero
+Del markdown se soporta el subconjunto que realmente usan los textos: encabezados, párrafos, listas con y sin numerar, negrita, cursiva y enlaces. Se analiza con `src/utils/markdownBlocks.js` (~70 líneas) en vez de con una librería, para no meter un parser completo en el bundle. Si algún día el contenido necesitara tablas, citas o código, hay que ampliar ese fichero (hay un test que avisa si aparece sintaxis no soportada).
+
+### 5.2. Secciones (`src/pages/`)
 
 | Ruta | Fichero | Contenido |
 |---|---|---|
-| `/` | `index.astro` | Portada: hero con ilustración SVG propia, contadores clave (superficie, altitud del vértice geodésico, distancia a Salamanca, población), 4 tarjetas de "hitos históricos", vista previa de los primeros 6 capítulos, llamada a la Ruta Nocturna. |
-| `/libro` | `libro/index.astro` | Índice completo de los 11 capítulos, con número, título, resumen y minutos de lectura estimados. |
-| `/libro/[slug]` | `libro/[slug].astro` | Lector de un capítulo: barra de progreso de lectura, tabla de contenidos (fija en escritorio, hoja flotante en móvil), tooltips de glosario en el propio texto, navegación al capítulo anterior/siguiente. Se genera una página HTML por cada uno de los 11 capítulos vía `getStaticPaths()`. |
-| `/ruta-nocturna` | `ruta-nocturna.astro` | Mapa interactivo (Leaflet) con los 8 hitos de la ruta senderista Moriscos → La Flecha (7,7 km), sincronizado con una lista lateral clicable. |
-| `/genealogia` | `genealogia.astro` | Galería de los 3 "paisanos ilustres" documentados, más una llamada a la acción para el Bosque Genealógico real (geneaweb.org/moriscos, registros desde 1645). |
-| `/glosario` | `glosario.astro` | Los 13 términos etnográficos, con filtro por categoría (botones que muestran/ocultan tarjetas por `data-category`, sin recarga de página). |
-| `/404` | `404.astro` | Página de error personalizada. |
-| `/search-index.json` | `search-index.json.ts` | **Endpoint, no página visible.** Un `APIRoute` de Astro que en build time lee las tres content collections + `route.ts` y genera un array JSON `{id, title, excerpt, href, badge}` con todo el contenido buscable. Lo consume `SearchModal.tsx` en el cliente. |
+| `#/` | `InicioPage.jsx` | Portada: presentación del pueblo, contadores clave (primera mención, vértice geodésico, distancia a Salamanca, superficie) y cuadrícula con las 11 secciones. |
+| `#/historia` | `HistoriaPage.jsx` | Eje cronológico en cinco eras, de la repoblación medieval a la actualidad, con enlaces a la sección que amplía cada hito. |
+| `#/lugares` | `LugaresPage.jsx` | Localizaciones emblemáticas, parajes y cotas del término, y lugares desaparecidos o transformados. |
+| `#/fiestas` | `FiestasPage.jsx` | Cuenta atrás de la Fiesta Mayor (calculada sobre el jueves anterior al primer domingo de agosto), programa de festejos, ritos propios y calendario festivo anual. |
+| `#/escudo` | `EscudoPage.jsx` | Significado de cada elemento del escudo heráldico, con visor ampliado de la imagen. |
+| `#/iglesia` | `IglesiaPage.jsx` | Historia, arquitectura y tesoros artísticos de la Iglesia de San Pedro Apóstol, con su línea del tiempo. |
+| `#/libro` y `#/libro/<slug>` | `LibroPage.jsx` | Índice de los 11 capítulos y lector de capítulo: barra de progreso de lectura, índice de apartados (fijo en escritorio, desplegable en móvil) y navegación al capítulo anterior o siguiente. |
+| `#/ruta-nocturna` | `RutaNocturnaPage.jsx` | Mapa interactivo (Leaflet) con los 8 hitos de la ruta Moriscos → La Flecha (7,7 km), sincronizado con la lista lateral. |
+| `#/genealogia` | `GenealogiaPage.jsx` | El Bosque Genealógico, los paisanos ilustres documentados y cómo incorporarse al archivo. |
+| `#/glosario` | `GlosarioPage.jsx` | Los 13 términos etnográficos, con buscador propio y filtro por categoría. |
+| `#/referencias` | `ReferenciasPage.jsx` | Fuentes documentales con filtro por tipo, aportación de cada una y enlace al archivo original. |
+| `#/sobre-la-web` | `SobrePage.jsx` | Por qué existe el proyecto, de dónde sale la información, contacto, código abierto y aviso de proyecto no oficial. |
 
-### 5.3. Datos estructurados (`src/data/`)
-
-- **`site.ts`**: `counters` (los 4 datos destacados de la home), `hitos` (las 4 tarjetas de hitos históricos con enlace al capítulo correspondiente) y `navLinks` (los enlaces del menú, usados tanto en `Header.astro` como en `Footer.astro` para no duplicar la lista).
-- **`route.ts`**: array tipado `RoutePoint[]` con los 8 puntos de la Ruta Nocturna (id, orden, nombre, lat/lng, distancia acumulada en km, descripción, cita opcional). Es la única fuente de verdad tanto para el mapa (`RouteMap.tsx`) como para el índice de búsqueda.
-
-Estos dos ficheros están en TypeScript (no en Markdown/content collections) porque son estructuras pequeñas, muy acopladas a props de componentes concretos, y se benefician del tipado estático directo en vez de pasar por un esquema Zod.
+Cada página recibe dos props: `onNavigate(tab, target)` para navegar y `target` con el elemento concreto al que debe saltar (un capítulo, un término del glosario, un personaje, una fuente o un hito del mapa).
 
 ---
 
-## 6. Componentes: qué hace cada uno y por qué existe
+## 6. Componentes
 
-### Astro (renderizados a HTML, sin JS de framework)
-
-- **`Sidebar.astro`** — Barra lateral fija de escritorio (`lg:block`, ~230px, oculta por debajo de `lg`). Fondo `.brand-panel` (degradado tierra→verde con textura de líneas repetida, ver sección 7), logo, y la navegación principal con un icono `lucide-react` por sección (renderizado sin `client:*`, o sea, HTML/SVG estático). El enlace activo se calcula con `isActiveHref()` (`src/utils/nav.ts`).
-- **`Header.astro`** — Barra superior. En **móvil** es `fixed` a todo el ancho, altura `var(--mobile-topbar)` (con `env(safe-area-inset-top)`), con botón de menú (abre `MobileDrawer`), logo y buscador/tema. En **escritorio** es `sticky` dentro de la columna de contenido (a la derecha del Sidebar), más baja (68px), y en vez del logo muestra el nombre de la sección activa.
-- **`MobileDrawer.astro`** — Panel que se desliza **desde la izquierda** (mismo `.brand-panel` que el Sidebar) por debajo de `lg`, con la misma navegación e iconos. Controlado por un `<script>` inline (abrir/cerrar, cerrar con Escape o clic fuera).
-- **`ThemeToggle.astro`** — Alterna la clase `dark` en `<html>` y persiste la preferencia en `localStorage`. El script anti-parpadeo que lee esa preferencia **antes** del primer render vive en `BaseLayout.astro` (evita el "flash" de tema claro al cargar en modo oscuro).
-- **`MobileToc.astro`** — Botón flotante "Índice" + hoja inferior, visible solo en móvil (`lg:hidden`), para suplir la tabla de contenidos que en escritorio va fija en la barra lateral. Reutiliza los mismos atributos `data-toc-link`/`data-target` que `TableOfContents.astro`, de modo que un único `IntersectionObserver` mantiene resaltado el enlace activo en ambas versiones (móvil y escritorio) a la vez.
-- **`TableOfContents.astro`** — Genera la lista de enlaces a partir de los encabezados `##` (`depth === 2`) que Astro extrae automáticamente del Markdown del capítulo, y usa un `IntersectionObserver` para resaltar la sección visible mientras se hace scroll (*scroll-spy*).
-- **`ReadingProgress.astro`** — Barra fija superior cuyo ancho se actualiza en cada evento de `scroll` según el porcentaje de la página leída.
-- **`GlossaryTooltips.astro`** — Se incluye solo en `libro/[slug].astro`. En el cliente recorre el DOM del artículo con un `TreeWalker`, localiza la primera aparición de cada término del glosario dentro del texto y la envuelve en un `<button>` con un tooltip flotante (posicionado con `getBoundingClientRect`) que muestra la definición corta y un enlace al glosario completo. Distingue estado "previsualización al pasar el ratón" de "fijado al hacer clic" para que un tap en móvil no cierre el tooltip que acaba de abrir.
-- **`Footer.astro`** — También con fondo `.brand-panel`. Incluye los enlaces de navegación, contacto, dos iconos circulares de redes (LinkedIn/GitHub, SVG inline, `target="_blank" rel="noopener noreferrer"`), el crédito de autoría y el copyright, con `padding-bottom` sumando `env(safe-area-inset-bottom)`.
-- **`Hero.astro`**, **`CounterGrid.astro`**, **`HitoCard.astro`**, **`PersonCard.astro`**, **`GlossaryCard.astro`**, **`SEO.astro`** — Componentes de presentación puros (reciben props, pintan HTML/Tailwind). `SEO.astro` centraliza las etiquetas `<title>`, `og:*` y `twitter:*` para que cada página solo tenga que pasar `title`/`description`/`image`.
-
-### React (islas hidratadas en el cliente)
-
-- **`SearchModal.tsx`** (`client:idle`, se hidrata cuando el navegador está inactivo, no bloquea la carga inicial) — Diálogo de Radix UI con atajo `⌘K`/`Ctrl K`. Al abrirse por primera vez hace `fetch('/search-index.json')` y filtra los resultados con **Fuse.js** (búsqueda difusa, tolerante a erratas) sobre `title`, `excerpt` y `badge`. Resalta la coincidencia de texto en los resultados.
-- **`RouteMap.tsx`** (`client:only="react"`, no se intenta renderizar en el servidor porque Leaflet necesita `window`/`document`) — Mapa Leaflet con tiles de OpenStreetMap, una polilínea que une los 8 puntos de `route.ts` y marcadores cuyo icono cambia de tamaño/color según estén activos; al seleccionar un punto de la lista lateral, el mapa hace `flyTo` hasta él.
+- **`Nav.jsx`** — Exporta las tres formas de la navegación y la lista `navItems`, única fuente de verdad de las secciones: `DesktopTopBar` (marca y buscador, `lg` en adelante), `Sidebar` (menú fijo de escritorio) y `Nav` con su `Drawer` (cabecera móvil y menú deslizante de 300 ms, que se cierra con Escape, al tocar fuera o deslizando).
+- **`SearchModal.tsx`** — Diálogo de Radix UI con atajo `⌘K`/`Ctrl K`. Filtra el índice generado en el build con Fuse.js y, al elegir un resultado, navega a la sección **y** al elemento concreto, que queda resaltado con un pulso dorado (clase `.search-target`).
+- **`Markdown.jsx`** — Convierte el markdown del contenido en elementos reales de React (negritas, cursivas, listas, enlaces) y pone un `id` a cada encabezado `##` para poder enlazarlo desde el índice del capítulo.
+- **`ReadingProgress.jsx`** — Barra fina pegada al borde superior del área de scroll que indica cuánto queda por leer del capítulo abierto.
+- **`RouteMap.tsx`** — Mapa Leaflet con tiles de OpenStreetMap, la polilínea que une los 8 hitos de `route.ts` y marcadores numerados que cambian de tamaño y color según el hito activo; al seleccionar uno, el mapa hace `flyTo`. Se carga bajo demanda desde `RutaNocturnaPage`.
+- **`VisitorStatsModal.tsx`** — Registro de visitas de los últimos 30 días **guardado solo en `localStorage`**: la web no envía nada a ningún servidor ni usa analítica de terceros, así que las cifras son de ese dispositivo.
+- **`ScrollToTopButton.jsx`** — Botón flotante que aparece a partir de 400 px de scroll dentro de `#main-scroll-container`, respetando el área segura inferior.
+- **`Footer.jsx`** — Contacto (email, LinkedIn, GitHub), enlaces a las secciones principales y autoría, con `padding-bottom` que suma `env(safe-area-inset-bottom)`.
+- **`ErrorBoundary.tsx`** — Aísla los fallos: si una sección o el mapa lanzan un error, se muestra un aviso en su lugar y el resto de la web sigue usable. Envuelve la aplicación completa, cada sección y las islas delicadas (buscador, mapa).
 
 ---
 
 ## 7. Diseño y sistema visual
 
-Definido íntegramente en `src/styles/global.css` mediante el bloque `@theme` de Tailwind v4 (sin fichero de configuración JS):
+Definido íntegramente en `src/index.css` con el bloque `@theme` de Tailwind v4 (sin fichero de configuración JS):
 
-- **Paleta**: tonos inspirados en el paisaje y el patrimonio local — `piedra` (arenisca de Villamayor), `armuña` (tierra), `soto` (verde ribera del Tormes), `pergamino` (modo claro) y `noche` (modo oscuro). Además, `:root` expone un **alias plano** de las mismas variables con nomenclatura genérica (`--ink`, `--paper`, `--primary`, `--primary-deep`, `--accent`, `--forest`, `--gold`, `--line`, `--font-display`, `--font-body`, `--mobile-topbar`) para mantener coherencia de patrón con otros proyectos del autor y para poder usarlas como valores CSS directos (no solo como clases de Tailwind).
-- **Tipografía**: `Cinzel` para elementos de marca/kicker, `Playfair Display` para titulares editoriales, `Plus Jakarta Sans` para el cuerpo de texto.
-- **Modo oscuro**: basado en clase (`darkMode: 'class'` vía `@custom-variant dark`), alternado por `ThemeToggle.astro`.
-- **`.brand-panel`**: degradado tierra→verde (`--primary` → `--primary-deep` → `--forest`) con una textura sutil de líneas diagonales repetidas al 6% de opacidad; lo comparten `Sidebar.astro`, `MobileDrawer.astro` y `Footer.astro` para dar continuidad visual entre cabecera, menú y pie.
-- **Utilidades reutilizables** en `@layer components`: `.btn-primary`, `.btn-secondary`, `.kicker`, `.container-editorial`, `.nav-item` (enlaces de navegación con estado activo), `.prose-armuna` (tipografía larga de los capítulos, basada en `@tailwindcss/typography`).
-- **Resaltado al navegar desde el buscador**: se usa el pseudo-selector **CSS nativo `:target`** (no JavaScript) para animar con un pulso dorado el elemento cuyo `id` coincide con el `#hash` de la URL. Es más robusto que temporizar la animación en JS porque el navegador lo reevalúa automáticamente contra el DOM en tiempo real, incluso si el elemento se monta más tarde (p. ej. un marcador dentro de la isla React del mapa).
-
----
-
-## 8. SEO, accesibilidad y rendimiento
-
-- **`@astrojs/sitemap`** genera `sitemap-index.xml` automáticamente en cada build a partir de las rutas estáticas.
-- **`SEO.astro`** añade `canonical`, Open Graph y Twitter Cards en todas las páginas.
-- **`public/robots.txt`** apunta al sitemap generado.
-- Fuentes autoalojadas (`@fontsource/*`) para evitar peticiones externas y parpadeo de texto sin estilo (FOUT/FOIT).
-- Accesibilidad: enlace "Saltar al contenido principal", `aria-*` en botones y diálogos, foco gestionado por Radix UI en el buscador, contraste comprobado en ambos temas.
-- Al ser un sitio 100% estático, no hay tiempo de respuesta de servidor/base de datos: el HTML ya viene generado y GitHub Pages lo sirve por CDN.
-- **PWA instalable y offline**: `manifest.webmanifest` (nombre, iconos 192/512/maskable, `theme_color`/`background_color` acordes a la paleta) + `sw.js` (workbox) precachean HTML/CSS/JS/fuentes/iconos; las imágenes de contenido futuras se sirven con estrategia `CacheFirst` en vez de ir al precache inicial, para no disparar el peso de la primera visita si algún día hay una galería de fotos pesada.
+- **Paleta**: tonos inspirados en el paisaje y el patrimonio local — `piedra` (arenisca de Villamayor), `armuna` (tierra y trigo), `soto` (ribera del Tormes), `pergamino` (texto claro) y `noche` (fondos). El sitio es siempre oscuro: la clase `dark` va fija en el `<html>` y la variante se define con `@custom-variant dark (&:where(.dark, .dark *))`.
+- **Tipografía**: `Cinzel` para marca y titulares, `Playfair Display` como serif de apoyo y `Plus Jakarta Sans` para el cuerpo de texto.
+- **Clases reutilizables**: `.container-editorial` (ancho de lectura), `.card-editorial` (tarjeta con borde y desenfoque), `.kicker`, `.btn-primary`, `.btn-secondary`, `.nav-item`, `.prose-chapter` (texto largo de capítulos, sobre `@tailwindcss/typography`), `.brand-panel` (pie con la textura del trigal), `.search-target` (pulso dorado del resultado buscado) y `.dialog-overlay`/`.dialog-content` (aparición de los diálogos).
+- **Animación de entrada**: una única animación GPU de 0,18 s al montar cada sección (`main > div > *`), anulada si el sistema pide reducir el movimiento.
+- Los paneles internos de Leaflet se fuerzan a `z-index` bajo para que el mapa no se superponga nunca al menú lateral ni a los diálogos.
 
 ---
 
-## 9. Despliegue y CI/CD
+## 8. Accesibilidad y rendimiento
+
+- Enlace «Saltar al contenido principal», `aria-*` en botones y diálogos, foco gestionado por Radix UI en el buscador, y el menú deslizante pasa a `visibility: hidden` al cerrarse para no quedar en el orden de tabulación.
+- Se respeta el zoom del navegador: el `<meta name="viewport">` no lleva `user-scalable=no` ni `maximum-scale`, así que se puede ampliar con los dedos; sí lleva `viewport-fit=cover`, necesario para que funcionen las áreas seguras del iPhone.
+- `prefers-reduced-motion` anula las animaciones de entrada y de los diálogos.
+- Fuentes autoalojadas para evitar peticiones externas y parpadeo de texto sin estilo.
+- **Pesos del build** (aproximados, gzip): bundle principal ~159 kB, CSS ~24 kB, mapa ~48 kB en un chunk aparte que solo se descarga al abrir la Ruta Nocturna.
+- **PWA instalable y sin conexión**: `manifest.webmanifest` (iconos 192/512/maskable) y un service worker de Workbox que precachea HTML, CSS, JS, tipografías (solo `woff2`, para no duplicar peso) e imágenes.
+
+---
+
+## 9. SEO: limitación conocida
+
+Al ser una SPA sin renderizado en servidor, los buscadores que no ejecutan JavaScript solo ven el HTML de `index.html`: título, descripción, Open Graph e imagen de la portada. El contenido de los capítulos y del glosario **no** se sirve como HTML pre-renderizado.
+
+Mitigaciones activas:
+
+- `index.html` lleva título, descripción, Open Graph y Twitter Cards, así que al compartir cualquier enlace se ve una tarjeta correcta.
+- `public/404.html` redirige las direcciones antiguas del sitio multipágina a la ruta equivalente, de modo que ningún enlace previamente compartido o indexado se rompe.
+
+Si en el futuro la visibilidad en buscadores pasa a ser importante, la vía natural es pre-renderizar las secciones en el build (por ejemplo con `vite-plugin-ssr`/`vite-plugin-prerender`) manteniendo el mismo código de las páginas.
+
+---
+
+## 10. Despliegue y CI/CD
 
 El pipeline vive en `.github/workflows/deploy.yml` y se dispara en cada `push` a `main` (o manualmente vía `workflow_dispatch`):
 
-1. `actions/checkout` + `actions/setup-node` (**Node 22**, requisito mínimo de Astro 7; Node 20 falla el build).
+1. `actions/checkout` + `actions/setup-node` (**Node 22**).
 2. `npm ci` (instalación reproducible a partir de `package-lock.json`).
-3. `npm run build` → ejecuta `astro build` **y luego** `node scripts/generate-sw.mjs`.
+3. `npm run build` → genera el contenido desde Markdown, los iconos PWA y el bundle de Vite con el service worker.
 4. `actions/configure-pages` + `actions/upload-pages-artifact` + `actions/deploy-pages` → publica `dist/` como GitHub Pages.
 
-### Por qué el service worker se genera en un script aparte
+Detalle importante: `base` está fijado a `/moriscos-wiki/` en `vite.config.js` (con barra final) porque el sitio se sirve en un subdirectorio de GitHub Pages. **Si `base` no termina en `/`, las concatenaciones de rutas se rompen.**
 
-`vite-plugin-pwa` (estrategia `generateSW`) engancha su generación del SW al ciclo de vida de un build de Vite normal de una sola pasada. Astro, en cambio, ejecuta **varias pasadas de Vite** internamente al construir un sitio estático (una para los endpoints/páginas, otra para los assets del cliente...), y ese desfase hace que el hook del plugin nunca llegue a disparar el `generateSW` sobre el `dist/` final (se comprobó en este proyecto: el plugin sí generaba `manifest.webmanifest`, pero **no** `sw.js`). La solución robusta, en vez de pelear con el orden de hooks, es dejar que el plugin de Vite solo emita el manifest, y generar el service worker **después**, con una llamada directa a `generateSW()` de `workbox-build` (`scripts/generate-sw.mjs`) apuntando al `dist/` ya completo. Es el mismo enfoque que usaba la comunidad antes de que existiera `@vite-pwa/astro` (que a día de hoy tampoco soporta todavía Astro 7).
-
-Detalles de configuración importantes en `astro.config.mjs`:
-
-- `site` y `base` están fijados a `https://pcresp0.github.io` y `/moriscos-wiki/` (con barra final). Todas las rutas internas se construyen con `import.meta.env.BASE_URL`; **si `base` no termina en `/`, las concatenaciones de rutas se rompen** (bug ya corregido durante el desarrollo).
-- El repositorio de GitHub Pages está configurado con `build_type: workflow` (el origen del sitio es el artefacto de Actions, no una rama `gh-pages` ni la carpeta `/docs`).
+Hay además dos workflows de mantenimiento: un backup diario de `main` en una rama con fecha y un merge diario de `main` en `develop`.
 
 ---
 
-## 10. Desarrollo local
+## 11. Desarrollo local
 
 ```bash
 npm install       # instala dependencias
-npm run dev       # servidor de desarrollo con recarga en caliente (astro dev)
-npm run build     # genera el sitio estático en dist/ + el service worker (sw.js)
+npm run dev       # genera el contenido y arranca Vite con recarga en caliente
+npm run content   # regenera src/data/* a partir de src/content/* (sin arrancar nada)
+npm run build     # genera el sitio completo en dist/ (contenido + iconos + bundle + sw.js)
 npm run preview   # sirve dist/ localmente para verificar el build de producción
 npm run lint      # oxlint sobre todo el proyecto
-npm test          # tests unitarios con Vitest (navegación + buscador)
+npm run typecheck # comprobación de tipos con TypeScript
+npm test          # tests unitarios con Vitest
 ```
 
-Requisitos: **Node.js ≥ 22.12** (Astro 7 no arranca con versiones anteriores).
-
-> En `astro dev` no existe `sw.js` (solo se genera en `npm run build`); el registro del service worker en `BaseLayout.astro` falla en silencio en desarrollo, lo cual es intencional y no requiere ninguna acción.
+En desarrollo no existe `sw.js` (solo se genera en `npm run build`) y el registro del service worker está limitado a producción, así que no interfiere con la recarga en caliente.
 
 ### Cómo añadir contenido
 
-- **Un capítulo nuevo**: crear `src/content/chapters/12-mi-capitulo.md` con el frontmatter requerido (`number`, `title`, `dek`, `order`, `readingMinutes`) y actualizar el texto "N capítulos" hardcodeado en `src/pages/index.astro` y `src/pages/libro/index.astro` si cambia el total.
-- **Un término de glosario**: crear `src/content/glosario/mi-termino.md` con `term`, `category` y `short`; aparecerá automáticamente en `/glosario` y será localizable por `GlossaryTooltips.astro` en los capítulos y por el buscador.
-- **Un punto de la Ruta Nocturna**: añadir una entrada al array en `src/data/route.ts`.
+- **Un capítulo nuevo**: crear `src/content/chapters/12-mi-capitulo.md` con su frontmatter (`number`, `title`, `dek`, `order`, `readingMinutes`) y ejecutar `npm run content`. Aparece automáticamente en el índice del libro y en el buscador; el total de capítulos se calcula, no está escrito a mano.
+- **Un término de glosario**: crear `src/content/glosario/mi-termino.md` con `term`, `category` y `short`.
+- **Un personaje**: crear `src/content/personajes/nombre-apellido.md` con `name`, `years`, `role` y `tag`.
+- **Un hito de la Ruta Nocturna**: añadir una entrada al array de `src/data/route.ts`.
+- **Una fuente documental**: añadir una entrada a `src/data/references.ts`.
+
+Los ficheros de `src/data/*Data.js` y `searchIndex.js` están generados: cualquier cambio hecho a mano se pierde en el siguiente build.
 
 ---
 
-## 11. Limitaciones conocidas y notas de contenido
+## 12. Limitaciones conocidas y notas de contenido
 
-- El contenido histórico (capítulos, glosario, biografías) procede de un documento de recopilación aportado por el autor del proyecto; algunos episodios (sucesos de crónica negra, datos de personas identificables) contienen información sensible que conviene revisar antes de una difusión pública amplia.
-- El buscador indexa en build time: si se añade contenido nuevo, hay que volver a construir el sitio (`npm run build`) para que aparezca en los resultados.
-- No hay backend ni base de datos: cualquier funcionalidad futura de formularios (p. ej. "aportar una fotografía") requeriría un servicio externo (Formspree, un pequeño *serverless function*, etc.), ya que GitHub Pages solo sirve estáticos.
+- El contenido histórico procede de un documento de recopilación aportado por el autor del proyecto; algunos episodios (sucesos de crónica negra, datos de personas identificables) contienen información sensible que conviene revisar antes de una difusión pública amplia.
+- El buscador se indexa en el build: si se añade contenido, hay que volver a construir el sitio para que aparezca en los resultados.
+- El contador de visitas es local a cada dispositivo. No hay backend ni analítica: un contador global real exigiría un servicio externo.
+- No hay backend ni base de datos: cualquier funcionalidad futura de formularios (por ejemplo «aportar una fotografía») requeriría un servicio externo, ya que GitHub Pages solo sirve estáticos.
 
 ---
 
-## 12. Colaborar
+## 13. Colaborar
 
 ¿Tienes fotografías, documentos o correcciones sobre Moriscos? Escribe a **moriscos.info@gmail.com**.
-

@@ -1,0 +1,171 @@
+import React from 'react';
+import VisitorStatsModal from '../components/VisitorStatsModal';
+import { counters } from '../data/site';
+import {
+  History,
+  MapPin,
+  PartyPopper,
+  Shield,
+  Church,
+  BookOpen,
+  Map,
+  Users,
+  BookMarked,
+  Library,
+  Info,
+} from 'lucide-react';
+
+const sections = [
+  {
+    id: 'historia',
+    icon: History,
+    title: 'Historia',
+    description: 'Eje cronológico del pueblo, de la repoblación medieval del siglo XI a la actualidad.',
+  },
+  {
+    id: 'lugares',
+    icon: MapPin,
+    title: 'Lugares',
+    description: 'Localizaciones emblemáticas, parajes naturales y lugares desaparecidos del término municipal.',
+  },
+  {
+    id: 'fiestas',
+    icon: PartyPopper,
+    title: 'Fiestas',
+    description: 'La fiesta patronal de la Virgen de la Peregrina y el resto del calendario festivo del pueblo.',
+  },
+  {
+    id: 'escudo',
+    icon: Shield,
+    title: 'El Escudo',
+    description: 'El significado de cada elemento del escudo heráldico oficial de Moriscos.',
+  },
+  {
+    id: 'iglesia',
+    icon: Church,
+    title: 'La Iglesia',
+    description: 'Historia, arquitectura y tesoros artísticos de la Iglesia de San Pedro Apóstol.',
+  },
+  {
+    id: 'libro',
+    icon: BookOpen,
+    title: 'El Libro',
+    description: 'Once capítulos que recorren la geografía, la toponimia, la economía y los sucesos de Moriscos.',
+  },
+  {
+    id: 'ruta-nocturna',
+    icon: Map,
+    title: 'Ruta Nocturna',
+    description: 'Mapa interactivo con los ocho hitos del camino de 7,7 km hasta el soto de La Flecha.',
+  },
+  {
+    id: 'genealogia',
+    icon: Users,
+    title: 'Genealogía',
+    description: 'El Bosque Genealógico y los paisanos ilustres del pueblo, con registros desde 1645.',
+  },
+  {
+    id: 'glosario',
+    icon: BookMarked,
+    title: 'Glosario',
+    description: 'El vocabulario tradicional del campo salmantino, clasificado por categorías.',
+  },
+  {
+    id: 'referencias',
+    icon: Library,
+    title: 'Referencias',
+    description: 'Fuentes documentales, archivos históricos, hemeroteca y estudios de los que proceden los datos.',
+  },
+  {
+    id: 'sobre-la-web',
+    icon: Info,
+    title: 'Sobre la web',
+    description: 'Por qué existe este proyecto, de dónde sale la información y el escudo del pueblo.',
+  },
+];
+
+export default function InicioPage({ onNavigate }) {
+  return (
+    <div className="flex flex-col">
+      {/* Hero */}
+      <section className="container-editorial py-10 sm:py-16">
+        <p className="kicker">El pueblo</p>
+        <h1 className="mt-2 text-balance font-serif text-3xl sm:text-5xl font-bold text-pergamino">
+          Moriscos, un pueblo de La Armuña
+        </h1>
+        <p className="mt-4 text-balance text-lg font-medium text-piedra-200">
+          Este es un archivo digital abierto para documentar y dar a conocer la historia, los orígenes, la evolución y las curiosidades de Moriscos, de forma que su memoria no dependa solo del recuerdo de sus vecinos.
+        </p>
+        <div className="mt-5 space-y-4 text-pergamino-muted/80 leading-relaxed">
+          <p>
+            Moriscos es un pequeño municipio de la comarca de La Armuña, a unos 9 km al este-noreste de Salamanca capital, con poco más
+            de 500 habitantes. Su término se extiende sobre la penillanura cerealista que da nombre a la comarca, entre los
+            cursos del Tormes y del Zurguén, lindando con el paraje de La Flecha, retiro contemplativo de Fray Luis de León.
+          </p>
+          <p>
+            Documentado desde 1164 como aldea del alfoz salmantino en plena repoblación medieval, Moriscos fue absorbiendo
+            con los siglos los despoblados vecinos de El Hoyo y Ribas, vivió de cerca la Guerra de la Independencia de 1812
+            y atravesó episodios de posguerra como el suceso de 1941. Su economía, tradicionalmente agraria &mdash;trigo,
+            lenteja de La Armuña y el singular cultivo del zumaque&mdash;, ha ido dando paso en las últimas décadas a su
+            integración en el área metropolitana de Salamanca.
+          </p>
+        </div>
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <button
+            type="button"
+            onClick={() => onNavigate('libro')}
+            className="btn-secondary cursor-pointer"
+          >
+            Descubre toda la historia en El Libro
+          </button>
+          <VisitorStatsModal />
+        </div>
+      </section>
+
+      {/* Tarjetas de Datos Clave (Counters) */}
+      <section className="border-y border-noche-border bg-noche-surface/50 py-12">
+        <div className="container-editorial">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {counters.map((c) => (
+              <div key={c.label} className="card-editorial flex flex-col justify-between">
+                <div>
+                  <p className="text-xs font-semibold tracking-wider text-armuna-light uppercase">{c.label}</p>
+                  <p className="mt-2 font-display text-3xl font-black text-pergamino">
+                    {c.value} {c.suffix && <span className="text-xl font-normal text-armuna-light">{c.suffix}</span>}
+                  </p>
+                </div>
+                <p className="mt-3 text-xs text-pergamino-muted/65">{c.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Cuadrícula de Secciones */}
+      <section className="container-editorial py-14 sm:py-20">
+        <p className="kicker">En esta web</p>
+        <h2 className="mt-2 font-serif text-2xl sm:text-4xl font-bold text-pergamino">Qué vas a encontrar</h2>
+        <p className="mt-3 text-pergamino-muted/70">
+          Cada apartado documenta una parte distinta del pueblo: su historia y sus orígenes, sus lugares, su gente, sus
+          tradiciones y sus curiosidades.
+        </p>
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {sections.map(({ id, icon: Icon, title, description }) => (
+            <button
+              key={id}
+              type="button"
+              onClick={() => onNavigate(id)}
+              className="group flex flex-col gap-3 rounded-2xl border border-noche-border bg-noche-card/80 p-6 text-left transition-all hover:-translate-y-1 hover:border-piedra-400/50 hover:bg-noche-surface hover:shadow-xl cursor-pointer"
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-armuna/15 text-armuna-light group-hover:scale-110 transition-transform">
+                <Icon size={20} strokeWidth={2} />
+              </span>
+              <span className="font-serif text-lg font-semibold text-pergamino group-hover:text-armuna-light transition-colors">{title}</span>
+              <span className="text-sm text-pergamino-muted/70 leading-relaxed">{description}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}

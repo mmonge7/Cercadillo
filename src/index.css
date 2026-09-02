@@ -1,0 +1,317 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Tipografías empaquetadas con la app: sin peticiones a Google Fonts, para que
+   la web funcione igual estando sin conexión. */
+@import "@fontsource/cinzel/500.css";
+@import "@fontsource/cinzel/700.css";
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/600.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/600.css";
+@import "@fontsource/plus-jakarta-sans/700.css";
+
+/* El tema oscuro se activa por la clase .dark del <html>, no por la preferencia
+   del sistema: la web es siempre oscura. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-pergamino: #fdfbf7;
+  --color-pergamino-muted: #f4efe4;
+  --color-pergamino-border: #e8e0ce;
+  --color-tinta: #24282c;
+  --color-tinta-muted: #5b6570;
+  --color-tinta-subtle: #8a96a3;
+  --color-soto: #8c4a32;
+  --color-soto-dark: #5b2e1d;
+  --color-soto-light: #b06548;
+  --color-armuna: #b88432;
+  --color-armuna-dark: #734f1e;
+  --color-armuna-light: #d4a359;
+  --color-piedra-50: #faf7f2;
+  --color-piedra-100: #f2ece1;
+  --color-piedra-200: #e5dac9;
+  --color-piedra-300: #d1c0a5;
+  --color-piedra-400: #b9a07e;
+  --color-piedra-500: #9e825f;
+  --color-piedra-600: #7f6648;
+  --color-piedra-700: #624e38;
+  --color-piedra-800: #463829;
+  --color-piedra-900: #2d241b;
+  --color-piedra-border: #dcd0bf;
+  --color-noche: #1c1814;
+  --color-noche-surface: #241e18;
+  --color-noche-card: #2c251e;
+  --color-noche-border: #3d332a;
+  --font-serif: "Cinzel", "Playfair Display", "Times New Roman", Georgia, serif;
+  --font-display: "Cinzel", "Playfair Display", serif;
+  --font-body: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  --ink: #fdfbf7;
+  --ink-soft: #b0a698;
+  --paper: #1c1814;
+  --paper-raised: #241e18;
+  --primary: #8c4a32;
+  --primary-deep: #5b2e1d;
+  --accent: #b88432;
+  --accent-deep: #734f1e;
+  --gold: #d4a359;
+  --line: #3d332a;
+  --mobile-topbar: calc(58px + env(safe-area-inset-top, 0px));
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --mobile-topbar: 0px;
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  overscroll-behavior-y: none;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+}
+
+::selection {
+  background-color: rgba(212, 163, 89, 0.35);
+  color: #fdfbf7;
+}
+
+/* Entrada de cada vista: una sola animación GPU al montar la página. */
+main > div > * {
+  animation: fadeIn 0.18s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main > div > * {
+    animation: none;
+  }
+}
+
+.paper-texture {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(229, 218, 201, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(184, 132, 50, 0.05) 0%, transparent 50%),
+    url("./assets/images/stone-texture.svg"),
+    linear-gradient(180deg, rgba(28, 24, 20, 0.98) 0%, rgba(36, 30, 24, 0.98) 100%);
+  background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+  background-size: auto, auto, 720px 480px, auto;
+  background-attachment: fixed;
+}
+
+/* Paneles con la textura del trigal de La Armuña: identidad visual del sitio. */
+.brand-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-image:
+    linear-gradient(165deg, rgba(46, 37, 28, 0.95) 0%, rgba(28, 24, 20, 0.97) 100%),
+    url("./assets/images/campo-trigo.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.container-editorial {
+  width: 100%;
+  max-width: 68rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 640px) {
+  .container-editorial {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .container-editorial {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.kicker {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d4a359;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  background-color: #8c4a32;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fdfbf7;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-primary:hover {
+  background-color: #723a26;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #3d332a;
+  background-color: rgba(36, 30, 24, 0.8);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #f4efe4;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-secondary:hover {
+  background-color: rgba(44, 37, 30, 0.95);
+  border-color: #b9a07e;
+  transform: translateY(-1px);
+}
+
+.card-editorial {
+  border-radius: 1rem;
+  border: 1px solid #3d332a;
+  background-color: rgba(36, 30, 24, 0.7);
+  padding: 1.5rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-editorial:hover {
+  border-color: rgba(212, 163, 89, 0.4);
+  background-color: rgba(36, 30, 24, 0.95);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  border-radius: 0.625rem;
+  padding: 0.6875rem 1rem;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  color: rgba(244, 239, 228, 0.8);
+  border-left: 3px solid transparent;
+  cursor: pointer;
+}
+.nav-item[data-active="true"] {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-left: 3px solid #d4a359;
+  font-weight: 700;
+}
+.nav-item:hover:not([data-active="true"]) {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+/* Texto largo de los capítulos y fichas del glosario. */
+.prose-chapter {
+  @apply prose prose-invert max-w-none
+    prose-headings:font-serif prose-headings:text-armuna-light
+    prose-p:text-pergamino-muted/85 prose-li:text-pergamino-muted/85
+    prose-strong:text-pergamino prose-em:text-piedra-200
+    prose-a:text-armuna-light prose-blockquote:border-armuna-light/50
+    prose-blockquote:font-serif prose-blockquote:italic;
+}
+
+/* Aparición de los diálogos (buscador, estadísticas, escudo ampliado). Solo se
+   anima la opacidad para no pelearse con las clases de posicionamiento. */
+@keyframes dialog-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dialog-overlay[data-state="open"] {
+  animation: dialog-fade-in 0.15s ease-out;
+}
+.dialog-content[data-state="open"] {
+  animation: dialog-fade-in 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog-overlay[data-state="open"],
+  .dialog-content[data-state="open"] {
+    animation: none;
+  }
+}
+
+/* Resalta el elemento al que apunta un resultado del buscador. */
+@keyframes search-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 163, 89, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 16px rgba(212, 163, 89, 0);
+  }
+}
+
+.search-target {
+  animation: search-pulse 1s ease-out 2;
+  border-radius: 1rem;
+  scroll-margin-top: 96px;
+}
+
+/* Los paneles internos de Leaflet no deben taparse nunca con el menú lateral
+   ni con los modales. */
+.leaflet-container {
+  z-index: 0 !important;
+}
+.leaflet-pane,
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 1 !important;
+}

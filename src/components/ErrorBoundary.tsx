@@ -4,6 +4,8 @@ type Props = {
   children: ReactNode;
   /** Texto corto que describe qué se ha roto (p. ej. "el buscador", "el mapa"). */
   label?: string;
+  /** Qué mostrar en lugar del aviso por defecto (usa `null` para no mostrar nada). */
+  fallback?: ReactNode;
 };
 
 type State = { hasError: boolean };
@@ -26,10 +28,11 @@ export default class ErrorBoundary extends Component<Props, State> {
 
   render() {
     if (this.state.hasError) {
+      if ('fallback' in this.props) return this.props.fallback;
       return (
         <div
           role="alert"
-          className="flex items-center gap-3 rounded-2xl border border-piedra-border/60 bg-pergamino-muted p-4 text-sm text-tinta/75 dark:border-noche-border dark:bg-noche-surface dark:text-pergamino-muted/75"
+          className="m-4 flex items-center gap-3 rounded-2xl border border-piedra-border/60 bg-pergamino-muted p-4 text-sm text-tinta/75 dark:border-noche-border dark:bg-noche-surface dark:text-pergamino-muted/75"
         >
           <span aria-hidden="true">⚠️</span>
           <span>

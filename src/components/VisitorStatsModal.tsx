@@ -76,28 +76,9 @@ export function VisitorStatsModalInner() {
     setSelectedDay(stats[stats.length - 1]);
     setTotalVisits(Math.max(1, localTotal));
 
-    // 4. Sincronizar con API de contador global real
-    const apiEndpoint = isNewSession
-      ? 'https://api.counterapi.dev/v1/pcresp0-moriscos-wiki/visits/up'
-      : 'https://api.counterapi.dev/v1/pcresp0-moriscos-wiki/visits';
-
-    fetch(apiEndpoint)
-      .then((r) => r.json())
-      .then((data) => {
-        if (data && typeof data.count === 'number' && data.count > 0) {
-          setTotalVisits(data.count);
-          // Si el total de la API es mayor, actualizamos el recuento de hoy
-          if (data.count > localTotal) {
-            storedData[todayKey] = (storedData[todayKey] || 0) + (data.count - localTotal);
-            try {
-              localStorage.setItem(STORAGE_KEY, JSON.stringify(storedData));
-            } catch {}
-          }
-        }
-      })
-      .catch(() => {
-        // En local/offline se mantiene el contador real del dispositivo
-      });
+    // El recuento es siempre local a este dispositivo: no hay servidor ni
+    // analítica de terceros detrás de esta web, así que no se envía ni se pide
+    // nada a ninguna API externa.
   }, []);
 
   const formatNumber = (num: number) => {
@@ -130,7 +111,7 @@ export function VisitorStatsModalInner() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label={`Ver estadísticas de visitas (${formatNumber(totalVisits)} visitas)`}
+        aria-label={`Ver tus visitas a esta web (${formatNumber(totalVisits)} desde este dispositivo)`}
         className="group inline-flex items-center gap-2.5 rounded-xl border border-noche-border bg-noche-surface/90 px-4 py-2 text-sm font-semibold text-pergamino shadow-sm transition-all hover:border-piedra-400 hover:bg-noche-surface hover:shadow-md focus:outline-none focus:ring-2 focus:ring-piedra-400 focus:ring-offset-2 focus:ring-offset-noche"
       >
         <span className="relative flex h-2.5 w-2.5">
@@ -147,8 +128,8 @@ export function VisitorStatsModalInner() {
       {/* Modal con métricas reales */}
       <Dialog.Root open={open} onOpenChange={setOpen}>
         <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 z-[100] bg-noche/75 backdrop-blur-sm transition-opacity animate-in fade-in" />
-          <Dialog.Content className="fixed left-1/2 top-1/2 z-[101] w-[95vw] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-noche-border bg-noche-surface p-6 shadow-2xl outline-none transition-all duration-200 animate-in fade-in zoom-in-95">
+          <Dialog.Overlay className="fixed inset-0 z-[100] bg-noche/75 backdrop-blur-sm transition-opacity dialog-overlay" />
+          <Dialog.Content className="fixed left-1/2 top-1/2 z-[101] w-[95vw] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-noche-border bg-noche-surface p-6 shadow-2xl outline-none transition-all duration-200 dialog-content">
             {/* Cabecera */}
             <div className="flex items-start justify-between border-b border-noche-border pb-4">
               <div className="flex items-center gap-3">
@@ -157,10 +138,10 @@ export function VisitorStatsModalInner() {
                 </div>
                 <div>
                   <Dialog.Title className="font-serif text-xl font-bold text-pergamino">
-                    Estadísticas Reales de Visitas
+                    Tus visitas a esta web
                   </Dialog.Title>
                   <Dialog.Description className="text-xs text-pergamino-muted/70">
-                    Registro de afluencia diaria iniciado con el lanzamiento de la web
+                    Registro diario guardado solo en este dispositivo: la web no envía datos a ningún servidor
                   </Dialog.Description>
                 </div>
               </div>
@@ -182,7 +163,7 @@ export function VisitorStatsModalInner() {
                 <div className="mt-1 font-mono text-xl font-bold text-piedra-200">
                   {formatNumber(totalVisits)}
                 </div>
-                <div className="text-[11px] text-pergamino-muted/50">visitas registradas</div>
+                <div className="text-[11px] text-pergamino-muted/50">visitas desde este dispositivo</div>
               </div>
 
               <div className="rounded-xl border border-noche-border bg-noche/60 p-3">
