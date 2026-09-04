@@ -1,5 +1,6 @@
 import React from 'react';
 import VisitorStatsModal from '../components/VisitorStatsModal';
+import InstagramFeed from '../components/InstagramFeed';
 import { counters } from '../data/site';
 import {
   History,
@@ -141,6 +142,8 @@ export default function InicioPage({ onNavigate }) {
           </div>
         </div>
       </section>
+
+      <InstagramFeed />
 
       {/* Cuadrícula de Secciones */}
       <section className="container-editorial py-14 sm:py-20">
