@@ -85,10 +85,10 @@ export function Drawer({ active, onChange, open, onClose }) {
 
       {/* Menú deslizante */}
       <aside
-        className="fixed top-0 left-0 h-full flex flex-col z-[210] border-r border-[#3d332a] shadow-[6px_0_32px_rgba(0,0,0,0.45)]"
+        className="fixed top-0 left-0 h-full flex flex-col z-[210] border-r border-[#d6bd91] shadow-[6px_0_32px_rgba(45,36,28,0.25)]"
         style={{
           width: 256,
-          background: 'linear-gradient(165deg, rgba(36, 30, 24, 0.99) 0%, rgba(28, 24, 20, 0.98) 100%)',
+          background: 'linear-gradient(165deg, rgba(233, 201, 143, 0.99) 0%, rgba(249, 229, 189, 0.98) 100%)',
           transform: open ? 'translateX(0)' : 'translateX(-100%)',
           transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s linear',
           // Oculto de verdad al cerrarse: así el menú no queda en el orden de
@@ -214,7 +214,7 @@ export function Sidebar({ active, onChange }) {
       className="hidden lg:flex flex-col border-r border-noche-border shrink-0 z-30"
       style={{
         width: 250,
-        background: 'linear-gradient(180deg, rgba(36, 30, 24, 0.98) 0%, rgba(28, 24, 20, 0.98) 100%)',
+        background: 'linear-gradient(180deg, rgba(233, 201, 143, 0.98) 0%, rgba(249, 229, 189, 0.98) 100%)',
       }}
       aria-label="Navegación principal"
     >
