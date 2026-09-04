@@ -146,7 +146,7 @@ export default function InicioPage({ onNavigate }) {
 
           <div className="relative">
             <img
-              src="/Cercadillo/images/iglesia-cercadillo-hero.jpg"
+              src="/images/iglesia-cercadillo-hero.jpg"
               alt="La iglesia de la Natividad de Nuestra Señora, en Cercadillo"
               className="h-64 w-full object-cover shadow-xl sm:h-80 lg:h-[420px]"
               style={{ clipPath: 'url(#hero-organic-clip)' }}

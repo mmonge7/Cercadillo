@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
-  base: '/Cercadillo/',
+  base: '/',
   plugins: [
     react(),
     tailwindcss(),
@@ -32,8 +32,8 @@ export default defineConfig({
         description:
           'Historia, geografía, etnografía y memoria viva de Cercadillo (Guadalajara, Sigüenza).',
         lang: 'es',
-        start_url: '/Cercadillo/',
-        scope: '/Cercadillo/',
+        start_url: '/',
+        scope: '/',
         display: 'standalone',
         background_color: '#F9E5BD',
         theme_color: '#724828',
@@ -51,7 +51,7 @@ export default defineConfig({
       workbox: {
         skipWaiting: true,
         clientsClaim: true,
-        navigateFallback: '/Cercadillo/index.html',
+        navigateFallback: '/index.html',
         // Se precachea woff2 (soportado por todos los navegadores actuales) y
         // no woff, para no duplicar el peso de las tipografías sin conexión.
         globPatterns: ['**/*.{js,css,html,png,svg,ico,jpg,jpeg,webp,woff2}'],
