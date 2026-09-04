@@ -39,6 +39,8 @@ const sections = [
     icon: Shield,
     title: 'El Escudo',
     description: 'El significado de cada elemento del escudo heráldico oficial de Moriscos.',
+    // Oculto de momento: Cercadillo no tiene escudo oficial (ver Nav.jsx).
+    hidden: true,
   },
   {
     id: 'iglesia',
@@ -150,7 +152,7 @@ export default function InicioPage({ onNavigate }) {
           tradiciones y sus curiosidades.
         </p>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {sections.map(({ id, icon: Icon, title, description }) => (
+          {sections.filter((s) => !s.hidden).map(({ id, icon: Icon, title, description }) => (
             <button
               key={id}
               type="button"

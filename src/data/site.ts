@@ -6,10 +6,10 @@ export type Counter = {
 };
 
 export const counters: Counter[] = [
-  { label: 'Primera mención documental', value: '1164', detail: '4 de octubre, collationam Sancti Christofori de Morisco' },
-  { label: 'Vértice geodésico "Andorra"', value: '871,4', suffix: 'm', detail: 'IGN nº 47879 · punto más alto del término' },
-  { label: 'Distancia a Salamanca', value: '9', suffix: 'km', detail: 'A 9 km al este-noreste de la capital' },
-  { label: 'Superficie del término', value: '12,08', suffix: 'km²', detail: 'Población 2025 (INE): 577 habitantes' },
+  { label: 'Altitud', value: '994', suffix: 'm', detail: 'Sobre el nivel del mar' },
+  { label: 'Población', value: '17', detail: 'Habitantes según el último censo (INE 2011) · eran 198 a mediados del siglo XIX' },
+  { label: 'Distancia a Sigüenza', value: '16', suffix: 'km', detail: 'Municipio al que pertenece Cercadillo desde 1973 (línea recta)' },
+  { label: 'Gentilicio', value: 'Morcilleros', detail: 'Como se conoce tradicionalmente a los vecinos de Cercadillo' },
 ];
 
 export const hitos = [
