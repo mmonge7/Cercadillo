@@ -129,10 +129,10 @@ export default function InicioPage({ onNavigate }) {
         <div className="container-editorial">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {counters.map((c) => (
-              <div key={c.label} className="card-editorial flex flex-col justify-between">
-                <div>
+              <div key={c.label} className="card-editorial flex min-w-0 flex-col justify-between">
+                <div className="min-w-0">
                   <p className="text-xs font-semibold tracking-wider text-armuna-light uppercase">{c.label}</p>
-                  <p className="mt-2 font-display text-3xl font-black text-pergamino">
+                  <p className="mt-2 break-words font-display text-2xl font-black text-pergamino sm:text-3xl">
                     {c.value} {c.suffix && <span className="text-xl font-normal text-armuna-light">{c.suffix}</span>}
                   </p>
                 </div>
