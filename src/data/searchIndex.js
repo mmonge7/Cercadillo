@@ -289,21 +289,21 @@ export const searchIndex = [
     "badge": "Fiestas"
   },
   {
-    "id": "ruta-nocturna-flecha",
-    "tab": "ruta-nocturna",
+    "id": "rutas-cercadillo",
+    "tab": "rutas",
     "target": null,
-    "title": "Ruta nocturna al soto de La Flecha",
-    "excerpt": "Sendero de 7,7 km con ocho hitos históricos hasta el oratorio de Fray Luis de León.",
-    "content": "senderismo vértice geodésico Andorra El Parapeto Ribas aceña oratorio Fray Luis de León Tormes luna llena",
-    "badge": "Ruta"
+    "title": "Rutas por Cercadillo",
+    "excerpt": "Rutas de senderismo y BTT que atraviesan Cercadillo, recopiladas de Wikiloc.",
+    "content": "senderismo btt mountain bike wikiloc Riofrío del Llano Alcolea de las Peñas Atienza Imón Santamera",
+    "badge": "Rutas"
   },
   {
     "id": "seccion-genealogia",
     "tab": "genealogia",
     "target": null,
-    "title": "Bosque Genealógico de Moriscos",
-    "excerpt": "Más de 350 años de historia familiar a partir de los libros parroquiales iniciados en 1645.",
-    "content": "genealogía apellidos Blanco Romo Pedraz Crespo Salvador archivo parroquial 1645 Ventanas del Ayer y Hoy",
+    "title": "Genealogía",
+    "excerpt": "Página en construcción: próximamente, árbol genealógico y familias de Cercadillo.",
+    "content": "genealogía página en construcción Cercadillo",
     "badge": "Genealogía"
   },
   {

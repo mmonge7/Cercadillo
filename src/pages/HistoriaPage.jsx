@@ -23,7 +23,7 @@ const eras = [
       {
         year: '1451',
         text: 'Fundación de la Granja Agustina de La Flecha Baja, con su aceña hidráulica y oratorio renacentista.',
-        tab: 'ruta-nocturna',
+        tab: 'rutas',
       },
     ],
   },
@@ -38,7 +38,7 @@ const eras = [
       {
         year: 'S. XVI',
         text: 'Fray Luis de León se retira al soto de La Flecha tras su encarcelamiento inquisitorial.',
-        tab: 'ruta-nocturna',
+        tab: 'rutas',
       },
       {
         year: 'S. XVI–XVIII',
@@ -58,7 +58,7 @@ const eras = [
       {
         year: '1835',
         text: 'La Desamortización de Mendizábal saca la Granja Agustina de La Flecha a manos privadas.',
-        tab: 'ruta-nocturna',
+        tab: 'rutas',
       },
     ],
   },
@@ -68,7 +68,7 @@ const eras = [
       {
         year: '1812',
         text: 'Batalla de El Parapeto y el Teso de la Cabaña, antesala de la Batalla de los Arapiles, en plena Guerra de la Independencia.',
-        tab: 'ruta-nocturna',
+        tab: 'rutas',
       },
       {
         year: '1845–1850',
@@ -82,7 +82,7 @@ const eras = [
       {
         year: '1902 / 1904',
         text: 'Miguel de Unamuno visita y escribe sobre el soto de La Flecha en Paisajes y en la Oda a Salamanca.',
-        tab: 'ruta-nocturna',
+        tab: 'rutas',
       },
     ],
   },
@@ -102,7 +102,7 @@ const eras = [
       {
         year: 'Años 70',
         text: 'Una piscifactoría y un chalet inconcluso dañan gravemente la Granja Agustina de La Flecha.',
-        tab: 'ruta-nocturna',
+        tab: 'rutas',
       },
       {
         year: '1988',
@@ -122,7 +122,7 @@ const eras = [
       {
         year: '2011',
         text: 'La Granja Agustina de La Flecha entra en la Lista Roja del Patrimonio de Hispania Nostra.',
-        tab: 'ruta-nocturna',
+        tab: 'rutas',
       },
       {
         year: '2016',

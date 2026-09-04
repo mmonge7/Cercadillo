@@ -28,7 +28,7 @@ export const navItems = [
   { id: 'escudo', label: 'El Escudo', icon: Shield, hidden: true },
   { id: 'iglesia', label: 'La Iglesia', icon: Church },
   { id: 'libro', label: 'El Libro', icon: BookOpen },
-  { id: 'ruta-nocturna', label: 'Ruta Nocturna', icon: Map },
+  { id: 'rutas', label: 'Rutas', icon: Map },
   { id: 'genealogia', label: 'Genealogía', icon: Users },
   { id: 'glosario', label: 'Glosario', icon: BookMarked },
   { id: 'referencias', label: 'Referencias', icon: Library },

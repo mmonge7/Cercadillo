@@ -29,13 +29,13 @@ const parajes = [
     title: 'Vértice Geodésico "Andorra" (871,4 m)',
     description:
       'En la cota más alta del municipio (el topónimo árabe al-Andurra alude a matorrales o terreno escarpado). Un balcón natural sobre la penillanura de La Armuña y la vega del Tormes, 93 m sobre el río y 63 m sobre la Plaza Mayor de Salamanca.',
-    tab: 'ruta-nocturna',
+    tab: 'rutas',
   },
   {
     title: 'Laguna de la Serrada',
     description:
       'Depresión endorreica en el alto de una colina en cresta, que le da nombre. Punto de agua clave para el ganado; sus márgenes fueron reforestados por la Asociación de Cazadores local como refugio y criadero de la perdiz roja.',
-    tab: 'ruta-nocturna',
+    tab: 'rutas',
   },
   {
     title: 'Pago de Valdepega',
@@ -51,13 +51,13 @@ const parajes = [
     title: 'Las Cavenes (o Cahenes)',
     description:
       'Socavones y cárcavas en la cornisa fluvial hacia el Tormes, restos de antiguas explotaciones mineras romanas de oro a cielo abierto mediante lavado de arenas aluviales (ruina montium).',
-    tab: 'ruta-nocturna',
+    tab: 'rutas',
   },
   {
     title: 'El Teso de La Cabaña y El Parapeto',
     description:
       'Cerros estratégicos donde las tropas francesas del mariscal Marmont instalaron trincheras en junio de 1812, antes de ser desalojadas por las tropas de Wellington previas a la Batalla de Los Arapiles.',
-    tab: 'ruta-nocturna',
+    tab: 'rutas',
   },
 ];
 
@@ -98,7 +98,7 @@ const desaparecidos = [
     title: 'La Granja Agustina de La Flecha Baja y la Aceña',
     what: 'Finca agustina fundada en 1451, con aceña hidráulica, oratorio renacentista, palomar, huertas y soto fluvial. Refugio de Fray Luis de León y Miguel de Unamuno.',
     why: 'Tras la Desamortización de Mendizábal (1835) pasó a manos privadas; en los 70 una piscifactoría alteró el cauce y destruyó la isla del soto, y un chalet quedó inconcluso sobre la propia aceña. Tras expolios de piedra, entró en 2011 en la Lista Roja del Patrimonio de Hispania Nostra.',
-    tab: 'ruta-nocturna',
+    tab: 'rutas',
   },
   {
     title: 'El campo de tiro al plato y el circuito de MotoCross',

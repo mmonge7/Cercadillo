@@ -15,7 +15,7 @@ import FiestasPage from './pages/FiestasPage';
 import EscudoPage from './pages/EscudoPage';
 import IglesiaPage from './pages/IglesiaPage';
 import LibroPage from './pages/LibroPage';
-import RutaNocturnaPage from './pages/RutaNocturnaPage';
+import RutasPage from './pages/RutasPage';
 import GenealogiaPage from './pages/GenealogiaPage';
 import GlosarioPage from './pages/GlosarioPage';
 import ReferenciasPage from './pages/ReferenciasPage';
@@ -29,7 +29,7 @@ const PAGES = {
   escudo: EscudoPage,
   iglesia: IglesiaPage,
   libro: LibroPage,
-  'ruta-nocturna': RutaNocturnaPage,
+  rutas: RutasPage,
   genealogia: GenealogiaPage,
   glosario: GlosarioPage,
   referencias: ReferenciasPage,

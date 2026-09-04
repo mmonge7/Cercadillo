@@ -55,10 +55,10 @@ const sections = [
     description: 'Once capítulos que recorren la geografía, la toponimia, la economía y los sucesos de Moriscos.',
   },
   {
-    id: 'ruta-nocturna',
+    id: 'rutas',
     icon: Map,
-    title: 'Ruta Nocturna',
-    description: 'Mapa interactivo con los ocho hitos del camino de 7,7 km hasta el soto de La Flecha.',
+    title: 'Rutas',
+    description: 'Rutas de senderismo y BTT que atraviesan Cercadillo, recopiladas de Wikiloc.',
   },
   {
     id: 'genealogia',
