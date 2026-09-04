@@ -35,7 +35,7 @@ export default defineConfig({
         start_url: '/Cercadillo/',
         scope: '/Cercadillo/',
         display: 'standalone',
-        background_color: '#241E18',
+        background_color: '#F9E5BD',
         theme_color: '#724828',
         icons: [
           { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
