@@ -182,7 +182,7 @@ export default function MinasPage() {
             En noviembre la Junta de Comunidades de Castilla-La Mancha rechazó la fórmula de tramitar los permisos
             por separado y exigió una única evaluación de impacto ambiental conjunta. Oroberia solicitó además la
             autorización arqueológica necesaria para continuar, un trámite contra el que los vecinos han presentado
-            varios recursos. La compañía ha respondido presentando un proyecto
+            varios cientos de recursos. La compañía ha respondido presentando un proyecto
             consolidado, que a día de hoy sigue en fase de revisión técnica y legal antes de entrar en información
             pública.
           </p>
