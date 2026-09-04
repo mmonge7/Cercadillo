@@ -22,7 +22,10 @@ export const navItems = [
   { id: 'historia', label: 'Historia', icon: History },
   { id: 'lugares', label: 'Lugares', icon: MapPin },
   { id: 'fiestas', label: 'Fiestas', icon: PartyPopper },
-  { id: 'escudo', label: 'El Escudo', icon: Shield },
+  // Oculto de momento: Cercadillo no tiene escudo oficial. Se deja el
+  // id 'hidden: true' para poder reactivarlo facilmente si en el futuro
+  // se define un escudo o simbolo para el pueblo.
+  { id: 'escudo', label: 'El Escudo', icon: Shield, hidden: true },
   { id: 'iglesia', label: 'La Iglesia', icon: Church },
   { id: 'libro', label: 'El Libro', icon: BookOpen },
   { id: 'ruta-nocturna', label: 'Ruta Nocturna', icon: Map },
@@ -35,7 +38,7 @@ export const navItems = [
 function NavLinkList({ active, onChange, onClose }) {
   return (
     <div className="flex flex-col w-full gap-1 pb-4">
-      {navItems.map((item) => {
+      {navItems.filter((item) => !item.hidden).map((item) => {
         const Icon = item.icon;
         const isActive = active === item.id;
         return (

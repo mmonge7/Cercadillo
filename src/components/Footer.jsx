@@ -15,9 +15,9 @@ export default function Footer({ onNavigate }) {
       <div className="container-editorial flex flex-col items-center gap-6">
         <div className="flex items-center gap-3">
           <a
-            href="mailto:pcbcrespo@gmail.com"
-            aria-label="Enviar correo de contacto a pcbcrespo@gmail.com"
-            title="Contacto por email: pcbcrespo@gmail.com"
+            href="mailto:marcosmonge5@gmail.com"
+            aria-label="Enviar correo de contacto a marcosmonge5@gmail.com"
+            title="Contacto por email: marcosmonge5@gmail.com"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-pergamino/25 text-pergamino/80 transition-colors hover:border-[#ea4335] hover:text-[#ea4335]"
           >
             <Mail size={18} />
