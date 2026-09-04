@@ -98,7 +98,7 @@ export default function MinasPage() {
         <div className="absolute inset-0 bg-tinta/10" />
 
         <div className="relative z-10 p-6 sm:p-10 lg:p-14">
-          <p className="kicker text-armuna-dark">Ni catas ni minas · Sierra Norte de Guadalajara</p>
+          <p className="kicker text-piedra-800">Ni catas ni minas · Sierra Norte de Guadalajara</p>
           <h1 className="mt-3 max-w-2xl text-balance font-serif text-3xl sm:text-5xl font-bold text-piedra-800">
             La tierra no se vende, se defiende.
           </h1>
