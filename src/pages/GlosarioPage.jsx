@@ -1,134 +1,28 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Search, X } from 'lucide-react';
-import { glosario } from '../data/glosarioData';
-import Markdown from '../components/Markdown';
+import React from 'react';
+import { BookMarked, Hammer } from 'lucide-react';
 
-export default function GlosarioPage({ target }) {
-  const [query, setQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState('Todos');
-  const targetRef = useRef(null);
-
-  const categories = useMemo(
-    () => ['Todos', ...Array.from(new Set(glosario.map((g) => g.category))).sort((a, b) => a.localeCompare(b, 'es'))],
-    [],
-  );
-
-  const filtered = useMemo(() => {
-    const needle = query.trim().toLowerCase();
-    return glosario.filter((g) => {
-      const matchCategory = activeCategory === 'Todos' || g.category === activeCategory;
-      const matchQuery =
-        !needle ||
-        g.term.toLowerCase().includes(needle) ||
-        g.short.toLowerCase().includes(needle) ||
-        g.content.toLowerCase().includes(needle);
-      return matchCategory && matchQuery;
-    });
-  }, [query, activeCategory]);
-
-  // Al llegar desde el buscador, se limpian los filtros y se salta al término.
-  useEffect(() => {
-    if (!target) return;
-    setQuery('');
-    setActiveCategory('Todos');
-  }, [target]);
-
-  useEffect(() => {
-    if (!target || !targetRef.current) return;
-    targetRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, [target, filtered]);
-
+export default function GlosarioPage() {
   return (
     <div className="container-editorial py-10 sm:py-16">
-      <p className="kicker">Memoria de la lengua</p>
-      <h1 className="mt-2 text-balance font-serif text-3xl font-bold text-pergamino sm:text-5xl">
-        Glosario etnográfico armuñés
-      </h1>
+      <p className="kicker">El habla de la tierra</p>
+      <h1 className="mt-2 text-balance font-serif text-3xl font-bold text-pergamino sm:text-5xl">Glosario</h1>
       <p className="mt-4 text-balance text-lg text-pergamino-muted/80">
-        El vocabulario tradicional del campo salmantino, clasificado por categorías: aperos de labranza, naturaleza,
-        medidas agrarias y topónimos de Moriscos y La Armuña.
+        Esta sección recogerá el vocabulario tradicional propio de Cercadillo y su comarca: aperos, medidas
+        agrícolas, topónimos y palabras que forman parte de la memoria oral del pueblo.
       </p>
 
-      <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-        <div className="relative flex-1">
-          <Search size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-pergamino-muted/60" />
-          <input
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Buscar término o palabra tradicional..."
-            aria-label="Buscar en el glosario"
-            className="w-full rounded-xl border border-noche-border bg-noche-card/90 py-2.5 pl-10 pr-10 text-sm text-pergamino placeholder:text-pergamino-muted/50 focus:border-armuna-light focus:outline-none"
-          />
-          {query && (
-            <button
-              type="button"
-              onClick={() => setQuery('')}
-              aria-label="Borrar búsqueda"
-              className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer rounded-full p-1 text-pergamino-muted/60 hover:text-pergamino"
-            >
-              <X size={16} />
-            </button>
-          )}
+      <div className="card-editorial mt-10 flex flex-col items-center gap-4 p-10 text-center">
+        <div className="flex items-center gap-3 text-armuna-light">
+          <BookMarked size={28} />
+          <Hammer size={24} />
         </div>
-
-        <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filtrar glosario por categoría">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => setActiveCategory(cat)}
-              aria-pressed={activeCategory === cat}
-              className={`cursor-pointer rounded-xl px-3 py-2 text-xs font-semibold transition-all ${
-                activeCategory === cat
-                  ? 'bg-armuna-light font-bold text-noche shadow-md'
-                  : 'border border-noche-border bg-noche-card text-pergamino-muted hover:bg-noche-surface'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <p className="mt-4 text-xs text-pergamino-muted/60">
-        {filtered.length} {filtered.length === 1 ? 'término' : 'términos'} de {glosario.length}
-      </p>
-
-      <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((item) => {
-          const isTarget = item.id === target;
-          return (
-            <article
-              key={item.id}
-              id={item.id}
-              ref={isTarget ? targetRef : null}
-              className={`card-editorial flex flex-col justify-between ${isTarget ? 'search-target border-armuna-light/60' : ''}`}
-            >
-              <div>
-                <div className="flex items-start justify-between gap-2">
-                  <h2 className="font-serif text-lg font-bold text-armuna-light">{item.term}</h2>
-                  <span className="shrink-0 rounded border border-armuna/20 bg-armuna/10 px-2 py-0.5 font-mono text-[11px] uppercase text-armuna-light">
-                    {item.category}
-                  </span>
-                </div>
-                {item.short && (
-                  <p className="mt-2 text-xs font-medium italic text-pergamino/90 sm:text-sm">{item.short}</p>
-                )}
-                <Markdown
-                  content={item.content}
-                  className="prose-chapter prose-sm mt-3 text-xs sm:text-sm"
-                />
-              </div>
-            </article>
-          );
-        })}
-
-        {filtered.length === 0 && (
-          <p className="col-span-full py-12 text-center text-pergamino-muted/60">
-            No se encontraron términos que coincidan con la búsqueda.
-          </p>
-        )}
+        <h2 className="font-serif text-2xl font-bold text-pergamino">Página en construcción</h2>
+        <p className="max-w-prose text-sm leading-relaxed text-pergamino-muted/80 sm:text-base">
+          No hemos encontrado fuentes públicas fiables sobre el habla y el vocabulario tradicional específico de
+          Cercadillo, así que preferimos dejar esta sección vacía en vez de rellenarla con términos genéricos que no
+          serían realmente suyos. Si conoces palabras, expresiones o nombres de aperos propios del pueblo, escríbenos
+          a través de los enlaces del pie de página.
+        </p>
       </div>
     </div>
   );

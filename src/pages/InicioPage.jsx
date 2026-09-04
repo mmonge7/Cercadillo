@@ -26,13 +26,13 @@ const sections = [
     id: 'lugares',
     icon: MapPin,
     title: 'Lugares',
-    description: 'Localizaciones emblemáticas, parajes naturales y lugares desaparecidos del término municipal.',
+    description: 'El patrimonio documentado de Cercadillo: la iglesia, las ermitas y las infraestructuras tradicionales.',
   },
   {
     id: 'fiestas',
     icon: PartyPopper,
     title: 'Fiestas',
-    description: 'La fiesta patronal de la Virgen de la Peregrina y el resto del calendario festivo del pueblo.',
+    description: 'La fiesta patronal de San Roque, los días 15 y 16 de agosto.',
   },
   {
     id: 'escudo',
@@ -46,7 +46,7 @@ const sections = [
     id: 'iglesia',
     icon: Church,
     title: 'La Iglesia',
-    description: 'Historia, arquitectura y tesoros artísticos de la Iglesia de San Pedro Apóstol.',
+    description: 'Arquitectura de la Iglesia de la Natividad de Nuestra Señora, el monumento principal del pueblo.',
   },
   {
     id: 'libro',
@@ -64,13 +64,13 @@ const sections = [
     id: 'genealogia',
     icon: Users,
     title: 'Genealogía',
-    description: 'El Bosque Genealógico y los paisanos ilustres del pueblo, con registros desde 1645.',
+    description: 'Página en construcción: próximamente, familias y paisanos de Cercadillo.',
   },
   {
     id: 'glosario',
     icon: BookMarked,
     title: 'Glosario',
-    description: 'El vocabulario tradicional del campo salmantino, clasificado por categorías.',
+    description: 'Página en construcción: vocabulario tradicional propio de Cercadillo.',
   },
   {
     id: 'referencias',
@@ -82,7 +82,7 @@ const sections = [
     id: 'sobre-la-web',
     icon: Info,
     title: 'Sobre la web',
-    description: 'Por qué existe este proyecto, de dónde sale la información y el escudo del pueblo.',
+    description: 'Por qué existe este proyecto y de dónde sale la información.',
   },
 ];
 
@@ -93,23 +93,22 @@ export default function InicioPage({ onNavigate }) {
       <section className="container-editorial py-10 sm:py-16">
         <p className="kicker">El pueblo</p>
         <h1 className="mt-2 text-balance font-serif text-3xl sm:text-5xl font-bold text-pergamino">
-          Moriscos, un pueblo de La Armuña
+          Cercadillo, una pedanía de Sigüenza
         </h1>
         <p className="mt-4 text-balance text-lg font-medium text-piedra-200">
-          Este es un archivo digital abierto para documentar y dar a conocer la historia, los orígenes, la evolución y las curiosidades de Moriscos, de forma que su memoria no dependa solo del recuerdo de sus vecinos.
+          Este es un archivo digital abierto para documentar y dar a conocer la historia, los orígenes, la evolución y las curiosidades de Cercadillo, de forma que su memoria no dependa solo del recuerdo de sus vecinos.
         </p>
         <div className="mt-5 space-y-4 text-pergamino-muted/80 leading-relaxed">
           <p>
-            Moriscos es un pequeño municipio de la comarca de La Armuña, a unos 9 km al este-noreste de Salamanca capital, con poco más
-            de 500 habitantes. Su término se extiende sobre la penillanura cerealista que da nombre a la comarca, entre los
-            cursos del Tormes y del Zurguén, lindando con el paraje de La Flecha, retiro contemplativo de Fray Luis de León.
+            Cercadillo es un pequeño núcleo de población de la provincia de Guadalajara, a 994 metros de altitud, en la
+            Sierra Norte. Desde 1973 pertenece al municipio de Sigüenza, del que dista unos 16 km, y hoy cuenta con
+            apenas 17 habitantes según el último censo del INE (2011).
           </p>
           <p>
-            Documentado desde 1164 como aldea del alfoz salmantino en plena repoblación medieval, Moriscos fue absorbiendo
-            con los siglos los despoblados vecinos de El Hoyo y Ribas, vivió de cerca la Guerra de la Independencia de 1812
-            y atravesó episodios de posguerra como el suceso de 1941. Su economía, tradicionalmente agraria &mdash;trigo,
-            lenteja de La Armuña y el singular cultivo del zumaque&mdash;, ha ido dando paso en las últimas décadas a su
-            integración en el área metropolitana de Salamanca.
+            Documentado desde finales del siglo XI como una de las 131 aldeas de la Comunidad de Villa y Tierra de
+            Atienza, Cercadillo fue municipio independiente hasta 1973, cuando se incorporó a Sigüenza junto a Horna y
+            Bujarrabal. Conserva como patrimonio principal la iglesia parroquial de la Natividad de Nuestra Señora
+            (siglo XVI) y dos ermitas, y celebra cada año sus fiestas patronales en honor a San Roque.
           </p>
         </div>
         <div className="mt-8 flex flex-wrap items-center gap-4">
