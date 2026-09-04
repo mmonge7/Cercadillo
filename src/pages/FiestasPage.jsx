@@ -1,90 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-const otrasFiestas = [
-  {
-    title: 'San Pedro Apóstol',
-    date: '29 de junio',
-    tag: 'Patrón del pueblo',
-    description:
-      'Patrón titular de la parroquia y del municipio. Aunque los festejos multitudinarios de verano se centran en la Virgen Peregrina, este día se celebran los actos litúrgicos e institucionales en su honor.',
-  },
-  {
-    title: 'San Isidro Labrador',
-    date: '15 de mayo',
-    tag: 'Fiesta agrícola',
-    description:
-      'Homenaje de los agricultores a San Isidro con la bendición de los campos de cultivo y una jornada de convivencia, en un municipio históricamente volcado en el secano de La Armuña (trigo, cebada y la I.G.P. Lenteja de La Armuña).',
-  },
-  {
-    title: 'El Lunes de Agua',
-    date: 'Lunes siguiente al Lunes de Pascua',
-    tag: 'Tradición salmantina',
-    description:
-      'Como en toda la provincia, los vecinos acuden al campo en familia o en cuadrillas a merendar el hornazo salmantino, tradicionalmente en la confluencia de los arroyos locales o en los sotos del Tormes, en la finca de La Flecha.',
-  },
-];
-
-const programa = [
-  {
-    dia: 'Jueves · Inicio de fiestas',
-    desc: 'Maquillaje infantil en el Parque Grande; a las 21:30 h, chupinazo inicial y repique manual de campanas desde la torre de la iglesia; chocolatada con churros colectiva; espectáculos nocturnos de flamenco y rumbas en la Plaza Grande.',
-  },
-  {
-    dia: 'Viernes',
-    desc: 'Casetas de feria y juegos para niños en la Plaza Grande; gala fin de curso de danza de la agrupación local «Más Que Danza Moriscos»; noche de baile con macrodiscoteca.',
-  },
-  {
-    dia: 'Sábado',
-    desc: 'Animación matutina y vermú con charangas en el Parque Chico; paella popular comunitaria cuya recaudación se dona a entidades sociales como la Asociación Autismo ARIADNA; encierro infantil de carretones simulados conocido como «Asaltacalles» en la Plaza Chica; el tradicional partido de fútbol sala «Solteros vs. Casados» en el polideportivo comarcal; gran verbena nocturna con orquesta y discomóvil hasta la madrugada.',
-  },
-  {
-    dia: 'Domingo · Día grande y misa solemne',
-    desc: 'Pasacalles matutino de tamborileros y dulzaineros con repique de campanas; a las 13:00 h, Santa Misa Solemne en honor a la Virgen Peregrina; procesión de la Virgen por las calles del casco urbano, llevada a hombros por los vecinos y flanqueada por música procesional; subasta de las roscas de pan bendito; tarde infantil con juegos acuáticos, tren neumático y fiesta de la espuma; cierre a las 21:00 h con una parrillada popular de convivencia vecinal, también de carácter benéfico.',
-  },
-];
-
-const eventos = [
-  {
-    title: 'Ruta Nocturna a La Flecha',
-    description:
-      'Promovida por la Asociación Cultural de Mujeres de Moriscos, esta caminata de 7,7 km se celebra en noches estivales de luna llena, recorriendo el Camino de la Aceña hacia el Tormes y recitando versos de Fray Luis de León y Unamuno.',
-  },
-  {
-    title: 'Tiradas al plato',
-    description:
-      'Organizadas históricamente durante las fiestas en los terrenos sobrantes de la concentración parcelaria, entre el Camino de la Aceña y Valdepega.',
-  },
-  {
-    title: 'MotoCross de Moriscos',
-    description:
-      'Evento deportivo de motor celebrado durante años en agosto, aprovechando las crestas y socavones del paraje de Las Cavenes.',
-  },
-  {
-    title: 'Archivo histórico',
-    description:
-      'La memoria gráfica del pueblo conserva álbumes y vídeos de las fiestas registrados ininterrumpidamente desde 1995.',
-  },
-];
-
 /*
- * Las Fiestas Patronales empiezan el jueves anterior al primer domingo de
- * agosto (el «domingo grande») y terminan ese mismo domingo. Se calcula en el
- * navegador para que valga automáticamente en cualquier año, sin tocar código.
+ * Las fiestas de San Roque son en fechas fijas: 15 y 16 de agosto. La cuenta
+ * atrás se calcula en el navegador para que valga automáticamente en
+ * cualquier año, sin tocar código.
  */
-function firstSundayOfAugust(year) {
-  const d = new Date(year, 7, 1);
-  const offset = d.getDay() === 0 ? 0 : 7 - d.getDay();
-  d.setDate(d.getDate() + offset);
-  return d;
-}
-
 function festivalRange(year) {
-  const sunday = firstSundayOfAugust(year);
-  const start = new Date(sunday);
-  start.setDate(sunday.getDate() - 3); // jueves
-  start.setHours(21, 30, 0, 0); // hora del chupinazo
-  const end = new Date(sunday);
-  end.setHours(23, 59, 59, 999);
+  const start = new Date(year, 7, 15, 0, 0, 0, 0); // 15 de agosto
+  const end = new Date(year, 7, 16, 23, 59, 59, 999); // 16 de agosto
   return { start, end };
 }
 
@@ -109,7 +32,7 @@ function computeCountdown(now = new Date()) {
     return {
       ongoing: true,
       year,
-      label: `¡Las fiestas de ${year} están en marcha!`,
+      label: `¡Las fiestas de San Roque de ${year} están en marcha!`,
       dates: `Hasta el ${dateFmtWithYear.format(end)}.`,
     };
   }
@@ -118,7 +41,7 @@ function computeCountdown(now = new Date()) {
   return {
     ongoing: false,
     year,
-    label: `Faltan para la Fiesta Mayor de ${year}`,
+    label: `Faltan para San Roque ${year}`,
     dates: `Del ${range}.`,
     days: Math.floor(diff / (1000 * 60 * 60 * 24)),
     hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
@@ -146,11 +69,11 @@ export default function FiestasPage() {
     <div className="container-editorial py-10 sm:py-16">
       <p className="kicker">Vida festiva</p>
       <h1 className="mt-2 text-balance font-serif text-3xl font-bold text-pergamino sm:text-5xl">
-        Fiestas y tradiciones de Moriscos
+        Fiestas de Cercadillo
       </h1>
       <p className="mt-4 text-balance text-lg text-pergamino-muted/80">
-        Las fiestas y celebraciones de Moriscos conjugan la devoción religiosa, las tradiciones agrícolas de la comarca
-        de La Armuña y una intensa vida comunitaria intergeneracional.
+        La fiesta patronal de Cercadillo se celebra en honor a San Roque, los días 15 y 16 de agosto, cuando
+        vecinos, emigrados y "morcilleros" regresan al pueblo.
       </p>
 
       {/* Cuenta atrás */}
@@ -182,92 +105,23 @@ export default function FiestasPage() {
       <div className="mt-14">
         <p className="kicker">Fiesta mayor</p>
         <h2 className="mt-2 font-serif text-2xl font-bold text-armuna-light sm:text-3xl">
-          Fiestas Patronales en honor a la Virgen de la Peregrina
+          San Roque, patrón de Cercadillo
         </h2>
         <p className="mt-3 leading-relaxed text-pergamino-muted/80">
-          Es la fiesta principal del municipio. La patrona de Moriscos es la{' '}
-          <strong className="text-pergamino">Virgen de la Peregrina</strong>, cuya imagen &mdash;un valioso lienzo
-          barroco restaurado en 2016&mdash; se custodia en la Iglesia de San Pedro Apóstol.
+          Como en muchos pueblos pequeños de la España interior, la festividad de <strong className="text-pergamino">San
+          Roque</strong> concentra el punto álgido de la vida social del pueblo: son las fechas en las que Cercadillo
+          recupera parte del bullicio y la vida en comunidad que tenía cuando todavía era municipio independiente
+          (ver capítulo 4 de El Libro).
         </p>
-
-        <div className="mt-8 space-y-6">
-          <div className="card-editorial p-6 sm:p-8">
-            <h3 className="font-serif text-lg font-bold text-armuna-light sm:text-xl">Cambio histórico de fechas</h3>
-            <p className="mt-3 leading-relaxed text-pergamino-muted/80">
-              Antiguamente, la festividad se celebraba el <strong className="text-pergamino">Domingo de Pentecostés</strong>.
-              Hacia 1988, como ocurrió en muchos pueblos castellanos, la celebración se trasladó a los meses de verano
-              para facilitar la asistencia de los vecinos que residen fuera durante sus vacaciones y de los estudiantes
-              tras los exámenes. Actualmente se celebra entre la{' '}
-              <strong className="text-pergamino">última semana de julio y el primer fin de semana de agosto</strong>.
-            </p>
-          </div>
-
-          <div className="card-editorial p-6 sm:p-8">
-            <h3 className="font-serif text-lg font-bold text-armuna-light sm:text-xl">Semana cultural previa</h3>
-            <p className="mt-3 leading-relaxed text-pergamino-muted/80">
-              Durante los diez días anteriores al estallido de las fiestas (a partir del 21 de julio
-              aproximadamente), el Ayuntamiento y las asociaciones locales organizan una semana cultural con cine de
-              verano al aire libre, certámenes de teatro de calle, exposiciones y recitales de música tradicional
-              castellana.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-10">
-          <p className="kicker">Programa de festejos</p>
-          <div className="mt-4 space-y-3">
-            {programa.map((acto) => (
-              <div key={acto.dia} className="card-editorial p-5">
-                <h3 className="font-serif text-base font-bold text-pergamino sm:text-lg">{acto.dia}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-pergamino-muted/75">{acto.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="card-editorial mt-10 p-6 sm:p-8">
-          <h3 className="font-serif text-lg font-bold text-armuna-light sm:text-xl">Ritos y costumbres exclusivas</h3>
-          <p className="mt-3 leading-relaxed text-pergamino-muted/80">
-            La memoria local recogida por el portal Morisqueños destaca la pervivencia de costumbres propias como la{' '}
-            <strong className="text-pergamino">«Acogótala»</strong> &mdash;un ritual festivo de convivencia entre las
-            peñas del pueblo&mdash; y <strong className="text-pergamino">«la pedida de la botella»</strong>, en la que
-            mozos y peñas recorren las casas o bodegas del municipio pidiendo refrescos o vino para la fiesta.
-          </p>
-        </div>
       </div>
 
-      {/* Otras fiestas del año */}
-      <div className="mt-16">
-        <p className="kicker">Calendario festivo</p>
-        <h2 className="mt-2 font-serif text-2xl font-bold text-armuna-light">Otras fiestas del año</h2>
-        <div className="mt-6 grid gap-5 sm:grid-cols-3">
-          {otrasFiestas.map((f) => (
-            <article key={f.title} className="card-editorial flex flex-col justify-between">
-              <div>
-                <span className="mb-2 inline-block rounded-md bg-armuna/20 px-2.5 py-1 text-xs font-semibold text-armuna-light">
-                  {f.tag}
-                </span>
-                <h3 className="font-serif text-lg font-bold text-pergamino">{f.title}</h3>
-                <p className="mt-1 font-mono text-xs text-piedra-300">{f.date}</p>
-                <p className="mt-2.5 text-xs leading-relaxed text-pergamino-muted/75 sm:text-sm">{f.description}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-
-      {/* Eventos culturales y deportivos */}
-      <div className="mt-16">
-        <p className="kicker">Más allá de las fiestas</p>
-        <h2 className="mt-2 font-serif text-2xl font-bold text-armuna-light">Eventos culturales y deportivos</h2>
-        <div className="mt-6 space-y-5">
-          {eventos.map((e) => (
-            <article key={e.title} className="border-l-2 border-armuna-light/60 pl-5">
-              <h3 className="font-serif text-base font-semibold text-pergamino">{e.title}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-pergamino-muted/75">{e.description}</p>
-            </article>
-          ))}
-        </div>
+      <div className="card-editorial mt-10 p-6 sm:p-8">
+        <h3 className="font-serif text-lg font-bold text-armuna-light sm:text-xl">Nos falta el programa</h3>
+        <p className="mt-3 leading-relaxed text-pergamino-muted/80">
+          Todavía no tenemos documentado el programa de actos de las fiestas de San Roque, ni el resto del calendario
+          festivo de Cercadillo a lo largo del año. Si nos lo cuentas —fechas, actos, tradiciones propias del
+          pueblo—, lo añadimos encantados. Puedes escribirnos a través de los enlaces del pie de página.
+        </p>
       </div>
     </div>
   );

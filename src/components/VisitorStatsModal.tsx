@@ -11,7 +11,7 @@ interface DayStat {
   isToday: boolean;
 }
 
-const STORAGE_KEY = 'moriscos_real_daily_stats_v2';
+const STORAGE_KEY = 'cercadillo_real_daily_stats_v1';
 const LAUNCH_DATE = '2026-08-31'; // Fecha de lanzamiento de la web
 
 export function VisitorStatsModalInner() {
@@ -34,7 +34,7 @@ export function VisitorStatsModalInner() {
     } catch {}
 
     // 2. Si es una nueva visita/sesión, incrementar el contador real de hoy
-    const sessionKey = `moriscos_session_${todayKey}`;
+    const sessionKey = `cercadillo_session_${todayKey}`;
     const isNewSession = !sessionStorage.getItem(sessionKey);
     if (isNewSession) {
       storedData[todayKey] = (storedData[todayKey] || 0) + 1;

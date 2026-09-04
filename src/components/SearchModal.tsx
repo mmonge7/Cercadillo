@@ -64,7 +64,7 @@ export function SearchModalInner({ onSelectResult }: SearchModalProps) {
           }}
           className="fixed z-[260] overflow-hidden rounded-2xl border border-noche-border bg-noche-surface shadow-2xl outline-none top-[12vh] left-1/2 -translate-x-1/2 w-[94vw] max-w-lg p-0"
         >
-          <Dialog.Title className="sr-only">Buscar en Moriscos Wiki</Dialog.Title>
+          <Dialog.Title className="sr-only">Buscar en Cercadillo</Dialog.Title>
           <div className="flex items-center gap-2 border-b border-noche-border px-4 py-3 bg-noche">
             <Search className="h-5 w-5 shrink-0 text-armuna-light" />
             <input

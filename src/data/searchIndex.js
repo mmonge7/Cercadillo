@@ -202,27 +202,27 @@ export const searchIndex = [
     "id": "seccion-historia",
     "tab": "historia",
     "target": null,
-    "title": "Historia de Moriscos",
-    "excerpt": "Eje cronológico de mil años: repoblación medieval, Edad Moderna, 1812, siglo XX y actualidad.",
-    "content": "cronología historia repoblación Alfonso VI Madoz ferrocarril 1877 Unamuno Fray Luis 1941 área metropolitana",
+    "title": "Historia de Cercadillo",
+    "excerpt": "Eje cronológico: repoblación medieval de 1085-1149, Edad Moderna, siglo XIX, 1973 y actualidad.",
+    "content": "cronología historia repoblación Alfonso VI Alfonso VII fuero Comunidad de Atienza Madoz Siguenza 1973 INE",
     "badge": "Historia"
   },
   {
     "id": "seccion-lugares",
     "tab": "lugares",
     "target": null,
-    "title": "Lugares y parajes de Moriscos",
-    "excerpt": "Localizaciones emblemáticas, parajes naturales y lugares desaparecidos del término municipal.",
-    "content": "iglesia ayuntamiento parque grande eras charca vértice geodésico Andorra Las Cavenes El Hoyo La Estación",
+    "title": "Lugares de Cercadillo",
+    "excerpt": "El patrimonio documentado del pueblo: la iglesia, las dos ermitas, la fuente y el lavadero.",
+    "content": "iglesia natividad ermita soledad santo domingo fuente lavadero patrimonio",
     "badge": "Lugares"
   },
   {
     "id": "iglesia-templo",
     "tab": "iglesia",
     "target": null,
-    "title": "Iglesia de San Pedro Apóstol",
-    "excerpt": "Monumento de los siglos XII-XVI con retablo rococó y el lienzo barroco de la Virgen Peregrina.",
-    "content": "mampostería mudéjar espadaña retablo rococó Virgen Peregrina cofradías Catedrales de La Armuña 1164 1265",
+    "title": "Iglesia de la Natividad de Nuestra Señora",
+    "excerpt": "Templo del siglo XVI de tres naves con altares platerescos, el monumento principal de Cercadillo.",
+    "content": "iglesia natividad nuestra señora plateresco tres naves siglo XVI monumento",
     "badge": "Monumento"
   },
   {
@@ -235,12 +235,12 @@ export const searchIndex = [
     "badge": "Heráldica"
   },
   {
-    "id": "fiestas-peregrina",
+    "id": "fiestas-san-roque",
     "tab": "fiestas",
     "target": null,
-    "title": "Fiestas de la Virgen de la Peregrina",
-    "excerpt": "Fiesta mayor de agosto: chupinazo, procesión, subasta de roscas, paella popular y parrillada.",
-    "content": "chupinazo procesión roscas de pan bendito Acogótala pedida de la botella Asaltacalles San Isidro Lunes de Agua hornazo",
+    "title": "Fiestas de San Roque",
+    "excerpt": "Fiesta patronal de Cercadillo, los días 15 y 16 de agosto.",
+    "content": "san roque fiestas patronales agosto morcilleros",
     "badge": "Fiestas"
   },
   {
