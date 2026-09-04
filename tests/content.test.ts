@@ -18,8 +18,11 @@ describe('contenido generado desde src/content', () => {
     });
   });
 
-  it('cada término del glosario trae su definición corta y su categoría', () => {
-    expect(glosario.length).toBeGreaterThan(10);
+  // El glosario y los personajes de Cercadillo aún no tienen fuentes
+  // públicas fiables (ver README, sección 12) y hoy están vacíos a
+  // propósito: estos tests solo validan la forma de cada entrada que se
+  // vaya añadiendo, no exigen un número mínimo.
+  it('cada término del glosario, si lo hay, trae su definición corta y su categoría', () => {
     for (const term of glosario) {
       expect(term.short.length).toBeGreaterThan(0);
       expect(term.category.length).toBeGreaterThan(0);
@@ -27,8 +30,7 @@ describe('contenido generado desde src/content', () => {
     }
   });
 
-  it('cada personaje trae años, papel y etiqueta', () => {
-    expect(personajes.length).toBeGreaterThan(0);
+  it('cada personaje, si lo hay, trae años, papel y etiqueta', () => {
     for (const p of personajes) {
       expect(p.years.length).toBeGreaterThan(0);
       expect(p.role.length).toBeGreaterThan(0);

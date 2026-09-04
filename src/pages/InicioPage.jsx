@@ -39,7 +39,7 @@ const sections = [
     id: 'escudo',
     icon: Shield,
     title: 'El Escudo',
-    description: 'El significado de cada elemento del escudo heráldico oficial de Moriscos.',
+    description: 'Cercadillo no tiene escudo heráldico oficial: sección reservada por si en el futuro se define uno.',
     // Oculto de momento: Cercadillo no tiene escudo oficial (ver Nav.jsx).
     hidden: true,
   },

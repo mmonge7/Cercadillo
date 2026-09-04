@@ -37,7 +37,16 @@ function parseFrontmatter(text) {
 
 async function readCollection(name) {
   const dir = path.join(contentDir, name);
-  const files = (await fs.readdir(dir)).filter((f) => f.endsWith('.md')).sort();
+  let entries;
+  try {
+    entries = await fs.readdir(dir);
+  } catch (err) {
+    // Carpeta sin crear todavia (o vaciada, ver README seccion 12): no hay
+    // contenido de este tipo por ahora, no es un error del build.
+    if (err.code === 'ENOENT') return [];
+    throw err;
+  }
+  const files = entries.filter((f) => f.endsWith('.md')).sort();
   return Promise.all(
     files.map(async (file) => {
       const raw = await fs.readFile(path.join(dir, file), 'utf8');

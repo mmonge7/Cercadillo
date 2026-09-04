@@ -8,22 +8,25 @@ const fuse = new Fuse(searchIndex, SEARCH_OPTIONS);
 const search = (q: string) => fuse.search(q).map((r) => r.item);
 
 describe('buscador global (Fuse.js sobre el índice real)', () => {
+  // El glosario y los personajes están vacíos a propósito (ver README,
+  // sección 12: aún no hay fuentes públicas fiables sobre Cercadillo para
+  // esas dos colecciones), así que hoy el índice solo trae los capítulos
+  // del libro y las secciones estáticas de la app.
   it('el índice apunta siempre a secciones que existen', () => {
-    expect(searchIndex.length).toBeGreaterThan(20);
+    expect(searchIndex.length).toBeGreaterThan(10);
     for (const item of searchIndex) {
       expect(TABS).toContain(item.tab);
       expect(item.title.length).toBeGreaterThan(0);
     }
   });
 
-  it('encuentra un término del glosario y sabe a qué ficha saltar', () => {
-    const [first] = search('maquila');
-    expect(first.tab).toBe('glosario');
-    expect(first.target).toBe('maquila');
+  it('encuentra una sección estática por palabra clave', () => {
+    const results = search('ermita');
+    expect(results.some((r) => r.tab === 'lugares')).toBe(true);
   });
 
   it('tolera una errata leve', () => {
-    expect(search('maqila').some((r) => r.target === 'maquila')).toBe(true);
+    expect(search('Atinza').some((r) => r.target === '02-origenes-medievales-comun-de-atienza')).toBe(true);
   });
 
   it('encuentra un capítulo por su extracto y devuelve su slug', () => {
@@ -35,11 +38,6 @@ describe('buscador global (Fuse.js sobre el índice real)', () => {
 
   it('encuentra contenido que solo aparece en el cuerpo del capítulo', () => {
     expect(search('Alcolea de las Peñas').some((r) => r.tab === 'libro')).toBe(true);
-  });
-
-  it('encuentra un personaje de la genealogía', () => {
-    const results = search('Eugenio Blanco');
-    expect(results.some((r) => r.tab === 'genealogia' && r.target === 'eugenio-blanco-carbayo')).toBe(true);
   });
 
   it('no devuelve resultados para un término sin relación', () => {
