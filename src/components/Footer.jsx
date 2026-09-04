@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Instagram, Twitter, Mail } from 'lucide-react';
 import { navItems } from './Nav';
 
 const enlaces = ['libro', 'referencias', 'sobre-la-web'];
@@ -23,14 +23,24 @@ export default function Footer({ onNavigate }) {
             <Mail size={18} />
           </a>
           <a
-            href="https://www.linkedin.com/in/pablocrespobellido/"
+            href="https://www.instagram.com/infocercadillo/"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Perfil de LinkedIn de Pablo Crespo Bellido"
-            title="LinkedIn: Pablo Crespo Bellido"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-pergamino/25 text-pergamino/80 transition-colors hover:border-[#4db5e8] hover:text-[#4db5e8]"
+            aria-label="Instagram de Cercadillo: @infocercadillo"
+            title="Instagram: @infocercadillo"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-pergamino/25 text-pergamino/80 transition-colors hover:border-[#E1306C] hover:text-[#E1306C]"
           >
-            <Linkedin size={18} />
+            <Instagram size={18} />
+          </a>
+          <a
+            href="https://twitter.com/infocercadillo"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter de Cercadillo: @infocercadillo"
+            title="Twitter: @infocercadillo"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-pergamino/25 text-pergamino/80 transition-colors hover:border-[#1DA1F2] hover:text-[#1DA1F2]"
+          >
+            <Twitter size={18} />
           </a>
           <a
             href="https://github.com/mmonge7/Cercadillo"
@@ -63,7 +73,7 @@ export default function Footer({ onNavigate }) {
         <div className="flex flex-col items-center gap-1.5 text-center">
           <p className="text-sm text-pergamino/80">
             Web diseñada y desarrollada por{' '}
-            <span className="font-semibold text-pergamino">Pablo Crespo Bellido</span>
+            <span className="font-semibold text-pergamino">los vecinos de Cercadillo</span>
           </p>
           <p className="text-xs text-pergamino/50">
             &copy; {year} · Cercadillo · Historia, Lugares y Curiosidades

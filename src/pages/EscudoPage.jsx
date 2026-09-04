@@ -28,7 +28,7 @@ export default function EscudoPage() {
           className="group relative mx-auto h-52 w-52 shrink-0 cursor-zoom-in overflow-hidden rounded-2xl shadow-xl ring-2 ring-piedra-400/40 sm:mx-0 bg-noche-card"
         >
           <img
-            src="/moriscos-wiki/images/escudo-moriscos-480.jpg"
+            src="/Cercadillo/images/escudo-moriscos-480.jpg"
             alt="Escudo heráldico oficial del Ayuntamiento de Moriscos"
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
             width="208"
@@ -119,7 +119,7 @@ export default function EscudoPage() {
             <X size={24} />
           </button>
           <img
-            src="/moriscos-wiki/images/escudo-moriscos-1024.jpg"
+            src="/Cercadillo/images/escudo-moriscos-1024.jpg"
             alt="Escudo heráldico oficial del Ayuntamiento de Moriscos, en detalle"
             className="max-h-[85vh] max-w-[92vw] rounded-2xl object-contain shadow-2xl ring-1 ring-white/10"
             width="1024"

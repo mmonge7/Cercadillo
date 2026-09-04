@@ -23,7 +23,7 @@ export default defineConfig({
         'icons/apple-touch-icon-152x152.png',
         'icons/icon-192.png',
         'icons/icon-512.png',
-        'images/escudo-moriscos-160.jpg',
+        'images/escudo-cercadillo-160.jpg',
         'images/og-default.png',
       ],
       manifest: {
