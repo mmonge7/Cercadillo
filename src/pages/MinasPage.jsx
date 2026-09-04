@@ -98,7 +98,7 @@ export default function MinasPage() {
         <div className="absolute inset-0 bg-tinta/10" />
 
         <div className="relative z-10 p-6 sm:p-10 lg:p-14">
-          <p className="kicker text-piedra-800">Ni catas ni minas · Sierra Norte de Guadalajara</p>
+          <p className="kicker" style={{ color: '#f2ece1' }}>Ni catas ni minas · Sierra Norte de Guadalajara</p>
           <h1 className="mt-3 max-w-2xl text-balance font-serif text-3xl sm:text-5xl font-bold text-piedra-800">
             La tierra no se vende, se defiende.
           </h1>
@@ -182,7 +182,7 @@ export default function MinasPage() {
             En noviembre la Junta de Comunidades de Castilla-La Mancha rechazó la fórmula de tramitar los permisos
             por separado y exigió una única evaluación de impacto ambiental conjunta. Oroberia solicitó además la
             autorización arqueológica necesaria para continuar, un trámite contra el que los vecinos han presentado
-            varios cientos de alegaciones individuales. La compañía ha respondido presentando un proyecto
+            varios recursos. La compañía ha respondido presentando un proyecto
             consolidado, que a día de hoy sigue en fase de revisión técnica y legal antes de entrar en información
             pública.
           </p>
@@ -223,9 +223,25 @@ export default function MinasPage() {
         <article className="card-editorial p-6 sm:p-8 border-armuna-light/40 bg-noche-surface">
           <h2 className="font-serif text-xl sm:text-2xl font-bold text-armuna-light">La respuesta vecinal</h2>
           <p className="mt-3 leading-relaxed text-pergamino-muted/80 text-sm sm:text-base">
-            La oposición al proyecto se articula principalmente a través de la Plataforma Valle del Río
-            Cañamares-Sierra Norte, que agrupa a ayuntamientos, asociaciones y colectivos ecologistas de la comarca y
-            mantiene informada a la comarca desde su cuenta de Instagram{' '}
+            Ante el proyecto de investigación minera promovido por Oroberia, los vecinos de Cercadillo han decidido
+            organizarse para conocer y analizar el alcance de esta iniciativa y sus posibles repercusiones para el
+            pueblo y su entorno. Para ello, se ha creado un grupo de trabajo formado por vecinos de Cercadillo, con
+            el objetivo de recopilar información, estudiar el proyecto, preparar las correspondientes alegaciones y
+            coordinar las actuaciones que puedan ser necesarias. Esta iniciativa pretende facilitar que los vecinos
+            estén informados, participen en el proceso y puedan expresar de forma conjunta y responsable las
+            inquietudes y opiniones del pueblo, defendiendo los intereses de Cercadillo y de sus vecinos.
+          </p>
+          <p className="mt-3 leading-relaxed text-pergamino-muted/80 text-sm sm:text-base">
+            En Cercadillo, el rechazo se ha hecho visible con el lema{' '}
+            <span className="font-semibold text-pergamino">
+              &ldquo;Ni catas, ni minas: la tierra no se vende, se defiende&rdquo;
+            </span>
+            , que puede verse en las publicaciones del pueblo en Instagram.
+          </p>
+          <p className="mt-3 leading-relaxed text-pergamino-muted/80 text-sm sm:text-base">
+            La oposición al proyecto se articula también a través de la Plataforma Valle del Río Cañamares-Sierra
+            Norte, que agrupa a ayuntamientos, asociaciones y colectivos ecologistas de la comarca y mantiene
+            informada a la comarca desde su cuenta de Instagram{' '}
             <a
               href="https://www.instagram.com/ni_catas_ni_minas/"
               target="_blank"
@@ -234,14 +250,7 @@ export default function MinasPage() {
             >
               @ni_catas_ni_minas
             </a>
-            . Según sus propias publicaciones, los vecinos han presentado ya más de 520 recursos de alzada contra la
-            autorización arqueológica del proyecto, y la plataforma ha llevado su reivindicación hasta Bruselas junto
-            a otros pueblos españoles enfrentados a proyectos extractivos similares. En Cercadillo, el rechazo se ha
-            hecho visible con el lema{' '}
-            <span className="font-semibold text-pergamino">
-              &ldquo;Ni catas, ni minas: la tierra no se vende, se defiende&rdquo;
-            </span>
-            , que puede verse en las publicaciones del pueblo en Instagram.
+            .
           </p>
         </article>
 
