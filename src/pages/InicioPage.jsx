@@ -132,7 +132,11 @@ export default function InicioPage({ onNavigate }) {
               <div key={c.label} className="card-editorial flex min-w-0 flex-col justify-between">
                 <div className="min-w-0">
                   <p className="text-xs font-semibold tracking-wider text-armuna-light uppercase">{c.label}</p>
-                  <p className="mt-2 break-words font-display text-2xl font-black text-pergamino sm:text-3xl">
+                  <p
+                    className={`mt-2 whitespace-nowrap font-display font-black text-pergamino ${
+                      c.value.length > 8 ? 'text-xl sm:text-2xl' : 'text-3xl'
+                    }`}
+                  >
                     {c.value} {c.suffix && <span className="text-xl font-normal text-armuna-light">{c.suffix}</span>}
                   </p>
                 </div>
