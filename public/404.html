@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Moriscos · Redirigiendo</title>
+    <title>Cercadillo · Redirigiendo</title>
     <style>
       body {
         margin: 0;
@@ -26,12 +26,12 @@
       /*
        * La web es una sola página con rutas por hash. Este 404 traduce las
        * direcciones antiguas del sitio multipágina (por ejemplo
-       * /moriscos-wiki/libro/05-despoblado-ribas-flecha/) a su equivalente
+       * /Cercadillo/libro/05-despoblado-ribas-flecha/) a su equivalente
        * (#/libro/05-despoblado-ribas-flecha), para que los enlaces
        * compartidos y los resultados de Google sigan funcionando.
        */
       (function () {
-        var base = '/moriscos-wiki/';
+        var base = '/Cercadillo/';
         var path = window.location.pathname;
         var route = path.indexOf(base) === 0 ? path.slice(base.length) : path.replace(/^\/+/, '');
         route = route.replace(/[^/]*\.html$/, '').replace(/^\/+|\/+$/g, '');
@@ -42,7 +42,7 @@
   </head>
   <body>
     <p>
-      Redirigiendo a <a href="/moriscos-wiki/">Moriscos · Historia, Lugares y Curiosidades</a>…
+      Redirigiendo a <a href="/Cercadillo/">Cercadillo · Historia, Lugares y Curiosidades</a>…
     </p>
   </body>
 </html>

@@ -101,7 +101,7 @@ export function Drawer({ active, onChange, open, onClose }) {
         <div className="flex items-center justify-between px-5 pt-[calc(env(safe-area-inset-top,0px)+1rem)] pb-4 border-b border-white/10">
           <div className="flex items-center gap-2.5 font-display text-lg font-bold tracking-wider text-pergamino">
             <img
-              src="/moriscos-wiki/images/escudo-moriscos-160.jpg"
+              src="/Cercadillo/images/escudo-moriscos-160.jpg"
               alt="Escudo de Moriscos"
               className="h-8 w-8 rounded-full object-cover ring-2 ring-piedra-300/80 shadow-sm"
               width="32"
@@ -185,7 +185,7 @@ export default function Nav({ active, onChange, open, setOpen }) {
           className="flex items-center gap-2 font-display text-lg font-bold tracking-widest text-pergamino cursor-pointer"
         >
           <img
-            src="/moriscos-wiki/images/escudo-moriscos-160.jpg"
+            src="/Cercadillo/images/escudo-moriscos-160.jpg"
             alt="Escudo de Moriscos"
             className="h-7 w-7 rounded-full object-cover ring-2 ring-piedra-300/80"
             width="28"
@@ -233,7 +233,7 @@ export function DesktopTopBar({ onChange }) {
         className="flex items-center gap-3.5 cursor-pointer group"
       >
         <img
-          src="/moriscos-wiki/images/escudo-moriscos-160.jpg"
+          src="/Cercadillo/images/escudo-moriscos-160.jpg"
           alt="Escudo de Moriscos"
           className="h-9 w-9 rounded-full object-cover ring-2 ring-piedra-300/80 shadow-md transition-transform group-hover:scale-105"
           width="36"

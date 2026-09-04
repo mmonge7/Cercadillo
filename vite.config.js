@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
-  base: '/moriscos-wiki/',
+  base: '/Cercadillo/',
   plugins: [
     react(),
     tailwindcss(),
@@ -27,13 +27,13 @@ export default defineConfig({
         'images/og-default.png',
       ],
       manifest: {
-        name: 'Moriscos · Historia, Lugares y Curiosidades',
-        short_name: 'Moriscos',
+        name: 'Cercadillo · Historia, Lugares y Curiosidades',
+        short_name: 'Cercadillo',
         description:
-          'Historia, geografía, etnografía y memoria viva de Moriscos (Salamanca, La Armuña) y el entorno de La Flecha.',
+          'Historia, geografía, etnografía y memoria viva de Cercadillo (Guadalajara, Sigüenza).',
         lang: 'es',
-        start_url: '/moriscos-wiki/',
-        scope: '/moriscos-wiki/',
+        start_url: '/Cercadillo/',
+        scope: '/Cercadillo/',
         display: 'standalone',
         background_color: '#241E18',
         theme_color: '#724828',
@@ -51,7 +51,7 @@ export default defineConfig({
       workbox: {
         skipWaiting: true,
         clientsClaim: true,
-        navigateFallback: '/moriscos-wiki/index.html',
+        navigateFallback: '/Cercadillo/index.html',
         // Se precachea woff2 (soportado por todos los navegadores actuales) y
         // no woff, para no duplicar el peso de las tipografías sin conexión.
         globPatterns: ['**/*.{js,css,html,png,svg,ico,jpg,jpeg,webp,woff2}'],

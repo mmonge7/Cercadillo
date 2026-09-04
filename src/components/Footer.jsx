@@ -33,11 +33,11 @@ export default function Footer({ onNavigate }) {
             <Linkedin size={18} />
           </a>
           <a
-            href="https://github.com/pCresp0/moriscos-wiki"
+            href="https://github.com/mmonge7/Cercadillo"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Repositorio en GitHub de Moriscos Wiki"
-            title="Repositorio en GitHub: pCresp0/moriscos-wiki"
+            aria-label="Repositorio en GitHub de Cercadillo"
+            title="Repositorio en GitHub: mmonge7/Cercadillo"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-pergamino/25 text-pergamino/80 transition-colors hover:border-pergamino hover:text-pergamino"
           >
             <Github size={18} />
@@ -66,7 +66,7 @@ export default function Footer({ onNavigate }) {
             <span className="font-semibold text-pergamino">Pablo Crespo Bellido</span>
           </p>
           <p className="text-xs text-pergamino/50">
-            &copy; {year} · Moriscos · Historia, Lugares y Curiosidades
+            &copy; {year} · Cercadillo · Historia, Lugares y Curiosidades
           </p>
         </div>
       </div>
