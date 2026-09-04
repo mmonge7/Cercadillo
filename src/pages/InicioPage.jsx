@@ -5,6 +5,7 @@ import { counters } from '../data/site';
 import {
   History,
   MapPin,
+  Pickaxe,
   PartyPopper,
   Shield,
   Church,
@@ -28,6 +29,12 @@ const sections = [
     icon: MapPin,
     title: 'Lugares',
     description: 'El patrimonio documentado de Cercadillo: la iglesia, las ermitas y las infraestructuras tradicionales.',
+  },
+  {
+    id: 'ni-catas-ni-minas',
+    icon: Pickaxe,
+    title: 'Ni catas ni minas',
+    description: 'El proyecto minero de oro en la Sierra Norte de Guadalajara: qué se sabe, por qué preocupa y cómo responde la comarca.',
   },
   {
     id: 'fiestas',

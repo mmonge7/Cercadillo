@@ -20,6 +20,7 @@ import GenealogiaPage from './pages/GenealogiaPage';
 import GlosarioPage from './pages/GlosarioPage';
 import ReferenciasPage from './pages/ReferenciasPage';
 import SobrePage from './pages/SobrePage';
+import MinasPage from './pages/MinasPage';
 
 const PAGES = {
   inicio: InicioPage,
@@ -34,6 +35,7 @@ const PAGES = {
   glosario: GlosarioPage,
   referencias: ReferenciasPage,
   'sobre-la-web': SobrePage,
+  'ni-catas-ni-minas': MinasPage,
 };
 
 export default function App() {

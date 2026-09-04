@@ -9,6 +9,7 @@ export const TABS = [
   'inicio',
   'historia',
   'lugares',
+  'ni-catas-ni-minas',
   'fiestas',
   'escudo',
   'iglesia',

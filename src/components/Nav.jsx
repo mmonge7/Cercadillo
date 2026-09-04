@@ -5,6 +5,7 @@ import {
   Home,
   History,
   MapPin,
+  Pickaxe,
   PartyPopper,
   Shield,
   Church,
@@ -21,6 +22,7 @@ export const navItems = [
   { id: 'inicio', label: 'Inicio', icon: Home },
   { id: 'historia', label: 'Historia', icon: History },
   { id: 'lugares', label: 'Lugares', icon: MapPin },
+  { id: 'ni-catas-ni-minas', label: 'Ni catas ni minas', icon: Pickaxe },
   { id: 'fiestas', label: 'Fiestas', icon: PartyPopper },
   // Oculto de momento: Cercadillo no tiene escudo oficial. Se deja el
   // id 'hidden: true' para poder reactivarlo facilmente si en el futuro

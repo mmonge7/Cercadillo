@@ -212,6 +212,15 @@ const staticEntries = [
     badge: 'Genealogía',
   },
   {
+    id: 'seccion-ni-catas-ni-minas',
+    tab: 'ni-catas-ni-minas',
+    target: null,
+    title: 'Ni catas ni minas',
+    excerpt: 'El proyecto minero de oro en la Sierra Norte de Guadalajara: qué se sabe, por qué preocupa y cómo responde la comarca.',
+    content: 'minas oro Oroberia Global Mining Enterprises Sierra Norte Guadalajara Siguenza catas Plataforma Valle del Rio Cañamares extractivismo cianuro Natura 2000',
+    badge: 'Actualidad',
+  },
+  {
     id: 'seccion-referencias',
     tab: 'referencias',
     target: null,
