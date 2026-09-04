@@ -51,16 +51,16 @@
 }
 
 :root {
-  --ink: #fdfbf7;
-  --ink-soft: #b0a698;
-  --paper: #171717;
-  --paper-raised: #241e18;
+  --ink: #000000;
+  --ink-soft: #6f6254;
+  --paper: #f9e5bd;
+  --paper-raised: #fff3da;
   --primary: #8c4a32;
   --primary-deep: #5b2e1d;
   --accent: #b88432;
   --accent-deep: #734f1e;
   --gold: #d4a359;
-  --line: #3d332a;
+  --line: #d6bd91;
   --mobile-topbar: calc(58px + env(safe-area-inset-top, 0px));
 }
 
