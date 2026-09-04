@@ -27,12 +27,14 @@ describe('buscador global (Fuse.js sobre el índice real)', () => {
   });
 
   it('encuentra un capítulo por su extracto y devuelve su slug', () => {
-    const results = search('Fray Luis');
-    expect(results.some((r) => r.tab === 'libro' && r.target === '05-despoblado-ribas-flecha')).toBe(true);
+    const results = search('fuero de 1149');
+    expect(results.some((r) => r.tab === 'libro' && r.target === '02-origenes-medievales-comun-de-atienza')).toBe(
+      true,
+    );
   });
 
   it('encuentra contenido que solo aparece en el cuerpo del capítulo', () => {
-    expect(search('penillanura').some((r) => r.tab === 'libro')).toBe(true);
+    expect(search('Alcolea de las Peñas').some((r) => r.tab === 'libro')).toBe(true);
   });
 
   it('encuentra un personaje de la genealogía', () => {

@@ -6,8 +6,8 @@ import { toBlocks } from '../src/utils/markdownBlocks';
 import { slugify } from '../src/utils/slugify';
 
 describe('contenido generado desde src/content', () => {
-  it('los 11 capítulos llegan completos y en orden', () => {
-    expect(chapters).toHaveLength(11);
+  it('los 6 capítulos llegan completos y en orden', () => {
+    expect(chapters).toHaveLength(6);
     chapters.forEach((c, i) => {
       expect(c.number).toBe(i + 1);
       expect(c.title.length).toBeGreaterThan(0);

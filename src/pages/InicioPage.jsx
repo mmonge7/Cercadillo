@@ -52,7 +52,7 @@ const sections = [
     id: 'libro',
     icon: BookOpen,
     title: 'El Libro',
-    description: 'Once capítulos que recorren la geografía, la toponimia, la economía y los sucesos de Moriscos.',
+    description: 'Seis capítulos sobre la geografía, los orígenes medievales y el patrimonio de Cercadillo.',
   },
   {
     id: 'rutas',

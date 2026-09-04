@@ -75,11 +75,12 @@ export default function LibroPage({ onNavigate, target }) {
       <div className="container-editorial py-10 sm:py-16">
         <p className="kicker">Monografía histórica</p>
         <h1 className="mt-2 text-balance font-serif text-3xl font-bold text-pergamino sm:text-5xl">
-          Once capítulos sobre Moriscos, La Armuña y La Flecha
+          Seis capítulos sobre Cercadillo y el Común de Atienza
         </h1>
         <p className="mt-4 text-balance text-lg text-pergamino-muted/80">
-          Una monografía histórica y etnográfica que documenta la geografía, los orígenes, los despoblados, los sucesos
-          y la memoria viva de Moriscos. Pensada para leerse en orden o consultarse como referencia.
+          Una monografía histórica que documenta la geografía, los orígenes medievales, el patrimonio y la evolución
+          de Cercadillo a partir de fuentes públicas verificables. Pensada para leerse en orden o consultarse como
+          referencia, y abierta a crecer con nuevas aportaciones de los vecinos.
         </p>
 
         <ol className="mt-12 space-y-4">
