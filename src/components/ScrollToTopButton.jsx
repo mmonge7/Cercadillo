@@ -63,17 +63,17 @@ export default function ScrollToTopButton({ containerRef, resetKey }) {
         width: 46,
         height: 46,
         borderRadius: '50%',
-        border: '1px solid rgba(234, 179, 8, 0.45)',
+        border: '1px solid rgba(220, 208, 191, 0.9)',
         cursor: visible ? 'pointer' : 'default',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(135deg, rgba(122, 77, 43, 0.95) 0%, rgba(82, 49, 24, 0.98) 100%)',
+        background: 'rgba(253, 246, 230, 0.95)',
         backdropFilter: 'blur(8px)',
         WebkitBackdropFilter: 'blur(8px)',
-        color: '#F4EDE0',
+        color: '#262624',
         boxShadow: visible
-          ? '0 8px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(234, 179, 8, 0.2)'
+          ? '0 8px 20px rgba(45, 36, 28, 0.18), 0 0 0 1px rgba(115, 79, 30, 0.12)'
           : 'none',
         opacity: visible ? 1 : 0,
         visibility: visible ? 'visible' : 'hidden',

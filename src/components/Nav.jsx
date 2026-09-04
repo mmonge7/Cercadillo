@@ -171,14 +171,14 @@ export default function Nav({ active, onChange, open, setOpen }) {
           paddingTop: 'env(safe-area-inset-top, 0px)',
         }}
       >
-        <div className="flex items-center w-10">
+        <div className="flex items-center justify-start w-10">
           <button
             type="button"
             onClick={() => setOpen(true)}
             aria-label="Abrir menú"
-            className="p-1.5 -ml-1 rounded-lg text-pergamino hover:bg-white/10 transition-colors cursor-pointer"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-pergamino/20 bg-pergamino/10 text-pergamino shadow-sm transition-colors hover:border-pergamino/35 hover:bg-pergamino/20 active:bg-pergamino/25 cursor-pointer"
           >
-            <Menu size={24} />
+            <Menu size={22} />
           </button>
         </div>
 
@@ -197,9 +197,9 @@ export default function Nav({ active, onChange, open, setOpen }) {
           CERCADILLO
         </button>
 
-        <div className="flex items-center justify-end w-10">
-          <SearchModal onSelectResult={onChange} />
-        </div>
+        {/* Espaciador: mantiene la marca centrada ahora que el buscador no
+            se muestra en la barra móvil (se mantiene solo en escritorio). */}
+        <div className="w-10" aria-hidden="true" />
       </header>
 
       <Drawer active={active} onChange={onChange} open={open} onClose={() => setOpen(false)} />
