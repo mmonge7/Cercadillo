@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Instagram, Twitter, Mail } from 'lucide-react';
+import { Instagram, Twitter } from 'lucide-react';
 import { navItems } from './Nav';
 
 const enlaces = ['libro', 'referencias', 'sobre-la-web'];
@@ -9,19 +9,11 @@ export default function Footer({ onNavigate }) {
 
   return (
     <footer
-      className="brand-panel mt-auto border-t border-noche-border text-xs text-pergamino-muted/70 sm:text-sm"
+      className="brand-panel mt-auto shrink-0 border-t border-noche-border text-xs text-pergamino-muted/70 sm:text-sm"
       style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 1.5rem)', paddingTop: '2rem' }}
     >
       <div className="container-editorial flex flex-col items-center gap-6">
         <div className="flex items-center gap-3">
-          <a
-            href="mailto:marcosmonge5@gmail.com"
-            aria-label="Enviar correo de contacto a marcosmonge5@gmail.com"
-            title="Contacto por email: marcosmonge5@gmail.com"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-pergamino/25 text-pergamino/80 transition-colors hover:border-[#ea4335] hover:text-[#ea4335]"
-          >
-            <Mail size={18} />
-          </a>
           <a
             href="https://www.instagram.com/infocercadillo/"
             target="_blank"
@@ -41,16 +33,6 @@ export default function Footer({ onNavigate }) {
             className="flex h-10 w-10 items-center justify-center rounded-full border border-pergamino/25 text-pergamino/80 transition-colors hover:border-[#1DA1F2] hover:text-[#1DA1F2]"
           >
             <Twitter size={18} />
-          </a>
-          <a
-            href="https://github.com/mmonge7/Cercadillo"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Repositorio en GitHub de Cercadillo"
-            title="Repositorio en GitHub: mmonge7/Cercadillo"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-pergamino/25 text-pergamino/80 transition-colors hover:border-pergamino hover:text-pergamino"
-          >
-            <Github size={18} />
           </a>
         </div>
 

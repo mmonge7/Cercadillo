@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Github, Instagram, MessageSquareQuote } from 'lucide-react';
+import { Instagram, Twitter, MessageSquareQuote } from 'lucide-react';
 
 export default function SobrePage({ onNavigate }) {
   return (
@@ -56,33 +56,30 @@ export default function SobrePage({ onNavigate }) {
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
             <a
-              href="mailto:marcosmonge5@gmail.com"
-              className="inline-flex items-center gap-2.5 rounded-2xl border border-armuna/40 bg-armuna/15 px-5 py-3 text-sm sm:text-base font-bold text-pergamino shadow-md transition-all hover:bg-armuna/25"
-            >
-              <Mail size={18} className="text-armuna-light" />
-              <span>marcosmonge5@gmail.com</span>
-            </a>
-            <a
               href="https://www.instagram.com/infocercadillo/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-2xl border border-noche-border bg-noche px-4 py-3 text-sm font-semibold text-pergamino-muted hover:text-pergamino"
+              className="inline-flex items-center gap-2.5 rounded-2xl border border-armuna/40 bg-armuna/15 px-5 py-3 text-sm sm:text-base font-bold text-pergamino shadow-md transition-all hover:bg-armuna/25"
             >
-              <Instagram size={17} />
+              <Instagram size={18} className="text-armuna-light" />
               <span>@infocercadillo</span>
             </a>
             <a
-              href="https://github.com/mmonge7/Cercadillo"
+              href="https://twitter.com/infocercadillo"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-2xl border border-noche-border bg-noche px-4 py-3 text-sm font-semibold text-pergamino-muted hover:text-pergamino"
             >
-              <Github size={17} />
-              <span>GitHub</span>
+              <Twitter size={17} />
+              <span>@infocercadillo</span>
             </a>
           </div>
         </article>
 
+        {/* Ocultas de momento a petición del autor: "Código abierto: todo está en
+            GitHub" y "Cómo está construida". Se dejan comentadas, no borradas,
+            para poder reactivarlas fácilmente si en el futuro se quiere volver
+            a enlazar el repositorio públicamente.
         <article className="card-editorial p-6 sm:p-8">
           <h2 className="font-serif text-xl sm:text-2xl font-bold text-armuna-light">
             Código abierto: todo está en GitHub
@@ -114,6 +111,7 @@ export default function SobrePage({ onNavigate }) {
             contenido.
           </p>
         </article>
+        */}
 
         <article className="card-editorial p-6 sm:p-8">
           <h2 className="font-serif text-xl sm:text-2xl font-bold text-armuna-light">Aviso</h2>
