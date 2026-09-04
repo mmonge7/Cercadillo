@@ -82,15 +82,6 @@ export const searchIndex = [
     "badge": "Monumento"
   },
   {
-    "id": "escudo-oficial",
-    "tab": "escudo",
-    "target": null,
-    "title": "Escudo heráldico de Moriscos",
-    "excerpt": "Cruz recruzada de plata, El Hoyo, la espiga de trigo, el zumaque y la luna creciente.",
-    "content": "heráldica gules oro azur cruz recruzada zumaque Rhus Coriaria luna creciente Corona Real cuartel",
-    "badge": "Heráldica"
-  },
-  {
     "id": "fiestas-san-roque",
     "tab": "fiestas",
     "target": null,
@@ -123,7 +114,7 @@ export const searchIndex = [
     "target": null,
     "title": "Referencias y fuentes documentales",
     "excerpt": "Archivos, monografías, hemeroteca y portales digitales en los que se basa esta web.",
-    "content": "bibliografía fuentes archivo diocesano Catastro de Ensenada Madoz INE IGN hemeroteca Morisqueños",
+    "content": "bibliografía fuentes Wikipedia Wikidata Madoz BOE INE Comunidad de Atienza guías Guadalajara Wikiloc",
     "badge": "Fuentes"
   },
   {
@@ -132,7 +123,7 @@ export const searchIndex = [
     "target": null,
     "title": "Sobre esta web",
     "excerpt": "Por qué existe el proyecto, de dónde sale la información y cómo contactar o colaborar.",
-    "content": "proyecto personal independiente contacto colaboración código abierto GitHub aviso Pablo Crespo Bellido",
+    "content": "proyecto personal independiente contacto colaboración Instagram Twitter aviso vecinos de Cercadillo",
     "badge": "El proyecto"
   }
 ];

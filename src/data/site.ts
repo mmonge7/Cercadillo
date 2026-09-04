@@ -12,36 +12,9 @@ export const counters: Counter[] = [
   { label: 'Gentilicio', value: 'Morcilleros', detail: 'Como se conoce tradicionalmente a los vecinos de Cercadillo' },
 ];
 
-export const hitos = [
-  {
-    title: 'Repoblación de 1100',
-    year: 'Siglos XI-XII',
-    summary:
-      'El conde Ramón de Borgoña y el obispo Jerónimo de Perigord repueblan el alfoz salmantino; Vela de Aragón funda la vecina Castellanos de Morisco.',
-    href: '/libro/02-toponimia-repoblacion',
-  },
-  {
-    title: 'Batalla de 1812',
-    year: 'Guerra de la Independencia',
-    summary:
-      'Wellington y Marmont combaten en El Parapeto y La Cabaña los días 20 y 22 de junio, antesala de la Batalla de Los Arapiles.',
-    href: '/libro/06-conflictos-belicos',
-  },
-  {
-    title: 'El suceso de 1941',
-    year: '15 de agosto, posguerra',
-    summary:
-      'La emboscada de "la horca de Marino" a las hermanas Salvador Domínguez, documentada por la prensa y la memoria civil local.',
-    href: '/libro/07-sucesos-cronica-negra',
-  },
-  {
-    title: 'Fray Luis de León',
-    year: 'Siglo XVI',
-    summary:
-      'El soto de La Flecha, a 7,7 km de Moriscos, fue refugio contemplativo del poeta agustino tras su encierro inquisitorial.',
-    href: '/libro/05-despoblado-ribas-flecha',
-  },
-];
+// (El array `hitos`, con hitos históricos del pueblo hermano de Moriscos,
+// Salamanca, se eliminó por no usarse en ninguna página y no corresponder a
+// Cercadillo — ver README, sección 12.)
 
 export const navLinks = [
   { label: 'Inicio', href: '/' },
