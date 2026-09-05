@@ -16,7 +16,7 @@ Cercadillo no tenía ningún portal, wiki ni archivo digital propio. Este proyec
 - Añade capas interactivas: buscador instantáneo, cuenta atrás de la fiesta patronal, sección de rutas de senderismo y BTT, y un resumen de la actividad reciente de la cuenta de Instagram del pueblo.
 - Prioriza el rendimiento en móviles de gama media: la web se instala como aplicación, funciona sin conexión y cambiar de sección no descarga nada.
 
-El contenido histórico se basa en fuentes públicas verificables (Wikipedia, Wikidata, el INE, el *Diccionario geográfico-estadístico-histórico* de Pascual Madoz de 1847 y guías de pueblos de Guadalajara), listadas en detalle en la sección **Referencias** de la propia web. Es, deliberadamente, un punto de partida modesto y honesto: donde no hay fuente fiable (glosario local, genealogía), la web lo dice abiertamente en vez de inventar contenido genérico (ver sección 5.2).
+El contenido histórico se basa en fuentes públicas verificables (Wikipedia, Wikidata, el INE, el *Diccionario geográfico-estadístico-histórico* de Pascual Madoz de 1847 y guías de pueblos de Guadalajara), listadas en detalle en la sección **Referencias** de la propia web. Es, deliberadamente, un punto de partida modesto y honesto: donde no hay fuente fiable (genealogía) o contenido aún por generar (galería fotográfica), la web lo dice abiertamente en vez de inventar contenido genérico (ver sección 5.2).
 
 ---
 
@@ -48,7 +48,7 @@ El contenido histórico se basa en fuentes públicas verificables (Wikipedia, Wi
 Contenido en Markdown (src/content/*)
         │  scripts/build-content-data.mjs (se ejecuta en npm run dev y npm run build)
         ▼
-Módulos de datos (src/data/chaptersData.js, glosarioData.js, personajesData.js, searchIndex.js)
+Módulos de datos (src/data/chaptersData.js, personajesData.js, searchIndex.js)
         │
         ▼
 index.html + src/main.jsx ──▶ src/App.jsx
@@ -83,14 +83,11 @@ Puntos clave del modelo:
 │   │                          reutilizables (.card-editorial, .kicker, .btn-primary, .prose-chapter...).
 │   ├── content/
 │   │   ├── chapters/         6 ficheros .md, uno por capítulo de El Libro (contenido real de Cercadillo).
-│   │   ├── glosario/          13 ficheros .md heredados de un proyecto hermano (ver sección 12: NO
-│   │   │                      corresponden a Cercadillo y no se muestran en la web, solo contaminan el
-│   │   │                      índice del buscador — pendientes de vaciar o sustituir).
-│   │   └── personajes/         3 ficheros .md, mismo caso que glosario/: no son de Cercadillo y no se
-│   │                           renderizan en ninguna página (GenealogiaPage no los usa).
+│   │   └── personajes/         3 ficheros .md heredados de un proyecto hermano (ver sección 12: NO
+│   │                           corresponden a Cercadillo y no se renderizan en ninguna página
+│   │                           (GenealogiaPage no los usa), pero sí contaminan el índice del buscador).
 │   ├── data/
 │   │   ├── chaptersData.js    GENERADOS a partir de src/content por scripts/build-content-data.mjs.
-│   │   ├── glosarioData.js     No editar a mano: se sobrescriben en cada build. (Sin uso en pantalla.)
 │   │   ├── personajesData.js                                                    (Sin uso en pantalla.)
 │   │   ├── searchIndex.js
 │   │   ├── instagramPosts.ts  Selección manual de publicaciones de @infocercadillo para el Inicio.
@@ -124,7 +121,7 @@ Puntos clave del modelo:
 ### 5.1. Modelo de contenido (`src/content/`)
 
 - **`chapters`** — frontmatter: `number`, `title`, `dek` (subtítulo/resumen), `order`, `readingMinutes`. El cuerpo Markdown usa `##` para los apartados que alimentan el índice del capítulo y `###` para subsecciones que no aparecen en ese índice. Es el único de los tres tipos de contenido con material real de Cercadillo.
-- **`glosario`** y **`personajes`** — existen como tipo de contenido (frontmatter y *pipeline* de build ya montados) pero hoy los ficheros que hay dentro son los heredados de un proyecto hermano sobre otro pueblo, no de Cercadillo, y ninguna página los muestra: están ahí en espera de contenido real (ver sección 12).
+- **`personajes`** — existe como tipo de contenido (frontmatter y *pipeline* de build ya montados) pero hoy los ficheros que hay dentro son los heredados de un proyecto hermano sobre otro pueblo, no de Cercadillo, y ninguna página los muestra: están ahí en espera de contenido real (ver sección 12).
 
 El nombre del fichero es el identificador (`05-...md` → `05-...`) y es lo que se usa en las rutas (`#/libro/05-...`) y en los saltos del buscador.
 
@@ -143,7 +140,7 @@ Del markdown se soporta el subconjunto que realmente usan los textos: encabezado
 | `#/libro` y `#/libro/<slug>` | `LibroPage.jsx` | Índice de los capítulos y lector de capítulo: barra de progreso de lectura, índice de apartados y navegación al capítulo anterior o siguiente. |
 | `#/rutas` | `RutasPage.jsx` | Rutas de senderismo y BTT que atraviesan Cercadillo, recopiladas de Wikiloc; cada tarjeta enlaza a la ficha completa. |
 | `#/genealogia` | `GenealogiaPage.jsx` | Página en construcción: aún no hay fuentes verificadas sobre familias y paisanos de Cercadillo. |
-| `#/glosario` | `GlosarioPage.jsx` | Página en construcción: aún no hay fuentes verificadas sobre vocabulario tradicional propio de Cercadillo (ver sección 12: deliberadamente vacía en vez de rellena con contenido genérico). |
+| `#/galeria` | `GaleriaPage.jsx` | Página en construcción: repositorio fotográfico del pueblo, pendiente de generar. |
 | `#/referencias` | `ReferenciasPage.jsx` | Fuentes documentales con filtro por tipo, aportación de cada una y enlace al archivo original. |
 | `#/sobre-la-web` | `SobrePage.jsx` | Por qué existe el proyecto, de dónde sale la información, y cómo contactar o colaborar. |
 
@@ -242,8 +239,8 @@ Los ficheros de `src/data/*Data.js` y `searchIndex.js` están generados: cualqui
 
 ## 12. Limitaciones conocidas y deuda técnica
 
-- **Glosario y Genealogía sin contenido propio**: no se ha encontrado fuente pública fiable sobre el vocabulario tradicional ni las familias de Cercadillo, así que ambas páginas muestran honestamente un aviso de «página en construcción» en vez de rellenarse con contenido genérico o de otro pueblo.
-- **Contenido heredado sin depurar**: los 13 ficheros de `src/content/glosario/` y los 3 de `src/content/personajes/` (y el array `hitos` de `src/data/site.ts`) proceden de un proyecto hermano sobre otro pueblo y no describen Cercadillo. Ninguna página los muestra, pero glosario y personajes sí se compilan al índice del buscador, por lo que **hoy el buscador puede devolver resultados que no son de Cercadillo**. Pendiente: vaciar esas carpetas (o sustituirlas por contenido real) y quitar `hitos` si no se va a usar.
+- **Genealogía sin contenido propio**: no se ha encontrado fuente pública fiable sobre las familias de Cercadillo, así que la página muestra honestamente un aviso de «página en construcción» en vez de rellenarse con contenido genérico o de otro pueblo. La sección **Galería** está en el mismo caso, pendiente del repositorio de fotos del pueblo.
+- **Contenido heredado sin depurar**: los 3 ficheros de `src/content/personajes/` (y el array `hitos` de `src/data/site.ts`) proceden de un proyecto hermano sobre otro pueblo y no describen Cercadillo. Ninguna página los muestra, pero personajes sí se compila al índice del buscador, por lo que **hoy el buscador puede devolver resultados que no son de Cercadillo**. Pendiente: vaciar esa carpeta (o sustituirla por contenido real) y quitar `hitos` si no se va a usar.
 - **`EscudoPage.jsx` sin actualizar**: la página sigue titulada «El escudo de Moriscos». Está oculta del menú (`hidden: true`) porque Cercadillo no tiene escudo oficial, pero el texto interno no se ha revisado por si en algún momento se enlaza directamente.
 - **Mapa interactivo sin conectar**: `leaflet`, `react-leaflet`, `RouteMap.tsx` y `src/data/route.ts` están en el proyecto pero ninguna página los usa; la sección Rutas es hoy una lista de tarjetas a Wikiloc, sin mapa embebido.
 - **Feed de Instagram curado a mano**: no hay integración con la API de Instagram (Meta cerró la API pública sencilla en diciembre de 2024); refrescar `InstagramFeed` requiere editar `src/data/instagramPosts.ts` y añadir la captura correspondiente a mano.

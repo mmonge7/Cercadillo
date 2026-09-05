@@ -12,7 +12,7 @@ import {
   BookOpen,
   Map,
   Users,
-  BookMarked,
+  Images,
   Library,
   Info,
 } from 'lucide-react';
@@ -33,7 +33,7 @@ export const navItems = [
   { id: 'libro', label: 'El Libro', icon: BookOpen },
   { id: 'rutas', label: 'Rutas', icon: Map },
   { id: 'genealogia', label: 'Genealogía', icon: Users },
-  { id: 'glosario', label: 'Glosario', icon: BookMarked },
+  { id: 'galeria', label: 'Galería', icon: Images },
   { id: 'referencias', label: 'Referencias', icon: Library },
   { id: 'sobre-la-web', label: 'Sobre la web', icon: Info },
 ];

@@ -26,7 +26,7 @@ export const navLinks = [
   { label: 'El Libro', href: '/libro' },
   { label: 'Rutas', href: '/rutas' },
   { label: 'Genealogía', href: '/genealogia' },
-  { label: 'Glosario', href: '/glosario' },
+  { label: 'Galería', href: '/galeria' },
   { label: 'Referencias', href: '/referencias' },
   { label: 'Sobre la web', href: '/sobre-la-web' },
 ];

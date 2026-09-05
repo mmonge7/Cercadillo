@@ -89,18 +89,7 @@ async function processAll() {
     }))
     .sort((a, b) => a.order - b.order);
 
-  // 2. Glosario etnográfico
-  const glosario = (await readCollection('glosario'))
-    .map(({ slug, data, body }) => ({
-      id: slug,
-      term: data.term || slug,
-      category: data.category || 'General',
-      short: data.short || '',
-      content: body,
-    }))
-    .sort((a, b) => a.term.localeCompare(b.term, 'es'));
-
-  // 3. Personajes (genealogía)
+  // 2. Personajes (genealogía)
   const personajes = (await readCollection('personajes')).map(({ slug, data, body }) => ({
     id: slug,
     name: data.name || slug,
@@ -111,7 +100,6 @@ async function processAll() {
   }));
 
   await writeData('chaptersData.js', 'chapters', chapters);
-  await writeData('glosarioData.js', 'glosario', glosario);
   await writeData('personajesData.js', 'personajes', personajes);
 
   // 4. Índice del buscador global. `tab` es la sección de la app y `target` el
@@ -125,15 +113,6 @@ async function processAll() {
       excerpt: c.dek,
       content: excerpt(c.content, 1200),
       badge: `Capítulo ${c.number}`,
-    })),
-    ...glosario.map((g) => ({
-      id: `glosario-${g.id}`,
-      tab: 'glosario',
-      target: g.id,
-      title: g.term,
-      excerpt: g.short || excerpt(g.content),
-      content: excerpt(g.content, 600),
-      badge: `Glosario · ${g.category}`,
     })),
     ...personajes.map((p) => ({
       id: `personaje-${p.id}`,
@@ -150,7 +129,7 @@ async function processAll() {
   await writeData('searchIndex.js', 'searchIndex', searchItems);
 
   console.log(
-    `Contenido generado: ${chapters.length} capítulos, ${glosario.length} términos, ${personajes.length} personajes, ${searchItems.length} entradas en el buscador.`,
+    `Contenido generado: ${chapters.length} capítulos, ${personajes.length} personajes, ${searchItems.length} entradas en el buscador.`,
   );
 }
 

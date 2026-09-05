@@ -18,12 +18,12 @@ describe('rutas por hash', () => {
       tab: 'libro',
       target: '05-despoblado-ribas-flecha',
     });
-    expect(parseHash('#/glosario/maquila')).toEqual({ tab: 'glosario', target: 'maquila' });
+    expect(parseHash('#/galeria/foto-01')).toEqual({ tab: 'galeria', target: 'foto-01' });
   });
 
   it('ignora las barras finales', () => {
     expect(parseHash('#/libro/')).toEqual({ tab: 'libro', target: null });
-    expect(parseHash('#/glosario/maquila/')).toEqual({ tab: 'glosario', target: 'maquila' });
+    expect(parseHash('#/galeria/foto-01/')).toEqual({ tab: 'galeria', target: 'foto-01' });
   });
 
   it('cae en el inicio si la sección no existe', () => {

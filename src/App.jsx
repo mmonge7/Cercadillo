@@ -17,7 +17,7 @@ import IglesiaPage from './pages/IglesiaPage';
 import LibroPage from './pages/LibroPage';
 import RutasPage from './pages/RutasPage';
 import GenealogiaPage from './pages/GenealogiaPage';
-import GlosarioPage from './pages/GlosarioPage';
+import GaleriaPage from './pages/GaleriaPage';
 import ReferenciasPage from './pages/ReferenciasPage';
 import SobrePage from './pages/SobrePage';
 import MinasPage from './pages/MinasPage';
@@ -32,7 +32,7 @@ const PAGES = {
   libro: LibroPage,
   rutas: RutasPage,
   genealogia: GenealogiaPage,
-  glosario: GlosarioPage,
+  galeria: GaleriaPage,
   referencias: ReferenciasPage,
   'sobre-la-web': SobrePage,
   'ni-catas-ni-minas': MinasPage,

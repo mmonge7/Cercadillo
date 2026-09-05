@@ -16,7 +16,7 @@ export const TABS = [
   'libro',
   'rutas',
   'genealogia',
-  'glosario',
+  'galeria',
   'referencias',
   'sobre-la-web',
 ];
