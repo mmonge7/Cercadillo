@@ -1,5 +1,6 @@
 import React from 'react';
 import { Instagram, Twitter, ExternalLink, AlertTriangle } from 'lucide-react';
+import { publicUrl } from '../utils/publicUrl';
 
 const fuentes = [
   {
@@ -55,28 +56,28 @@ const fuentes = [
 const muro = [
   {
     id: 'ultima-hora',
-    img: '/images/minas/collage-01-ultima-hora.jpg',
+    img: publicUrl('/images/minas/collage-01-ultima-hora.jpg'),
     alt: 'Cartel de última hora de la Plataforma Ni Catas Ni Minas sobre el permiso de intervención arqueológica',
     cuenta: '@ni_catas_ni_minas',
     url: 'https://www.instagram.com/p/DVJRky_jK-o/',
   },
   {
     id: 'atencion-noticia',
-    img: '/images/minas/collage-02-atencion-noticia.jpg',
+    img: publicUrl('/images/minas/collage-02-atencion-noticia.jpg'),
     alt: 'Aviso de la Plataforma Ni Catas Ni Minas sobre las alegaciones presentadas contra Oroberia',
     cuenta: '@ni_catas_ni_minas',
     url: 'https://www.instagram.com/p/DQuLQhpjOvb/',
   },
   {
     id: 'medranda-reunion',
-    img: '/images/minas/collage-03-medranda-reunion.jpg',
+    img: publicUrl('/images/minas/collage-03-medranda-reunion.jpg'),
     alt: 'Reunión informativa vecinal en Medranda sobre el proyecto minero',
     cuenta: '@ni_catas_ni_minas',
     url: 'https://www.instagram.com/p/DR988JeDPAb/',
   },
   {
     id: 'latoba-fest',
-    img: '/images/minas/collage-04-latoba-fest.jpg',
+    img: publicUrl('/images/minas/collage-04-latoba-fest.jpg'),
     alt: 'Cartel del festival solidario La Toba Rock Fest, colaborador de la causa',
     cuenta: '@latoba_rock_fest',
     url: 'https://www.instagram.com/p/DZ2fYS4MWpk/',
@@ -90,7 +91,7 @@ export default function MinasPage() {
           y las publicaciones más destacadas de #nicatasniminas en Instagram. */}
       <div className="relative overflow-hidden rounded-3xl border border-noche-border shadow-xl">
         <img
-          src="/images/minas/hero-bg.jpg"
+          src={publicUrl('/images/minas/hero-bg.jpg')}
           alt="Cañón del río Cañamares en la Sierra Norte de Guadalajara"
           className="absolute inset-0 h-full w-full object-cover"
         />

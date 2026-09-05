@@ -16,6 +16,7 @@ import {
   Library,
   Info,
 } from 'lucide-react';
+import { publicUrl } from '../utils/publicUrl';
 
 const sections = [
   {
@@ -146,7 +147,7 @@ export default function InicioPage({ onNavigate }) {
 
           <div className="relative">
             <img
-              src="/images/iglesia-cercadillo-hero.jpg"
+              src={publicUrl('/images/iglesia-cercadillo-hero.jpg')}
               alt="La iglesia de la Natividad de Nuestra Señora, en Cercadillo"
               className="h-64 w-full object-cover shadow-xl sm:h-80 lg:h-[420px]"
               style={{ clipPath: 'url(#hero-organic-clip)' }}
