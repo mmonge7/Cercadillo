@@ -3,15 +3,24 @@ node_modules/
 
 # build output
 dist/
-.astro/
+*.tsbuildinfo
+
+# tests / coverage
+coverage/
 
 # env
 .env
 .env.*
 !.env.example
 
+# secretos y claves (nunca deben subirse)
+*.pem
+*.key
+credentials.*
+
 # editor/OS
 .DS_Store
+Thumbs.db
 *.log
 
 # vite/vitest
