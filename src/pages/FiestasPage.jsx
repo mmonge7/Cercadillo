@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 /*
  * Calendario festivo de Cercadillo. Cada festividad tiene fecha fija (mes y
- * día de inicio/fin), así que la cuenta atrás se recalcula en el navegador
- * para que valga automáticamente en cualquier año, sin tocar código.
+ * día de inicio/fin), así que la cuenta atrás y el orden cronológico se
+ * recalculan en el navegador para que valgan automáticamente en cualquier
+ * año, sin tocar código.
  *
  * Para añadir una fiesta nueva solo hace falta un objeto más en FESTIVALS.
+ * `program` es la lista de actos del día a día; se deja vacía hasta que
+ * tengamos la información real de cada festividad.
  */
 const FESTIVALS = [
   {
@@ -17,7 +20,7 @@ const FESTIVALS = [
     endDay: 16,
     intro:
       'la festividad patronal, los días 15 y 16 de agosto, cuando vecinos, emigrados y "morcilleros" regresan al pueblo',
-    details: (
+    description: (
       <p className="mt-3 leading-relaxed text-pergamino-muted/80">
         Como en muchos pueblos pequeños de la España interior, la festividad de{' '}
         <strong className="text-pergamino">San Roque</strong> concentra el punto álgido de la vida social del
@@ -25,6 +28,7 @@ const FESTIVALS = [
         cuando todavía era municipio independiente (ver capítulo 4 de El Libro).
       </p>
     ),
+    program: [], // pendiente: programa de actos de San Roque
   },
   {
     id: 'santa-barbara',
@@ -34,7 +38,8 @@ const FESTIVALS = [
     endMonth: 11,
     endDay: 4,
     intro: 'la festividad de Santa Bárbara, el 4 de diciembre',
-    details: null, // pendiente: Marcos nos pasará el detalle de esta festividad
+    description: null, // pendiente: Marcos nos pasará la reseña de esta festividad
+    program: [], // pendiente: programa de actos de Santa Bárbara
   },
 ];
 
@@ -54,19 +59,23 @@ function nextOccurrence(festival, now) {
   return { festival, ...range, year };
 }
 
+// Festividades ordenadas por la fecha en la que van a llegar, empezando por
+// la más próxima a partir de "now" (si una está en marcha, va la primera).
+function orderChronologically(now) {
+  return FESTIVALS.map((festival) => nextOccurrence(festival, now)).sort(
+    (a, b) => a.start.getTime() - b.start.getTime(),
+  );
+}
+
 const dateFmt = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long' });
 const dateFmtWithYear = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 
 function computeCountdown(now = new Date()) {
-  // Próxima ocurrencia de cada festividad (este año si no ha pasado, si no el que viene)
-  const occurrences = FESTIVALS.map((festival) => nextOccurrence(festival, now));
+  const occurrences = orderChronologically(now);
 
   // Si hay una festividad en marcha ahora mismo, esa manda sobre cualquier otra
   const ongoingOcc = occurrences.find((o) => now >= o.start && now <= o.end);
-
-  // Si no hay ninguna en marcha, la próxima es la que tenga el "start" más cercano
-  const target =
-    ongoingOcc || occurrences.reduce((closest, o) => (o.start < closest.start ? o : closest));
+  const target = ongoingOcc || occurrences[0];
 
   const { festival, start, end, year } = target;
   const isSingleDay = festival.startMonth === festival.endMonth && festival.startDay === festival.endDay;
@@ -98,13 +107,54 @@ function computeCountdown(now = new Date()) {
   };
 }
 
+function ProgramaFiesta({ festival }) {
+  if (festival.program && festival.program.length > 0) {
+    return (
+      <ul className="mt-4 space-y-3">
+        {festival.program.map((item, index) => (
+          <li
+            key={index}
+            className="rounded-xl border border-noche-border/60 bg-noche/70 p-4 sm:flex sm:items-baseline sm:gap-4"
+          >
+            {item.time && (
+              <span className="block font-display text-sm font-bold text-armuna-light sm:w-24 sm:shrink-0">
+                {item.time}
+              </span>
+            )}
+            <div>
+              <p className="font-semibold text-pergamino">{item.title}</p>
+              {item.description && (
+                <p className="mt-1 text-sm leading-relaxed text-pergamino-muted/80">{item.description}</p>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  return (
+    <div className="card-editorial mt-4 p-6 sm:p-8">
+      <h3 className="font-serif text-lg font-bold text-armuna-light sm:text-xl">Nos falta el programa</h3>
+      <p className="mt-3 leading-relaxed text-pergamino-muted/80">
+        Todavía no tenemos documentado el programa de actos de {festival.name}. Si nos lo cuentas —fechas, actos,
+        tradiciones propias del pueblo—, lo añadimos encantados. Puedes escribirnos a través de los enlaces del pie
+        de página.
+      </p>
+    </div>
+  );
+}
+
 export default function FiestasPage() {
-  const [countdown, setCountdown] = useState(() => computeCountdown());
+  const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
-    const interval = setInterval(() => setCountdown(computeCountdown()), 1000);
+    const interval = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(interval);
   }, []);
+
+  const countdown = computeCountdown(now);
+  const orderedFestivals = orderChronologically(now).map((o) => o.festival);
 
   const units = [
     { key: 'days', value: countdown.days, label: 'días' },
@@ -148,24 +198,18 @@ export default function FiestasPage() {
         <p className="mt-4 text-center text-xs italic text-pergamino-muted/65 sm:text-sm">{countdown.dates}</p>
       </div>
 
-      {/* Detalle de cada festividad */}
-      {FESTIVALS.map((festival) => (
+      {/* Detalle de cada festividad, en el orden en que van a ir llegando */}
+      {orderedFestivals.map((festival) => (
         <div key={festival.id} className="mt-14">
           <p className="kicker">Festividad</p>
           <h2 className="mt-2 font-serif text-2xl font-bold text-armuna-light sm:text-3xl">{festival.name}</h2>
 
-          {festival.details ? (
-            festival.details
-          ) : (
-            <div className="card-editorial mt-4 p-6 sm:p-8">
-              <h3 className="font-serif text-lg font-bold text-armuna-light sm:text-xl">Nos falta el programa</h3>
-              <p className="mt-3 leading-relaxed text-pergamino-muted/80">
-                Todavía no tenemos documentado el programa de actos de {festival.name}. Si nos lo cuentas —fechas,
-                actos, tradiciones propias del pueblo—, lo añadimos encantados. Puedes escribirnos a través de los
-                enlaces del pie de página.
-              </p>
-            </div>
-          )}
+          {festival.description}
+
+          <div className="mt-6">
+            <p className="kicker">Programa</p>
+            <ProgramaFiesta festival={festival} />
+          </div>
         </div>
       ))}
     </div>
