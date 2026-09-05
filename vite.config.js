@@ -3,12 +3,18 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
+// TEMPORAL: mientras cercadillo.es no tenga el DNS apuntando a GitHub Pages
+// (ver guía del proyecto), servimos desde mmonge7.github.io/Cercadillo/, así
+// que el base tiene que llevar la subcarpeta. En cuanto el dominio propio
+// esté verificado en Settings > Pages, volver a poner BASE_PATH en '/'.
+// Manifest y workbox se derivan de esta misma constante para que nunca
+// vuelvan a quedar desincronizados del base real (ese desajuste fue la causa
+// del bug de móvil: la PWA apuntaba a "/" mientras el sitio vivía en
+// "/Cercadillo/").
+const BASE_PATH = '/Cercadillo/';
+
 export default defineConfig({
-  // TEMPORAL: mientras cercadillo.es no tenga el DNS apuntando a GitHub Pages
-  // (ver guía del proyecto), servimos desde mmonge7.github.io/Cercadillo/, así
-  // que el base tiene que llevar la subcarpeta. En cuanto el dominio propio
-  // esté verificado en Settings > Pages, volver a poner base: '/'.
-  base: '/Cercadillo/',
+  base: BASE_PATH,
   plugins: [
     react(),
     tailwindcss(),
@@ -36,8 +42,8 @@ export default defineConfig({
         description:
           'Historia, geografía, etnografía y memoria viva de Cercadillo (Guadalajara, Sigüenza).',
         lang: 'es',
-        start_url: '/',
-        scope: '/',
+        start_url: BASE_PATH,
+        scope: BASE_PATH,
         display: 'standalone',
         background_color: '#F9E5BD',
         theme_color: '#724828',
@@ -55,7 +61,7 @@ export default defineConfig({
       workbox: {
         skipWaiting: true,
         clientsClaim: true,
-        navigateFallback: '/index.html',
+        navigateFallback: `${BASE_PATH}index.html`,
         // Se precachea woff2 (soportado por todos los navegadores actuales) y
         // no woff, para no duplicar el peso de las tipografías sin conexión.
         globPatterns: ['**/*.{js,css,html,png,svg,ico,jpg,jpeg,webp,woff2}'],

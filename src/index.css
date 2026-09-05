@@ -88,6 +88,18 @@ body,
   overflow: hidden;
 }
 
+/* Respaldo para el contenedor raíz de la app (Tailwind genera `h-[100dvh]`
+   sin alternativa): en un navegador o webview que no soporte `dvh`, esa
+   declaración se ignora entera y el contenedor se queda sin altura fija,
+   lo que puede dejar la cabecera y el pie fuera de la zona visible. El
+   selector por id tiene más especificidad que la clase de Tailwind, así
+   que esta regla manda siempre; si `dvh` sí está soportado, la segunda
+   línea la sustituye. */
+#app-shell {
+  height: 100vh;
+  height: 100dvh;
+}
+
 body {
   font-family: var(--font-body);
 }
