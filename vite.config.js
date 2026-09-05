@@ -4,7 +4,11 @@ import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
-  base: '/',
+  // TEMPORAL: mientras cercadillo.es no tenga el DNS apuntando a GitHub Pages
+  // (ver guía del proyecto), servimos desde mmonge7.github.io/Cercadillo/, así
+  // que el base tiene que llevar la subcarpeta. En cuanto el dominio propio
+  // esté verificado en Settings > Pages, volver a poner base: '/'.
+  base: '/Cercadillo/',
   plugins: [
     react(),
     tailwindcss(),
