@@ -12,7 +12,7 @@ import {
   BookOpen,
   Map,
   Users,
-  BookMarked,
+  Images,
   Library,
   Info,
 } from 'lucide-react';
@@ -76,10 +76,10 @@ const sections = [
     description: 'Página en construcción: próximamente, familias y paisanos de Cercadillo.',
   },
   {
-    id: 'glosario',
-    icon: BookMarked,
-    title: 'Glosario',
-    description: 'Página en construcción: vocabulario tradicional propio de Cercadillo.',
+    id: 'galeria',
+    icon: Images,
+    title: 'Galería',
+    description: 'Página en construcción: repositorio fotográfico del pueblo.',
   },
   {
     id: 'referencias',

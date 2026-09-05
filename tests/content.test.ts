@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { chapters } from '../src/data/chaptersData';
-import { glosario } from '../src/data/glosarioData';
 import { personajes } from '../src/data/personajesData';
 import { toBlocks } from '../src/utils/markdownBlocks';
 import { slugify } from '../src/utils/slugify';
@@ -18,18 +17,10 @@ describe('contenido generado desde src/content', () => {
     });
   });
 
-  // El glosario y los personajes de Cercadillo aún no tienen fuentes
-  // públicas fiables (ver README, sección 12) y hoy están vacíos a
-  // propósito: estos tests solo validan la forma de cada entrada que se
-  // vaya añadiendo, no exigen un número mínimo.
-  it('cada término del glosario, si lo hay, trae su definición corta y su categoría', () => {
-    for (const term of glosario) {
-      expect(term.short.length).toBeGreaterThan(0);
-      expect(term.category.length).toBeGreaterThan(0);
-      expect(term.content.length).toBeGreaterThan(0);
-    }
-  });
-
+  // Los personajes de Cercadillo aún no tienen fuentes públicas fiables
+  // (ver README, sección 12) y hoy están vacíos a propósito: este test solo
+  // valida la forma de cada entrada que se vaya añadiendo, no exige un
+  // número mínimo.
   it('cada personaje, si lo hay, trae años, papel y etiqueta', () => {
     for (const p of personajes) {
       expect(p.years.length).toBeGreaterThan(0);
