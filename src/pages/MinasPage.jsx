@@ -84,7 +84,7 @@ const muro = [
   },
 ];
 
-export default function MinasPage() {
+export default function MinasPage({ onNavigate }) {
   return (
     <div className="container-editorial py-10 sm:py-16">
       {/* Hero de la sección: cabecera de máximo impacto con foto real, cifras
@@ -205,6 +205,17 @@ export default function MinasPage() {
             este tipo de explotaciones a cielo abierto: polvo, ruido y voladuras, como las que llevan años
             documentándose en la cantera de Naharros, cercana a la zona.
           </p>
+          <p className="mt-3 leading-relaxed text-pergamino-muted/80 text-sm sm:text-base">
+            El propio término de Cercadillo está protegido por una ZEPA, un LIC y una microrreserva que amparan un
+            paisaje salino único en el interior peninsular.
+          </p>
+          <button
+            type="button"
+            onClick={() => onNavigate?.('fauna-flora')}
+            className="btn-secondary mt-4"
+          >
+            Conoce la fauna y la flora que hay que defender
+          </button>
         </article>
 
         <article className="card-editorial p-6 sm:p-8">

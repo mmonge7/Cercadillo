@@ -21,6 +21,7 @@ import GaleriaPage from './pages/GaleriaPage';
 import ReferenciasPage from './pages/ReferenciasPage';
 import SobrePage from './pages/SobrePage';
 import MinasPage from './pages/MinasPage';
+import FaunaFloraPage from './pages/FaunaFloraPage';
 
 const PAGES = {
   inicio: InicioPage,
@@ -36,6 +37,7 @@ const PAGES = {
   referencias: ReferenciasPage,
   'sobre-la-web': SobrePage,
   'ni-catas-ni-minas': MinasPage,
+  'fauna-flora': FaunaFloraPage,
 };
 
 export default function App() {
