@@ -10,6 +10,8 @@ readingMinutes: 7
 
 El monumento principal de Cercadillo es su **iglesia parroquial**, dedicada a la **Natividad de Nuestra Señora**, construida en el **siglo XVI**. El templo consta de **tres naves**, y en su interior conserva **altares platerescos**, el estilo decorativo propio del Renacimiento español caracterizado por su ornamentación minuciosa, a medio camino entre lo gótico tardío y lo puramente renacentista.
 
+![La iglesia de la Natividad de Nuestra Señora](/images/iglesia-cercadillo-camino.jpg "La iglesia de la Natividad de Nuestra Señora, vista desde el camino de acceso.")
+
 Es, junto con las dos ermitas, el testimonio más visible de la vida religiosa y comunitaria que sostuvo al pueblo durante siglos, cuando Cercadillo era todavía municipio con ayuntamiento propio (ver capítulo 4) y su población multiplicaba por diez la actual.
 
 ## El retablo de 1560: Bandoma, Cobarrubias y una tasación de 251.460 maravedís
@@ -24,9 +26,13 @@ Terminado el retablo, Bandoma y la propia iglesia nombraron cada uno un tasador 
 
 Fuera del núcleo de la iglesia parroquial, Cercadillo contó históricamente con **dos ermitas**: la de **La Soledad** y la de **Santo Domingo**. Como en tantos pueblos de la comarca, estas ermitas eran destino de rogativas, procesiones y devociones particulares, y punto de referencia en el paisaje y en la memoria de los vecinos, aunque hoy no disponemos de más documentación pública sobre su estado de conservación o su historia particular.
 
+![Ermita de Santo Domingo](/images/ermita-santo-domingo-cercadillo.jpg "Ermita de Santo Domingo.") ![Ermita de la Soledad](/images/ermita-soledad-cercadillo.jpg "Ermita de la Soledad.")
+
 ## Fuente y lavadero
 
 Completan el catálogo del patrimonio tradicional de Cercadillo una **fuente** y un **lavadero públicos**, infraestructuras comunitarias habituales en los pueblos castellanos hasta bien entrado el siglo XX, cuando el agua corriente doméstica generalizó su uso y, con él, el motivo de encuentro diario que representaban.
+
+![Fuente y lavadero de Cercadillo](/images/fuente-lavadero-cercadillo.jpg "La fuente y el lavadero del pueblo.")
 
 ## Las calles y plazas del pueblo en el siglo XVIII
 

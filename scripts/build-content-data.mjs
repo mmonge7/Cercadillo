@@ -60,6 +60,7 @@ async function readCollection(name) {
 function excerpt(text, max = 160) {
   const plain = text
     .replace(/^#{1,6}\s+.*$/gm, '')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
     .replace(/[*_`>]/g, '')
     .replace(/\s+/g, ' ')
     .trim();

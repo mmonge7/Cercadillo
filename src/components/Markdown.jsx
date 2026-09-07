@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { toBlocks } from '../utils/markdownBlocks';
 import { slugify } from '../utils/slugify';
+import ChapterFigure from './ChapterFigure';
 
 /*
  * Pinta los textos de src/content (markdown) como elementos reales de React,
@@ -45,6 +46,9 @@ export default function Markdown({ content, className }) {
   return (
     <div className={className}>
       {blocks.map((block, i) => {
+        if (block.type === 'figure') {
+          return <ChapterFigure key={i} images={block.images} />;
+        }
         if (block.type === 'h2') {
           return (
             <h2 key={i} id={slugify(block.text)} className="scroll-mt-24">

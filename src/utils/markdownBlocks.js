@@ -8,14 +8,21 @@ import { slugify } from './slugify.js';
  */
 
 /**
- * Un bloque de markdown ya analizado: los encabezados y párrafos llevan `text`
- * y las listas llevan `items`.
+ * Un bloque de markdown ya analizado: los encabezados y párrafos llevan `text`,
+ * las listas llevan `items` y las figuras (una o dos imágenes seguidas en su
+ * propia línea) llevan `images`.
  *
- * @typedef {{ type: string, text?: string, items?: string[] }} MarkdownBlock
+ * @typedef {{ type: string, text?: string, items?: string[], images?: { alt: string, src: string, caption: string }[] }} MarkdownBlock
  */
 
+// Una línea con una o dos imágenes markdown y nada más se trata como un
+// bloque de figura, no como texto: `![alt](/ruta.jpg "Pie de foto")`. Dos
+// imágenes seguidas en la misma línea se muestran una junto a otra.
+const IMAGE = /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g;
+const IMAGE_LINE = /^(?:!\[[^\]]*\]\([^)]+\)\s*){1,2}$/;
+
 /**
- * Agrupa las líneas del markdown en bloques (encabezado, lista o párrafo).
+ * Agrupa las líneas del markdown en bloques (encabezado, lista, figura o párrafo).
  *
  * @param {string} markdown
  * @returns {MarkdownBlock[]}
@@ -24,6 +31,7 @@ export function toBlocks(markdown) {
   const lines = String(markdown || '')
     .replace(/\r\n/g, '\n')
     .split('\n');
+  /** @type {MarkdownBlock[]} */
   const blocks = [];
   let paragraph = [];
   let list = null;
@@ -48,6 +56,18 @@ export function toBlocks(markdown) {
     if (!line) {
       flushParagraph();
       flushList();
+      continue;
+    }
+
+    if (IMAGE_LINE.test(line)) {
+      flushParagraph();
+      flushList();
+      const images = [...line.matchAll(IMAGE)].map((m) => ({
+        alt: m[1],
+        src: m[2],
+        caption: m[3] || '',
+      }));
+      blocks.push({ type: 'figure', images });
       continue;
     }
 
