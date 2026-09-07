@@ -1,139 +1,139 @@
 /*
- * Datos de la sección Fauna y Flora: designaciones de protección que afectan
- * al término de Cercadillo y las especies de flora y fauna asociadas al
- * paisaje salino. Investigación recogida en el documento del proyecto
- * "investigacion-zepa-lic-cercadillo.md"; cifras y fechas oficiales
- * pendientes de confirmación final con la Junta de Comunidades de
- * Castilla-La Mancha (ver ese documento para el detalle y las fuentes).
+ * Datos de la sección Fauna y Flora, tomados del Plan de Gestión oficial del
+ * espacio Natura 2000 "Valle y Salinas del Salado" (ZEC ES0000165 / ZEPA
+ * ES0000489, Junta de Comunidades de Castilla-La Mancha, 2017). Esta es una
+ * selección deliberadamente breve para una página dinámica y visual; el
+ * listado completo de especies y las fuentes están en el capítulo 1 de
+ * El Libro. Ver el documento de investigación del proyecto para el detalle.
  */
 
-export const zonasProtegidas = [
+export const datosEspacio = {
+  nombre: 'Valle y Salinas del Salado',
+  zec: 'ES0000165',
+  zepa: 'ES0000489',
+  superficieTotalHa: 12031.23,
+  superficieCercadilloHa: 649.29,
+  porcentajeCercadillo: 28.79,
+};
+
+export const elementosClave = [
   {
-    id: 'zepa',
-    codigo: 'ES0000165',
-    nombre: 'ZEPA Sierra Norte de Guadalajara',
-    tipo: 'Zona de Especial Protección para las Aves',
+    id: 'vegetacion-halofila',
+    nombre: 'Vegetación halófila',
     descripcion:
-      'Designada bajo la Directiva Aves de la Unión Europea para proteger poblaciones de aves silvestres y sus hábitats.',
+      'El mosaico de plantas capaces de vivir en suelo salino: juncales, praderas y matorrales que solo existen aquí, tierra adentro, gracias a la sal que aflora del subsuelo.',
   },
   {
-    id: 'lic-zec',
-    codigo: 'ES4240165',
-    nombre: 'LIC/ZEC Sierra Norte de Guadalajara',
-    tipo: 'Lugar de Interés Comunitario / Zona de Especial Conservación',
+    id: 'rapaces-rupicolas',
+    nombre: 'Rapaces rupícolas',
     descripcion:
-      'Designado bajo la Directiva Hábitats para proteger tipos de hábitat y especies de interés comunitario, con una superficie aproximada de 11.585,19 ha.',
-  },
-  {
-    id: 'microrreserva',
-    codigo: null,
-    nombre: 'Microrreserva de los Saladares',
-    tipo: 'Microrreserva de flora',
-    descripcion:
-      'Protege el paisaje salino de interior en el término de Cercadillo, un hábitat singular en la meseta a unos 1.000 m de altitud.',
+      'Águila real, halcón peregrino y alimoche común, que crían en los cortados rocosos del espacio. Entre las tres suman entre 15 y 18 parejas reproductoras.',
   },
 ];
 
 export const flora = [
   {
-    id: 'almajo',
-    nombreComun: 'Almajo salado',
+    id: 'suaeda-vera',
+    nombreComun: 'Almajo dulce',
     nombreCientifico: 'Suaeda vera',
-    descripcion:
-      'Arbusto halófilo característico de los saladares, tolerante a suelos con alta concentración de sales.',
+    descripcion: 'Matorral leñoso y carnoso que da nombre al paisaje de los saladares.',
   },
   {
-    id: 'limonio',
-    nombreComun: 'Limonio',
-    nombreCientifico: 'Limonium sp.',
-    descripcion: 'Planta perenne de flores azuladas o violáceas, típica de ambientes salinos del interior peninsular.',
+    id: 'camphorosma',
+    nombreComun: 'Alcanforada',
+    nombreCientifico: 'Camphorosma monspeliaca',
+    descripcion: 'Endemismo mediterráneo de matorral salino, presente en el entorno de las salinas de Imón.',
   },
   {
-    id: 'suaeda',
-    nombreComun: 'Sosa',
-    nombreCientifico: 'Suaeda spp.',
-    descripcion: 'Grupo de plantas suculentas adaptadas a la salinidad, formando parte del matorral halófilo del saladar.',
+    id: 'glaux-maritima',
+    nombreComun: 'Lechuguilla de mar',
+    nombreCientifico: 'Glaux maritima',
+    descripcion: 'Planta de marisma costera que aquí aparece a 1.000 metros de altitud, tierra adentro.',
   },
   {
-    id: 'escorzonera',
-    nombreComun: 'Escorzonera de flor pequeña',
-    nombreCientifico: 'Microcnemum coralloides',
-    descripcion:
-      'Especie muy rara y protegida, propia de saladares de interior; su presencia es uno de los motivos de la protección del entorno.',
+    id: 'halimium',
+    nombreComun: 'Alcayuela',
+    nombreCientifico: 'Halimium ocymoides',
+    descripcion: 'Endemismo ibérico-magrebí de jarales y brezales húmedos.',
   },
   {
-    id: 'lecherina',
-    nombreComun: 'Lecherina de mar',
-    nombreCientifico: 'Frankenia pulverulenta',
-    descripcion: 'Pequeña planta halófila postrada, adaptada a los suelos salinos y yesosos de la zona.',
+    id: 'thymus',
+    nombreComun: 'Tomillo picante',
+    nombreCientifico: 'Thymus mastigophorus',
+    descripcion: 'Endemismo de la meseta Norte, exclusivo de tomillares sobre yesos y margas.',
+  },
+  {
+    id: 'ruppia',
+    nombreComun: 'Ruppia',
+    nombreCientifico: 'Ruppia maritima',
+    descripcion: 'Planta acuática halófila que tapiza el fondo de las balsas saladas.',
   },
 ];
 
-export const GRUPOS_FAUNA = ['Aves del saladar', 'Rapaces', 'Quirópteros'];
+export const GRUPOS_FAUNA = ['Rapaces rupícolas', 'Aves de las salinas', 'Mamíferos'];
 
 export const fauna = [
-  {
-    id: 'aguilucho',
-    nombreComun: 'Aguilucho cenizo',
-    nombreCientifico: 'Circus pygargus',
-    grupo: 'Aves del saladar',
-    descripcion: 'Rapaz migratoria que nidifica en el suelo, ligada a los espacios abiertos de la sierra y su entorno.',
-  },
-  {
-    id: 'alcaraván',
-    nombreComun: 'Alcaraván',
-    nombreCientifico: 'Burhinus oedicnemus',
-    grupo: 'Aves del saladar',
-    descripcion: 'Ave esteparia de hábitos crepusculares y nocturnos, muy ligada a los paisajes abiertos y salinos.',
-  },
-  {
-    id: 'sisón',
-    nombreComun: 'Sisón',
-    nombreCientifico: 'Tetrax tetrax',
-    grupo: 'Aves del saladar',
-    descripcion: 'Ave esteparia en declive en toda Europa, indicadora de la calidad de los espacios agrarios y estepas.',
-  },
-  {
-    id: 'terrera',
-    nombreComun: 'Terrera común',
-    nombreCientifico: 'Calandrella brachydactyla',
-    grupo: 'Aves del saladar',
-    descripcion: 'Pequeño pájaro esteparia que nidifica en el suelo de zonas abiertas con vegetación rala.',
-  },
   {
     id: 'aguila-real',
     nombreComun: 'Águila real',
     nombreCientifico: 'Aquila chrysaetos',
-    grupo: 'Rapaces',
-    descripcion: 'Gran rapaz forestal y rupícola, una de las especies amenazadas citadas en los informes sobre la sierra.',
+    grupo: 'Rapaces rupícolas',
+    descripcion: 'Elemento clave del espacio: 4 parejas reproductoras en los cortados del entorno.',
   },
   {
-    id: 'buitre-leonado',
-    nombreComun: 'Buitre leonado',
-    nombreCientifico: 'Gyps fulvus',
-    grupo: 'Rapaces',
-    descripcion: 'Carroñero de gran envergadura, frecuente en los roquedos y cortados de la Sierra Norte.',
+    id: 'halcon-peregrino',
+    nombreComun: 'Halcón peregrino',
+    nombreCientifico: 'Falco peregrinus',
+    grupo: 'Rapaces rupícolas',
+    descripcion: 'El ave más rápida del mundo en picado; 3 parejas nidifican en el espacio.',
   },
   {
-    id: 'aguila-culebrera',
-    nombreComun: 'Águila culebrera',
-    nombreCientifico: 'Circaetus gallicus',
-    grupo: 'Rapaces',
-    descripcion: 'Rapaz especializada en la caza de reptiles, ligada a los espacios forestales y de matorral de la sierra.',
+    id: 'alimoche',
+    nombreComun: 'Alimoche común',
+    nombreCientifico: 'Neophron percnopterus',
+    grupo: 'Rapaces rupícolas',
+    descripcion: 'Rapaz carroñera migradora, presente de febrero a septiembre; entre 8 y 11 parejas.',
   },
   {
-    id: 'busardo',
-    nombreComun: 'Busardo ratonero',
-    nombreCientifico: 'Buteo buteo',
-    grupo: 'Rapaces',
-    descripcion: 'La rapaz diurna más común de la zona, presente todo el año en bosques y espacios abiertos.',
+    id: 'cigüeña-negra',
+    nombreComun: 'Cigüeña negra',
+    nombreCientifico: 'Ciconia nigra',
+    grupo: 'Aves de las salinas',
+    descripcion: 'Especie vulnerable, de paso por la laguna del Madrigal y las salinas en migración.',
   },
   {
-    id: 'murcielagos',
-    nombreComun: 'Murciélagos',
-    nombreCientifico: null,
-    grupo: 'Quirópteros',
-    descripcion:
-      'Las fuentes consultadas citan la presencia de quirópteros protegidos en la zona sin precisar la especie exacta; dato pendiente de confirmación oficial.',
+    id: 'grulla',
+    nombreComun: 'Grulla común',
+    nombreCientifico: 'Grus grus',
+    grupo: 'Aves de las salinas',
+    descripcion: 'Visitante habitual de la laguna del Madrigal durante sus movimientos migratorios.',
+  },
+  {
+    id: 'aguilucho-lagunero',
+    nombreComun: 'Aguilucho lagunero',
+    nombreCientifico: 'Circus aeruginosus',
+    grupo: 'Aves de las salinas',
+    descripcion: 'Cría de forma más o menos regular en el entorno de la laguna del Madrigal.',
+  },
+  {
+    id: 'nutria',
+    nombreComun: 'Nutria europea',
+    nombreCientifico: 'Lutra lutra',
+    grupo: 'Mamíferos',
+    descripcion: 'Mamífero semiacuático ligado a las riberas del Salado y el Cercadillo, en buen estado.',
+  },
+  {
+    id: 'murcielago-herradura',
+    nombreComun: 'Murciélago grande de herradura',
+    nombreCientifico: 'Rhinolophus ferrumequinum',
+    grupo: 'Mamíferos',
+    descripcion: 'Una de las dos especies que forman colonias en la Cueva de los Murciélagos de Santamera.',
+  },
+  {
+    id: 'gato-montes',
+    nombreComun: 'Gato montés',
+    nombreCientifico: 'Felis silvestris',
+    grupo: 'Mamíferos',
+    descripcion: 'Refugiado en los bosques de encina y rebollo que rodean el valle salino.',
   },
 ];

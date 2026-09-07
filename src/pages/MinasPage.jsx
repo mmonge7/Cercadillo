@@ -206,8 +206,9 @@ export default function MinasPage({ onNavigate }) {
             documentándose en la cantera de Naharros, cercana a la zona.
           </p>
           <p className="mt-3 leading-relaxed text-pergamino-muted/80 text-sm sm:text-base">
-            El propio término de Cercadillo está protegido por una ZEPA, un LIC y una microrreserva que amparan un
-            paisaje salino único en el interior peninsular.
+            El propio término de Cercadillo forma parte, en más de una cuarta parte de su superficie, del espacio
+            protegido ZEC/ZEPA "Valle y Salinas del Salado" y de sus dos microrreservas, que amparan un paisaje
+            salino único en el interior peninsular.
           </p>
           <button
             type="button"
