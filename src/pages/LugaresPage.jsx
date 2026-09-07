@@ -1,11 +1,14 @@
 import React from 'react';
 import { Hammer } from 'lucide-react';
 
+const LIBRO_ORIGENES_ID = '02-origenes-medievales-comun-de-atienza';
+const LIBRO_PATRIMONIO_ID = '03-patrimonio-iglesia-y-ermitas';
+
 const patrimonio = [
   {
     title: 'Iglesia Parroquial de la Natividad de Nuestra Señora',
     description:
-      'El edificio más monumental del pueblo, construido en el siglo XVI. Consta de tres naves y conserva en su interior altares platerescos.',
+      'El edificio más monumental del pueblo, construido en el siglo XVI. Consta de tres naves y conserva en su interior altares platerescos, entre ellos un retablo mayor encargado en 1560.',
     tab: 'iglesia',
   },
   {
@@ -23,6 +26,20 @@ const patrimonio = [
     description:
       'Infraestructuras comunitarias tradicionales, punto de encuentro vecinal hasta la llegada del agua corriente doméstica.',
   },
+  {
+    title: 'Los despoblados del término',
+    description:
+      'Seis lugares que llegaron a tener población propia y hoy han desaparecido: Los Majanos, Los Pozos, Santa Catalina, Soto, la Torre de Alvar Díaz y Val de San Pedro.',
+    tab: 'libro',
+    target: LIBRO_ORIGENES_ID,
+  },
+  {
+    title: 'Calles y plazas del siglo XVIII',
+    description:
+      'Un inventario histórico de veinticinco nombres de calles y plazas que permite imaginar cómo era el pueblo hace casi tres siglos.',
+    tab: 'libro',
+    target: LIBRO_PATRIMONIO_ID,
+  },
 ];
 
 export default function LugaresPage({ onNavigate }) {
@@ -34,7 +51,7 @@ export default function LugaresPage({ onNavigate }) {
       </h1>
       <p className="mt-4 text-balance text-lg text-pergamino-muted/80">
         El patrimonio de Cercadillo que hoy podemos documentar con fuentes públicas: una iglesia del siglo XVI, dos
-        ermitas y las infraestructuras tradicionales del pueblo.
+        ermitas, las infraestructuras tradicionales del pueblo y los despoblados de su término.
       </p>
 
       <div className="mt-12">
@@ -48,10 +65,10 @@ export default function LugaresPage({ onNavigate }) {
               {l.tab && (
                 <button
                   type="button"
-                  onClick={() => onNavigate(l.tab)}
+                  onClick={() => onNavigate(l.tab, l.target)}
                   className="mt-4 text-xs font-semibold text-armuna-light hover:underline text-left cursor-pointer"
                 >
-                  Ver más en {l.tab.replace('-', ' ')} →
+                  {l.tab === 'libro' ? 'Leer en el libro' : `Ver más en ${l.tab.replace('-', ' ')}`} →
                 </button>
               )}
             </div>
@@ -63,10 +80,10 @@ export default function LugaresPage({ onNavigate }) {
         <Hammer size={24} className="text-armuna-light" />
         <h2 className="font-serif text-xl font-bold text-pergamino">Nos falta documentar más lugares</h2>
         <p className="max-w-prose text-sm leading-relaxed text-pergamino-muted/80">
-          Todavía no tenemos fuentes verificables sobre parajes naturales, cotas del término o lugares desaparecidos
-          propios de Cercadillo. Si conoces topónimos, caminos históricos o rincones del pueblo que deberían estar
-          aquí, escríbenos a través de los enlaces del pie de página — es justo el tipo de aportación que más ayuda a
-          completar esta sección.
+          Todavía no tenemos fuentes verificables sobre otros parajes naturales o cotas del término más allá de los
+          despoblados ya documentados. Si conoces topónimos, caminos históricos o rincones del pueblo que deberían
+          estar aquí, escríbenos a través de los enlaces del pie de página — es justo el tipo de aportación que más
+          ayuda a completar esta sección.
         </p>
         <p className="text-sm text-pergamino-muted/70">
           Mientras tanto, puedes ver las rutas de senderismo y BTT que atraviesan el término en{' '}

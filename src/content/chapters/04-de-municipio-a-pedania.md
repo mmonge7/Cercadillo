@@ -3,7 +3,7 @@ number: 4
 title: "De Municipio a Pedanía: el Siglo XX"
 dek: "El despoblamiento rural, la pérdida del ayuntamiento propio en 1973 y la incorporación a Sigüenza."
 order: 4
-readingMinutes: 5
+readingMinutes: 6
 ---
 
 ## De 198 a 17 habitantes
@@ -11,6 +11,10 @@ readingMinutes: 5
 El geógrafo y político **Pascual Madoz**, en su célebre *Diccionario geográfico-estadístico-histórico de España* (1847), censó a Cercadillo como municipio independiente con **198 habitantes**. Era una cifra modesta pero suficiente para sostener ayuntamiento, iglesia y vida propia. Casi dos siglos después, el censo del INE de 2011 registra apenas **17 habitantes**: una pérdida de más del 90% de la población en ese periodo.
 
 Esta trayectoria no es exclusiva de Cercadillo. Es el patrón que siguieron cientos de pueblos pequeños del interior de España durante el siglo XX, especialmente a partir de los años 50 y 60: el éxodo rural hacia las ciudades y hacia las zonas industrializadas vació comarcas enteras de la meseta castellana, dejando tras de sí núcleos como Cercadillo, demasiado pequeños ya para mantener los servicios y la administración que habían tenido durante siglos.
+
+## La desamortización: la otra causa del declive
+
+La pérdida de población de Cercadillo no se explica solo por el éxodo rural del siglo XX: tiene una raíz anterior, en el proceso desamortizador del siglo XIX. En **1835** se aprobó la primera medida para la venta de los bienes propios de los municipios, y en **1855**, con la desamortización de **Pascual Madoz** —el mismo autor del diccionario citado más arriba—, se transfirieron también las tierras municipales. Los pueblos de la comarca de Atienza, Cercadillo entre ellos, perdieron con ello buena parte de sus **bienes comunales**: los montes, prados, ríos y bosques de uso colectivo, y también los bienes propios —tierras de mejor calidad, molinos, salinas— con los que los ayuntamientos generaban sus propios ingresos. El empobrecimiento que siguió a esa pérdida es, para buena parte de los pueblos de la comarca, el origen de la tendencia migratoria que se acentuaría en el siglo XX.
 
 ## 1973: la incorporación a Sigüenza
 
