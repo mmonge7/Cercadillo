@@ -27,7 +27,7 @@ export default function ReadingProgress({ resetKey }) {
   }, [resetKey]);
 
   return (
-    <div className="pointer-events-none sticky top-0 z-30 h-[3px] w-full" aria-hidden="true">
+    <div className="pointer-events-none sticky top-0 z-30 h-[3px] w-full shrink-0" aria-hidden="true">
       <div className="h-full bg-armuna-light/90" style={{ width: `${progress}%` }} />
     </div>
   );

@@ -286,7 +286,7 @@ export default function HistoriaPage({ onNavigate }) {
       <nav
         ref={navRef}
         aria-label="Saltar a una época"
-        className="sticky top-0 z-20 -mx-4 mt-8 flex gap-2 overflow-x-auto border-y border-noche-border bg-noche/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-xl sm:border sm:px-3"
+        className="sticky top-[3px] z-20 -mx-4 mt-8 flex gap-2 overflow-x-auto border-y border-noche-border bg-noche/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-xl sm:border sm:px-3"
       >
         {eras.map((era) => (
           <button
