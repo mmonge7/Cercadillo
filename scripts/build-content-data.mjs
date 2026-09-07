@@ -141,8 +141,8 @@ const staticEntries = [
     tab: 'historia',
     target: null,
     title: 'Historia de Cercadillo',
-    excerpt: 'Eje cronológico: repoblación medieval de 1085-1149, Edad Moderna, siglo XIX, 1973 y actualidad.',
-    content: 'cronología historia repoblación Alfonso VI Alfonso VII fuero Comunidad de Atienza Madoz Siguenza 1973 INE arévacos celtíberos romanos Segontia Torre de Alvar Díaz despoblados desamortización Pascual Madoz 1835 1855',
+    excerpt: 'Eje cronológico: de la comarca arévaca y romana a la repoblación medieval de 1085-1149, Edad Moderna, siglo XIX, 1973 y actualidad.',
+    content: 'cronología historia repoblación Alfonso VI Alfonso VII fuero Comunidad de Atienza Madoz Siguenza 1973 INE arévacos celtíberos romanos Segontia Torre de Alvar Díaz despoblados desamortización Pascual Madoz 1835 1855 1869 desestanco retablo 1560 1567 Bandoma Cobarrubias maravedís Gormellón salinas calles siglo XVIII',
     badge: 'Historia',
   },
   {
