@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { navItems } from '../components/Nav';
 
 const CAP_ORIGENES = '02-origenes-medievales-comun-de-atienza';
@@ -8,6 +8,8 @@ const CAP_FIESTAS = '05-fiestas-y-tradiciones';
 
 const eras = [
   {
+    slug: 'antes-de-la-repoblacion',
+    shortTitle: 'Antigüedad',
     title: 'Antes de la repoblación',
     events: [
       {
@@ -19,6 +21,8 @@ const eras = [
     ],
   },
   {
+    slug: 'edad-media',
+    shortTitle: 'Edad Media',
     title: 'Edad Media (siglos XI–XV)',
     events: [
       {
@@ -48,6 +52,8 @@ const eras = [
     ],
   },
   {
+    slug: 'edad-moderna',
+    shortTitle: 'Edad Moderna',
     title: 'Edad Moderna (siglos XVI–XVIII)',
     events: [
       {
@@ -75,6 +81,8 @@ const eras = [
     ],
   },
   {
+    slug: 'siglo-xix',
+    shortTitle: 'Siglo XIX',
     title: 'Siglo XIX',
     events: [
       {
@@ -110,6 +118,8 @@ const eras = [
     ],
   },
   {
+    slug: 'siglo-xx',
+    shortTitle: 'Siglo XX',
     title: 'Siglo XX',
     events: [
       {
@@ -127,6 +137,8 @@ const eras = [
     ],
   },
   {
+    slug: 'siglo-xxi',
+    shortTitle: 'Siglo XXI',
     title: 'Siglo XXI',
     events: [
       {
@@ -144,35 +156,181 @@ const eras = [
   },
 ];
 
+/** Resalta, dentro de la barra de épocas, cuál es la que está a la vista mientras se hace scroll. */
+function useScrollSpy(sectionIds) {
+  const [activeId, setActiveId] = useState(sectionIds[0] ?? null);
+
+  useEffect(() => {
+    const root = document.getElementById('main-scroll-container');
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter((el) => el !== null);
+    if (!root || !sections.length) return;
+
+    // Al llegar al final de la página la última época puede no cruzar nunca
+    // la franja superior que vigila el observer de abajo: mientras estemos
+    // pegados al fondo se fuerza a mano y se ignoran sus eventos, para que
+    // no se pisen entre sí.
+    const lastId = sectionIds[sectionIds.length - 1];
+    const atBottomRef = { current: false };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (atBottomRef.current) return;
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+        });
+      },
+      { root, rootMargin: '-10% 0px -75% 0px' },
+    );
+    sections.forEach((section) => observer.observe(section));
+
+    const onScroll = () => {
+      const atBottom = root.scrollTop + root.clientHeight >= root.scrollHeight - 4;
+      atBottomRef.current = atBottom;
+      if (atBottom) setActiveId(lastId);
+    };
+    root.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      observer.disconnect();
+      root.removeEventListener('scroll', onScroll);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sectionIds.join('|')]);
+
+  return activeId;
+}
+
+/** Envuelve un hito y lo hace aparecer con un pequeño desvanecido al entrar en pantalla. */
+function RevealOnScroll({ children, className = '' }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    const root = document.getElementById('main-scroll-container');
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { root, threshold: 0.2, rootMargin: '0px 0px -10% 0px' },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-500 ease-out ${
+        visible ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function HistoriaPage({ onNavigate }) {
+  const eraSlugs = eras.map((era) => era.slug);
+  const activeEra = useScrollSpy(eraSlugs);
+  const navRef = useRef(null);
+
+  // Cuando la época activa cambia por el propio scroll, su píldora se
+  // mantiene visible dentro de la barra horizontal (por si hay muchas épocas
+  // y no caben todas en pantalla a la vez, sobre todo en móvil). Se mueve
+  // solo el scroll horizontal de la propia barra — nunca scrollIntoView,
+  // que también movería el scroll vertical de la página y pelearía con el
+  // salto a la época al hacer clic.
+  useEffect(() => {
+    const nav = navRef.current;
+    const btn = nav?.querySelector(`[data-era="${activeEra}"]`);
+    if (!nav || !btn) return;
+    const navRect = nav.getBoundingClientRect();
+    const btnRect = btn.getBoundingClientRect();
+    if (btnRect.left < navRect.left || btnRect.right > navRect.right) {
+      const delta = btnRect.left - navRect.left - (nav.clientWidth - btn.clientWidth) / 2;
+      nav.scrollTo({ left: nav.scrollLeft + delta, behavior: 'smooth' });
+    }
+  }, [activeEra]);
+
+  const scrollToEra = (slug) => {
+    document.getElementById(slug)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <div className="container-editorial py-10 sm:py-16">
-      <p className="kicker">Eje cronológico</p>
+      <p className="kicker">Eje cronológico interactivo</p>
       <h1 className="mt-2 text-balance font-serif text-3xl sm:text-5xl font-bold text-pergamino">
         Historia de Cercadillo
       </h1>
       <p className="mt-4 text-balance text-lg text-pergamino-muted/80">
         De la comarca arévaca y romana a la repoblación medieval del siglo XI, y de ahí a la pequeña pedanía de
-        Sigüenza que es Cercadillo hoy. Es una cronología breve, construida solo con fuentes públicas verificables
-        (ver capítulo 6 de <button type="button" onClick={() => onNavigate('libro')} className="underline decoration-dotted underline-offset-2 hover:text-armuna-light cursor-pointer">El Libro</button>).
+        Sigüenza que es Cercadillo hoy. Toca una época para saltar a ella, o simplemente haz scroll: la cronología es
+        breve, construida solo con fuentes públicas verificables (ver capítulo 6 de{' '}
+        <button
+          type="button"
+          onClick={() => onNavigate('libro')}
+          className="underline decoration-dotted underline-offset-2 hover:text-armuna-light cursor-pointer"
+        >
+          El Libro
+        </button>
+        ).
       </p>
 
-      <div className="mt-12 space-y-12">
+      <nav
+        ref={navRef}
+        aria-label="Saltar a una época"
+        className="sticky top-0 z-20 -mx-4 mt-8 flex gap-2 overflow-x-auto border-y border-noche-border bg-noche/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-xl sm:border sm:px-3"
+      >
         {eras.map((era) => (
-          <div key={era.title} className="card-editorial p-6 sm:p-8">
-            <h2 className="font-serif text-xl sm:text-2xl font-bold text-armuna-light border-b border-noche-border pb-3">
-              {era.title}
-            </h2>
-            <div className="mt-6 space-y-6">
-              {era.events.map((ev, idx) => (
-                <div key={idx} className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start">
-                  <span className="font-mono text-sm font-bold text-piedra-300 bg-piedra-900/80 px-3 py-1 rounded-lg shrink-0 border border-noche-border">
-                    {ev.year}
-                  </span>
-                  <div className="flex-1">
-                    <p className="text-pergamino-muted/85 leading-relaxed text-sm sm:text-base">
-                      {ev.text}
-                    </p>
+          <button
+            key={era.slug}
+            type="button"
+            data-era={era.slug}
+            onClick={() => scrollToEra(era.slug)}
+            aria-current={activeEra === era.slug ? 'true' : undefined}
+            className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full border px-3.5 py-1.5 font-display text-xs font-bold uppercase tracking-wide transition-colors ${
+              activeEra === era.slug
+                ? 'border-armuna-light bg-armuna-light/15 text-armuna-light'
+                : 'border-noche-border text-pergamino-muted/60 hover:text-pergamino'
+            }`}
+          >
+            {era.shortTitle}
+          </button>
+        ))}
+      </nav>
+
+      <div className="relative mt-10 pl-9 sm:pl-11">
+        <div className="absolute bottom-1 top-1 w-px bg-noche-border" style={{ left: 15 }} aria-hidden="true" />
+
+        <div className="space-y-14">
+          {eras.map((era) => (
+            <section key={era.slug} id={era.slug} className="relative scroll-mt-20">
+              <span
+                className="absolute top-0 h-4 w-4 rounded-full border-2 border-noche bg-armuna-light sm:h-[18px] sm:w-[18px]"
+                style={{ left: -29 }}
+                aria-hidden="true"
+              />
+              <h2 className="font-serif text-xl font-bold text-armuna-light sm:text-2xl">{era.title}</h2>
+
+              <div className="mt-6 space-y-6">
+                {era.events.map((ev, idx) => (
+                  <RevealOnScroll key={idx} className="relative">
+                    <span
+                      className="absolute top-1.5 h-2.5 w-2.5 rounded-full bg-piedra-300"
+                      style={{ left: -26 }}
+                      aria-hidden="true"
+                    />
+                    <span className="inline-block rounded-lg border border-noche-border bg-piedra-900/80 px-3 py-1 font-mono text-sm font-bold text-piedra-300">
+                      {ev.year}
+                    </span>
+                    <p className="mt-2 text-sm leading-relaxed text-pergamino-muted/85 sm:text-base">{ev.text}</p>
                     {ev.tab && (
                       <button
                         type="button"
@@ -182,12 +340,12 @@ export default function HistoriaPage({ onNavigate }) {
                         Ver más en {navItems.find((n) => n.id === ev.tab)?.label ?? ev.tab} →
                       </button>
                     )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+                  </RevealOnScroll>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
       </div>
     </div>
   );
