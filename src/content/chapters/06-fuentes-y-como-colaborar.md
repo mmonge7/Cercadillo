@@ -21,6 +21,7 @@ Los datos de esta monografía proceden de:
 - Wikipedia, Wikidata y guías de pueblos de Guadalajara, para datos generales de localización, altitud y patrimonio.
 - El **Plan de Gestión del espacio Natura 2000 "Valle y Salinas del Salado"** (ZEC ES0000165 / ZEPA ES0000489), de la Junta de Comunidades de Castilla-La Mancha (2017), para los datos de protección ambiental, hábitats y especies de fauna y flora del capítulo 1.
 - Wikipedia y NaturaSpain, como fuentes complementarias sobre el mismo espacio protegido.
+- El documento familiar de investigación local *"De 'Cercadiello' a Cercadillo"*, con textos y bibliografía de Eusebio Monge Molinero y otros vecinos e investigadores del pueblo, para los despoblados del término, la Torre de Alvar Díaz, el retablo de la iglesia (1560-1567), la toponimia urbana del siglo XVIII, las salinas de Gormellón y el contexto de la desamortización del XIX, en los capítulos 2, 3, 4 y 5.
 
 ## Cómo colaborar
 

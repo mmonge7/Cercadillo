@@ -142,7 +142,7 @@ const staticEntries = [
     target: null,
     title: 'Historia de Cercadillo',
     excerpt: 'Eje cronológico: repoblación medieval de 1085-1149, Edad Moderna, siglo XIX, 1973 y actualidad.',
-    content: 'cronología historia repoblación Alfonso VI Alfonso VII fuero Comunidad de Atienza Madoz Siguenza 1973 INE',
+    content: 'cronología historia repoblación Alfonso VI Alfonso VII fuero Comunidad de Atienza Madoz Siguenza 1973 INE arévacos celtíberos romanos Segontia Torre de Alvar Díaz despoblados desamortización Pascual Madoz 1835 1855',
     badge: 'Historia',
   },
   {
@@ -151,7 +151,7 @@ const staticEntries = [
     target: null,
     title: 'Lugares de Cercadillo',
     excerpt: 'El patrimonio documentado del pueblo: la iglesia, las dos ermitas, la fuente y el lavadero.',
-    content: 'iglesia natividad ermita soledad santo domingo fuente lavadero patrimonio',
+    content: 'iglesia natividad ermita soledad santo domingo fuente lavadero patrimonio despoblados Los Majanos Los Pozos Santa Catalina Soto Torre de Alvar Díaz La Torrecilla Val de San Pedro toponimia calles plazas siglo XVIII',
     badge: 'Lugares',
   },
   {
@@ -160,7 +160,7 @@ const staticEntries = [
     target: null,
     title: 'Iglesia de la Natividad de Nuestra Señora',
     excerpt: 'Templo del siglo XVI de tres naves con altares platerescos, el monumento principal de Cercadillo.',
-    content: 'iglesia natividad nuestra señora plateresco tres naves siglo XVI monumento',
+    content: 'iglesia natividad nuestra señora plateresco tres naves siglo XVI monumento retablo 1560 1567 Martín de Bandoma Martín de Cobarrubias maravedís tasación',
     badge: 'Monumento',
   },
   {
@@ -214,7 +214,7 @@ const staticEntries = [
     target: null,
     title: 'Referencias y fuentes documentales',
     excerpt: 'Archivos, monografías, hemeroteca y portales digitales en los que se basa esta web.',
-    content: 'bibliografía fuentes Wikipedia Wikidata Madoz BOE INE Comunidad de Atienza guías Guadalajara Wikiloc Plan de Gestión Valle y Salinas del Salado ZEC ZEPA Junta de Comunidades de Castilla-La Mancha NaturaSpain',
+    content: 'bibliografía fuentes Wikipedia Wikidata Madoz BOE INE Comunidad de Atienza guías Guadalajara Wikiloc Plan de Gestión Valle y Salinas del Salado ZEC ZEPA Junta de Comunidades de Castilla-La Mancha NaturaSpain De Cercadiello a Cercadillo Eusebio Monge Molinero toponimia investigación local',
     badge: 'Fuentes',
   },
   {

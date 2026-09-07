@@ -170,6 +170,21 @@ export const referencesData: ReferenceItem[] = [
     ],
   },
   {
+    id: 'documento-familiar-cercadiello-cercadillo',
+    titulo: '"De \'Cercadiello\' a Cercadillo": investigación histórica y toponímica',
+    autorInstitucion: 'Eusebio Monge Molinero y otros vecinos e investigadores de Cercadillo',
+    anioRegistro: 'Recopilación familiar inédita, aportada en 2026',
+    categoria: 'archivos',
+    tipoFuente: 'Documento de investigación local inédito, con bibliografía académica propia',
+    aportacionHistorica: [
+      'Los seis despoblados documentados en el término: Los Majanos, Los Pozos, Santa Catalina, Soto, la Torre de Alvar Díaz y Val de San Pedro.',
+      'El encargo y la tasación del retablo de la iglesia (1560-1567), con los nombres de los artesanos y su valor en maravedís, citando a Herrera Casado.',
+      'El inventario de veinticinco calles y plazas del pueblo en el siglo XVIII, procedente de los autos generales de la época.',
+      'El detalle de las salinas de Cercadillo-Santamera, conocidas como "de Gormellón" o "La Escuadra", desde la Edad Media hasta su cierre hacia 1980.',
+      'El contexto arévaco y romano de la comarca, y la desamortización de 1835-1855 como causa temprana del declive demográfico.',
+    ],
+  },
+  {
     id: 'wikiloc-cercadillo',
     titulo: 'Rutas por Cercadillo',
     autorInstitucion: 'Wikiloc',
