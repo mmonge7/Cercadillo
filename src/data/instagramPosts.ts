@@ -12,7 +12,19 @@ export type InstagramPost = {
 // refrescarla: añade una entrada nueva arriba con el enlace del post, guarda
 // una captura en public/images/instagram/ y actualiza `image`. No hay
 // conexión automática con Instagram (ver decisión en el proyecto).
+//
+// La cuadrícula de Inicio se ve mejor con 6 tarjetas (coincide con
+// `lg:grid-cols-6` en InstagramFeed.jsx): al añadir una nueva, comenta la
+// más antigua en vez de borrarla, para no perder el dato.
 export const instagramPosts: InstagramPost[] = [
+  {
+    id: 'espuma-fiestas',
+    url: 'https://www.instagram.com/infocercadillo/reel/Dc_jtULqYuu/',
+    image: publicUrl('/images/instagram/reel-espuma-fiestas.jpg'),
+    caption: 'Una lloradita y a seguir 🩵',
+    date: '7 sep 2026',
+    kind: 'reel',
+  },
   {
     id: 'poesia',
     url: 'https://www.instagram.com/infocercadillo/reel/DclkoW6soF5/',
@@ -53,12 +65,16 @@ export const instagramPosts: InstagramPost[] = [
     date: '23 jul 2026',
     kind: 'post',
   },
-  {
-    id: 'reel-mina',
-    url: 'https://www.instagram.com/infocercadillo/reel/DZ70MTiMPip/',
-    image: publicUrl('/images/instagram/reel-mina.jpg'),
-    caption: 'El pueblo está más vivo de lo que creen: informarse, resolver dudas y defender el territorio.',
-    date: '23 jun 2026',
-    kind: 'reel',
-  },
+  // Desplazado fuera de la cuadrícula al añadir una publicación más reciente
+  // (ver comentario de arriba: la selección se limita a las últimas 6). Se
+  // deja comentado, en vez de borrarlo, para no perder el dato si se quiere
+  // recuperar más adelante.
+  // {
+  //   id: 'reel-mina',
+  //   url: 'https://www.instagram.com/infocercadillo/reel/DZ70MTiMPip/',
+  //   image: publicUrl('/images/instagram/reel-mina.jpg'),
+  //   caption: 'El pueblo está más vivo de lo que creen: informarse, resolver dudas y defender el territorio.',
+  //   date: '23 jun 2026',
+  //   kind: 'reel',
+  // },
 ];
