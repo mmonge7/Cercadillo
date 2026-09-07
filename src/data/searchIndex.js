@@ -109,6 +109,15 @@ export const searchIndex = [
     "badge": "Genealogía"
   },
   {
+    "id": "seccion-fauna-flora",
+    "tab": "fauna-flora",
+    "target": null,
+    "title": "Fauna y Flora",
+    "excerpt": "El saladar de Cercadillo: la ZEC/ZEPA \"Valle y Salinas del Salado\", sus especies y las dos microrreservas.",
+    "content": "fauna flora ZEC ZEPA LIC ES0000165 ES0000489 Valle y Salinas del Salado Red Natura 2000 saladar vegetación halófila rapaces rupícolas águila real halcón peregrino alimoche buitre leonado corzo nutria tejón gato montés lobo ibérico murciélagos Cueva de los Murciélagos microrreserva Imón tomillo picante almajo dulce Ruppia",
+    "badge": "Naturaleza"
+  },
+  {
     "id": "seccion-ni-catas-ni-minas",
     "tab": "ni-catas-ni-minas",
     "target": null,
@@ -123,7 +132,7 @@ export const searchIndex = [
     "target": null,
     "title": "Referencias y fuentes documentales",
     "excerpt": "Archivos, monografías, hemeroteca y portales digitales en los que se basa esta web.",
-    "content": "bibliografía fuentes Wikipedia Wikidata Madoz BOE INE Comunidad de Atienza guías Guadalajara Wikiloc",
+    "content": "bibliografía fuentes Wikipedia Wikidata Madoz BOE INE Comunidad de Atienza guías Guadalajara Wikiloc Plan de Gestión Valle y Salinas del Salado ZEC ZEPA Junta de Comunidades de Castilla-La Mancha NaturaSpain",
     "badge": "Fuentes"
   },
   {
