@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { BookOpen, ChevronLeft, ChevronRight, Clock, List } from 'lucide-react';
 import { chapters } from '../data/chaptersData';
 import Markdown from '../components/Markdown';
-import ReadingProgress from '../components/ReadingProgress';
 
 /** Índice de los apartados del capítulo, con resaltado del apartado visible. */
 function ChapterToc({ headings, className }) {
@@ -125,8 +124,6 @@ export default function LibroPage({ onNavigate, target }) {
 
   return (
     <div>
-      <ReadingProgress resetKey={activeChapter.id} />
-
       <div className="container-editorial pb-10 pt-6 sm:pb-16 sm:pt-10">
         <div className="flex items-center justify-between gap-3 border-b border-noche-border pb-4">
           <button

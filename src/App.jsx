@@ -3,6 +3,7 @@ import { useSwipeable } from 'react-swipeable';
 import Nav, { Sidebar, DesktopTopBar } from './components/Nav';
 import Footer from './components/Footer';
 import ScrollToTopButton from './components/ScrollToTopButton';
+import ReadingProgress from './components/ReadingProgress';
 import ErrorBoundary from './components/ErrorBoundary';
 import { buildHash, parseHash } from './utils/router';
 
@@ -110,6 +111,9 @@ export default function App() {
           className="flex min-w-0 flex-1 flex-col overflow-y-auto"
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
+          {/* Cuánto queda de la sección actual, visible en todas las páginas. */}
+          <ReadingProgress resetKey={`${route.tab}/${route.target ?? ''}`} />
+
           <main id="main" className="w-full flex-1">
             <div>
               <ErrorBoundary key={route.tab} label="esta sección">
