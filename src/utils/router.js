@@ -10,6 +10,7 @@ export const TABS = [
   'historia',
   'lugares',
   'ni-catas-ni-minas',
+  'fauna-flora',
   'fiestas',
   'escudo',
   'iglesia',

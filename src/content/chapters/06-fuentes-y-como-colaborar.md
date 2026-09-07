@@ -19,6 +19,8 @@ Los datos de esta monografía proceden de:
 - El decreto de **1973** por el que Cercadillo, Horna y Bujarrabal se incorporaron al municipio de Sigüenza.
 - El artículo de Wikipedia sobre la **Comunidad de Villa y Tierra de Atienza**, para el marco de la repoblación medieval y el fuero de 1149.
 - Wikipedia, Wikidata y guías de pueblos de Guadalajara, para datos generales de localización, altitud y patrimonio.
+- El **Plan de Gestión del espacio Natura 2000 "Valle y Salinas del Salado"** (ZEC ES0000165 / ZEPA ES0000489), de la Junta de Comunidades de Castilla-La Mancha (2017), para los datos de protección ambiental, hábitats y especies de fauna y flora del capítulo 1.
+- Wikipedia y NaturaSpain, como fuentes complementarias sobre el mismo espacio protegido.
 
 ## Cómo colaborar
 

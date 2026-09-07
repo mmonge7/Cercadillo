@@ -21,6 +21,7 @@ export const navLinks = [
   { label: 'Historia', href: '/historia' },
   { label: 'Lugares', href: '/lugares' },
   { label: 'Fiestas', href: '/fiestas' },
+  { label: 'Fauna y Flora', href: '/fauna-flora' },
   { label: 'El Escudo', href: '/escudo' },
   { label: 'La Iglesia', href: '/iglesia' },
   { label: 'El Libro', href: '/libro' },
