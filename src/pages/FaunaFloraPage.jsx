@@ -22,24 +22,33 @@ export default function FaunaFloraPage({ onNavigate }) {
             existirían en la costa.
           </p>
 
+          <div className="mt-4 flex flex-wrap gap-2">
+            <span className="rounded-full border border-armuna/30 bg-armuna/10 px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-armuna-light">
+              ZEPA {datosEspacio.zepa} · protege las aves
+            </span>
+            <span className="rounded-full border border-armuna/30 bg-armuna/10 px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-armuna-light">
+              LIC/ZEC {datosEspacio.zec} · protege hábitats y el resto de fauna y flora
+            </span>
+          </div>
+
           <div className="mt-8 grid max-w-lg grid-cols-3 gap-4">
             <div>
               <div className="font-serif text-2xl sm:text-3xl font-bold text-armuna-dark">
                 {datosEspacio.porcentajeCercadillo}%
               </div>
-              <div className="mt-0.5 text-[11px] sm:text-xs uppercase tracking-wide text-piedra-600">
+              <div className="mt-0.5 text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-piedra-300">
                 Del término protegido
               </div>
             </div>
             <div>
               <div className="font-serif text-2xl sm:text-3xl font-bold text-armuna-dark">2</div>
-              <div className="mt-0.5 text-[11px] sm:text-xs uppercase tracking-wide text-piedra-600">
+              <div className="mt-0.5 text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-piedra-300">
                 Microrreservas
               </div>
             </div>
             <div>
               <div className="font-serif text-2xl sm:text-3xl font-bold text-armuna-dark">~15</div>
-              <div className="mt-0.5 text-[11px] sm:text-xs uppercase tracking-wide text-piedra-600">
+              <div className="mt-0.5 text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-piedra-300">
                 Parejas de rapaces
               </div>
             </div>
