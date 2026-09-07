@@ -63,7 +63,7 @@ export default function InstagramFeed() {
             rel="noopener noreferrer"
             className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-armuna-light transition-colors hover:text-armuna cursor-pointer"
           >
-            Colabora con nosotros <ArrowRight size={15} />
+            Ponte en contacto <ArrowRight size={15} />
           </a>
         </div>
       </div>
