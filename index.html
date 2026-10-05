@@ -3,6 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script>
+      // Restaura, antes de montar React, la ruta que 404.html guardó al
+      // redirigir aquí (ver ese archivo). Sin esto, cualquier enlace directo
+      // o recarga en una sección (p.ej. /historia) abriría siempre Inicio.
+      (function () {
+        try {
+          var redirect = sessionStorage.getItem('cercadillo:redirect');
+          if (redirect) {
+            sessionStorage.removeItem('cercadillo:redirect');
+            if (redirect !== location.pathname + location.search) {
+              history.replaceState(null, '', redirect);
+            }
+          }
+        } catch (e) {
+          // sessionStorage bloqueado: se queda en Inicio, sin romper nada.
+        }
+      })();
+    </script>
     <title>Cercadillo · Historia, Lugares y Curiosidades</title>
     <meta
       name="description"
