@@ -3,15 +3,13 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
-// TEMPORAL: mientras infocercadillo.es no tenga el DNS apuntando a GitHub
-// Pages (ver guía del proyecto), servimos desde mmonge7.github.io/Cercadillo/,
-// así que el base tiene que llevar la subcarpeta. En cuanto el dominio propio
-// esté verificado en Settings > Pages, volver a poner BASE_PATH en '/'.
+// El dominio propio (infocercadillo.es) ya está verificado en Settings >
+// Pages (DNS check successful, 5 oct 2026), así que servimos desde la raíz.
 // Manifest y workbox se derivan de esta misma constante para que nunca
 // vuelvan a quedar desincronizados del base real (ese desajuste fue la causa
 // del bug de móvil: la PWA apuntaba a "/" mientras el sitio vivía en
 // "/Cercadillo/").
-const BASE_PATH = '/Cercadillo/';
+const BASE_PATH = '/';
 
 export default defineConfig({
   base: BASE_PATH,
