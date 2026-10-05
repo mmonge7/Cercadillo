@@ -3,9 +3,9 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
-// TEMPORAL: mientras cercadillo.es no tenga el DNS apuntando a GitHub Pages
-// (ver guía del proyecto), servimos desde mmonge7.github.io/Cercadillo/, así
-// que el base tiene que llevar la subcarpeta. En cuanto el dominio propio
+// TEMPORAL: mientras infocercadillo.es no tenga el DNS apuntando a GitHub
+// Pages (ver guía del proyecto), servimos desde mmonge7.github.io/Cercadillo/,
+// así que el base tiene que llevar la subcarpeta. En cuanto el dominio propio
 // esté verificado en Settings > Pages, volver a poner BASE_PATH en '/'.
 // Manifest y workbox se derivan de esta misma constante para que nunca
 // vuelvan a quedar desincronizados del base real (ese desajuste fue la causa
