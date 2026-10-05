@@ -24,19 +24,30 @@
     </style>
     <script>
       /*
-       * La web es una sola página con rutas por hash. Este 404 traduce las
-       * direcciones antiguas del sitio multipágina (por ejemplo
-       * /libro/05-despoblado-ribas-flecha/) a su equivalente
-       * (#/libro/05-despoblado-ribas-flecha), para que los enlaces
-       * compartidos y los resultados de Google sigan funcionando.
+       * La web es una sola página con rutas limpias (ver src/utils/router.js
+       * e index.html). GitHub Pages es hosting estático y no puede reescribir
+       * /historia a index.html en el servidor, así que cualquier ruta que no
+       * sea un archivo real cae aquí — incluidas las direcciones antiguas del
+       * sitio multipágina, p.ej. /libro/05-despoblado-ribas-flecha/index.html.
+       * Guardamos la ruta ya traducida y mandamos a la raíz; el script en
+       * index.html la restaura con history.replaceState antes de montar
+       * React, para que los enlaces compartidos, los marcadores y los
+       * resultados de Google sigan funcionando sin que se note el salto.
        */
       (function () {
         var base = '/';
         var path = window.location.pathname;
         var route = path.indexOf(base) === 0 ? path.slice(base.length) : path.replace(/^\/+/, '');
         route = route.replace(/[^/]*\.html$/, '').replace(/^\/+|\/+$/g, '');
-        var target = base + (route ? '#/' + route : '') + window.location.search;
-        window.location.replace(target);
+        var target = base + route;
+        try {
+          sessionStorage.setItem('cercadillo:redirect', target + window.location.search);
+        } catch (e) {
+          // Si el navegador bloquea sessionStorage (modo privado estricto,
+          // por ejemplo), simplemente se pierde la ruta concreta y se cae en
+          // Inicio — mejor eso que romper la redirección entera.
+        }
+        window.location.replace(base);
       })();
     </script>
   </head>

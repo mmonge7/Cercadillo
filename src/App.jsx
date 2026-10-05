@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import ReadingProgress from './components/ReadingProgress';
 import ErrorBoundary from './components/ErrorBoundary';
-import { buildHash, parseHash } from './utils/router';
+import { buildPath, parseLegacyHash, parsePath } from './utils/router';
 
 // Todas las páginas se importan de forma estática: el contenido completo viaja
 // en el bundle y cambiar de sección es solo un cambio de estado, sin esperas.
@@ -42,26 +42,54 @@ const PAGES = {
 };
 
 export default function App() {
-  const [route, setRoute] = useState(() => parseHash(window.location.hash));
+  const [route, setRoute] = useState(() => {
+    // Compatibilidad con enlaces antiguos tipo #/historia, ya compartidos
+    // antes de pasar a rutas limpias: si aparecen, se reescribe la URL a su
+    // forma limpia sin recargar la página.
+    const legacy = parseLegacyHash(window.location.hash);
+    if (legacy) {
+      const path = buildPath(legacy.tab, legacy.target);
+      window.history.replaceState(null, '', path);
+      return parsePath(path);
+    }
+    return parsePath(window.location.pathname);
+  });
   const [menuOpen, setMenuOpen] = useState(false);
   const scrollContainerRef = useRef(null);
 
-  // La URL manda: escuchar el hash cubre a la vez la navegación interna, el
-  // botón "atrás" del móvil y los enlaces compartidos.
+  // La URL manda: escuchar popstate cubre el botón "atrás"/"adelante" del
+  // navegador y del móvil. La navegación interna actualiza el estado a mano
+  // (pushState no dispara ningún evento por sí solo).
   useEffect(() => {
-    const onHashChange = () => setRoute(parseHash(window.location.hash));
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
+    const onPopState = () => setRoute(parsePath(window.location.pathname));
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
   const navigate = useCallback((tab, target = null) => {
-    const nextHash = buildHash(tab, target);
-    if (window.location.hash === nextHash) {
-      setRoute(parseHash(nextHash));
-      return;
+    const nextPath = buildPath(tab, target);
+    if (window.location.pathname !== nextPath) {
+      window.history.pushState(null, '', nextPath);
     }
-    window.location.hash = nextHash;
+    setRoute(parsePath(nextPath));
   }, []);
+
+  // El contenido en Markdown tiene enlaces internos con el formato de ruta
+  // antiguo, p.ej. [Rutas](#/rutas) (ver src/content). En vez de reescribir
+  // ese contenido, se interceptan aquí igual que cualquier otro cambio de
+  // sección — así siguen funcionando sin tocar los textos.
+  useEffect(() => {
+    const onClick = (e) => {
+      const anchor = e.target.closest?.('a[href^="#/"]');
+      if (!anchor) return;
+      const legacy = parseLegacyHash(anchor.getAttribute('href'));
+      if (!legacy) return;
+      e.preventDefault();
+      navigate(legacy.tab, legacy.target);
+    };
+    document.addEventListener('click', onClick);
+    return () => document.removeEventListener('click', onClick);
+  }, [navigate]);
 
   // Al cambiar de sección se vuelve arriba. Si la ruta apunta a un elemento
   // concreto (un capítulo, un término), es la propia página la que decide

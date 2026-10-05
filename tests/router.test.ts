@@ -1,45 +1,65 @@
 import { describe, expect, it } from 'vitest';
-import { buildHash, parseHash, TABS } from '../src/utils/router';
+import { buildPath, parseLegacyHash, parsePath, TABS } from '../src/utils/router';
 
-describe('rutas por hash', () => {
-  it('abre el inicio cuando no hay hash', () => {
-    expect(parseHash('')).toEqual({ tab: 'inicio', target: null });
-    expect(parseHash('#')).toEqual({ tab: 'inicio', target: null });
-    expect(parseHash('#/')).toEqual({ tab: 'inicio', target: null });
+describe('rutas limpias', () => {
+  it('abre el inicio cuando no hay ruta', () => {
+    expect(parsePath('')).toEqual({ tab: 'inicio', target: null });
+    expect(parsePath('/')).toEqual({ tab: 'inicio', target: null });
   });
 
   it('lee la sección de una ruta simple', () => {
-    expect(parseHash('#/lugares')).toEqual({ tab: 'lugares', target: null });
-    expect(parseHash('#/sobre-la-web')).toEqual({ tab: 'sobre-la-web', target: null });
+    expect(parsePath('/lugares')).toEqual({ tab: 'lugares', target: null });
+    expect(parsePath('/sobre-la-web')).toEqual({ tab: 'sobre-la-web', target: null });
   });
 
   it('lee la sección y el elemento concreto de una ruta profunda', () => {
-    expect(parseHash('#/libro/05-despoblado-ribas-flecha')).toEqual({
+    expect(parsePath('/libro/05-despoblado-ribas-flecha')).toEqual({
       tab: 'libro',
       target: '05-despoblado-ribas-flecha',
     });
-    expect(parseHash('#/galeria/foto-01')).toEqual({ tab: 'galeria', target: 'foto-01' });
+    expect(parsePath('/galeria/foto-01')).toEqual({ tab: 'galeria', target: 'foto-01' });
   });
 
   it('ignora las barras finales', () => {
-    expect(parseHash('#/libro/')).toEqual({ tab: 'libro', target: null });
-    expect(parseHash('#/galeria/foto-01/')).toEqual({ tab: 'galeria', target: 'foto-01' });
+    expect(parsePath('/libro/')).toEqual({ tab: 'libro', target: null });
+    expect(parsePath('/galeria/foto-01/')).toEqual({ tab: 'galeria', target: 'foto-01' });
   });
 
   it('cae en el inicio si la sección no existe', () => {
-    expect(parseHash('#/seccion-inventada')).toEqual({ tab: 'inicio', target: null });
+    expect(parsePath('/seccion-inventada')).toEqual({ tab: 'inicio', target: null });
   });
 
-  it('construye rutas válidas', () => {
-    expect(buildHash('inicio')).toBe('#/inicio');
-    expect(buildHash('libro', '01-marco-geografico')).toBe('#/libro/01-marco-geografico');
-    expect(buildHash('seccion-inventada')).toBe('#/');
+  it('construye rutas válidas, con Inicio apuntando a la raíz limpia', () => {
+    expect(buildPath('inicio')).toBe('/');
+    expect(buildPath('libro', '01-marco-geografico')).toBe('/libro/01-marco-geografico');
+    expect(buildPath('seccion-inventada')).toBe('/');
   });
 
   it('ida y vuelta: lo que se construye se vuelve a leer igual', () => {
     for (const tab of TABS) {
-      expect(parseHash(buildHash(tab))).toEqual({ tab, target: null });
-      expect(parseHash(buildHash(tab, 'un-elemento'))).toEqual({ tab, target: 'un-elemento' });
+      expect(parsePath(buildPath(tab))).toEqual({ tab, target: null });
+      expect(parsePath(buildPath(tab, 'un-elemento'))).toEqual({ tab, target: 'un-elemento' });
     }
+  });
+});
+
+describe('compatibilidad con enlaces antiguos (#/tab)', () => {
+  it('reconoce el formato antiguo y lo traduce', () => {
+    expect(parseLegacyHash('#/historia')).toEqual({ tab: 'historia', target: null });
+    expect(parseLegacyHash('#/libro/05-despoblado-ribas-flecha')).toEqual({
+      tab: 'libro',
+      target: '05-despoblado-ribas-flecha',
+    });
+  });
+
+  it('ignora hashes que no son rutas antiguas (anclajes normales de página)', () => {
+    expect(parseLegacyHash('#fuentes-minas')).toBeNull();
+    expect(parseLegacyHash('#un-slug-cualquiera')).toBeNull();
+    expect(parseLegacyHash('')).toBeNull();
+    expect(parseLegacyHash('#')).toBeNull();
+  });
+
+  it('ignora una sección antigua inventada en vez de forzar el inicio', () => {
+    expect(parseLegacyHash('#/seccion-inventada')).toBeNull();
   });
 });
