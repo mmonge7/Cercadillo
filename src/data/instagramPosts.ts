@@ -18,6 +18,14 @@ export type InstagramPost = {
 // más antigua en vez de borrarla, para no perder el dato.
 export const instagramPosts: InstagramPost[] = [
   {
+    id: 'corderadas',
+    url: 'https://www.instagram.com/infocercadillo/reel/DeFZJ0vu4nz/',
+    image: publicUrl('/images/instagram/reel-corderadas.jpg'),
+    caption: 'Aquí no hace falta mucho: cordero, buena mesa y gente con ganas de juntarse. 🤍 Así son nuestras corderadas.',
+    date: '4 oct 2026',
+    kind: 'reel',
+  },
+  {
     id: 'espuma-fiestas',
     url: 'https://www.instagram.com/infocercadillo/reel/Dc_jtULqYuu/',
     image: publicUrl('/images/instagram/reel-espuma-fiestas.jpg'),
@@ -57,18 +65,18 @@ export const instagramPosts: InstagramPost[] = [
     date: '6 ago 2026',
     kind: 'post',
   },
-  {
-    id: 'incendio-mierla',
-    url: 'https://www.instagram.com/infocercadillo/p/DbIfY3JsrBw/',
-    image: publicUrl('/images/instagram/incendio-mierla.jpg'),
-    caption: 'El incendio de Mierla golpeó muy cerca de Cercadillo. Toca trabajar más duro, pero levantaremos esta tierra una vez más.',
-    date: '23 jul 2026',
-    kind: 'post',
-  },
-  // Desplazado fuera de la cuadrícula al añadir una publicación más reciente
+  // Desplazadas fuera de la cuadrícula al añadir una publicación más reciente
   // (ver comentario de arriba: la selección se limita a las últimas 6). Se
-  // deja comentado, en vez de borrarlo, para no perder el dato si se quiere
-  // recuperar más adelante.
+  // dejan comentadas, en vez de borrarlas, para no perder el dato si se
+  // quieren recuperar más adelante.
+  // {
+  //   id: 'incendio-mierla',
+  //   url: 'https://www.instagram.com/infocercadillo/p/DbIfY3JsrBw/',
+  //   image: publicUrl('/images/instagram/incendio-mierla.jpg'),
+  //   caption: 'El incendio de Mierla golpeó muy cerca de Cercadillo. Toca trabajar más duro, pero levantaremos esta tierra una vez más.',
+  //   date: '23 jul 2026',
+  //   kind: 'post',
+  // },
   // {
   //   id: 'reel-mina',
   //   url: 'https://www.instagram.com/infocercadillo/reel/DZ70MTiMPip/',
