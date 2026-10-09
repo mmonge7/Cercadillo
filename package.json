@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npm run content && vite",
     "content": "node scripts/build-content-data.mjs && node scripts/generate-sitemap.mjs",
-    "build": "npm run content && node scripts/generate-icons.mjs && vite build",
+    "build": "npm run content && node scripts/generate-icons.mjs && vite build && node scripts/prerender.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint . --ignore-path=.gitignore",
     "test": "vitest run",
@@ -31,6 +31,7 @@
     "@types/react-dom": "^19.2.5",
     "@vitejs/plugin-react": "^4.3.4",
     "oxlint": "^1.80.0",
+    "playwright": "^1.56.0",
     "sharp": "^0.35.4",
     "typescript": "^5.7.3",
     "vite": "^6.2.0",
