@@ -6,6 +6,7 @@ import ScrollToTopButton from './components/ScrollToTopButton';
 import ReadingProgress from './components/ReadingProgress';
 import ErrorBoundary from './components/ErrorBoundary';
 import { buildPath, parseLegacyHash, parsePath } from './utils/router';
+import { useSeo } from './utils/seo';
 
 // Todas las páginas se importan de forma estática: el contenido completo viaja
 // en el bundle y cambiar de sección es solo un cambio de estado, sin esperas.
@@ -73,6 +74,11 @@ export default function App() {
     }
     setRoute(parsePath(nextPath));
   }, []);
+
+  // Título, meta description, Open Graph/Twitter y JSON-LD de la sección
+  // activa (ver src/utils/seo.js) -- así cada ruta puede posicionar por su
+  // cuenta en Google, no solo la portada.
+  useSeo(route.tab, route.target);
 
   // El contenido en Markdown tiene enlaces internos con el formato de ruta
   // antiguo, p.ej. [Rutas](#/rutas) (ver src/content). En vez de reescribir
