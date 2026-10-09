@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pcresp0.github.io/moriscos-wiki/sitemap-index.xml
+Sitemap: https://infocercadillo.es/sitemap.xml

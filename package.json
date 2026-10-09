@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "npm run content && vite",
-    "content": "node scripts/build-content-data.mjs",
+    "content": "node scripts/build-content-data.mjs && node scripts/generate-sitemap.mjs",
     "build": "npm run content && node scripts/generate-icons.mjs && vite build",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint . --ignore-path=.gitignore",
